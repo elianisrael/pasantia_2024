@@ -164,19 +164,6 @@ def upload_files():
     # Guardar el archivo
     writer.close()
 
-    # Generar reporte en PDF
-    # archivo_pdf = f'reporte_facturas_{timestamp}.pdf'
-    # pdf = FPDF()
-    # pdf.add_page()
-    # pdf.set_font('Arial', 'B', 12)
-    
-    # for i, factura in enumerate(facturas_info):
-    #     pdf.cell(200, 10, txt=f"Factura {i+1}: {factura['Razón Social']} - {factura['RUC']}", ln=True)
-    #     for key, value in factura.items():
-    #         pdf.cell(200, 10, txt=f"{key}: {value}", ln=True)
-    #     pdf.cell(200, 10, txt=" ", ln=True)
-    
-    # pdf.output(archivo_pdf)
     archivo_pdf = f'reporte_facturas_{timestamp}.pdf'
     pdf = FPDF()
     pdf.set_auto_page_break(auto=True, margin=15)
@@ -287,6 +274,7 @@ def dashboard():
     # Procesa los datos de las facturas (asumiendo que tienes acceso a facturas_info)
     total_facturas = len(facturas_info)
     total_ventas = sum(float(factura['Total con impuestos']) for factura in facturas_info)
+    ventas_sin_impuestos = sum(float(factura['Total sin impuestos']) for factura in facturas_info)
     promedio_venta = total_ventas / total_facturas if total_facturas > 0 else 0
     
     # Datos para gráficos
@@ -297,11 +285,20 @@ def dashboard():
         monto = float(factura['Total con impuestos'])
         ventas_por_cliente[cliente] = ventas_por_cliente.get(cliente, 0) + monto
 
+    iva_totales = {
+        'IVA 0%': sum(factura['iva 0%'] for factura in facturas_info),
+        'IVA 5%': sum(factura['iva 5%'] for factura in facturas_info),
+        'IVA 12%': sum(factura['iva 12%'] for factura in facturas_info),
+        'IVA 15%': sum(factura['iva 15%'] for factura in facturas_info)
+    }
+
     return render_template('dashboard.html', 
                            total_facturas=total_facturas,
                            total_ventas=total_ventas,
+                           ventas_sin_impuestos=ventas_sin_impuestos,
                            promedio_venta=promedio_venta,
-                           ventas_por_cliente=ventas_por_cliente,)
+                           ventas_por_cliente=ventas_por_cliente,
+                           iva_totales=iva_totales)  
 
 if __name__ == '__main__':
     app.run(debug=True)
