@@ -1,0 +1,285 @@
+from flask import Flask, render_template, request, redirect, send_file # type: ignore
+import xml.etree.ElementTree as ET
+import pandas as pd # type: ignore
+import openpyxl # type: ignore
+from fpdf import FPDF # type: ignore
+import os
+import datetime
+from openpyxl.styles import Font, PatternFill, Border, Side # type: ignore
+
+app = Flask(__name__)
+
+# Ruta para la página principal
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+# Ruta para subir los archivos XML y generar los reportes
+@app.route('/upload', methods=['POST'])
+def upload_files():
+    # Obtener los archivos XML subidos por el usuario
+    uploaded_files = request.files.getlist('xml_files')
+    
+    # Crear listas para almacenar la información de las facturas
+    facturas_info = []
+
+    for file in uploaded_files:
+        try:
+            tree = ET.parse(file)
+            root = tree.getroot()
+
+            # Extraer información de la factura (igual que en tu código original)
+            estado = root.find('estado').text if root.find('estado') is not None else None
+            numero_autorizacion = root.find('numeroAutorizacion').text if root.find('numeroAutorizacion') is not None else None
+            fecha_autorizacion = root.find('fechaAutorizacion').text if root.find('fechaAutorizacion') is not None else None
+            ambiente = root.find('ambiente').text if root.find('ambiente') is not None else None
+
+            comprobante_element = root.find('comprobante')
+            if comprobante_element is not None:
+                comprobante_xml = comprobante_element.text.strip()
+                if comprobante_xml.startswith('<?xml'):
+                    comprobante_xml = comprobante_xml.split('?>', 1)[1].strip()
+            else:
+                continue
+
+            comprobante_root = ET.fromstring(comprobante_xml)
+            info_tributaria = comprobante_root.find('infoTributaria')
+            razon_social = info_tributaria.find('razonSocial').text if info_tributaria is not None else None
+            ruc = info_tributaria.find('ruc').text if info_tributaria is not None else None
+            clave_acceso = info_tributaria.find('claveAcceso').text if info_tributaria is not None else None
+
+            info_factura = comprobante_root.find('infoFactura')
+            fecha_emision = info_factura.find('fechaEmision').text if info_factura is not None else None
+            total_sin_impuestos = info_factura.find('totalSinImpuestos').text if info_factura is not None else None
+            importe_total = info_factura.find('importeTotal').text if info_factura is not None else None
+            detalles = comprobante_root.find('detalles')
+
+            if detalles is not None:
+                productos = detalles.findall('detalle')
+                ivas = {"0%": 0, "5%": 0, "12%": 0, "15%": 0}
+                total_factura = 0
+                for producto in productos:
+                    codigo = producto.find('codigoPrincipal').text if producto.find('codigoPrincipal') is not None else None
+                    descripcion = producto.find('descripcion').text if producto.find('descripcion') is not None else None
+                    cantidad = float(producto.find('cantidad').text) if producto.find('cantidad') is not None else 0.0
+                    precio_unitario = float(producto.find('precioUnitario').text) if producto.find('precioUnitario') is not None else 0.0
+                    precio_total_sin_impuesto = float(producto.find('precioTotalSinImpuesto').text) if producto.find('precioTotalSinImpuesto') is not None else 0.0
+
+                    impuesto_element = producto.find('impuestos')
+                    if impuesto_element is not None:
+                        valor_impuesto = impuesto_element.find('impuesto')
+                        impuesto = float(valor_impuesto.find('valor').text) if valor_impuesto is not None else 0.0
+                        tarifa = float(valor_impuesto.find('tarifa').text) if valor_impuesto.find('tarifa') is not None else 0.0
+                    else:
+                        impuesto = 0.0
+                        tarifa = 0.0
+                    total_producto = precio_total_sin_impuesto + impuesto
+                    total_factura += total_producto
+
+                     # Determinar el tipo de IVA y sumar al diccionario de IVAs
+                    if tarifa == 0:
+                         ivas["0%"] += impuesto
+                    elif tarifa == 5:
+                         ivas["5%"] += impuesto
+                    elif tarifa == 12:
+                         ivas["12%"] += impuesto
+                    elif tarifa == 15:
+                        ivas["15%"] += impuesto
+                    else:
+                          ivas[f"{tarifa}%"] = ivas.get(f"{tarifa}%", 0) + impuesto
+
+            # Crear una cadena con los IVAs de la factura
+                    ivas_str = ", ".join([f"{k}: ${v:.2f}" for k, v in ivas.items() if v > 0])
+
+                    facturas_info.append({
+                        'Estado de la autorización': estado,
+                        'Fecha de autorización': fecha_autorizacion,
+                        'Ambiente': ambiente,
+                        'Razón Social': razon_social,
+                        'RUC': ruc,
+                        'Fecha de Emisión': fecha_emision,
+                        'Código': codigo,
+                        'Descripción': descripcion,
+                        'Cantidad': cantidad,
+                        'Precio Unitario': precio_unitario,
+                        # 'IVAs':ivas_str,
+                        'iva 0%': ivas.get("0%", 0),
+                        'iva 5%': ivas.get("5%", 0),
+                        'iva 12%': ivas.get("12%", 0),
+                        'iva 15%': ivas.get("15%", 0),
+                        'Total sin impuestos': total_sin_impuestos,
+                        'Total con impuestos': importe_total,
+                        'Número de autorización': numero_autorizacion,
+                        'Clave de Acceso': clave_acceso
+                    })
+        except ET.ParseError:
+            continue
+        except Exception as e:
+            print(f"Error: {e}")
+
+    # Generar reporte en Excel
+    df_facturas = pd.DataFrame(facturas_info)
+    timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+    archivo_excel = f'reporte_facturas_{timestamp}.xlsx'
+    #df_facturas.to_excel(archivo_excel, index=False)
+
+    writer = pd.ExcelWriter(archivo_excel, engine='openpyxl')
+
+    # Guardar el DataFrame en Excel
+    df_facturas.to_excel(writer, index=False, sheet_name='Reporte')
+
+    # Obtener la hoja de trabajo
+    workbook = writer.book
+    worksheet = workbook['Reporte']
+
+    # Aplicar formato a la hoja
+    for idx, col in enumerate(df_facturas.columns):
+        # Establecer el ancho de la columna basado en la longitud máxima en la columna
+        max_len = max(df_facturas[col].astype(str).map(len).max(), len(col))
+        worksheet.column_dimensions[openpyxl.utils.get_column_letter(idx+1)].width = max_len + 2
+
+    # Aplicar estilo a la fila de encabezados
+    for cell in worksheet[1]:
+        cell.font = Font(bold=True)
+        cell.fill = PatternFill(start_color='87CEEB', end_color='87CEEB', fill_type='solid')
+
+    # Aplicar bordes a todas las celdas
+    thin_border = Border(left=Side(style='thin'),
+                     right=Side(style='thin'),
+                     top=Side(style='thin'),
+                     bottom=Side(style='thin'))
+
+    for row in worksheet.iter_rows(min_row=1, max_row=worksheet.max_row, min_col=1, max_col=worksheet.max_column):
+        for cell in row:
+            cell.border = thin_border
+
+    # Aplicar filtro
+    worksheet.auto_filter.ref = worksheet.dimensions
+
+    # Congelar la primera fila
+    worksheet.freeze_panes = 'A2'
+
+    # Guardar el archivo
+    writer.close()
+
+    # Generar reporte en PDF
+    # archivo_pdf = f'reporte_facturas_{timestamp}.pdf'
+    # pdf = FPDF()
+    # pdf.add_page()
+    # pdf.set_font('Arial', 'B', 12)
+    
+    # for i, factura in enumerate(facturas_info):
+    #     pdf.cell(200, 10, txt=f"Factura {i+1}: {factura['Razón Social']} - {factura['RUC']}", ln=True)
+    #     for key, value in factura.items():
+    #         pdf.cell(200, 10, txt=f"{key}: {value}", ln=True)
+    #     pdf.cell(200, 10, txt=" ", ln=True)
+    
+    # pdf.output(archivo_pdf)
+    archivo_pdf = f'reporte_facturas_{timestamp}.pdf'
+    pdf = FPDF()
+    pdf.set_auto_page_break(auto=True, margin=15)
+    pdf.set_font('Arial', '', 10)
+
+    for i, factura in enumerate(facturas_info):
+        pdf.add_page()
+    
+        # Título
+        pdf.set_font('Arial', 'B', 16)
+        pdf.cell(0, 10, 'Factura', 0, 1, 'C')
+        pdf.ln(5)
+    
+        # Información del emisor
+        pdf.set_font('Arial', 'B', 12)
+        pdf.cell(0, 10, f"Razón Social: {factura['Razón Social']}", 0, 1)
+        pdf.cell(0, 10, f"RUC: {factura['RUC']}", 0, 1)
+        pdf.ln(5)
+    
+        # Información de la factura
+        pdf.set_font('Arial', '', 10)
+        pdf.cell(0, 10, f"Fecha de Emisión: {factura['Fecha de Emisión']}", 0, 1)
+        pdf.cell(0, 10, f"Número de Autorización: {factura['Número de autorización']}", 0, 1)
+        pdf.cell(0, 10, f"Clave de Acceso: {factura['Clave de Acceso']}", 0, 1)
+        pdf.ln(5)
+    
+        # Detalles de la factura
+        pdf.set_font('Arial', 'B', 12)
+        pdf.cell(0, 10, "Detalles de la Factura", 0, 1)
+        pdf.ln(2)
+    
+        pdf.set_font('Arial', '', 10)
+        pdf.cell(30, 10, "Código", 1)
+        pdf.cell(60, 10, "Descripción", 1)
+        pdf.cell(30, 10, "Cantidad", 1)
+        pdf.cell(30, 10, "Precio Unitario", 1)
+        pdf.cell(40, 10, "Total", 1)
+        pdf.ln()
+    
+        pdf.cell(30, 10, str(factura['Código']), 1)
+        pdf.cell(60, 10, factura['Descripción'], 1)
+        pdf.cell(30, 10, str(factura['Cantidad']), 1)
+        pdf.cell(30, 10, f"${factura['Precio Unitario']:.2f}", 1)
+        total = factura['Cantidad'] * factura['Precio Unitario']
+        pdf.cell(40, 10, f"${total:.2f}", 1)
+        pdf.ln(15)
+    
+        # Totales
+        pdf.cell(120)
+        pdf.cell(30, 10, "Subtotal:", 0)
+        pdf.cell(40, 10, f"${float(factura['Total sin impuestos']):.2f}", 0)
+        pdf.ln()
+        pdf.cell(120)
+        pdf.cell(30, 10, "IVA 0%:", 0)
+        pdf.cell(40, 10, f"${factura['iva 0%']:.2f}", 0)
+        pdf.ln()
+        pdf.cell(120)
+        pdf.cell(30, 10, "IVA 5%:", 0)
+        pdf.cell(40, 10, f"${factura['iva 5%']:.2f}", 0)
+        pdf.ln()
+        pdf.cell(120)
+        pdf.cell(30, 10, "IVA 12%:", 0)
+        pdf.cell(40, 10, f"${factura['iva 12%']:.2f}", 0)
+        pdf.ln()
+        pdf.cell(120)
+        pdf.cell(30, 10, "IVA 15%:", 0)
+        pdf.cell(40, 10, f"${factura['iva 15%']:.2f}", 0)
+        pdf.ln()
+        pdf.cell(120 )
+        pdf.cell(30, 10, "Total:", 0)
+        pdf.cell(40, 10, f"${float(factura['Total con impuestos']):.2f}", 0)
+        pdf.ln(10)
+
+    pdf.output(archivo_pdf, 'F')
+
+    # Convertir DataFrame a HTML para previsualización
+    tabla_html = df_facturas.to_html(classes='preview-table', index=False)
+
+    # Convertir DataFrame a JSON para pasar a JavaScript
+    datos_json = df_facturas.to_json(orient='records')
+
+    # Retornar los archivos generados para su descarga
+    return render_template('index.html', excel_report=archivo_excel, pdf_report=archivo_pdf,tabla_html=tabla_html,
+                           datos_json=datos_json)
+
+
+
+# Ruta para descargar el archivo Excel
+@app.route('/download_excel')
+def download_excel():
+    filename = request.args.get('filename')
+    custom_name = request.args.get('custom_name')
+    if not custom_name.endswith('.xlsx'):
+        custom_name += '.xlsx'
+    return send_file(filename, as_attachment=True, download_name=custom_name)
+
+# Ruta para descargar el archivo Pdf
+@app.route('/download_pdf')
+def download_pdf():
+    filename = request.args.get('filename')
+    custom_name = request.args.get('custom_name')
+    if not custom_name.endswith('.pdf'):
+        custom_name += '.pdf'
+    return send_file(filename, as_attachment=True, download_name=custom_name)
+
+
+if __name__ == '__main__':
+    app.run(debug=True)

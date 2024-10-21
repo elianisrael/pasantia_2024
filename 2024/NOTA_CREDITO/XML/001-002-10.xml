@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<notaCredito id='comprobante' version='1.1.0'>
+    <infoTributaria>
+        <ambiente>1</ambiente>
+        <tipoEmision>1</tipoEmision>
+        <razonSocial>CARDENAS COLCHA ELVIS HERNAN</razonSocial>
+        <nombreComercial>SYSTEMSEC</nombreComercial>
+        <ruc>1310839541001</ruc>
+        <claveAcceso>1903202404131083954100110010020000000101234567811</claveAcceso>
+        <codDoc>04</codDoc>
+        <estab>001</estab>
+        <ptoEmi>002</ptoEmi>
+        <secuencial>000000010</secuencial>
+        <dirMatriz>AVENIDA UNIVERSITARIA</dirMatriz>
+        <contribuyenteRimpe>CONTRIBUYENTE NEGOCIO POPULAR - RÉGIMEN RIMPE</contribuyenteRimpe>
+    </infoTributaria>
+    <infoNotaCredito>
+        <fechaEmision>19/03/2024</fechaEmision>
+        <dirEstablecimiento>AV. URBINA</dirEstablecimiento>
+        <tipoIdentificacionComprador>05</tipoIdentificacionComprador>
+        <razonSocialComprador>BARBERAN TEJENA RODDY XAVIER</razonSocialComprador>
+        <identificacionComprador>1316388295</identificacionComprador>
+        <obligadoContabilidad>NO</obligadoContabilidad>
+        <codDocModificado>01</codDocModificado>
+        <numDocModificado>001-002-000000264</numDocModificado>
+        <fechaEmisionDocSustento>19/03/2024</fechaEmisionDocSustento>
+        <totalSinImpuestos>200.00</totalSinImpuestos>
+        <valorModificacion>227.00</valorModificacion>
+        <moneda>DOLAR</moneda>
+        <totalConImpuestos>
+            <totalImpuesto>
+                <codigo>2</codigo>
+                <codigoPorcentaje>4</codigoPorcentaje>
+                <baseImponible>100.00</baseImponible>
+                <valor>15.00</valor>
+            </totalImpuesto>
+            <totalImpuesto>
+                <codigo>2</codigo>
+                <codigoPorcentaje>2</codigoPorcentaje>
+                <baseImponible>100.00</baseImponible>
+                <valor>12.00</valor>
+            </totalImpuesto>
+        </totalConImpuestos>
+        <motivo>NADA EN ESPECIAL</motivo>
+    </infoNotaCredito>
+    <detalles>
+        <detalle>
+            <codigoInterno>3</codigoInterno>
+            <codigoAdicional>3</codigoAdicional>
+            <descripcion>DKL</descripcion>
+            <cantidad>1</cantidad>
+            <precioUnitario>100.000000</precioUnitario>
+            <descuento>0.00</descuento>
+            <precioTotalSinImpuesto>100.00</precioTotalSinImpuesto>
+            <impuestos>
+                <impuesto>
+                    <codigo>2</codigo>
+                    <codigoPorcentaje>4</codigoPorcentaje>
+                    <tarifa>15.00</tarifa>
+                    <baseImponible>100.00</baseImponible>
+                    <valor>15.00</valor>
+                </impuesto>
+            </impuestos>
+        </detalle>
+        <detalle>
+            <codigoInterno>2</codigoInterno>
+            <codigoAdicional>2</codigoAdicional>
+            <descripcion>CARTON EMBALADO</descripcion>
+            <cantidad>1</cantidad>
+            <precioUnitario>100.000000</precioUnitario>
+            <descuento>0.00</descuento>
+            <precioTotalSinImpuesto>100.00</precioTotalSinImpuesto>
+            <impuestos>
+                <impuesto>
+                    <codigo>2</codigo>
+                    <codigoPorcentaje>2</codigoPorcentaje>
+                    <tarifa>12.00</tarifa>
+                    <baseImponible>100.00</baseImponible>
+                    <valor>12.00</valor>
+                </impuesto>
+            </impuestos>
+        </detalle>
+    </detalles>
+</notaCredito>

@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<liquidacionCompra id='comprobante' version='1.1.0'>
+    <infoTributaria>
+        <ambiente>1</ambiente>
+        <tipoEmision>1</tipoEmision>
+        <razonSocial>CARDENAS COLCHA ELVIS HERNAN</razonSocial>
+        <nombreComercial>SYSTEMSEC</nombreComercial>
+        <ruc>1310839541001</ruc>
+        <claveAcceso>1302202403131083954100110010020000000111234567817</claveAcceso>
+        <codDoc>03</codDoc>
+        <estab>001</estab>
+        <ptoEmi>002</ptoEmi>
+        <secuencial>000000011</secuencial>
+        <dirMatriz>AVENIDA UNIVERSITARIA</dirMatriz>
+        <contribuyenteRimpe>CONTRIBUYENTE NEGOCIO POPULAR - RÉGIMEN RIMPE</contribuyenteRimpe>
+    </infoTributaria>
+    <infoLiquidacionCompra>
+        <fechaEmision>13/02/2024</fechaEmision>
+        <dirEstablecimiento>AV. URBINA</dirEstablecimiento>
+        <obligadoContabilidad>NO</obligadoContabilidad>
+        <tipoIdentificacionProveedor>05</tipoIdentificacionProveedor>
+        <razonSocialProveedor>ALVARADO INTRIAGO JHON MANUEL</razonSocialProveedor>
+        <identificacionProveedor>1312595307</identificacionProveedor>
+        <direccionProveedor>MANABI/PORTOVIEJO/RIOCHICO</direccionProveedor>
+        <totalSinImpuestos>178.57</totalSinImpuestos>
+        <totalDescuento>0.00</totalDescuento>
+        <totalConImpuestos>
+            <totalImpuesto>
+                <codigo>2</codigo>
+                <codigoPorcentaje>2</codigoPorcentaje>
+                <descuentoAdicional>0.00</descuentoAdicional>
+                <baseImponible>178.57</baseImponible>
+                <valor>21.43</valor>
+            </totalImpuesto>
+        </totalConImpuestos>
+        <importeTotal>200.00</importeTotal>
+        <moneda>DOLAR</moneda>
+        <pagos>
+            <pago>
+                <formaPago>01</formaPago>
+                <total>200.00</total>
+                <plazo>0</plazo>
+                <unidadTiempo>dias</unidadTiempo>
+            </pago>
+        </pagos>
+    </infoLiquidacionCompra>
+    <detalles>
+        <detalle>
+            <codigoPrincipal>3</codigoPrincipal>
+            <codigoAuxiliar>3</codigoAuxiliar>
+            <descripcion>DKL</descripcion>
+            <cantidad>20</cantidad>
+            <precioUnitario>8.928571</precioUnitario>
+            <descuento>0.00</descuento>
+            <precioTotalSinImpuesto>178.57</precioTotalSinImpuesto>
+            <impuestos>
+                <impuesto>
+                    <codigo>2</codigo>
+                    <codigoPorcentaje>2</codigoPorcentaje>
+                    <tarifa>12</tarifa>
+                    <baseImponible>178.57</baseImponible>
+                    <valor>21.43</valor>
+                </impuesto>
+            </impuestos>
+        </detalle>
+    </detalles>
+</liquidacionCompra>

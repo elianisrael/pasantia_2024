@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<comprobanteRetencion id='comprobante' version='2.0.0'>
+    <infoTributaria>
+        <ambiente>1</ambiente>
+        <tipoEmision>1</tipoEmision>
+        <razonSocial>CARDENAS COLCHA ELVIS HERNAN</razonSocial>
+        <nombreComercial>SYSTEMSEC</nombreComercial>
+        <ruc>1310839541001</ruc>
+        <claveAcceso>1903202407131083954100110010020000000211234567810</claveAcceso>
+        <codDoc>07</codDoc>
+        <estab>001</estab>
+        <ptoEmi>002</ptoEmi>
+        <secuencial>000000021</secuencial>
+        <dirMatriz>AVENIDA UNIVERSITARIA</dirMatriz>
+        <contribuyenteRimpe>CONTRIBUYENTE NEGOCIO POPULAR - RÉGIMEN RIMPE</contribuyenteRimpe>
+    </infoTributaria>
+    <infoCompRetencion>
+        <fechaEmision>19/03/2024</fechaEmision>
+        <dirEstablecimiento>AV. URBINA</dirEstablecimiento>
+        <obligadoContabilidad>NO</obligadoContabilidad>
+        <tipoIdentificacionSujetoRetenido>05</tipoIdentificacionSujetoRetenido>
+        <parteRel>NO</parteRel>
+        <razonSocialSujetoRetenido>BARBERAN TEJENA RODDY XAVIER</razonSocialSujetoRetenido>
+        <identificacionSujetoRetenido>1316388295</identificacionSujetoRetenido>
+        <periodoFiscal>03/2024</periodoFiscal>
+    </infoCompRetencion>
+    <docsSustento>
+        <docSustento>
+            <codSustento>01</codSustento>
+            <codDocSustento>01</codDocSustento>
+            <numDocSustento>001002000000010</numDocSustento>
+            <fechaEmisionDocSustento>19/03/2024</fechaEmisionDocSustento>
+            <numAutDocSustento>1234567890</numAutDocSustento>
+            <pagoLocExt>01</pagoLocExt>
+            <totalSinImpuestos>100.00</totalSinImpuestos>
+            <importeTotal>215.00</importeTotal>
+            <impuestosDocSustento>
+                <impuestoDocSustento>
+                    <codImpuestoDocSustento>2</codImpuestoDocSustento>
+                    <codigoPorcentaje>4</codigoPorcentaje>
+                    <baseImponible>100.00</baseImponible>
+                    <tarifa>15.00</tarifa>
+                    <valorImpuesto>15.00</valorImpuesto>
+                </impuestoDocSustento>
+                <impuestoDocSustento>
+                    <codImpuestoDocSustento>2</codImpuestoDocSustento>
+                    <codigoPorcentaje>0</codigoPorcentaje>
+                    <baseImponible>100.00</baseImponible>
+                    <tarifa>0</tarifa>
+                    <valorImpuesto>0</valorImpuesto>
+                </impuestoDocSustento>
+            </impuestosDocSustento>
+            <retenciones>
+                <retencion>
+                    <codigo>1</codigo>
+                    <codigoRetencion>303</codigoRetencion>
+                    <baseImponible>200.00</baseImponible>
+                    <porcentajeRetener>10.00</porcentajeRetener>
+                    <valorRetenido>20.00</valorRetenido>
+                </retencion>
+                <retencion>
+                    <codigo>2</codigo>
+                    <codigoRetencion>1</codigoRetencion>
+                    <baseImponible>15.00</baseImponible>
+                    <porcentajeRetener>30.00</porcentajeRetener>
+                    <valorRetenido>4.50</valorRetenido>
+                </retencion>
+            </retenciones>
+            <pagos>
+                <pago>
+                    <formaPago>01</formaPago>
+                    <total>215.00</total>
+                </pago>
+            </pagos>
+        </docSustento>
+    </docsSustento>
+</comprobanteRetencion>

@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<guiaRemision id='comprobante' version='1.1.0'>
+    <infoTributaria>
+        <ambiente>1</ambiente>
+        <tipoEmision>1</tipoEmision>
+        <razonSocial>CARDENAS COLCHA ELVIS HERNAN</razonSocial>
+        <nombreComercial>SYSTEMSEC</nombreComercial>
+        <ruc>1310839541001</ruc>
+        <claveAcceso>2503202406131083954100110010020000000131234567816</claveAcceso>
+        <codDoc>06</codDoc>
+        <estab>001</estab>
+        <ptoEmi>002</ptoEmi>
+        <secuencial>000000013</secuencial>
+        <dirMatriz>AVENIDA UNIVERSITARIA</dirMatriz>
+        <contribuyenteRimpe>CONTRIBUYENTE NEGOCIO POPULAR - RÉGIMEN RIMPE</contribuyenteRimpe>
+    </infoTributaria>
+    <infoGuiaRemision>
+        <dirEstablecimiento>AV. URBINA</dirEstablecimiento>
+        <dirPartida>PORTOVIEJO</dirPartida>
+        <razonSocialTransportista>ELVIS CARDENAS </razonSocialTransportista>
+        <tipoIdentificacionTransportista>04</tipoIdentificacionTransportista>
+        <rucTransportista>1478529653001</rucTransportista>
+        <obligadoContabilidad>NO</obligadoContabilidad>
+        <fechaIniTransporte>25/03/2024</fechaIniTransporte>
+        <fechaFinTransporte>25/03/2024</fechaFinTransporte>
+        <placa>MBA54852</placa>
+    </infoGuiaRemision>
+    <destinatarios>
+        <destinatario>
+            <identificacionDestinatario>1316388295</identificacionDestinatario>
+            <razonSocialDestinatario>BARBERAN TEJENA RODDY XAVIER</razonSocialDestinatario>
+            <dirDestinatario>VIA A PACHINCHE MEDIO</dirDestinatario>
+            <motivoTraslado>TRASLADO</motivoTraslado>
+            <ruta>EMESMERALDA</ruta>
+            <detalles>
+                <detalle>
+                    <codigoInterno>2</codigoInterno>
+                    <codigoAdicional>2</codigoAdicional>
+                    <descripcion>CARTON EMBALADO</descripcion>
+                    <cantidad>1</cantidad>
+                </detalle>
+            </detalles>
+        </destinatario>
+    </destinatarios>
+    <infoAdicional>
+        <campoAdicional nombre='PUNTO DE EMISIÓN'>002</campoAdicional>
+        <campoAdicional nombre='RUC'>1478529653001</campoAdicional>
+        <campoAdicional nombre='RAZON SOCIAL'>ELVIS CARDENAS </campoAdicional>
+        <campoAdicional nombre='CONTRIBUYENTE'>REGIMEN GENERAL</campoAdicional>
+        <campoAdicional nombre='PLACA'>MBA54852</campoAdicional>
+    </infoAdicional>
+</guiaRemision>

@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<factura id='comprobante' version='1.1.0'>
+    <infoTributaria>
+        <ambiente>1</ambiente>
+        <tipoEmision>1</tipoEmision>
+        <razonSocial>CARDENAS COLCHA ELVIS HERNAN</razonSocial>
+        <nombreComercial>SYSTEMSEC</nombreComercial>
+        <ruc>1310839541001</ruc>
+        <claveAcceso>2009202401131083954100110010020000002701234567818</claveAcceso>
+        <codDoc>01</codDoc>
+        <estab>001</estab>
+        <ptoEmi>002</ptoEmi>
+        <secuencial>000000270</secuencial>
+        <dirMatriz>AVENIDA UNIVERSITARIA</dirMatriz>
+        <contribuyenteRimpe>CONTRIBUYENTE NEGOCIO POPULAR - RÉGIMEN RIMPE</contribuyenteRimpe>
+    </infoTributaria>
+    <infoFactura>
+        <fechaEmision>20/09/2024</fechaEmision>
+        <dirEstablecimiento>AV. URBINA</dirEstablecimiento>
+        <obligadoContabilidad>NO</obligadoContabilidad>
+        <tipoIdentificacionComprador>04</tipoIdentificacionComprador>
+        <razonSocialComprador>CONSUMIDOR FINAL</razonSocialComprador>
+        <identificacionComprador>9999999999999</identificacionComprador>
+        <direccionComprador>S/D</direccionComprador>
+        <totalSinImpuestos>8.70</totalSinImpuestos>
+        <totalDescuento>0.00</totalDescuento>
+        <totalConImpuestos>
+            <totalImpuesto>
+                <codigo>2</codigo>
+                <codigoPorcentaje>4</codigoPorcentaje>
+                <descuentoAdicional>0.00</descuentoAdicional>
+                <baseImponible>8.70</baseImponible>
+                <valor>1.30</valor>
+            </totalImpuesto>
+        </totalConImpuestos>
+        <propina>0.00</propina>
+        <importeTotal>10.00</importeTotal>
+        <moneda>DOLAR</moneda>
+        <pagos>
+            <pago>
+                <formaPago>01</formaPago>
+                <total>10.00</total>
+                <plazo>0</plazo>
+                <unidadTiempo>dias</unidadTiempo>
+            </pago>
+        </pagos>
+    </infoFactura>
+    <detalles>
+        <detalle>
+            <codigoPrincipal>HSX41</codigoPrincipal>
+            <codigoAuxiliar>HSX41</codigoAuxiliar>
+            <descripcion>PRUEBA</descripcion>
+            <cantidad>1</cantidad>
+            <precioUnitario>8.695652</precioUnitario>
+            <descuento>0.00</descuento>
+            <precioTotalSinImpuesto>8.70</precioTotalSinImpuesto>
+            <impuestos>
+                <impuesto>
+                    <codigo>2</codigo>
+                    <codigoPorcentaje>4</codigoPorcentaje>
+                    <tarifa>15.00</tarifa>
+                    <baseImponible>8.70</baseImponible>
+                    <valor>1.30</valor>
+                </impuesto>
+            </impuestos>
+        </detalle>
+    </detalles>
+    <infoAdicional>
+        <campoAdicional nombre='PUNTO DE EMISIÓN'>002</campoAdicional>
+        <campoAdicional nombre='RUC'>1478529653001</campoAdicional>
+        <campoAdicional nombre='RAZON SOCIAL'>ELVIS CARDENAS </campoAdicional>
+        <campoAdicional nombre='CONTRIBUYENTE'>REGIMEN GENERAL</campoAdicional>
+        <campoAdicional nombre='PLACA'>MBA54852</campoAdicional>
+    </infoAdicional>
+</factura>

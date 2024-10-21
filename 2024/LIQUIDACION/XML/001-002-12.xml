@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<liquidacionCompra id='comprobante' version='1.1.0'>
+    <infoTributaria>
+        <ambiente>1</ambiente>
+        <tipoEmision>1</tipoEmision>
+        <razonSocial>CARDENAS COLCHA ELVIS HERNAN</razonSocial>
+        <nombreComercial>SYSTEMSEC</nombreComercial>
+        <ruc>1310839541001</ruc>
+        <claveAcceso>1903202403131083954100110010020000000121234567816</claveAcceso>
+        <codDoc>03</codDoc>
+        <estab>001</estab>
+        <ptoEmi>002</ptoEmi>
+        <secuencial>000000012</secuencial>
+        <dirMatriz>AVENIDA UNIVERSITARIA</dirMatriz>
+        <contribuyenteRimpe>CONTRIBUYENTE NEGOCIO POPULAR - RÉGIMEN RIMPE</contribuyenteRimpe>
+    </infoTributaria>
+    <infoLiquidacionCompra>
+        <fechaEmision>19/03/2024</fechaEmision>
+        <dirEstablecimiento>AV. URBINA</dirEstablecimiento>
+        <obligadoContabilidad>NO</obligadoContabilidad>
+        <tipoIdentificacionProveedor>05</tipoIdentificacionProveedor>
+        <razonSocialProveedor>BARBERAN TEJENA RODDY XAVIER</razonSocialProveedor>
+        <identificacionProveedor>1316388295</identificacionProveedor>
+        <direccionProveedor>VIA A PACHINCHE MEDIO</direccionProveedor>
+        <totalSinImpuestos>1426.24</totalSinImpuestos>
+        <totalDescuento>0.00</totalDescuento>
+        <totalConImpuestos>
+            <totalImpuesto>
+                <codigo>2</codigo>
+                <codigoPorcentaje>4</codigoPorcentaje>
+                <descuentoAdicional>0.00</descuentoAdicional>
+                <baseImponible>86.96</baseImponible>
+                <valor>13.04</valor>
+            </totalImpuesto>
+            <totalImpuesto>
+                <codigo>2</codigo>
+                <codigoPorcentaje>2</codigoPorcentaje>
+                <descuentoAdicional>0.00</descuentoAdicional>
+                <baseImponible>1339.29</baseImponible>
+                <valor>160.71</valor>
+            </totalImpuesto>
+        </totalConImpuestos>
+        <importeTotal>1600.00</importeTotal>
+        <moneda>DOLAR</moneda>
+        <pagos>
+            <pago>
+                <formaPago>01</formaPago>
+                <total>1600.00</total>
+                <plazo>0</plazo>
+                <unidadTiempo>dias</unidadTiempo>
+            </pago>
+        </pagos>
+    </infoLiquidacionCompra>
+    <detalles>
+        <detalle>
+            <codigoPrincipal>3</codigoPrincipal>
+            <codigoAuxiliar>3</codigoAuxiliar>
+            <descripcion>DKL</descripcion>
+            <cantidad>1</cantidad>
+            <precioUnitario>86.956522</precioUnitario>
+            <descuento>0.00</descuento>
+            <precioTotalSinImpuesto>86.96</precioTotalSinImpuesto>
+            <impuestos>
+                <impuesto>
+                    <codigo>2</codigo>
+                    <codigoPorcentaje>4</codigoPorcentaje>
+                    <tarifa>15.00</tarifa>
+                    <baseImponible>86.96</baseImponible>
+                    <valor>13.04</valor>
+                </impuesto>
+            </impuestos>
+        </detalle>
+        <detalle>
+            <codigoPrincipal>2</codigoPrincipal>
+            <codigoAuxiliar>2</codigoAuxiliar>
+            <descripcion>CARTON EMBALADO</descripcion>
+            <cantidad>150</cantidad>
+            <precioUnitario>8.928571</precioUnitario>
+            <descuento>0.00</descuento>
+            <precioTotalSinImpuesto>1339.29</precioTotalSinImpuesto>
+            <impuestos>
+                <impuesto>
+                    <codigo>2</codigo>
+                    <codigoPorcentaje>2</codigoPorcentaje>
+                    <tarifa>12.00</tarifa>
+                    <baseImponible>1339.29</baseImponible>
+                    <valor>160.71</valor>
+                </impuesto>
+            </impuestos>
+        </detalle>
+    </detalles>
+</liquidacionCompra>
