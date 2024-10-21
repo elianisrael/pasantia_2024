@@ -221,3 +221,24 @@ button:hover, .btn-download:hover, .btn-new-report:hover {
 .download-form .btn-download {
     margin-top: 5px;
 }
+
+.btn-dashboard {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.btn-dashboard:hover {
+    background-color: #45a049;
+}
+
+.chart-container {
+    width: 80%;
+    margin: 20px auto;
+    height: 400px;
+}

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard de Facturas</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+        .dashboard-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .metrics {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .metric-card {
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            padding: 15px;
+            text-align: center;
+            flex: 1;
+            margin: 0 10px;
+        }
+        .chart-container {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <h1>Dashboard de Facturas</h1>
+        
+        <div class="metrics">
+            <div class="metric-card">
+                <h3>Total de Facturas</h3>
+                <p>{{ total_facturas }}</p>
+            </div>
+            <div class="metric-card">
+                <h3>Total de Ventas</h3>
+                <p>${{ "%.2f"|format(total_ventas) }}</p>
+            </div>
+            <div class="metric-card">
+                <h3>Promedio de Venta</h3>
+                <p>${{ "%.2f"|format(promedio_venta) }}</p>
+            </div>
+        </div>
+
+        <div class="chart-container">
+            <canvas id="ventasChart"></canvas>
+        </div>
+        <div class="chart-container">
+            <canvas id="ventasPorClienteChart"></canvas>
+        </div>
+        <div class="chart-container">
+            <canvas id="ventasTotalesChart"></canvas>
+        </div>
+        <div class="chart-container">
+            <canvas id="totalConImpuestosChart"></canvas>
+        </div>
+        <div class="chart-container">
+            <canvas id="totalSinImpuestosChart"></canvas>
+        </div>
+    </div>
+
+    <script>
+        // Gráfico de ventas por cliente (gráfico de barras)
+        var ctx = document.getElementById('ventasPorClienteChart').getContext('2d');
+        var ventasPorClienteChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: {{ ventas_por_cliente.keys()|list|tojson }},
+                datasets: [{
+                    label: 'Ventas por Cliente',
+                    data: {{ ventas_por_cliente.values()|list }},
+                    backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    
+        // Gráfico de ventas totales (gráfico de líneas)
+        var ctx2 = document.getElementById('ventasTotalesChart').getContext('2d');
+        var ventasTotalesChart = new Chart(ctx2, {
+            type: 'line',
+            data: {
+                labels: ['Ventas Totales', 'Promedio de Venta'],
+                datasets: [{
+                    label: 'Monto ($)',
+                    data: [{{ total_ventas }}, {{ promedio_venta }}],
+                    fill: false,
+                    borderColor: 'rgb(75, 192, 192)',
+                    tension: 0.1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+        
+    </script>
+
+    <script>
+        var ctx = document.getElementById('ventasChart').getContext('2d');

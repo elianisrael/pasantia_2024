@@ -9,6 +9,8 @@ from openpyxl.styles import Font, PatternFill, Border, Side # type: ignore
 
 app = Flask(__name__)
 
+facturas_info = []
+
 # Ruta para la página principal
 @app.route('/')
 def index():
@@ -21,7 +23,7 @@ def upload_files():
     uploaded_files = request.files.getlist('xml_files')
     
     # Crear listas para almacenar la información de las facturas
-    facturas_info = []
+    # facturas_info = []
 
     for file in uploaded_files:
         try:
@@ -280,6 +282,26 @@ def download_pdf():
         custom_name += '.pdf'
     return send_file(filename, as_attachment=True, download_name=custom_name)
 
+@app.route('/dashboard')
+def dashboard():
+    # Procesa los datos de las facturas (asumiendo que tienes acceso a facturas_info)
+    total_facturas = len(facturas_info)
+    total_ventas = sum(float(factura['Total con impuestos']) for factura in facturas_info)
+    promedio_venta = total_ventas / total_facturas if total_facturas > 0 else 0
+    
+    # Datos para gráficos
+    ventas_por_cliente = {}
+    
+    for factura in facturas_info:
+        cliente = factura['Razón Social']
+        monto = float(factura['Total con impuestos'])
+        ventas_por_cliente[cliente] = ventas_por_cliente.get(cliente, 0) + monto
+
+    return render_template('dashboard.html', 
+                           total_facturas=total_facturas,
+                           total_ventas=total_ventas,
+                           promedio_venta=promedio_venta,
+                           ventas_por_cliente=ventas_por_cliente,)
 
 if __name__ == '__main__':
     app.run(debug=True)
