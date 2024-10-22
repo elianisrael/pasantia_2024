@@ -12,7 +12,7 @@ app = Flask(__name__)
 facturas_info = []
 
 # Ruta para la página principal
-@app.route('/inicio')
+@app.route('/')
 def index():
     return render_template('inicio.html')
 
