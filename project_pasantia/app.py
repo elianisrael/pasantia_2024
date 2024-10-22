@@ -16,6 +16,9 @@ facturas_info = []
 def index():
     return render_template('inicio.html')
 
+@app.route('/inicio')
+def inicio():
+    return render_template('inicio.html')
 # Ruta para subir los archivos XML y generar los reportes
 @app.route('/upload', methods=['GET','POST'])
 def upload_files():
