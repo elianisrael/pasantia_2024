@@ -232,3 +232,35 @@ button:hover, .btn-download:hover, .btn-new-report:hover, .btn-dashboard:hover {
 .download-form .btn-download {
     margin-top: 5px;
 }
+
+.navbar {
+    background-color: #007bff;
+    padding: 10px;
+    text-align: center;
+}
+
+.navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.navbar ul li {
+    display: inline;
+}
+
+.navbar ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    display: inline-block;
+    transition: background-color 0.3s;
+}
+
+.navbar ul li a:hover {
+    background-color: #0056b3;
+    border-radius: 5px;
+}

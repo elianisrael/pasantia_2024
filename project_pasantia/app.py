@@ -12,12 +12,12 @@ app = Flask(__name__)
 facturas_info = []
 
 # Ruta para la página principal
-@app.route('/')
+@app.route('/inicio')
 def index():
-    return render_template('index.html')
+    return render_template('inicio.html')
 
 # Ruta para subir los archivos XML y generar los reportes
-@app.route('/upload', methods=['POST'])
+@app.route('/upload', methods=['GET','POST'])
 def upload_files():
     # Obtener los archivos XML subidos por el usuario
     uploaded_files = request.files.getlist('xml_files')
@@ -246,7 +246,7 @@ def upload_files():
     datos_json = df_facturas.to_json(orient='records')
 
     # Retornar los archivos generados para su descarga
-    return render_template('index.html', excel_report=archivo_excel, pdf_report=archivo_pdf,tabla_html=tabla_html,
+    return render_template('upload.html', excel_report=archivo_excel, pdf_report=archivo_pdf,tabla_html=tabla_html,
                            datos_json=datos_json)
 
 

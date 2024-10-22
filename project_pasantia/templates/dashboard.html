@@ -5,6 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard de Facturas</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <nav class="navbar">
+    </head>
+        <ul>
+            <li><a href="/inicio">Inicio</a></li>
+            <li><a href="/upload">Subir Archivos</a></li>
+            <li><a href="/dashboard">Dashboard</a></li>
+            <li><a href="/reportes">Reportes</a></li>
+        </ul>
+    </nav>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -58,8 +67,39 @@
             display: inline-block;
             vertical-align: top;
         }
+        .navbar {
+        background-color: #007bff;
+        padding: 10px;
+        text-align: center;
+        }
+
+        .navbar ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        }
+
+        .navbar ul li {
+        display: inline;
+        }
+
+        .navbar ul li a {
+        color: white;
+        text-decoration: none;
+        padding: 10px 20px;
+        display: inline-block;
+        transition: background-color 0.3s;
+        }
+
+        .navbar ul li a:hover {
+        background-color: #0056b3;
+        border-radius: 5px;
+        }
     </style>
-</head>
+
 <body>
     <div class="dashboard-container">
         <h1>Dashboard de Facturas</h1>
