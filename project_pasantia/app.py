@@ -52,7 +52,8 @@ def upload_files():
             razon_social = info_tributaria.find('razonSocial').text if info_tributaria is not None else None
             ruc = info_tributaria.find('ruc').text if info_tributaria is not None else None
             clave_acceso = info_tributaria.find('claveAcceso').text if info_tributaria is not None else None
-
+            
+            codigo_factura = info_tributaria.find('secuencial').text if info_tributaria is not None else None
             info_factura = comprobante_root.find('infoFactura')
             fecha_emision = info_factura.find('fechaEmision').text if info_factura is not None else None
             total_sin_impuestos = info_factura.find('totalSinImpuestos').text if info_factura is not None else None
@@ -97,6 +98,7 @@ def upload_files():
                     ivas_str = ", ".join([f"{k}: ${v:.2f}" for k, v in ivas.items() if v > 0])
 
                     facturas_info.append({
+                        'Codigo Factura':codigo_factura,
                         'Estado de la autorización': estado,
                         'Fecha de autorización': fecha_autorizacion,
                         'Ambiente': ambiente,
