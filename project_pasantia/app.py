@@ -22,7 +22,7 @@ def inicio():
 
 #Ruta para sección en donde se almacenaran reportes anteriores
 @app.route('/reportes.anteriores')
-def reportes.anteriores():
+def reportesanteriores():
     return render_template('/reportes.html')
 # Ruta para subir los archivos XML y generar los reportes
 @app.route('/upload', methods=['GET','POST'])
