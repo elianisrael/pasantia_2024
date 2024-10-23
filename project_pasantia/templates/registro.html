@@ -84,6 +84,19 @@
 
     <div class="register-container">
         <h2>Registro</h2>
+
+        <!-- Mostrar mensajes flash -->
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+
+
         <!-- Aquí se envía el formulario a la ruta de registro de Flask -->
         <form action="/registro" method="POST">
             <div class="form-group">

@@ -1,5 +1,5 @@
-from flask import Flask, render_template, request, redirect, send_file # type: ignore
-import xml.etree.ElementTree as ET
+from flask import Flask, render_template, request, redirect, flash, session, send_file # type: ignore
+import xml.etree.ElementTree as ET 
 import pandas as pd # type: ignore
 import openpyxl # type: ignore
 from fpdf import FPDF # type: ignore
@@ -11,6 +11,7 @@ from werkzeug.security import generate_password_hash
 from werkzeug.security import check_password_hash
 
 app = Flask(__name__)
+app.secret_key = 'clave_secreta_para_flask'
 
 # Función para conectar y crear la base de datos
 def init_db():
@@ -22,7 +23,7 @@ def init_db():
         CREATE TABLE IF NOT EXISTS usuarios (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             username TEXT NOT NULL,
-            email TEXT NOT NULL,
+            email TEXT NOT NULL UNIQUE,
             password TEXT NOT NULL
         )
     ''')
@@ -43,44 +44,78 @@ def init_db():
 # Llamar a la función para crear las tablas al inicio
 init_db()
 
-
+# Conectar a la base de datos SQLite
+def get_db_connection():
+    conn = sqlite3.connect('app.db')
+    conn.row_factory = sqlite3.Row
+    return conn
 
 
 facturas_info = []
 
-# Ruta para la página principal
-@app.route('/')
-def index():
-    return render_template('inicio.html')
-#Ruta para página de inicio
-@app.route('/inicio')
-def inicio():
-    return render_template('inicio.html')
-
-@app.route('/login')
+#conexion y uso de la base datos 
+#login
+@app.route('/login', methods=['GET', 'POST'])
 def login():
+    if request.method == 'POST':
+        email = request.form['email']
+        password = request.form['password']
+
+        # Obtener el usuario de la base de datos
+        conn = get_db_connection()
+        user = conn.execute('SELECT * FROM usuarios WHERE email = ?', (email,)).fetchone()
+        conn.close()
+        
+        # Verificar si el usuario existe y si la contraseña es correcta
+        if user is None:
+            flash("El correo electrónico no está registrado.")
+            return redirect('/login')
+        elif not check_password_hash(user['password'], password):
+            flash("Contraseña incorrecta.")
+            return redirect('/login')
+
+        # Guardar el usuario en la sesión
+        session['user_id'] = user['id']
+        flash("Has iniciado sesión correctamente.")
+        return redirect('/upload')
+        
     return render_template('login.html')
 
-@app.route('/login', methods=['POST'])
-def handle_login():
-    email = request.form['email']
-    password = request.form['password']
-
-    conn = sqlite3.connect('app.db')
-    cursor = conn.cursor()
-    cursor.execute('SELECT * FROM usuarios WHERE email = ?', (email,))
-    user = cursor.fetchone()
-    conn.close()
-
-    if user and check_password_hash(user[3], password):
-        return redirect('/upload')  # Redirigir al dashboard o página principal
-    else:
-        return 'Error: usuario o contraseña incorrectos'
-    
 @app.route('/upload')
-def upload_1():
+def destino():
     return render_template('upload.html')
 
+
+
+#Registro
+@app.route('/registro', methods=['GET', 'POST'])
+def registro():
+    if request.method == 'POST':
+        username = request.form['username']
+        email = request.form['email']
+        password = request.form['password']
+
+        # Encriptar la contraseña antes de guardarla
+        hashed_password = generate_password_hash(password)
+
+        # Guardar en la base de datos
+        conn = get_db_connection()
+        try:
+            conn.execute('INSERT INTO usuarios (username, email, password)VALUES (?, ?, ?)'
+                         , (username, email, hashed_password))
+            conn.commit()
+            flash("Registro exitoso. Ya puedes iniciar sesión.")
+            return redirect('/registro')
+        except sqlite3.IntegrityError:
+            flash("El correo electrónico ya está registrado.")
+            return redirect('/registro')
+        finally:
+            conn.close()
+            #return redirect('/login')
+    
+    return render_template('registro.html')
+
+#seccion factura
 @app.route('/facturas')
 def ver_facturas():
     conn = sqlite3.connect('app.db')
@@ -108,30 +143,14 @@ def crear_factura():
 
     return redirect('/facturas')
 
-@app.route('/registro')
-def registro():
-    return render_template('registro.html')
-
-@app.route('/registro', methods=['POST'])
-def handle_registro():
-    username = request.form['username']
-    email = request.form['email']
-    password = request.form['password']
-
-    # Encriptar la contraseña antes de guardarla
-    hashed_password = generate_password_hash(password)
-
-    # Guardar en la base de datos
-    conn = sqlite3.connect('app.db')
-    cursor = conn.cursor()
-    cursor.execute('''
-        INSERT INTO usuarios (username, email, password)
-        VALUES (?, ?, ?)
-    ''', (username, email, hashed_password))
-    conn.commit()
-    conn.close()
-
-    return redirect('/login')
+# Ruta para la página principal
+@app.route('/')
+def index():
+    return render_template('inicio.html')
+#Ruta para página de inicio
+@app.route('/inicio')
+def inicio():
+    return render_template('inicio.html')
 
 #Ruta para sección en donde se almacenaran reportes anteriores
 @app.route('/reportes.anteriores')

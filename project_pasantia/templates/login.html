@@ -84,6 +84,18 @@
 
     <div class="login-container">
         <h2>Iniciar Sesión</h2>
+
+        <!-- Mostrar mensajes flash -->
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+
         <form action="/login" method="POST">
             <div class="form-group">
                 <label for="email">Correo electrónico</label>
