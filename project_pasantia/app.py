@@ -4,7 +4,7 @@ import pandas as pd # type: ignore
 import openpyxl # type: ignore
 from fpdf import FPDF # type: ignore
 import os
-import datetime
+from datetime import datetime
 from openpyxl.styles import Font, PatternFill, Border, Side # type: ignore
 import sqlite3
 from werkzeug.security import generate_password_hash
@@ -138,13 +138,13 @@ def handle_registro():
 def reportesanteriores():
     return render_template('/reportes.html')
 # Ruta para subir los archivos XML y generar los reportes
-@app.route('/upload', methods=['GET','POST'])
+@app.route('/upload', methods=['GET', 'POST'])
 def upload_files():
-    # Obtener los archivos XML subidos por el usuario
+    global facturas_info  # Declarar facturas_info como global
     uploaded_files = request.files.getlist('xml_files')
-    
-    # Crear listas para almacenar la información de las facturas
-    # facturas_info = []
+
+    # Reiniciar facturas_info antes de procesar nuevos archivos
+    facturas_info = []
 
     for file in uploaded_files:
         try:
@@ -200,42 +200,42 @@ def upload_files():
                     total_producto = precio_total_sin_impuesto + impuesto
                     total_factura += total_producto
 
-                     # Determinar el tipo de IVA y sumar al diccionario de IVAs
+                    # Determinar el tipo de IVA y sumar al diccionario de IVAs
                     if tarifa == 0:
-                         ivas["0%"] += impuesto
+                        ivas["0%"] += impuesto
                     elif tarifa == 5:
-                         ivas["5%"] += impuesto
+                        ivas["5%"] += impuesto
                     elif tarifa == 12:
-                         ivas["12%"] += impuesto
+                        ivas["12%"] += impuesto
                     elif tarifa == 15:
                         ivas["15%"] += impuesto
                     else:
-                          ivas[f"{tarifa}%"] = ivas.get(f"{tarifa}%", 0) + impuesto
+                        ivas[f"{tarifa}%"] = ivas.get(f"{tarifa}%", 0) + impuesto
 
             # Crear una cadena con los IVAs de la factura
-                    ivas_str = ", ".join([f"{k}: ${v:.2f}" for k, v in ivas.items() if v > 0])
+            ivas_str = ", ".join([f"{k}: ${v:.2f}" for k, v in ivas.items() if v > 0])
 
-                    facturas_info.append({
-                        'Codigo Factura':codigo_factura,
-                        'Estado de la autorización': estado,
-                        'Fecha de autorización': fecha_autorizacion,
-                        'Ambiente': ambiente,
-                        'Razón Social': razon_social,
-                        'RUC': ruc,
-                        'Fecha de Emisión': fecha_emision,
-                        'Código': codigo,
-                        'Descripción': descripcion,
-                        'Cantidad': cantidad,
-                        'Precio Unitario': precio_unitario,
-                        'iva 0%': ivas.get("0%", 0),
-                        'iva 5%': ivas.get("5%", 0),
-                        'iva 12%': ivas.get("12%", 0),
-                        'iva 15%': ivas.get("15%", 0),
-                        'Total sin impuestos': total_sin_impuestos,
-                        'Total con impuestos': importe_total,
-                        'Número de autorización': numero_autorizacion,
-                        'Clave de Acceso': clave_acceso
-                    })
+            facturas_info.append({
+                'Codigo Factura': codigo_factura,
+                'Estado de la autorización': estado,
+                'Fecha de autorización': fecha_autorizacion,
+                'Ambiente': ambiente,
+                'Razón Social': razon_social,
+                'RUC': ruc,
+                'Fecha de Emisión': fecha_emision,
+                'Código': codigo,
+                'Descripción': descripcion,
+                'Cantidad': cantidad,
+                'Precio Unitario': precio_unitario,
+                'iva 0%': ivas.get("0%", 0),
+                'iva 5%': ivas.get("5%", 0),
+                'iva 12%': ivas.get("12%", 0),
+                'iva 15%': ivas.get("15%", 0),
+                'Total sin impuestos': total_sin_impuestos,
+                'Total con impuestos': importe_total,
+                'Número de autorización': numero_autorizacion,
+                'Clave de Acceso': clave_acceso
+            })
         except ET.ParseError:
             continue
         except Exception as e:
@@ -243,9 +243,9 @@ def upload_files():
 
     # Generar reporte en Excel
     df_facturas = pd.DataFrame(facturas_info)
-    timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     archivo_excel = f'reporte_facturas_{timestamp}.xlsx'
-    #df_facturas.to_excel(archivo_excel, index=False)
+    
 
     writer = pd.ExcelWriter(archivo_excel, engine='openpyxl')
 
@@ -286,81 +286,110 @@ def upload_files():
     # Guardar el archivo
     writer.close()
 
-    archivo_pdf = f'reporte_facturas_{timestamp}.pdf'
-    pdf = FPDF()
-    pdf.set_auto_page_break(auto=True, margin=15)
-    pdf.set_font('Arial', '', 10)
 
-    for i, factura in enumerate(facturas_info):
-        pdf.add_page()
-    
-        # Título
-        pdf.set_font('Arial', 'B', 16)
-        pdf.cell(0, 10, 'Factura', 0, 1, 'C')
-        pdf.ln(5)
-    
-        # Información del emisor
-        pdf.set_font('Arial', 'B', 12)
-        pdf.cell(0, 10, f"Razón Social: {factura['Razón Social']}", 0, 1)
-        pdf.cell(0, 10, f"RUC: {factura['RUC']}", 0, 1)
-        pdf.ln(5)
-    
-        # Información de la factura
-        pdf.set_font('Arial', '', 10)
-        pdf.cell(0, 10, f"Fecha de Emisión: {factura['Fecha de Emisión']}", 0, 1)
-        pdf.cell(0, 10, f"Número de Autorización: {factura['Número de autorización']}", 0, 1)
-        pdf.cell(0, 10, f"Clave de Acceso: {factura['Clave de Acceso']}", 0, 1)
-        pdf.ln(5)
-    
-        # Detalles de la factura
-        pdf.set_font('Arial', 'B', 12)
-        pdf.cell(0, 10, "Detalles de la Factura", 0, 1)
-        pdf.ln(2)
-    
-        pdf.set_font('Arial', '', 10)
-        pdf.cell(30, 10, "Código", 1)
-        pdf.cell(60, 10, "Descripción", 1)
-        pdf.cell(30, 10, "Cantidad", 1)
-        pdf.cell(30, 10, "Precio Unitario", 1)
-        pdf.cell(40, 10, "Total", 1)
-        pdf.ln()
-    
-        pdf.cell(30, 10, str(factura['Código']), 1)
-        pdf.cell(60, 10, factura['Descripción'], 1)
-        pdf.cell(30, 10, str(factura['Cantidad']), 1)
-        pdf.cell(30, 10, f"${factura['Precio Unitario']:.2f}", 1)
-        total = factura['Cantidad'] * factura['Precio Unitario']
-        pdf.cell(40, 10, f"${total:.2f}", 1)
-        pdf.ln(15)
-    
-        # Totales
-        pdf.cell(120)
-        pdf.cell(30, 10, "Subtotal:", 0)
-        pdf.cell(40, 10, f"${float(factura['Total sin impuestos']):.2f}", 0)
-        pdf.ln()
-        pdf.cell(120)
-        pdf.cell(30, 10, "IVA 0%:", 0)
-        pdf.cell(40, 10, f"${factura['iva 0%']:.2f}", 0)
-        pdf.ln()
-        pdf.cell(120)
-        pdf.cell(30, 10, "IVA 5%:", 0)
-        pdf.cell(40, 10, f"${factura['iva 5%']:.2f}", 0)
-        pdf.ln()
-        pdf.cell(120)
-        pdf.cell(30, 10, "IVA 12%:", 0)
-        pdf.cell(40, 10, f"${factura['iva 12%']:.2f}", 0)
-        pdf.ln()
-        pdf.cell(120)
-        pdf.cell(30, 10, "IVA 15%:", 0)
-        pdf.cell(40, 10, f"${factura['iva 15%']:.2f}", 0)
-        pdf.ln()
-        pdf.cell(120 )
-        pdf.cell(30, 10, "Total:", 0)
-        pdf.cell(40, 10, f"${float(factura['Total con impuestos']):.2f}", 0)
-        pdf.ln(10)
 
-    pdf.output(archivo_pdf, 'F')
+    # Función para generar el PDF con diseño de factura
+    def generar_pdf_facturas(facturas_info): 
+        archivo_pdf = f'reporte_facturas_{datetime.now().strftime("%Y%m%d_%H%M%S")}.pdf'
+        pdf = FPDF()
+        pdf.set_auto_page_break(auto=True, margin=20)
 
+        # Iterar sobre las facturas
+        for factura in facturas_info:
+            pdf.add_page()  # Agregar una nueva página para cada factura
+
+            # Cabecera con logo e información de la empresa
+            pdf.set_font('Arial', 'B', 16)
+            pdf.cell(0, 10, 'Systems Ec.', 0, 1, 'C')
+            pdf.set_font('Arial', 'I', 12)
+            pdf.cell(0, 10, 'RUC: 1234567890001', 0, 1, 'C')
+            pdf.cell(0, 10, 'Dirección: Calle Falsa 123, Ciudad', 0, 1, 'C')
+            pdf.cell(0, 10, 'Teléfono: (555) 555-5555', 0, 1, 'C')
+            pdf.image('descarga.png', x=10, y=8, w=30)  # Añadir un logo a la cabecera
+            pdf.ln(15)
+
+            # Título de la factura
+            pdf.set_font('Arial', 'B', 14)
+            pdf.cell(0, 10, f"Factura N°: {factura['Codigo Factura']}", 0, 1, 'L')
+            pdf.ln(5)
+
+            # Información del cliente
+            pdf.set_font('Arial', 'B', 12)
+            pdf.cell(0, 10, "Información del Cliente:", 0, 1)
+            pdf.set_font('Arial', '', 10)
+            pdf.cell(0, 10, f"Razón Social: {factura['Razón Social']}", 0, 1)
+            pdf.cell(0, 10, f"RUC: {factura['RUC']}", 0, 1)
+            pdf.cell(0, 10, f"Fecha de Emisión: {factura['Fecha de Emisión']}", 0, 1)
+            pdf.ln(5)
+
+            # Sección de detalles de productos (tabla)
+            pdf.set_font('Arial', 'B', 12)
+            pdf.cell(30, 10, "Código", 1)
+            pdf.cell(60, 10, "Descripción", 1)
+            pdf.cell(30, 10, "Cantidad", 1)
+            pdf.cell(30, 10, "Precio Unitario", 1)
+            pdf.cell(40, 10, "Total", 1)
+            pdf.ln()
+
+            # Contenido de la tabla de productos
+            pdf.set_font('Arial', '', 10)
+            pdf.cell(30, 10, str(factura['Código']), 1)
+            pdf.cell(60, 10, factura['Descripción'], 1)
+            pdf.cell(30, 10, str(factura['Cantidad']), 1)
+            pdf.cell(30, 10, f"${factura['Precio Unitario']:.2f}", 1)
+            total = factura['Cantidad'] * factura['Precio Unitario']
+            pdf.cell(40, 10, f"${total:.2f}", 1)
+            pdf.ln(15)
+
+            # Sección de subtotales y totales
+            pdf.set_font('Arial', 'B', 12)
+            pdf.cell(120)  # Mueve la celda a la derecha para alinear los subtotales
+            pdf.cell(30, 10, "Subtotal:", 0)
+            pdf.cell(40, 10, f"${float(factura['Total sin impuestos']):.2f}", 0)
+            pdf.ln()
+
+            # Detalles de IVA
+            for iva, valor in [("IVA 0%", factura['iva 0%']), ("IVA 5%", factura['iva 5%']), ("IVA 12%", factura['iva 12%']), ("IVA 15%", factura['iva 15%'])]:
+                pdf.cell(120)  # Alinear los valores de IVA
+                pdf.cell(30, 10, f"{iva}:", 0)
+                pdf.cell(40, 10, f"${valor:.2f}", 0)
+                pdf.ln()
+
+            # Total final
+            pdf.cell(120)
+            pdf.cell(30, 10, "Total:", 0)
+            pdf.cell(40, 10, f"${float(factura['Total con impuestos']):.2f}", 0)
+            pdf.ln(10)
+
+        # Guardar el archivo PDF y retornar el nombre del archivo
+        pdf.output(archivo_pdf, 'F')
+        return archivo_pdf
+
+    # Ejemplo de datos de facturas
+    # facturas_info = [
+    #     {
+    #         'Codigo Factura': '001',
+    #         'Razón Social': 'Cliente Ejemplo',
+    #         'RUC': '0123456789',
+    #         'Fecha de Emisión': '2024-10-20',
+    #         'Código': 'A001',
+    #         'Descripción': 'Producto 1',
+    #         'Cantidad': 5,
+    #         'Precio Unitario': 10.00,
+    #         'Total sin impuestos': 50.00,
+    #         'iva 0%': 0.00,
+    #         'iva 5%': 0.00,
+    #         'iva 12%': 6.00,
+    #         'iva 15%': 0.00,
+    #         'Total con impuestos': 56.00
+    #     },
+    #     # Puedes agregar más facturas aquí
+    # ]
+
+    # Llamar a la función para generar el PDF
+    archivo_pdf = generar_pdf_facturas(facturas_info)
+
+    # Asegúrate de tener el DataFrame df_facturas ya definido antes de esta parte
     # Convertir DataFrame a HTML para previsualización
     tabla_html = df_facturas.to_html(classes='preview-table', index=False)
 
@@ -368,8 +397,13 @@ def upload_files():
     datos_json = df_facturas.to_json(orient='records')
 
     # Retornar los archivos generados para su descarga
-    return render_template('upload.html', excel_report=archivo_excel, pdf_report=archivo_pdf,tabla_html=tabla_html,
-                           datos_json=datos_json)
+    return render_template(
+        'upload.html',
+        excel_report=archivo_excel,
+        pdf_report=archivo_pdf,
+        tabla_html=tabla_html,
+        datos_json=datos_json
+    )
 
 
 
