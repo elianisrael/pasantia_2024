@@ -20,6 +20,14 @@ def index():
 def inicio():
     return render_template('inicio.html')
 
+@app.route('/login')
+def login():
+    return render_template('login.html')
+
+@app.route('/registro')
+def registro():
+    return render_template('registro.html')
+
 #Ruta para sección en donde se almacenaran reportes anteriores
 @app.route('/reportes.anteriores')
 def reportesanteriores():
