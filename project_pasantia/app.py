@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, flash, session, send_file # type: ignore
+from flask import Flask, render_template, request, redirect, send_file # type: ignore
 import xml.etree.ElementTree as ET
 import pandas as pd # type: ignore
 import openpyxl # type: ignore
@@ -7,88 +7,46 @@ import os
 import datetime
 from openpyxl.styles import Font, PatternFill, Border, Side # type: ignore
 import sqlite3
-from werkzeug.security import generate_password_hash, check_password_hash
+from werkzeug.security import generate_password_hash
+from werkzeug.security import check_password_hash
 
 app = Flask(__name__)
-app.secret_key = 'clave_secreta_para_flask'
+
+# Función para conectar y crear la base de datos
+def init_db():
+    conn = sqlite3.connect('app.db')  # Nombre del archivo de la base de datos
+    cursor = conn.cursor()
+
+    # Crear tabla de usuarios
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS usuarios (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            username TEXT NOT NULL,
+            email TEXT NOT NULL,
+            password TEXT NOT NULL
+        )
+    ''')
+
+    # Crear tabla de facturas
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS facturas (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            detalles TEXT NOT NULL,
+            fecha TEXT NOT NULL,
+            total REAL NOT NULL
+        )
+    ''')
+
+    conn.commit()
+    conn.close()
+
+# Llamar a la función para crear las tablas al inicio
+init_db()
+
+
+
 
 facturas_info = []
-
-
-
-# Conectar a la base de datos SQLite
-def get_db_connection():
-    conn = sqlite3.connect('database.db')
-    conn.row_factory = sqlite3.Row
-    return conn
-
-# Ruta para el formulario de registro
-@app.route('/registro', methods=['GET', 'POST'])
-def register():
-    if request.method == 'POST':
-        nombre = request.form['name']
-        email = request.form['email']
-        password = request.form['password']
-        confirm_password = request.form['confirm-password']
-
-        # Verificar si las contraseñas coinciden
-        if password != confirm_password:
-            flash("Las contraseñas no coinciden")
-            return redirect('/registro')
-
-        # Hashear la contraseña antes de guardarla
-        password_hash = generate_password_hash(password)
-
-        # Guardar en la base de datos
-        conn = get_db_connection()
-        try:
-            conn.execute('INSERT INTO usuarios (nombre, email, password) VALUES (?, ?, ?)',
-                         (nombre, email, password_hash))
-            conn.commit()
-            flash("Registro exitoso. Ya puedes iniciar sesión.")
-            return redirect('/registro')
-        except sqlite3.IntegrityError:
-            flash("El correo electrónico ya está registrado.")
-            return redirect('/registro')
-        finally:
-            conn.close()
-
-    return render_template('registro.html')
-
-
-#Ruta del login
-@app.route('/login', methods=['GET', 'POST'])
-def login():
-    if request.method == 'POST':
-        email = request.form['email']
-        password = request.form['password']
-
-        # Obtener el usuario de la base de datos
-        conn = get_db_connection()
-        user = conn.execute('SELECT * FROM usuarios WHERE email = ?', (email,)).fetchone()
-        conn.close()
-
-        # Verificar si el usuario existe y si la contraseña es correcta
-        if user is None:
-            flash("El correo electrónico no está registrado.")
-            return redirect('/login')
-        elif not check_password_hash(user['password'], password):
-            flash("Contraseña incorrecta.")
-            return redirect('/login')
-
-        # Guardar el usuario en la sesión
-        session['user_id'] = user['id']
-        flash("Has iniciado sesión correctamente.")
-        return redirect('/upload')
-
-    return render_template('login.html')
-
-
-@app.route('/upload')
-def destino():
-    return render_template('upload.html')
-
-
 
 # Ruta para la página principal
 @app.route('/')
@@ -98,6 +56,82 @@ def index():
 @app.route('/inicio')
 def inicio():
     return render_template('inicio.html')
+
+@app.route('/login')
+def login():
+    return render_template('login.html')
+
+@app.route('/login', methods=['POST'])
+def handle_login():
+    email = request.form['email']
+    password = request.form['password']
+
+    conn = sqlite3.connect('app.db')
+    cursor = conn.cursor()
+    cursor.execute('SELECT * FROM usuarios WHERE email = ?', (email,))
+    user = cursor.fetchone()
+    conn.close()
+
+    if user and check_password_hash(user[3], password):
+        return redirect('/upload')  # Redirigir al dashboard o página principal
+    else:
+        return 'Error: usuario o contraseña incorrectos'
+    
+@app.route('/upload')
+def upload_1():
+    return render_template('upload.html')
+
+@app.route('/facturas')
+def ver_facturas():
+    conn = sqlite3.connect('app.db')
+    cursor = conn.cursor()
+    cursor.execute('SELECT * FROM facturas')
+    facturas = cursor.fetchall()
+    conn.close()
+
+    return render_template('facturas.html', facturas=facturas)
+
+@app.route('/crear_factura', methods=['POST'])
+def crear_factura():
+    detalles = request.form['detalles']
+    fecha = request.form['fecha']
+    total = request.form['total']
+
+    conn = sqlite3.connect('app.db')
+    cursor = conn.cursor()
+    cursor.execute('''
+        INSERT INTO facturas (detalles, fecha, total)
+        VALUES (?, ?, ?)
+    ''', (detalles, fecha, total))
+    conn.commit()
+    conn.close()
+
+    return redirect('/facturas')
+
+@app.route('/registro')
+def registro():
+    return render_template('registro.html')
+
+@app.route('/registro', methods=['POST'])
+def handle_registro():
+    username = request.form['username']
+    email = request.form['email']
+    password = request.form['password']
+
+    # Encriptar la contraseña antes de guardarla
+    hashed_password = generate_password_hash(password)
+
+    # Guardar en la base de datos
+    conn = sqlite3.connect('app.db')
+    cursor = conn.cursor()
+    cursor.execute('''
+        INSERT INTO usuarios (username, email, password)
+        VALUES (?, ?, ?)
+    ''', (username, email, hashed_password))
+    conn.commit()
+    conn.close()
+
+    return redirect('/login')
 
 #Ruta para sección en donde se almacenaran reportes anteriores
 @app.route('/reportes.anteriores')
@@ -193,7 +227,6 @@ def upload_files():
                         'Descripción': descripcion,
                         'Cantidad': cantidad,
                         'Precio Unitario': precio_unitario,
-                        # 'IVAs':ivas_str,
                         'iva 0%': ivas.get("0%", 0),
                         'iva 5%': ivas.get("5%", 0),
                         'iva 12%': ivas.get("12%", 0),
