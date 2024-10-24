@@ -9,10 +9,10 @@
 </head>
 <nav class="navbar">
     <ul>
-        <li><a href="/inicio">Inicio</a></li>
         <li><a href="/upload">Subir Archivos</a></li>
         <li><a href="/dashboard">Dashboard</a></li>
         <li><a href="/reportes.anteriores">Reportes</a></li>
+        <li><a href="/logout">Cerrar Sesión</a></li>
     </ul>
 </nav>
 
@@ -29,17 +29,35 @@
 
             {% if excel_report %}
             <div class="reports">
-                <h2>Reportes Generados</h2>
-                <form action="/download_excel" method="get" class="download-form">
+               <!-- Formulario para descargar Excel -->
+                <form action="/download_excel" method="get" class="download-form" id="excel-form">
                     <input type="hidden" name="filename" value="{{ excel_report }}">
-                    <input type="text" name="custom_name" placeholder="Nombre personalizado (Excel)" required>
-                    <button type="submit" class="btn-download">Descargar Excel</button>
+                    <input type="text" id="custom_name_excel" name="custom_name" placeholder="Nombre personalizado (Excel)">
+                    <button type="submit" class="btn-download" onclick="setDefaultName('excel-form', 'custom_name_excel', 'Reporte.xlsx')">Descargar Excel</button>
                 </form>
-                <form action="/download_pdf" method="get" class="download-form">
+
+                <!-- Formulario para descargar PDF -->
+                <form action="/download_pdf" method="get" class="download-form" id="pdf-form">
                     <input type="hidden" name="filename" value="{{ pdf_report }}">
-                    <input type="text" name="custom_name" placeholder="Nombre personalizado (PDF)" required>
-                    <button type="submit" class="btn-download">Descargar PDF</button>
+                    <input type="text" id="custom_name_pdf" name="custom_name" placeholder="Nombre personalizado (PDF)">
+                    <button type="submit" class="btn-download" onclick="setDefaultName('pdf-form', 'custom_name_pdf', 'Reporte.pdf')">Descargar PDF</button>
                 </form>
+
+<script>
+    function setDefaultName(formId, inputId, defaultName) {
+        // Obtener el campo del nombre personalizado
+        var inputField = document.getElementById(inputId);
+        
+        // Si el campo está vacío, asignar el nombre por defecto
+        if (!inputField.value) {
+            inputField.value = defaultName;
+        }
+        
+        // Enviar el formulario
+        document.getElementById(formId).submit();
+    }
+</script>
+
             </div>
             <div class="new-report">
                 <a href="/" class="btn-new-report">Generar Nuevo Reporte</a>

@@ -78,11 +78,25 @@ def login():
         session['user_id'] = user['id']
         flash("Has iniciado sesión correctamente.")
         return redirect('/upload')
+    
+
         
     return render_template('login.html')
 
+ # Cerrar sesión
+@app.route('/logout')
+def logout():
+        # Eliminar el usuario de la sesión
+        session.pop('user_id', None)
+        flash("Has cerrado sesión correctamente.")
+        return redirect('/login')
+
 @app.route('/upload')
 def destino():
+    # Verificar si el usuario está autenticado
+    if 'user_id' not in session:
+        flash("Debes iniciar sesión para acceder a esta página.")
+        return redirect('/login')
     return render_template('upload.html')
 
 
@@ -155,10 +169,18 @@ def inicio():
 #Ruta para sección en donde se almacenaran reportes anteriores
 @app.route('/reportes.anteriores')
 def reportesanteriores():
-    return render_template('/reportes.html')
+    # Verificar si el usuario está autenticado
+    if 'user_id' not in session:
+        flash("Debes iniciar sesión para acceder a esta página.")
+        return redirect('/login')
+    
+    # Si el usuario está autenticado, mostrar la página de reportes
+    return render_template('reportes.html')
+
 # Ruta para subir los archivos XML y generar los reportes
 @app.route('/upload', methods=['GET', 'POST'])
 def upload_files():
+# Verificar si el usuario está autenticado
     global facturas_info  # Declarar facturas_info como global
     uploaded_files = request.files.getlist('xml_files')
 
@@ -446,6 +468,10 @@ def download_pdf():
 
 @app.route('/dashboard')
 def dashboard():
+# Verificar si el usuario está autenticado
+    if 'user_id' not in session:
+        flash("Debes iniciar sesión para acceder a esta página.")
+        return redirect('/login')
     # Procesa los datos de las facturas (asumiendo que tienes acceso a facturas_info)
     total_facturas = len(facturas_info)
     total_ventas = sum(float(factura['Total con impuestos']) for factura in facturas_info)

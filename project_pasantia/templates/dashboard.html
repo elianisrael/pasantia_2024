@@ -8,26 +8,27 @@
     <nav class="navbar">
     </head>
         <ul>
-            <li><a href="/inicio">Inicio</a></li>
             <li><a href="/upload">Subir Archivos</a></li>
             <li><a href="/dashboard">Dashboard</a></li>
             <li><a href="/reportes.anteriores">Reportes</a></li>
+            <li><a href="/logout">Cerrar Sesión</a></li>
         </ul>
     </nav>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
-            padding: 20px;
             background-color: #f0f0f0;
+            top: 0%;
         }
         .dashboard-container {
             max-width: 1200px;
-            margin: 0 auto;
-            background-color: white;
+            margin: 1% auto;
+            background-color: #f0f0f0;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
+
         }
         /*.chart-container {
             margin-top: 20px;
@@ -47,6 +48,7 @@
             background-color: #f8f9fa;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+
         }
 
         .dashboard-item h3 {
@@ -71,7 +73,17 @@
         background-color: #007bff;
         padding: 10px;
         text-align: center;
+
         }
+        .navbarr {
+        background-color: #007bff;
+        padding: 10px;
+        text-align: center;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        }
+
 
         .navbar ul {
         list-style-type: none;

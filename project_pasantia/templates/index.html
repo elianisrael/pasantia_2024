@@ -20,17 +20,7 @@
 
             {% if excel_report %}
             <div class="reports">
-                <h2>Reportes Generados</h2>
-                <form action="/download_excel" method="get" class="download-form">
-                    <input type="hidden" name="filename" value="{{ excel_report }}">
-                    <input type="text" name="custom_name" placeholder="Nombre personalizado (Excel)" required>
-                    <button type="submit" class="btn-download">Descargar Excel</button>
-                </form>
-                <form action="/download_pdf" method="get" class="download-form">
-                    <input type="hidden" name="filename" value="{{ pdf_report }}">
-                    <input type="text" name="custom_name" placeholder="Nombre personalizado (PDF)" required>
-                    <button type="submit" class="btn-download">Descargar PDF</button>
-                </form>
+
             </div>
             <div class="new-report">
                 <a href="/" class="btn-new-report">Generar Nuevo Reporte</a>
