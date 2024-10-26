@@ -264,3 +264,46 @@ button:hover, .btn-download:hover, .btn-new-report:hover, .btn-dashboard:hover {
     background-color: #0056b3;
     border-radius: 5px;
 }
+/* Menú desplegable */
+.menu {
+    color: white; /* Color de texto */
+    text-decoration: none; /* Sin subrayado */
+    font-size: 16px; /* Tamaño de letra del botón */
+    
+}
+
+.dropdownn {
+    position: fixed;
+    top: 5px;
+    right: 5%;
+    display: inline-block;
+    z-index: 1;
+}
+
+
+.dropdownn-content {
+    display: none; /* Oculto por defecto */
+    position: absolute;
+    top: 100%; /* Menú desplegable debajo del botón */
+    min-width: 160px;
+    padding: 10px;
+    background-color: transparent; /* Fondo transparente */
+    color: black; /* Color de texto */
+    font-size: 12px; /* Tamaño de letra más pequeño */
+    text-align: left; /* Alinear texto a la izquierda */
+}
+
+.dropdownn:hover .dropdownn-content {
+    display: block; /* Mostrar menú al pasar el ratón */
+}
+
+.dropdownn-content a {
+    color: black; /* Color de texto en el menú */
+    text-decoration: none; /* Sin subrayado */
+    display: block; /* Mostrar enlaces en bloque */
+    margin-bottom: 5px; /* Espacio entre enlaces */
+}
+
+.dropdownn-content a:hover {
+    background-color: #ddd; /* Fondo al pasar el ratón */
+}

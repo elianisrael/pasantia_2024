@@ -6,12 +6,68 @@
     <title>Generar Reporte</title>
     <link rel="stylesheet" href="/static/styles.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .top-right {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 16px;
+            text-align: right;
+        }
+        .report-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        .report-table th, .report-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+    </style>
 </head>
 <nav class="navbar">
     <ul>
         <li><a href="/upload">Subir Archivos</a></li>
         <li><a href="/dashboard">Dashboard</a></li>
         <li><a href="/reportes.anteriores">Reportes</a></li>
-        <li><a href="/logout">Cerrar Sesión</a></li>
     </ul>
+    <!-- Menú desplegable de usuario -->
+    <li class="dropdownn">
+      <p class ="menu" href="javascript:void(0)">Menú:</p>
+      <div class="dropdownn-content">
+          <p>   {{ session['user_name'] }}</p>
+          <a href="/logout">Cerrar Sesión</a>
+      </div>
+  </li>
+   
 </nav>
+<body>
+    
+
+    <h1>Reportes Anteriores</h1>
+
+    {% if reportes %}
+        <table class="report-table">
+            <thead>
+                <tr>
+                    <th>Nombre del Reporte</th>
+                    <th>Fecha</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for reporte in reportes %}
+                    <tr>
+                        <td>{{ reporte['nombre'] }}</td>
+                        <td>{{ reporte['fecha'] }}</td>
+                        <td>${{ "%.2f"|format(reporte['total']) }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No hay reportes anteriores para mostrar.</p>
+    {% endif %}
+</body>
+

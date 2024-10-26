@@ -2,18 +2,28 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="/static/styles.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard de Facturas</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <nav class="navbar">
-    </head>
         <ul>
             <li><a href="/upload">Subir Archivos</a></li>
             <li><a href="/dashboard">Dashboard</a></li>
             <li><a href="/reportes.anteriores">Reportes</a></li>
-            <li><a href="/logout">Cerrar Sesión</a></li>
+        </ul>
+        <!-- Menú desplegable de usuario -->
+        <li class="dropdownn">
+          <p class ="menu" href="javascript:void(0)">Menú:</p>
+          <div class="dropdownn-content">
+              <p>   {{ session['user_name'] }}</p>
+              <a href="/logout">Cerrar Sesión</a>
+          </div>
+      </li> 
         </ul>
     </nav>
+
+
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -110,9 +120,42 @@
         background-color: #0056b3;
         border-radius: 5px;
         }
+         /* Menú desplegable */
+         .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            background-color: #f8f9fa;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            padding: 10px;
+            z-index: 1;
+            text-align: left;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown-content a {
+            color: #333;
+            padding: 8px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
     </style>
 
 <body>
+    
     <div class="dashboard-container">
         <h1>Dashboard de Facturas</h1>
         

@@ -37,9 +37,18 @@ def init_db():
             total REAL NOT NULL
         )
     ''')
-
+    # Crear tabla de reportes
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS reportes (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            nombre TEXT NOT NULL,
+            fecha TEXT NOT NULL,
+            total REAL NOT NULL
+        )
+    ''')
     conn.commit()
     conn.close()
+    
 
 # Llamar a la función para crear las tablas al inicio
 init_db()
@@ -60,7 +69,7 @@ def login():
     if request.method == 'POST':
         email = request.form['email']
         password = request.form['password']
-
+        
         # Obtener el usuario de la base de datos
         conn = get_db_connection()
         user = conn.execute('SELECT * FROM usuarios WHERE email = ?', (email,)).fetchone()
@@ -76,12 +85,12 @@ def login():
 
         # Guardar el usuario en la sesión
         session['user_id'] = user['id']
+        session['user_name'] = user['username']  # Guardar el nombre en la sesión
         flash("Has iniciado sesión correctamente.")
         return redirect('/upload')
-    
 
-        
     return render_template('login.html')
+
 
  # Cerrar sesión
 @app.route('/logout')
@@ -165,7 +174,23 @@ def index():
 @app.route('/inicio')
 def inicio():
     return render_template('inicio.html')
+#Ruta para sección en donde se almacenaran
+@app.route('/guardar_reporte', methods=['POST'])
+def guardar_reporte():
+    nombre = request.form['nombre']
+    fecha = request.form['fecha']
+    total = request.form['total']
 
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute('''
+        INSERT INTO reportes (nombre, fecha, total)
+        VALUES (?, ?, ?)
+    ''', (nombre, fecha, total))
+    conn.commit()
+    conn.close()
+
+    return redirect('/reportes.anteriores')
 #Ruta para sección en donde se almacenaran reportes anteriores
 @app.route('/reportes.anteriores')
 def reportesanteriores():
@@ -173,10 +198,12 @@ def reportesanteriores():
     if 'user_id' not in session:
         flash("Debes iniciar sesión para acceder a esta página.")
         return redirect('/login')
-    
-    # Si el usuario está autenticado, mostrar la página de reportes
-    return render_template('reportes.html')
 
+    conn = get_db_connection()
+    reportes = conn.execute('SELECT * FROM reportes ORDER BY fecha DESC').fetchall()
+    conn.close()
+    
+    return render_template('reportes.html', reportes=reportes)
 # Ruta para subir los archivos XML y generar los reportes
 @app.route('/upload', methods=['GET', 'POST'])
 def upload_files():

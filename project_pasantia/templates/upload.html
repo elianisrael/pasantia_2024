@@ -12,11 +12,19 @@
         <li><a href="/upload">Subir Archivos</a></li>
         <li><a href="/dashboard">Dashboard</a></li>
         <li><a href="/reportes.anteriores">Reportes</a></li>
-        <li><a href="/logout">Cerrar Sesión</a></li>
     </ul>
+        <!-- Menú desplegable de usuario -->
+        <li class="dropdownn">
+            <p class ="menu" href="javascript:void(0)">Menú:</p>
+            <div class="dropdownn-content">
+                <p>   {{ session['user_name'] }}</p>
+                <a href="/logout">Cerrar Sesión</a>
+            </div>
+        </li>
 </nav>
 
 <body>
+
     <div class="main-container">
         <div class="left-panel">
             <h1>Subir archivos XML</h1>
