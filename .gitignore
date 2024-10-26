@@ -1,0 +1,16 @@
+# Ignorar archivos de sistema
+.DS_Store
+
+# Ignorar la carpeta node_modules
+node_modules/
+
+# Ignorar todos los archivos de texto
+*.txt
+
+# Ignorar archivos de configuración
+.env
+# Ignorar archivos PDF
+*.pdf
+
+# Ignorar archivos Excel
+*.xlsx
