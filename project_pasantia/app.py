@@ -234,50 +234,87 @@ def reportes_anteriores():
 # Ruta para subir los archivos XML y generar los reportes
 @app.route('/upload', methods=['GET', 'POST'])
 def upload_files():
-# Verificar si el usuario está autenticado
-    global facturas_info  # Declarar facturas_info como global
+    print("Iniciando proceso de carga de archivos")
+    
+    # Verificar si el usuario está autenticado
+    if 'user_id' not in session:
+        print("Usuario no autenticado")
+        flash("Debes iniciar sesión para acceder a esta página.")
+        return redirect(url_for('login'))
+
     uploaded_files = request.files.getlist('xml_files')
+    print(f"Número de archivos cargados: {len(uploaded_files)}")
 
     # Reiniciar facturas_info antes de procesar nuevos archivos
+    global facturas_info
     facturas_info = []
     productos_info = []
 
     for file in uploaded_files:
+        print(f"\nProcesando archivo: {file.filename}")
         try:
+            # Leer el contenido del archivo para depuración
+            content = file.read().decode('utf-8')
+            print(f"Contenido del archivo {file.filename}:\n{content[:200]}...")  # Primeros 200 caracteres
+            file.seek(0)  # Regresar al inicio del archivo
+
             tree = ET.parse(file)
             root = tree.getroot()
+            print("XML parseado correctamente")
 
-            # Extraer información de la factura (igual que en tu código original)
+            # Extraer información básica de la autorización
             estado = root.find('estado').text if root.find('estado') is not None else None
             numero_autorizacion = root.find('numeroAutorizacion').text if root.find('numeroAutorizacion') is not None else None
             fecha_autorizacion = root.find('fechaAutorizacion').text if root.find('fechaAutorizacion') is not None else None
             ambiente = root.find('ambiente').text if root.find('ambiente') is not None else None
 
+            print(f"Estado: {estado}")
+            print(f"Número de autorización: {numero_autorizacion}")
+
+            # Procesar el comprobante
             comprobante_element = root.find('comprobante')
             if comprobante_element is not None:
                 comprobante_xml = comprobante_element.text.strip()
                 if comprobante_xml.startswith('<?xml'):
                     comprobante_xml = comprobante_xml.split('?>', 1)[1].strip()
+                print("Elemento comprobante encontrado y procesado")
             else:
+                print(f"El archivo {file.filename} no contiene un elemento 'comprobante'")
                 continue
 
             comprobante_root = ET.fromstring(comprobante_xml)
+            print("Comprobante XML parseado correctamente")
+
+            # Información tributaria
             info_tributaria = comprobante_root.find('infoTributaria')
-            razon_social = info_tributaria.find('razonSocial').text if info_tributaria is not None else None
-            ruc = info_tributaria.find('ruc').text if info_tributaria is not None else None
+            razon_social = info_tributaria.find('razonSocial').text if info_tributaria.find('razonSocial') is not None else "No especificado"
+            nombre_comercial = info_tributaria.find('nombreComercial').text if info_tributaria.find('nombreComercial') is not None else "No especificado"
+            ruc_vendedor = info_tributaria.find('ruc').text if info_tributaria is not None else None
             clave_acceso = info_tributaria.find('claveAcceso').text if info_tributaria is not None else None
-            
             codigo_factura = info_tributaria.find('secuencial').text if info_tributaria is not None else None
+
+            print(f"Información tributaria procesada - RUC: {ruc_vendedor}")
+
+            # Información de la factura
             info_factura = comprobante_root.find('infoFactura')
             fecha_emision = info_factura.find('fechaEmision').text if info_factura is not None else None
             total_sin_impuestos = info_factura.find('totalSinImpuestos').text if info_factura is not None else None
             importe_total = info_factura.find('importeTotal').text if info_factura is not None else None
-            detalles = comprobante_root.find('detalles')
 
+            # Información del comprador
+            razon_social_comprador = comprobante_root.find('.//razonSocialComprador').text if comprobante_root.find('.//razonSocialComprador') is not None else "No especificado"
+            ruc_comprador = comprobante_root.find('.//identificacionComprador').text if comprobante_root.find('.//identificacionComprador') is not None else "No especificado"
+
+            print(f"Información de factura procesada - Fecha: {fecha_emision}")
+
+            # Procesar detalles y productos
+            detalles = comprobante_root.find('detalles')
             if detalles is not None:
+                print("Procesando detalles de productos")
                 productos = detalles.findall('detalle')
                 ivas = {"0%": 0, "5%": 0, "12%": 0, "15%": 0}
                 total_factura = 0
+
                 for producto in productos:
                     codigo = producto.find('codigoPrincipal').text if producto.find('codigoPrincipal') is not None else None
                     descripcion = producto.find('descripcion').text if producto.find('descripcion') is not None else None
@@ -285,66 +322,72 @@ def upload_files():
                     precio_unitario = float(producto.find('precioUnitario').text) if producto.find('precioUnitario') is not None else 0.0
                     precio_total_sin_impuesto = float(producto.find('precioTotalSinImpuesto').text) if producto.find('precioTotalSinImpuesto') is not None else 0.0
 
-                    impuesto_element = producto.find('impuestos')
+                    # Procesar impuestos del producto
+                    impuesto_element = producto.find('impuestos/impuesto')
                     if impuesto_element is not None:
-                        valor_impuesto = impuesto_element.find('impuesto')
-                        impuesto = float(valor_impuesto.find('valor').text) if valor_impuesto is not None else 0.0
-                        tarifa = float(valor_impuesto.find('tarifa').text) if valor_impuesto.find('tarifa') is not None else 0.0
+                        impuesto = float(impuesto_element.find('valor').text) if impuesto_element.find('valor') is not None else 0.0
+                        tarifa = float(impuesto_element.find('tarifa').text) if impuesto_element.find('tarifa') is not None else 0.0
+                        
+                        # Sumar al IVA correspondiente
+                        if tarifa == 0:
+                            ivas["0%"] += impuesto
+                        elif tarifa == 5:
+                            ivas["5%"] += impuesto
+                        elif tarifa == 12:
+                            ivas["12%"] += impuesto
+                        elif tarifa == 15:
+                            ivas["15%"] += impuesto
                     else:
                         impuesto = 0.0
                         tarifa = 0.0
+
                     total_producto = precio_total_sin_impuesto + impuesto
                     total_factura += total_producto
 
-                    # Determinar el tipo de IVA y sumar al diccionario de IVAs
-                    if tarifa == 0:
-                        ivas["0%"] += impuesto
-                    elif tarifa == 5:
-                        ivas["5%"] += impuesto
-                    elif tarifa == 12:
-                        ivas["12%"] += impuesto
-                    elif tarifa == 15:
-                        ivas["15%"] += impuesto
-                    else:
-                        ivas[f"{tarifa}%"] = ivas.get(f"{tarifa}%", 0) + impuesto
+                    productos_info.append({
+                        'Codigo Factura': codigo_factura,
+                        'Código': codigo,
+                        'Descripción': descripcion,
+                        'Cantidad': cantidad,
+                        'Precio Unitario': precio_unitario,
+                        'Precio Total Sin Impuesto': precio_total_sin_impuesto,
+                        'IVA': impuesto,
+                        'Total': total_producto
+                    })
+                    print(f"Producto procesado: {codigo} - {descripcion}")
 
-            # Crear una cadena con los IVAs de la factura
-            ivas_str = ", ".join([f"{k}: ${v:.2f}" for k, v in ivas.items() if v > 0])
-
-            facturas_info.append({
+            # Agregar información de la factura
+            factura_info = {
                 'Codigo Factura': codigo_factura,
                 'Estado de la autorización': estado,
                 'Fecha de autorización': fecha_autorizacion,
                 'Ambiente': ambiente,
-                'Razón Social': razon_social,
-                'RUC': ruc,
+                'Razón Social comprador': razon_social_comprador,
+                'RUC del Comprador': ruc_comprador,
+                'Razón Social del Vendedor': razon_social,
+                'Nombre Comercial del Vendedor': nombre_comercial,
+                'RUC del Vendedor': ruc_vendedor,
                 'Fecha de Emisión': fecha_emision,
-                # 'Código': codigo,
-                # 'Descripción': descripcion,
-                # 'Cantidad': cantidad,
-                'Precio Unitario': precio_unitario,
-                'iva 0%': ivas.get("0%", 0),
-                'iva 5%': ivas.get("5%", 0),
-                'iva 12%': ivas.get("12%", 0),
-                'iva 15%': ivas.get("15%", 0),
+                'IVA 0%': ivas["0%"],
+                'IVA 5%': ivas["5%"],
+                'IVA 12%': ivas["12%"],
+                'IVA 15%': ivas["15%"],
                 'Total sin impuestos': total_sin_impuestos,
                 'Total con impuestos': importe_total,
                 'Número de autorización': numero_autorizacion,
                 'Clave de Acceso': clave_acceso
-            })
-            productos_info.append({
-                    'Código': codigo,
-                    'Descripción': descripcion,
-                    'Cantidad': cantidad,
-                    'Precio Unitario': precio_unitario,
-                    'Precio Total Sin Impuesto': precio_total_sin_impuesto,
-                    'IVA': impuesto,
-                    'Total': total_producto
-            })
+            }
+            facturas_info.append(factura_info)
+            print(f"Factura procesada: {codigo_factura} - {razon_social_comprador}")
+
         except ET.ParseError:
-            continue
+            print(f"Error al analizar el archivo {file.filename}: El archivo no es un XML válido.")
         except Exception as e:
-            print(f"Error: {e}")
+            print(f"Error procesando el archivo {file.filename}: {str(e)}")
+
+    print(f"Total de facturas procesadas: {len(facturas_info)}")
+    print(f"Total de productos procesados: {len(productos_info)}")
+
 
     # Generar reporte en Excel
     df_facturas = pd.DataFrame(facturas_info)
@@ -361,24 +404,31 @@ def upload_files():
 
     # Obtener la hoja de trabajo
     workbook = writer.book
-    worksheet = workbook['Reporte']
+    worksheet_facturas = workbook['Reporte']
+    worksheet_productos = workbook['Productos']
 
     # Aplicar formato a la hoja
     for idx, col in enumerate(df_facturas.columns):
         # Establecer el ancho de la columna basado en la longitud máxima en la columna
         max_len = max(df_facturas[col].astype(str).map(len).max(), len(col))
-        worksheet.column_dimensions[openpyxl.utils.get_column_letter(idx+1)].width = max_len + 2
+        worksheet_facturas.column_dimensions[openpyxl.utils.get_column_letter(idx+1)].width = max_len + 2
 
+    for idx, col in enumerate(df_productos.columns):
+        # Establecer el ancho de la columna basado en la longitud máxima en la columna
+        max_len = max(df_productos[col].astype(str).map(len).max(), len(col))
+        worksheet_productos.column_dimensions[openpyxl.utils.get_column_letter(idx+1)].width = max_len + 2
+    
+    for worksheet in [worksheet_facturas, worksheet_productos]:
     # Aplicar estilo a la fila de encabezados
-    for cell in worksheet[1]:
-        cell.font = Font(bold=True)
-        cell.fill = PatternFill(start_color='87CEEB', end_color='87CEEB', fill_type='solid')
+        for cell in worksheet[1]:
+            cell.font = Font(bold=True)
+            cell.fill = PatternFill(start_color='87CEEB', end_color='87CEEB', fill_type='solid')
 
     # Aplicar bordes a todas las celdas
-    thin_border = Border(left=Side(style='thin'),
-                     right=Side(style='thin'),
-                     top=Side(style='thin'),
-                     bottom=Side(style='thin'))
+        thin_border = Border(left=Side(style='thin'),
+                        right=Side(style='thin'),
+                        top=Side(style='thin'),
+                        bottom=Side(style='thin'))
 
     for row in worksheet.iter_rows(min_row=1, max_row=worksheet.max_row, min_col=1, max_col=worksheet.max_column):
         for cell in row:
@@ -398,87 +448,121 @@ def upload_files():
 
     # Función para generar el PDF con diseño de factura
     def generar_pdf_facturas(facturas_info, productos_info=None): 
-        # Si productos_info es None, inicializar como un diccionario vacío
         if productos_info is None:
-            productos_info = {}
+            productos_info = []
+        
+        print(f"Total de facturas: {len(facturas_info)}")
+        print(f"Total de productos: {len(productos_info)}")
 
         archivo_pdf = f'reporte_facturas_{datetime.now().strftime("%Y%m%d_%H%M%S")}.pdf'
         pdf = FPDF()
         pdf.set_auto_page_break(auto=True, margin=20)
 
-        # Iterar sobre las facturas
         for factura in facturas_info:
-            pdf.add_page()  # Agregar una nueva página para cada factura
+            pdf.add_page()
 
-            # Cabecera con logo e información de la empresa
+            # Cabecera de la empresa (vendedor)
             pdf.set_font('Arial', 'B', 16)
-            pdf.cell(0, 10, 'Systems Ec.', 0, 1, 'C')
+            pdf.cell(0, 10, factura['Nombre Comercial del Vendedor'], 0, 1, 'C')
             pdf.set_font('Arial', 'I', 12)
-            pdf.cell(0, 10, 'RUC: 1234567890001', 0, 1, 'C')
+            pdf.cell(0, 10, f"Razón Social: {factura['Razón Social del Vendedor']}", 0, 1, 'C')
+            pdf.cell(0, 10, f"RUC: {factura['RUC del Vendedor']}", 0, 1, 'C')
             pdf.cell(0, 10, 'Dirección: Calle Falsa 123, Ciudad', 0, 1, 'C')
             pdf.cell(0, 10, 'Teléfono: (555) 555-5555', 0, 1, 'C')
-            pdf.image('descarga.png', x=10, y=8, w=30)  # Añadir un logo a la cabecera
+            pdf.image('descarga.png', x=10, y=8, w=30)
             pdf.ln(15)
 
-            # Título de la factura
+            # Información de la factura
             pdf.set_font('Arial', 'B', 14)
-            pdf.cell(0, 10, f"Factura N°: {factura['Codigo Factura']}", 0, 1, 'L')
+            codigo_factura = factura['Codigo Factura']
+            pdf.cell(0, 10, f"Factura N°: {codigo_factura}", 0, 1, 'L')
             pdf.ln(5)
 
-            # Información del cliente
+            # Información del cliente (comprador)
             pdf.set_font('Arial', 'B', 12)
             pdf.cell(0, 10, "Información del Cliente:", 0, 1)
             pdf.set_font('Arial', '', 10)
-            pdf.cell(0, 10, f"Razón Social: {factura['Razón Social']}", 0, 1)
-            pdf.cell(0, 10, f"RUC: {factura['RUC']}", 0, 1)
+            # Usar las claves correctas que coinciden con factura_info
+            pdf.cell(0, 10, f"Razón Social del Comprador: {factura['Razón Social comprador']}", 0, 1)
+            pdf.cell(0, 10, f"RUC del Comprador: {factura['RUC del Comprador']}", 0, 1)
             pdf.cell(0, 10, f"Fecha de Emisión: {factura['Fecha de Emisión']}", 0, 1)
             pdf.ln(5)
 
-            # Sección de detalles de productos (tabla)
+            # Tabla de productos
             pdf.set_font('Arial', 'B', 12)
-            w_codigo, w_descripcion, w_cantidad, w_precio, w_total = 30, 60, 30, 30, 40
+            w_codigo = 30
+            w_descripcion = 60
+            w_cantidad = 25
+            w_precio = 35
+            w_total = 40
             h = 10
 
-            # Encabezados
+            # Encabezados de la tabla
             pdf.cell(w_codigo, h, "Código", 1)
             pdf.cell(w_descripcion, h, "Descripción", 1)
             pdf.cell(w_cantidad, h, "Cantidad", 1)
-            pdf.cell(w_precio, h, "Precio Unitario", 1)
+            pdf.cell(w_precio, h, "P. Unitario", 1)
             pdf.cell(w_total, h, "Total", 1)
             pdf.ln()
 
-            # Imprimir cada producto
+            # Filtrar y mostrar productos de esta factura
+            productos_factura = [p for p in productos_info if p['Codigo Factura'] == codigo_factura]
+            print(f"Productos encontrados para factura {codigo_factura}: {len(productos_factura)}")
+
+            # Contenido de la tabla
             pdf.set_font('Arial', '', 10)
-            for producto in productos_info.get(factura['Codigo Factura'], []):  # Obtener productos por factura
-                pdf.cell(w_codigo, h, str(producto['Código']), 1)
-                pdf.cell(w_descripcion, h, str(producto['Descripción']), 1)
-                pdf.cell(w_cantidad, h, str(producto['Cantidad']), 1)
-                pdf.cell(w_precio, h, f"${producto['Precio Unitario']:.2f}", 1)
-                total = producto['Cantidad'] * producto['Precio Unitario']
-                pdf.cell(w_total, h, f"${total:.2f}", 1)
+            subtotal = 0
+            for producto in productos_factura:
+                codigo = str(producto['Código'])
+                descripcion = str(producto['Descripción'])
+                if len(descripcion) > 25:
+                    descripcion = descripcion[:22] + '...'
+                
+                cantidad = str(producto['Cantidad'])
+                precio_unitario = producto['Precio Unitario']
+                total_producto = producto['Total']
+                subtotal += total_producto
+
+                pdf.cell(w_codigo, h, codigo, 1)
+                pdf.cell(w_descripcion, h, descripcion, 1)
+                pdf.cell(w_cantidad, h, cantidad, 1)
+                pdf.cell(w_precio, h, f"${precio_unitario:.2f}", 1)
+                pdf.cell(w_total, h, f"${total_producto:.2f}", 1)
                 pdf.ln()
 
-            # Sección de subtotales y totales
+            pdf.ln(5)
+
+            # Sección de totales
             pdf.set_font('Arial', 'B', 12)
-            pdf.cell(120)  # Alinear subtotales a la derecha
+            x_position = 120
+            
+            pdf.cell(x_position)
             pdf.cell(30, 10, "Subtotal:", 0)
             pdf.cell(40, 10, f"${float(factura['Total sin impuestos']):.2f}", 0)
             pdf.ln()
 
-            # Detalles de IVA
-            for iva, valor in [("IVA 0%", factura['iva 0%']), ("IVA 5%", factura['iva 5%']), ("IVA 12%", factura['iva 12%']), ("IVA 15%", factura['iva 15%'])]:
-                pdf.cell(120)  # Alinear los valores de IVA
-                pdf.cell(30, 10, f"{iva}:", 0)
-                pdf.cell(40, 10, f"${valor:.2f}", 0)
-                pdf.ln()
+            # IVAs
+            for iva_tipo in ['IVA 0%', 'IVA 5%', 'IVA 12%', 'IVA 15%']:
+                if factura[iva_tipo] > 0:
+                    pdf.cell(x_position)
+                    pdf.cell(30, 10, f"{iva_tipo}:", 0)
+                    pdf.cell(40, 10, f"${factura[iva_tipo]:.2f}", 0)
+                    pdf.ln()
 
             # Total final
-            pdf.cell(120)
-            pdf.cell(30, 10, "Total:", 0)
+            pdf.set_font('Arial', 'B', 14)
+            pdf.cell(x_position)
+            pdf.cell(30, 10, "TOTAL:", 0)
             pdf.cell(40, 10, f"${float(factura['Total con impuestos']):.2f}", 0)
-            pdf.ln(10)
+            pdf.ln(15)
 
-        # Guardar el archivo PDF y retornar el nombre del archivo
+            # Información adicional
+            pdf.set_font('Arial', '', 10)
+            pdf.cell(0, 10, f"Número de Autorización: {factura['Número de autorización']}", 0, 1)
+            pdf.cell(0, 10, f"Fecha de Autorización: {factura['Fecha de autorización']}", 0, 1)
+            pdf.cell(0, 10, f"Ambiente: {factura['Ambiente']}", 0, 1)
+            pdf.cell(0, 10, f"Estado de Autorización: {factura['Estado de la autorización']}", 0, 1)
+
         pdf.output(archivo_pdf, 'F')
         return archivo_pdf
 
@@ -487,7 +571,7 @@ def upload_files():
 
 
     # Llamar a la función para generar el PDF
-    archivo_pdf = generar_pdf_facturas(facturas_info)
+    archivo_pdf = generar_pdf_facturas(facturas_info, productos_info)
 
     # Asegúrate de tener el DataFrame df_facturas ya definido antes de esta parte
     # Convertir DataFrame a HTML para previsualización
