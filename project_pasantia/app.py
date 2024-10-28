@@ -9,6 +9,7 @@ from openpyxl.styles import Font, PatternFill, Border, Side # type: ignore
 import sqlite3
 from werkzeug.security import generate_password_hash
 from werkzeug.security import check_password_hash
+import json
 
 app = Flask(__name__)
 app.secret_key = 'clave_secreta_para_flask'
@@ -87,7 +88,7 @@ def login():
         session['user_id'] = user['id']
         session['user_name'] = user['username']  # Guardar el nombre en la sesión
         flash("Has iniciado sesión correctamente.")
-        return redirect('/upload')
+        return redirect('/index')
 
     return render_template('login.html')
 
@@ -100,13 +101,13 @@ def logout():
         flash("Has cerrado sesión correctamente.")
         return redirect('/login')
 
-@app.route('/upload')
+@app.route('/index')
 def destino():
     # Verificar si el usuario está autenticado
     if 'user_id' not in session:
         flash("Debes iniciar sesión para acceder a esta página.")
         return redirect('/login')
-    return render_template('upload.html')
+    return render_template('index.html')
 
 
 
@@ -167,8 +168,12 @@ def crear_factura():
     return redirect('/facturas')
 
 # Ruta para la página principal
-@app.route('/index')
-def index():
+@app.route('/')
+def home():
+    return redirect('/login')  # Redirige a la página de login
+
+@app.route('/upload')
+def upload():
     return render_template('index.html')
 #Ruta para página de inicio
 @app.route('/inicio')
@@ -235,6 +240,7 @@ def upload_files():
 
     # Reiniciar facturas_info antes de procesar nuevos archivos
     facturas_info = []
+    productos_info = []
 
     for file in uploaded_files:
         try:
@@ -313,9 +319,9 @@ def upload_files():
                 'Razón Social': razon_social,
                 'RUC': ruc,
                 'Fecha de Emisión': fecha_emision,
-                'Código': codigo,
-                'Descripción': descripcion,
-                'Cantidad': cantidad,
+                # 'Código': codigo,
+                # 'Descripción': descripcion,
+                # 'Cantidad': cantidad,
                 'Precio Unitario': precio_unitario,
                 'iva 0%': ivas.get("0%", 0),
                 'iva 5%': ivas.get("5%", 0),
@@ -326,6 +332,15 @@ def upload_files():
                 'Número de autorización': numero_autorizacion,
                 'Clave de Acceso': clave_acceso
             })
+            productos_info.append({
+                    'Código': codigo,
+                    'Descripción': descripcion,
+                    'Cantidad': cantidad,
+                    'Precio Unitario': precio_unitario,
+                    'Precio Total Sin Impuesto': precio_total_sin_impuesto,
+                    'IVA': impuesto,
+                    'Total': total_producto
+            })
         except ET.ParseError:
             continue
         except Exception as e:
@@ -333,6 +348,7 @@ def upload_files():
 
     # Generar reporte en Excel
     df_facturas = pd.DataFrame(facturas_info)
+    df_productos = pd.DataFrame(productos_info)
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     archivo_excel = f'reporte_facturas_{timestamp}.xlsx'
     
@@ -341,6 +357,7 @@ def upload_files():
 
     # Guardar el DataFrame en Excel
     df_facturas.to_excel(writer, index=False, sheet_name='Reporte')
+    df_productos.to_excel(writer, sheet_name='Productos', index=False)
 
     # Obtener la hoja de trabajo
     workbook = writer.book
@@ -377,9 +394,14 @@ def upload_files():
     writer.close()
 
 
+   
 
     # Función para generar el PDF con diseño de factura
-    def generar_pdf_facturas(facturas_info): 
+    def generar_pdf_facturas(facturas_info, productos_info=None): 
+        # Si productos_info es None, inicializar como un diccionario vacío
+        if productos_info is None:
+            productos_info = {}
+
         archivo_pdf = f'reporte_facturas_{datetime.now().strftime("%Y%m%d_%H%M%S")}.pdf'
         pdf = FPDF()
         pdf.set_auto_page_break(auto=True, margin=20)
@@ -414,26 +436,31 @@ def upload_files():
 
             # Sección de detalles de productos (tabla)
             pdf.set_font('Arial', 'B', 12)
-            pdf.cell(30, 10, "Código", 1)
-            pdf.cell(60, 10, "Descripción", 1)
-            pdf.cell(30, 10, "Cantidad", 1)
-            pdf.cell(30, 10, "Precio Unitario", 1)
-            pdf.cell(40, 10, "Total", 1)
+            w_codigo, w_descripcion, w_cantidad, w_precio, w_total = 30, 60, 30, 30, 40
+            h = 10
+
+            # Encabezados
+            pdf.cell(w_codigo, h, "Código", 1)
+            pdf.cell(w_descripcion, h, "Descripción", 1)
+            pdf.cell(w_cantidad, h, "Cantidad", 1)
+            pdf.cell(w_precio, h, "Precio Unitario", 1)
+            pdf.cell(w_total, h, "Total", 1)
             pdf.ln()
 
-            # Contenido de la tabla de productos
+            # Imprimir cada producto
             pdf.set_font('Arial', '', 10)
-            pdf.cell(30, 10, str(factura['Código']), 1)
-            pdf.cell(60, 10, factura['Descripción'], 1)
-            pdf.cell(30, 10, str(factura['Cantidad']), 1)
-            pdf.cell(30, 10, f"${factura['Precio Unitario']:.2f}", 1)
-            total = factura['Cantidad'] * factura['Precio Unitario']
-            pdf.cell(40, 10, f"${total:.2f}", 1)
-            pdf.ln(15)
+            for producto in productos_info.get(factura['Codigo Factura'], []):  # Obtener productos por factura
+                pdf.cell(w_codigo, h, str(producto['Código']), 1)
+                pdf.cell(w_descripcion, h, str(producto['Descripción']), 1)
+                pdf.cell(w_cantidad, h, str(producto['Cantidad']), 1)
+                pdf.cell(w_precio, h, f"${producto['Precio Unitario']:.2f}", 1)
+                total = producto['Cantidad'] * producto['Precio Unitario']
+                pdf.cell(w_total, h, f"${total:.2f}", 1)
+                pdf.ln()
 
             # Sección de subtotales y totales
             pdf.set_font('Arial', 'B', 12)
-            pdf.cell(120)  # Mueve la celda a la derecha para alinear los subtotales
+            pdf.cell(120)  # Alinear subtotales a la derecha
             pdf.cell(30, 10, "Subtotal:", 0)
             pdf.cell(40, 10, f"${float(factura['Total sin impuestos']):.2f}", 0)
             pdf.ln()
@@ -457,12 +484,15 @@ def upload_files():
 
 
 
+
+
     # Llamar a la función para generar el PDF
     archivo_pdf = generar_pdf_facturas(facturas_info)
 
     # Asegúrate de tener el DataFrame df_facturas ya definido antes de esta parte
     # Convertir DataFrame a HTML para previsualización
     tabla_html = df_facturas.to_html(classes='preview-table', index=False)
+
 
     # Convertir DataFrame a JSON para pasar a JavaScript
     datos_json = df_facturas.to_json(orient='records')
