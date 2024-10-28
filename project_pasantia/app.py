@@ -619,7 +619,7 @@ def dashboard():
     # Obtener parámetros de filtro de la URL
     fecha_inicio = request.args.get('fecha_inicio')
     fecha_fin = request.args.get('fecha_fin')
-    cliente_filtro = request.args.get('cliente')
+    clientes_filtro = request.args.getlist('clientes[]')
     rango_monto = request.args.get('rango_monto')
     
     # Filtrar facturas según los parámetros
@@ -631,10 +631,10 @@ def dashboard():
             if fecha_inicio <= f['Fecha de Emisión'] <= fecha_fin
         ]
     
-    if cliente_filtro:
+    if clientes_filtro:
         facturas_filtradas = [
             f for f in facturas_filtradas 
-            if cliente_filtro.lower() in f['Razón Social comprador'].lower()
+            if f['Razón Social comprador'] in clientes_filtro
         ]
     
     if rango_monto:
@@ -676,18 +676,19 @@ def dashboard():
     clientes_unicos = sorted(list(set(f['Razón Social comprador'] for f in facturas_info)))
 
     return render_template('dashboard.html',
-                         total_facturas=total_facturas,
-                         total_ventas=total_ventas,
-                         ventas_sin_impuestos=ventas_sin_impuestos,
-                         promedio_venta=promedio_venta,
-                         ventas_por_cliente=ventas_por_cliente,
-                         iva_totales=iva_totales,
-                         ventas_por_mes=ventas_por_mes,
-                         clientes_unicos=clientes_unicos,
-                         fecha_inicio=fecha_inicio,
-                         fecha_fin=fecha_fin,
-                         cliente_filtro=cliente_filtro,
-                         rango_monto=rango_monto)
+                           total_facturas=total_facturas,
+                           total_ventas=total_ventas,
+                           ventas_sin_impuestos=ventas_sin_impuestos,
+                           promedio_venta=promedio_venta,
+                           ventas_por_cliente=ventas_por_cliente,
+                           iva_totales=iva_totales,
+                           ventas_por_mes=ventas_por_mes,
+                           clientes_unicos=clientes_unicos,
+                           fecha_inicio=fecha_inicio,
+                           fecha_fin=fecha_fin,
+                           clientes_filtro=clientes_filtro,
+                           rango_monto=rango_monto)
+
 
 if __name__ == '__main__':
     app.run(debug=True)

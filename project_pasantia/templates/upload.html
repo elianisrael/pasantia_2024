@@ -107,7 +107,7 @@
         {% if datos_json %}
         var datos = {{ datos_json|safe }};
         var ctx = document.getElementById('myChart').getContext('2d');
-        var labels = datos.map(item => item['Razón Social']);
+        var labels = datos.map(item => item['Razón Social comprador']);
         var valores = datos.map(item => parseFloat(item['Total con impuestos']));
 
         new Chart(ctx, {

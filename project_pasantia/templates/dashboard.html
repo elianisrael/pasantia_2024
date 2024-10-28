@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard de Facturación</title>
+    <link rel="stylesheet" href="/static/styles.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         body {
@@ -82,7 +83,44 @@
             flex: 1 1 calc(50% - 10px);
             min-width: 300px;
         }
+        /* ... otros estilos ... */
+        select[multiple] {
+            width: 100%;
+            height: 150px;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .checkbox-container {
+        max-height: 200px;
+        overflow-y: auto;
+        border: 1px solid #ddd;
+        padding: 10px;
+        border-radius: 4px;
+    }
+    .checkbox-item {
+        margin-bottom: 5px;
+    }
+    .checkbox-item label {
+        margin-left: 5px;
+    }
     </style>
+    <nav class="navbar">
+        <ul>
+            <li><a href="/index">Subir Archivos</a></li>
+            <li><a href="/dashboard">Dashboard</a></li>
+            <li><a href="/reportes.anteriores">Reportes</a></li>
+        </ul>
+        <!-- Menú desplegable de usuario -->
+        <li class="dropdownn">
+          <p class ="menu" href="javascript:void(0)">Menú:</p>
+          <div class="dropdownn-content">
+              <p>   {{ session['user_name'] }}</p>
+              <a href="/logout">Cerrar Sesión</a>
+          </div>
+      </li>
+       
+    </nav>
 </head>
 <body>
     <div class="dashboard-container">
@@ -100,15 +138,15 @@
                 </div>
 
                 <div class="filter-group">
-                    <label for="cliente">Cliente:</label>
-                    <select id="cliente" name="cliente">
-                        <option value="">Todos los clientes</option>
+                    <label>Clientes:</label>
+                    <div class="checkbox-container">
                         {% for cliente in clientes_unicos %}
-                        <option value="{{ cliente }}" {% if cliente_filtro == cliente %}selected{% endif %}>
-                            {{ cliente }}
-                        </option>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="cliente-{{ loop.index }}" name="clientes[]" value="{{ cliente }}" {% if cliente in clientes_filtro %}checked{% endif %}>
+                            <label for="cliente-{{ loop.index }}">{{ cliente }}</label>
+                        </div>
                         {% endfor %}
-                    </select>
+                    </div>
                 </div>
 
                 <div class="filter-group">
