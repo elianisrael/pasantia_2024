@@ -7,6 +7,21 @@
     <link rel="stylesheet" href="/static/styles.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
+<nav class="navbar">
+    <ul>
+        <li><a href="/upload">Subir Archivos</a></li>
+        <li><a href="/dashboard">Dashboard</a></li>
+        <li><a href="/reportes.anteriores">Reportes</a></li>
+    </ul>
+        <!-- Menú desplegable de usuario -->
+        <li class="dropdownn">
+            <p class ="menu" href="javascript:void(0)">Menú:</p>
+            <div class="dropdownn-content">
+                <p>   {{ session['user_name'] }}</p>
+                <a href="/logout">Cerrar Sesión</a>
+            </div>
+        </li>
+</nav>
 <body>
     <div class="main-container">
         <div class="left-panel">
@@ -31,53 +46,5 @@
             </div>
             {% endif %}
         </div>
-
-        <!-- sección de previsualización en index.html -->
-        {% if excel_report %}
-        <div class="right-panel">
-            <div class="preview">
-                <h3>Previsualización del Reporte</h3>
-                <div class="table-container">
-                    {{ tabla_html|safe|replace('class="dataframe"', 'class="preview-table"') }}
-                </div>
-            </div>
-            <div class="chart-container">
-                <canvas id="myChart"></canvas>
-            </div>
-        </div>
-        {% endif %}
-    </div>
-
-    <script>
-        {% if datos_json %}
-        var datos = {{ datos_json|safe }};
-        var ctx = document.getElementById('myChart').getContext('2d');
-        var labels = datos.map(item => item['Razón Social']);
-        var valores = datos.map(item => parseFloat(item['Total con impuestos']));
-
-        new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: labels,
-                datasets: [{
-                    label: 'Total con impuestos',
-                    data: valores,
-                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                    borderColor: 'rgba(255, 99, 132, 1)',
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
-        {% endif %}
-    </script>
 </body>
 </html>

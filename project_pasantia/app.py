@@ -167,9 +167,9 @@ def crear_factura():
     return redirect('/facturas')
 
 # Ruta para la página principal
-@app.route('/')
+@app.route('/index')
 def index():
-    return render_template('inicio.html')
+    return render_template('index.html')
 #Ruta para página de inicio
 @app.route('/inicio')
 def inicio():
