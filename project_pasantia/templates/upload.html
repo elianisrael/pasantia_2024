@@ -50,6 +50,17 @@
                     <input type="text" id="custom_name_pdf" name="custom_name" placeholder="Nombre personalizado (PDF)">
                     <button type="submit" class="btn-download" onclick="setDefaultName('pdf-form', 'custom_name_pdf', 'Reporte.pdf')">Descargar PDF</button>
                 </form>
+                
+                <form action="{{ url_for('guardar_reporte') }}" method="post" class="download-form">
+                    <input type="hidden" name="excel_filename" value="{{ excel_report }}">
+                    <input type="hidden" name="pdf_filename" value="{{ pdf_report }}">
+                    <input type="text" name="reporte_nombre" placeholder="Nombre del reporte" required>
+                    <button type="submit" class="btn-save">Guardar Reporte</button>  
+                </form>
+                
+            </div>
+            
+        </div>
 
 <script>
     function setDefaultName(formId, inputId, defaultName) {
@@ -65,16 +76,16 @@
         document.getElementById(formId).submit();
     }
 </script>
-
-            </div>
+    
+            <!-- </div>
             <div class="new-report">
-                <a href="/" class="btn-new-report">Generar Nuevo Reporte</a>
+                <a href="/upload" class="btn-new-report">Generar Nuevo Reporte</a>
             </div>
             <div>
                 <a href="{{ url_for('dashboard') }}" class="btn-dashboard">Ver Dashboard</a>
             </div>
             {% endif %}
-        </div>
+            </div> -->
 
         <!-- sección de previsualización en index.html -->
         {% if excel_report %}

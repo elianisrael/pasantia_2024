@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, flash, session, send_file # type: ignore
+from flask import Flask, render_template, request, redirect, flash, session, send_file, url_for # type: ignore
 import xml.etree.ElementTree as ET 
 import pandas as pd # type: ignore
 import openpyxl # type: ignore
@@ -177,28 +177,50 @@ def inicio():
 #Ruta para sección en donde se almacenaran
 @app.route('/guardar_reporte', methods=['POST'])
 def guardar_reporte():
-    nombre = request.form['nombre']
-    fecha = request.form['fecha']
-    total = request.form['total']
+    if 'user_id' not in session:
+        flash("Debes iniciar sesión para guardar reportes.")
+        return redirect(url_for('login'))
+
+    excel_filename = request.form.get('excel_filename')
+    pdf_filename = request.form.get('pdf_filename')
+    reporte_nombre = request.form.get('reporte_nombre')
+
+    if not excel_filename or not pdf_filename or not reporte_nombre:
+        flash("Información incompleta para guardar el reporte.")
+        return redirect(url_for('upload'))
+
+    # Calcular el total del reporte
+    total = calcular_total_reporte(excel_filename)
 
     conn = get_db_connection()
-    cursor = conn.cursor()
-    cursor.execute('''
-        INSERT INTO reportes (nombre, fecha, total)
-        VALUES (?, ?, ?)
-    ''', (nombre, fecha, total))
-    conn.commit()
-    conn.close()
+    try:
+        fecha = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        conn.execute('INSERT INTO reportes (nombre, fecha, total) VALUES (?, ?, ?)',
+                     (reporte_nombre, fecha, total))
+        conn.commit()
+        flash("Reporte guardado exitosamente.")
+    except Exception as e:
+        print(f"Error al guardar el reporte: {e}")
+        flash("Hubo un error al guardar el reporte.")
+    finally:
+        conn.close()
 
-    return redirect('/reportes.anteriores')
+    return redirect(url_for('reportes_anteriores'))
+
+def calcular_total_reporte(excel_filename):
+    try:
+        df = pd.read_excel(excel_filename)
+        total = df['Total con impuestos'].sum()  # Asegúrate de que esta columna exista en tu Excel
+        return total
+    except Exception as e:
+        print(f"Error al calcular el total del reporte: {e}")
+        return 0
 #Ruta para sección en donde se almacenaran reportes anteriores
 @app.route('/reportes.anteriores')
-def reportesanteriores():
-    # Verificar si el usuario está autenticado
+def reportes_anteriores():
     if 'user_id' not in session:
-        flash("Debes iniciar sesión para acceder a esta página.")
-        return redirect('/login')
-
+        return redirect(url_for('login'))
+        
     conn = get_db_connection()
     reportes = conn.execute('SELECT * FROM reportes ORDER BY fecha DESC').fetchall()
     conn.close()

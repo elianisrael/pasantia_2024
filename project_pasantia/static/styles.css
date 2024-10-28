@@ -307,3 +307,32 @@ button:hover, .btn-download:hover, .btn-new-report:hover, .btn-dashboard:hover {
 .dropdownn-content a:hover {
     background-color: #ddd; /* Fondo al pasar el ratón */
 }
+.report-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: white;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+.report-table th,
+.report-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.report-table th {
+    background-color: #f8f9fa;
+    font-weight: bold;
+}
+
+.report-table tr:hover {
+    background-color: #f5f5f5;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 20px;
+}
