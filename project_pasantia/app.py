@@ -612,38 +612,82 @@ def download_pdf():
 
 @app.route('/dashboard')
 def dashboard():
-# Verificar si el usuario está autenticado
     if 'user_id' not in session:
         flash("Debes iniciar sesión para acceder a esta página.")
         return redirect('/login')
-    # Procesa los datos de las facturas (asumiendo que tienes acceso a facturas_info)
-    total_facturas = len(facturas_info)
-    total_ventas = sum(float(factura['Total con impuestos']) for factura in facturas_info)
-    ventas_sin_impuestos = sum(float(factura['Total sin impuestos']) for factura in facturas_info)
+    
+    # Obtener parámetros de filtro de la URL
+    fecha_inicio = request.args.get('fecha_inicio')
+    fecha_fin = request.args.get('fecha_fin')
+    cliente_filtro = request.args.get('cliente')
+    rango_monto = request.args.get('rango_monto')
+    
+    # Filtrar facturas según los parámetros
+    facturas_filtradas = facturas_info.copy()
+    
+    if fecha_inicio and fecha_fin:
+        facturas_filtradas = [
+            f for f in facturas_filtradas 
+            if fecha_inicio <= f['Fecha de Emisión'] <= fecha_fin
+        ]
+    
+    if cliente_filtro:
+        facturas_filtradas = [
+            f for f in facturas_filtradas 
+            if cliente_filtro.lower() in f['Razón Social comprador'].lower()
+        ]
+    
+    if rango_monto:
+        min_monto, max_monto = map(float, rango_monto.split('-'))
+        facturas_filtradas = [
+            f for f in facturas_filtradas 
+            if min_monto <= float(f['Total con impuestos']) <= max_monto
+        ]
+
+    # Procesar datos filtrados
+    total_facturas = len(facturas_filtradas)
+    total_ventas = sum(float(f['Total con impuestos']) for f in facturas_filtradas)
+    ventas_sin_impuestos = sum(float(f['Total sin impuestos']) for f in facturas_filtradas)
     promedio_venta = total_ventas / total_facturas if total_facturas > 0 else 0
-    
-    # Datos para gráficos
+
+    # Análisis por cliente
     ventas_por_cliente = {}
-    
-    for factura in facturas_info:
-        cliente = factura['Razón Social']
+    for factura in facturas_filtradas:
+        cliente = factura.get('Razón Social comprador', 'Cliente no especificado')
         monto = float(factura['Total con impuestos'])
         ventas_por_cliente[cliente] = ventas_por_cliente.get(cliente, 0) + monto
 
+    # Análisis de IVA
     iva_totales = {
-        'IVA 0%': sum(factura['iva 0%'] for factura in facturas_info),
-        'IVA 5%': sum(factura['iva 5%'] for factura in facturas_info),
-        'IVA 12%': sum(factura['iva 12%'] for factura in facturas_info),
-        'IVA 15%': sum(factura['iva 15%'] for factura in facturas_info)
+        'IVA 0%': sum(f.get('IVA 0%', 0) for f in facturas_filtradas),
+        'IVA 5%': sum(f.get('IVA 5%', 0) for f in facturas_filtradas),
+        'IVA 12%': sum(f.get('IVA 12%', 0) for f in facturas_filtradas),
+        'IVA 15%': sum(f.get('IVA 15%', 0) for f in facturas_filtradas)
     }
 
-    return render_template('dashboard.html', 
-                           total_facturas=total_facturas,
-                           total_ventas=total_ventas,
-                           ventas_sin_impuestos=ventas_sin_impuestos,
-                           promedio_venta=promedio_venta,
-                           ventas_por_cliente=ventas_por_cliente,
-                           iva_totales=iva_totales)  
+    # Análisis temporal
+    ventas_por_mes = {}
+    for factura in facturas_filtradas:
+        fecha = datetime.strptime(factura['Fecha de Emisión'], '%d/%m/%Y')
+        mes_año = fecha.strftime('%Y-%m')
+        ventas_por_mes[mes_año] = ventas_por_mes.get(mes_año, 0) + float(factura['Total con impuestos'])
+
+    # Obtener lista única de clientes para el filtro
+    clientes_unicos = sorted(list(set(f['Razón Social comprador'] for f in facturas_info)))
+
+    return render_template('dashboard.html',
+                         total_facturas=total_facturas,
+                         total_ventas=total_ventas,
+                         ventas_sin_impuestos=ventas_sin_impuestos,
+                         promedio_venta=promedio_venta,
+                         ventas_por_cliente=ventas_por_cliente,
+                         iva_totales=iva_totales,
+                         ventas_por_mes=ventas_por_mes,
+                         clientes_unicos=clientes_unicos,
+                         fecha_inicio=fecha_inicio,
+                         fecha_fin=fecha_fin,
+                         cliente_filtro=cliente_filtro,
+                         rango_monto=rango_monto)
 
 if __name__ == '__main__':
     app.run(debug=True)
