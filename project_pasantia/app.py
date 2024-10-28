@@ -433,26 +433,7 @@ def upload_files():
         pdf.output(archivo_pdf, 'F')
         return archivo_pdf
 
-    # Ejemplo de datos de facturas
-    # facturas_info = [
-    #     {
-    #         'Codigo Factura': '001',
-    #         'Razón Social': 'Cliente Ejemplo',
-    #         'RUC': '0123456789',
-    #         'Fecha de Emisión': '2024-10-20',
-    #         'Código': 'A001',
-    #         'Descripción': 'Producto 1',
-    #         'Cantidad': 5,
-    #         'Precio Unitario': 10.00,
-    #         'Total sin impuestos': 50.00,
-    #         'iva 0%': 0.00,
-    #         'iva 5%': 0.00,
-    #         'iva 12%': 6.00,
-    #         'iva 15%': 0.00,
-    #         'Total con impuestos': 56.00
-    #     },
-    #     # Puedes agregar más facturas aquí
-    # ]
+
 
     # Llamar a la función para generar el PDF
     archivo_pdf = generar_pdf_facturas(facturas_info)
