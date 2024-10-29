@@ -44,7 +44,7 @@
                 
                 <div class="filter-group">
                     <label for="clientes-select" style="font-weight: bold;">Clientes:</label>
-                    <span id="selected-client" style="cursor: pointer; color: #333; border: 1px solid #ddd; padding: 10px; display: inline-block; border-radius: 4px; width: 100%; text-align: left; margin-bottom: 5px;">Selecciona clientes</span>
+                    <span id="selected-client" style="cursor: pointer; color: #333; border: 1px solid #ddd; padding: 7.7px; display: inline-block; border-radius: 4px; width: calc(100% - 9px); text-align: left; margin-left: 5.5px; margin-bottom: 5px;">Selecciona clientes</span>
                     <div id="clientes-list" class="checkbox-container hidden">
                         {% for cliente in clientes_unicos %}
                         <div class="checkbox-item" data-cliente="{{ cliente }}">
