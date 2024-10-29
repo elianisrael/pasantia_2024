@@ -6,23 +6,24 @@
     <title>Dashboard de Facturación</title>
     <link rel="stylesheet" href="/static/styles.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
    </head>
 
    <nav class="navbar">
-    <ul>
+    <ul class="menu">
         <li><a href="/index">Subir Archivos</a></li>
         <li><a href="/dashboard">Dashboard</a></li>
         <li><a href="/reportes.anteriores">Reportes</a></li>
     </ul>
-    <!-- Menú desplegable de usuario -->
-    <li class="dropdownn">
-      <p class ="menu" href="javascript:void(0)">Menú:</p>
-      <div class="dropdownn-content">
-          <p>   {{ session['user_name'] }}</p>
-          <a href="/logout">Cerrar Sesión</a>
-      </div>
-  </li>
+    <!-- Menú de usuario en la esquina derecha -->
+    <div class="user-info">
+        <i class="fas fa-user"></i> <!-- Ícono de usuario -->
+        <span>{{ session['user_email'] }}</span> <!-- Correo del usuario -->
+        <a href="/logout" class="logout-icon">
+            <i class="fas fa-sign-out-alt"></i> <!-- Ícono de cerrar sesión -->
+        </a>
+    </div>
+</nav>
    
 </nav>
 <body class="bodydashboard">
@@ -53,46 +54,6 @@
                     </div>
                 </div>
                 
-                <style>
-                    /* Estilo del contenedor principal */
-                    .filter-group {
-                        position: relative; /* Para que el contenedor de la lista se posicione correctamente */
-                        width: 200px; /* Ancho aumentado para evitar colisión con otros filtros */
-                        margin-bottom: 10px; /* Espacio inferior para evitar superposición con otros filtros */
-                    }
-                    
-                    /* Estilo de la lista de clientes desplegable */
-                    .checkbox-container {
-                        display: none;
-                        position: absolute;
-                        top: calc(100% + 5px); /* Espacio entre el área de selección y la lista */
-                        left: 0;
-                        width: 100%;
-                        max-height: 200px;
-                        overflow-y: auto;
-                        border: 1px solid #ddd;
-                        background-color: #fff;
-                        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-                        border-radius: 4px;
-                        z-index: 10;
-                    }
-                    .checkbox-item {
-                        padding: 8px; /* Espaciado ajustado */
-                        font-size: 14px; /* Tamaño de fuente */
-                        cursor: pointer;
-                    }
-                    .checkbox-item:hover {
-                        background-color: #f0f0f0; /* Efecto hover para mejor visibilidad */
-                    }
-                    .checkbox-item.selected {
-                        background-color: #d0e7ff; /* Color de fondo para los seleccionados */
-                        color: #000; /* Cambia el color del texto para mejor visibilidad */
-                    }
-                    /* Mostrar lista desplegable cuando está activa */
-                    .checkbox-container.show {
-                        display: block;
-                    }
-                </style>
                 
                 <script>
                     // Alternar visibilidad de la lista de clientes al hacer clic en el texto

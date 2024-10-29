@@ -700,3 +700,74 @@ h2 {
     .checkbox-item label {
         margin-left: 5px;
     }
+
+    /* Estilo del contenedor principal */
+    .filter-group {
+        position: relative; /* Para que el contenedor de la lista se posicione correctamente */
+        width: 200px; /* Ancho aumentado para evitar colisión con otros filtros */
+        margin-bottom: 10px; /* Espacio inferior para evitar superposición con otros filtros */
+    }
+    
+    /* Estilo de la lista de clientes desplegable */
+    .checkbox-container {
+        display: none;
+        position: absolute;
+        top: calc(100% + 5px); /* Espacio entre el área de selección y la lista */
+        left: 0;
+        width: 100%;
+        max-height: 200px;
+        overflow-y: auto;
+        border: 1px solid #ddd;
+        background-color: #fff;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        border-radius: 4px;
+        z-index: 10;
+    }
+    .checkbox-item {
+        padding: 8px; /* Espaciado ajustado */
+        font-size: 14px; /* Tamaño de fuente */
+        cursor: pointer;
+    }
+    .checkbox-item:hover {
+        background-color: #f0f0f0; /* Efecto hover para mejor visibilidad */
+    }
+    .checkbox-item.selected {
+        background-color: #d0e7ff; /* Color de fondo para los seleccionados */
+        color: #000; /* Cambia el color del texto para mejor visibilidad */
+    }
+    /* Mostrar lista desplegable cuando está activa */
+    .checkbox-container.show {
+        display: block;
+    }
+
+/* Estilos para menú desplegable e icono */
+.user-icon {
+    font-size: 1.5em;
+    color: #ffffff;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.dropdownn-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    padding: 12px;
+    z-index: 1;
+}
+
+.dropdownn:hover .dropdownn-content {
+    display: block;
+}
+
+.logout-button {
+    color: #333;
+    text-decoration: none;
+}
+
+.logout-button:hover {
+    color: #12d508;
+}

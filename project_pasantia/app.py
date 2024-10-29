@@ -87,6 +87,7 @@ def login():
         # Guardar el usuario en la sesión
         session['user_id'] = user['id']
         session['user_name'] = user['username']  # Guardar el nombre en la sesión
+        session['user_email'] = user['email']    # Guardar el correo en la sesión
         flash("Has iniciado sesión correctamente.")
         return redirect('/index')
 
