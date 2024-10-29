@@ -1,7 +1,7 @@
 /* Estilos generales */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f9fafb;
+    background-color: #fdfdfd;
     margin: 0;
     padding: 0;
 }
@@ -12,6 +12,7 @@ body {
     justify-content: center;
     padding: 2rem;
     gap: 2rem;
+    padding-top: 50px; /* Ajusta este valor según la altura de la navbar */
 }
 
 /* Panel izquierdo */
@@ -234,9 +235,14 @@ button:hover, .btn-download:hover, .btn-new-report:hover, .btn-dashboard:hover {
 }
 
 .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
     background-color: #007bff;
     padding: 10px;
     text-align: center;
+    z-index: 1000; /* Asegura que esté encima de otros elementos */
 }
 
 .navbar ul {
@@ -335,4 +341,362 @@ button:hover, .btn-download:hover, .btn-new-report:hover, .btn-dashboard:hover {
     max-width: 1200px;
     margin: 20px auto;
     padding: 0 20px;
+    padding-top: 50px; /* Ajusta este valor según la altura de la navbar */
 }
+/*Stile que estaba en reportes html*/
+        .top-right {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 16px;
+            text-align: right;
+        }
+        .report-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        .report-table th, .report-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+/*Style que estaban en registro.html*/
+
+.bodyregistro {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #ffffff;
+}
+
+.register-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.form-group input:focus {
+    border-color: #007BFF;
+    outline: none;
+}
+
+.btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #28a745;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.btn:hover {
+    background-color: #218838;
+}
+
+.register-link {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.register-link a {
+    color: #007BFF;
+    text-decoration: none;
+}
+
+.register-link a:hover {
+    text-decoration: underline;
+}
+/*Style que estaban en login.html*/
+
+        .bodylogin {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        .login-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .form-group input:focus {
+            border-color: #007BFF;
+            outline: none;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF;
+            border: none;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .login-link a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+/*Style que estaban en inicio.html*/
+
+
+        .bodyinicio {
+            background-color: #f5f5f5;
+        }
+
+        .containerinicio {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .welcome-text {
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            font-size: 3em;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1.2em;
+            color: #666;
+            margin-bottom: 30px;
+            max-width: 600px;
+            line-height: 1.6;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .btn {
+            padding: 15px 40px;
+            font-size: 1.1em;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .register-btn {
+            background-color: #007bff;
+            color: white;
+            border: none;
+        }
+
+        .register-btn:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,123,255,0.3);
+        }
+
+        .login-btn {
+            background-color: white;
+            color: #007bff;
+            border: 2px solid #007bff;
+        }
+
+        .login-btn:hover {
+            background-color: #f8f9fa;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,123,255,0.1);
+            
+        }
+        @media (max-width: 600px) {
+            .buttons {
+                flex-direction: column;
+            }
+    
+            h1 {
+                font-size: 2em;
+            }
+    
+            p {
+                font-size: 1em;
+            }
+        }
+/*Style que estaban en dashboard.html*/
+
+        .bodydashboard {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #ffffff;
+            top: 50%;
+        }
+        .dashboard-container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding-top: 50px; /* Ajusta este valor según la altura de la navbar */
+
+        }
+        .filters-section {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .filters-form {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .filter-group {
+            flex: 1;
+            min-width: 200px;
+        }
+        .filter-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .filter-group input,
+        .filter-group select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .filter-button,
+        .reset-button {
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .reset-button {
+            background-color: #6c757d;
+        }
+        .summary-cards {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .card {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            flex: 1;
+            margin: 0 10px;
+            text-align: center;
+        }
+        .charts-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .chart-box {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            flex: 1 1 calc(50% - 10px);
+            min-width: 300px;
+        }
+        /* ... otros estilos ... */
+        select[multiple] {
+            width: 100%;
+            height: 150px;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .checkbox-container {
+        max-height: 200px;
+        overflow-y: auto;
+        border: 1px solid #ddd;
+        padding: 10px;
+        border-radius: 4px;
+    }
+    .checkbox-item {
+        margin-bottom: 5px;
+    }
+    .checkbox-item label {
+        margin-left: 5px;
+    }

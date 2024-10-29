@@ -170,7 +170,7 @@ def crear_factura():
 # Ruta para la página principal
 @app.route('/')
 def home():
-    return redirect('/login')  # Redirige a la página de login
+    return redirect('/inicio')  # Redirige a la página de login
 
 @app.route('/upload')
 def upload():
