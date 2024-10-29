@@ -40,17 +40,96 @@
                     <input type="date" id="fecha_fin" name="fecha_fin" value="{{ fecha_fin }}">
                 </div>
 
+                
                 <div class="filter-group">
-                    <label>Clientes:</label>
-                    <div class="checkbox-container">
+                    <label for="clientes-select" style="font-weight: bold;">Clientes:</label>
+                    <span id="selected-client" style="cursor: pointer; color: #333; border: 1px solid #ddd; padding: 10px; display: inline-block; border-radius: 4px; width: 100%; text-align: left; margin-bottom: 5px;">Selecciona clientes</span>
+                    <div id="clientes-list" class="checkbox-container hidden">
                         {% for cliente in clientes_unicos %}
-                        <div class="checkbox-item">
-                            <input type="checkbox" id="cliente-{{ loop.index }}" name="clientes[]" value="{{ cliente }}" {% if cliente in clientes_filtro %}checked{% endif %}>
-                            <label for="cliente-{{ loop.index }}">{{ cliente }}</label>
+                        <div class="checkbox-item" data-cliente="{{ cliente }}">
+                            <label>{{ cliente }}</label>
                         </div>
                         {% endfor %}
                     </div>
                 </div>
+                
+                <style>
+                    /* Estilo del contenedor principal */
+                    .filter-group {
+                        position: relative; /* Para que el contenedor de la lista se posicione correctamente */
+                        width: 200px; /* Ancho aumentado para evitar colisión con otros filtros */
+                        margin-bottom: 10px; /* Espacio inferior para evitar superposición con otros filtros */
+                    }
+                    
+                    /* Estilo de la lista de clientes desplegable */
+                    .checkbox-container {
+                        display: none;
+                        position: absolute;
+                        top: calc(100% + 5px); /* Espacio entre el área de selección y la lista */
+                        left: 0;
+                        width: 100%;
+                        max-height: 200px;
+                        overflow-y: auto;
+                        border: 1px solid #ddd;
+                        background-color: #fff;
+                        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+                        border-radius: 4px;
+                        z-index: 10;
+                    }
+                    .checkbox-item {
+                        padding: 8px; /* Espaciado ajustado */
+                        font-size: 14px; /* Tamaño de fuente */
+                        cursor: pointer;
+                    }
+                    .checkbox-item:hover {
+                        background-color: #f0f0f0; /* Efecto hover para mejor visibilidad */
+                    }
+                    .checkbox-item.selected {
+                        background-color: #d0e7ff; /* Color de fondo para los seleccionados */
+                        color: #000; /* Cambia el color del texto para mejor visibilidad */
+                    }
+                    /* Mostrar lista desplegable cuando está activa */
+                    .checkbox-container.show {
+                        display: block;
+                    }
+                </style>
+                
+                <script>
+                    // Alternar visibilidad de la lista de clientes al hacer clic en el texto
+                    document.getElementById('selected-client').addEventListener('click', function(event) {
+                        const clientesList = document.getElementById('clientes-list');
+                        clientesList.classList.toggle('show');
+                        event.stopPropagation(); // Evita que el clic se propague y cierre el desplegable
+                    });
+                
+                    // Manejar la selección de clientes al hacer clic en el nombre
+                    document.querySelectorAll('.checkbox-item').forEach(item => {
+                        item.addEventListener('click', function(event) {
+                            this.classList.toggle('selected'); // Alternar la clase 'selected'
+                
+                            // Actualizar la lista de clientes seleccionados
+                            const selectedClients = Array.from(document.querySelectorAll('.checkbox-item.selected'))
+                                .map(item => item.dataset.cliente);
+                            document.getElementById('selected-client').textContent = selectedClients.length ? selectedClients.join(', ') : 'Selecciona clientes';
+                            event.stopPropagation(); // Evita que el clic se propague y cierre el desplegable
+                        });
+                    });
+                
+                    // Evitar que la lista de clientes se cierre al hacer clic en un elemento dentro de la lista
+                    document.getElementById('clientes-list').addEventListener('click', function(event) {
+                        event.stopPropagation();
+                    });
+                
+                    // Cerrar la lista cuando se hace clic fuera de ella
+                    document.addEventListener('click', function(event) {
+                        const clientesList = document.getElementById('clientes-list');
+                        if (!event.target.closest('#selected-client') && !clientesList.contains(event.target)) {
+                            clientesList.classList.remove('show');
+                        }
+                    });
+                </script>
+                
+                
 
                 <div class="filter-group">
                     <label for="rango_monto">Rango de Monto:</label>
@@ -85,114 +164,115 @@
             </div>
         </div>
 
-        <!-- Gráficos -->
         <div class="charts-container">
+            <!-- Gráfico de Ventas por Cliente -->
             <div class="chart-box">
                 <h3>Ventas por Cliente</h3>
+                <label for="chartTypeClientes">Selecciona el tipo de gráfico:</label>
+                <select id="chartTypeClientes">
+                    <option value="line">Línea</option>
+                    <option value="doughnut">Dona</option>
+                    <option value="radar">Radar</option>
+                    <option value="bar">Barra</option>
+                </select>
                 <canvas id="clientesChart"></canvas>
             </div>
+        
+            <!-- Gráfico de Ventas por Mes -->
             <div class="chart-box">
                 <h3>Ventas por Mes</h3>
+                <label for="chartTypeMeses">Selecciona el tipo de gráfico:</label>
+                <select id="chartTypeMeses">
+                    <option value="line">Línea</option>
+                    <option value="doughnut">Dona</option>
+                    <option value="radar">Radar</option>
+                    <option value="bar">Barra</option>
+                </select>
                 <canvas id="mesesChart"></canvas>
             </div>
+        
+            <!-- Gráfico de IVA Totales -->
             <div class="chart-box">
                 <h3>IVA Totales</h3>
+                <label for="chartTypeIVA">Selecciona el tipo de gráfico:</label>
+                <select id="chartTypeIVA">
+                    <option value="line">Línea</option>
+                    <option value="doughnut">Dona</option>
+                    <option value="radar">Radar</option>
+                    <option value="bar">Barra</option>
+                </select>
                 <canvas id="ivaChart"></canvas>
             </div>
         </div>
-    </div>
-
-    <script>
-        // Código para los gráficos
-        const ctxClientes = document.getElementById('clientesChart').getContext('2d');
-        new Chart(ctxClientes, {
-            type: 'bar',
-            data: {
-                labels: Object.keys({{ ventas_por_cliente | tojson }}),
-                datasets: [{
-                    label: 'Ventas por Cliente',
-                    data: Object.values({{ ventas_por_cliente | tojson }}),
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)'
-                    ],
- borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)'
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
+        
+        <script>
+            // Función para crear y actualizar gráficos
+            function createChart(ctx, type, labels, data, label) {
+                return new Chart(ctx, {
+                    type: type,
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: label,
+                            data: data,
+                            backgroundColor: [
+                                'rgba(75, 192, 192, 0.2)',
+                                'rgba(255, 159, 64, 0.2)',
+                                'rgba(153, 102, 255, 0.2)',
+                                'rgba(255, 206, 86, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(255, 99, 132, 0.2)'
+                            ],
+                            borderColor: [
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(255, 159, 64, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 99, 132, 1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        scales: {
+                            y: { beginAtZero: true }
+                        }
                     }
-                }
+                });
             }
-        });
-
-        const ctxMeses = document.getElementById('mesesChart').getContext('2d');
-        new Chart(ctxMeses, {
-            type: 'line',
-            data: {
-                labels: Object.keys({{ ventas_por_mes | tojson }}),
-                datasets: [{
-                    label: 'Ventas por Mes',
-                    data: Object.values({{ ventas_por_mes | tojson }}),
-                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                    borderColor: 'rgba(255, 99, 132, 1)',
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
-
-        const ctxIva = document.getElementById('ivaChart').getContext('2d');
-        new Chart(ctxIva, {
-            type: 'pie',
-            data: {
-                labels: Object.keys({{ iva_totales | tojson }}),
-                datasets: [{
-                    label: 'IVA Totales',
-                    data: Object.values({{ iva_totales | tojson }}),
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)'
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
-    </script>
+        
+            // Gráfico Ventas por Cliente
+            const ctxClientes = document.getElementById('clientesChart').getContext('2d');
+            let clientesChart = createChart(ctxClientes, 'line', Object.keys({{ ventas_por_cliente | tojson }}), Object.values({{ ventas_por_cliente | tojson }}), 'Ventas por Cliente');
+        
+            document.getElementById('chartTypeClientes').addEventListener('change', function() {
+                const newType = this.value;
+                clientesChart.destroy();
+                clientesChart = createChart(ctxClientes, newType, Object.keys({{ ventas_por_cliente | tojson }}), Object.values({{ ventas_por_cliente | tojson }}), 'Ventas por Cliente');
+            });
+        
+            // Gráfico Ventas por Mes
+            const ctxMeses = document.getElementById('mesesChart').getContext('2d');
+            let mesesChart = createChart(ctxMeses, 'line', Object.keys({{ ventas_por_mes | tojson }}), Object.values({{ ventas_por_mes | tojson }}), 'Ventas por Mes');
+        
+            document.getElementById('chartTypeMeses').addEventListener('change', function() {
+                const newType = this.value;
+                mesesChart.destroy();
+                mesesChart = createChart(ctxMeses, newType, Object.keys({{ ventas_por_mes | tojson }}), Object.values({{ ventas_por_mes | tojson }}), 'Ventas por Mes');
+            });
+        
+            // Gráfico IVA Totales
+            const ctxIVA = document.getElementById('ivaChart').getContext('2d');
+            let ivaChart = createChart(ctxIVA, 'line', Object.keys({{ iva_totales | tojson }}), Object.values({{ iva_totales | tojson }}), 'IVA Totales');
+        
+            document.getElementById('chartTypeIVA').addEventListener('change', function() {
+                const newType = this.value;
+                ivaChart.destroy();
+                ivaChart = createChart(ctxIVA, newType, Object.keys({{ iva_totales | tojson }}), Object.values({{ iva_totales | tojson }}), 'IVA Totales');
+            });
+        </script>
+        
 </body>
 </html>
