@@ -42,9 +42,11 @@ def init_db():
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS reportes (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
+            user_id INTEGER NOT NULL,
             nombre TEXT NOT NULL,
             fecha TEXT NOT NULL,
-            total REAL NOT NULL
+            total REAL NOT NULL,
+            FOREIGN KEY (user_id) REFERENCES usuarios (id)
         )
     ''')
     conn.commit()
@@ -176,10 +178,12 @@ def home():
 @app.route('/upload')
 def upload():
     return render_template('index.html')
+
 #Ruta para página de inicio
 @app.route('/inicio')
 def inicio():
     return render_template('inicio.html')
+
 #Ruta para sección en donde se almacenaran
 @app.route('/guardar_reporte', methods=['POST'])
 def guardar_reporte():
@@ -187,6 +191,7 @@ def guardar_reporte():
         flash("Debes iniciar sesión para guardar reportes.")
         return redirect(url_for('login'))
 
+    user_id = session['user_id']
     excel_filename = request.form.get('excel_filename')
     pdf_filename = request.form.get('pdf_filename')
     reporte_nombre = request.form.get('reporte_nombre')
@@ -201,8 +206,10 @@ def guardar_reporte():
     conn = get_db_connection()
     try:
         fecha = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-        conn.execute('INSERT INTO reportes (nombre, fecha, total) VALUES (?, ?, ?)',
-                     (reporte_nombre, fecha, total))
+        conn.execute('''
+            INSERT INTO reportes (user_id, nombre, fecha, total) 
+            VALUES (?, ?, ?, ?)
+        ''', (user_id, reporte_nombre, fecha, total))
         conn.commit()
         flash("Reporte guardado exitosamente.")
     except Exception as e:
@@ -226,12 +233,20 @@ def calcular_total_reporte(excel_filename):
 def reportes_anteriores():
     if 'user_id' not in session:
         return redirect(url_for('login'))
-        
+
+    user_id = session['user_id']
     conn = get_db_connection()
-    reportes = conn.execute('SELECT * FROM reportes ORDER BY fecha DESC').fetchall()
-    conn.close()
     
+    # Modificar la consulta para obtener solo los reportes del usuario actual
+    reportes = conn.execute('''
+        SELECT * FROM reportes 
+        WHERE user_id = ? 
+        ORDER BY fecha DESC
+    ''', (user_id,)).fetchall()
+    conn.close()
+
     return render_template('reportes.html', reportes=reportes)
+
 # Ruta para subir los archivos XML y generar los reportes
 @app.route('/upload', methods=['GET', 'POST'])
 def upload_files():
