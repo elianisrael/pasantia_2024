@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><factura id="comprobante" version="2.0.0"><infoTributaria><ambiente>2</ambiente><tipoEmision>1</tipoEmision><razonSocial>EMPRESA PUBLICA MUNICIPAL DE AGUA POTABLE Y SANEAMIENTO DE PORTOVIEJO EP</razonSocial><nombreComercial>EMPRESA PUBLICA MUNICIPAL DE AGUA POTABLE Y SANEAMIENTO DE PORTOVIEJO EP</nombreComercial><ruc>1360066300001</ruc><claveAcceso>0407202401136006630000120010100042363731234567817</claveAcceso><codDoc>01</codDoc><estab>001</estab><ptoEmi>010</ptoEmi><secuencial>004236373</secuencial><dirMatriz>CIUDADELA EL MAESTRO, CALLE SAN FRANCISCO Y KM 1/2 VIA CRUCITA</dirMatriz></infoTributaria><infoFactura><fechaEmision>04/07/2024</fechaEmision><dirEstablecimiento>CIUDADELA EL MAESTRO, CALLE SAN FRANCISCO Y KM 1/2 VIA CRUCITA</dirEstablecimiento><contribuyenteEspecial>197</contribuyenteEspecial><obligadoContabilidad>SI</obligadoContabilidad><tipoIdentificacionComprador>05</tipoIdentificacionComprador><razonSocialComprador>CARDENAS COLCHA ELVIS HERNAN</razonSocialComprador><identificacionComprador>1310839541</identificacionComprador><direccionComprador>ROTARIA AUTOPISTA DEL VALLE MANABI GUILLEN</direccionComprador><totalSinImpuestos>51.53</totalSinImpuestos><totalDescuento>0</totalDescuento><totalConImpuestos><totalImpuesto><codigo>2</codigo><codigoPorcentaje>0</codigoPorcentaje><descuentoAdicional>0.0</descuentoAdicional><baseImponible>51.53</baseImponible><valor>0.00</valor></totalImpuesto></totalConImpuestos><propina>0</propina><importeTotal>56.21</importeTotal><moneda>DOLAR</moneda><pagos><pago><formaPago>20</formaPago><total>56.21</total></pago></pagos></infoFactura><detalles><detalle><codigoPrincipal>1</codigoPrincipal><descripcion>AGUA POTABLE (COSTO VARIABLE)</descripcion><cantidad>1</cantidad><precioUnitario>39</precioUnitario><descuento>0.0</descuento><precioTotalSinImpuesto>39.0</precioTotalSinImpuesto><impuestos><impuesto><codigo>2</codigo><codigoPorcentaje>0</codigoPorcentaje><tarifa>0</tarifa><baseImponible>39.0</baseImponible><valor>0.00</valor></impuesto></impuestos></detalle><detalle><codigoPrincipal>3</codigoPrincipal><descripcion>MANTENIMIENTO DE REDES (COSTO FIJO)</descripcion><cantidad>1</cantidad><precioUnitario>1.75</precioUnitario><descuento>0.00</descuento><precioTotalSinImpuesto>1.75</precioTotalSinImpuesto><impuestos><impuesto><codigo>2</codigo><codigoPorcentaje>0</codigoPorcentaje><tarifa>0</tarifa><baseImponible>1.75</baseImponible><valor>0.00</valor></impuesto></impuestos></detalle><detalle><codigoPrincipal>5000</codigoPrincipal><descripcion>CORTE Y RECONEXION</descripcion><cantidad>1</cantidad><precioUnitario>10.0</precioUnitario><descuento>0.00</descuento><precioTotalSinImpuesto>10.0</precioTotalSinImpuesto><impuestos><impuesto><codigo>2</codigo><codigoPorcentaje>0</codigoPorcentaje><tarifa>0</tarifa><baseImponible>10.0</baseImponible><valor>0.00</valor></impuesto></impuestos></detalle><detalle><codigoPrincipal>6000</codigoPrincipal><descripcion>GESTIÓN TECNOLÓGICA</descripcion><cantidad>1</cantidad><precioUnitario>0.78</precioUnitario><descuento>0.00</descuento><precioTotalSinImpuesto>0.78</precioTotalSinImpuesto><impuestos><impuesto><codigo>2</codigo><codigoPorcentaje>0</codigoPorcentaje><tarifa>0</tarifa><baseImponible>0.78</baseImponible><valor>0.00</valor></impuesto></impuestos></detalle></detalles><otrosRubrosTerceros><rubro><concepto>Tasa Portoparques</concepto><total>4.68</total></rubro><rubro><concepto>Intereses Tasa Portoparques</concepto><total>0</total></rubro></otrosRubrosTerceros><infoAdicional><campoAdicional nombre="Direccion">ROTARIA AUTOPISTA DEL VALLE MANABI GUILLEN</campoAdicional><campoAdicional nombre="Telefono">S/T</campoAdicional><campoAdicional nombre="Correo">ELHECACO@HOTMAIL.COM</campoAdicional><campoAdicional nombre="Numero de cuenta">2547275</campoAdicional><campoAdicional nombre="Consumo">52m3</campoAdicional><campoAdicional nombre="Saldo Anterior">0</campoAdicional><campoAdicional nombre="Deuda">56.21</campoAdicional><campoAdicional nombre="Descuento">0</campoAdicional><campoAdicional nombre="Exoneracion">0</campoAdicional><campoAdicional nombre="Tasa Portoparques">4.68</campoAdicional><campoAdicional nombre="Intereses Tasa Portoparques">0</campoAdicional><campoAdicional nombre="Forma de pago">OTROS CON UTILIZACION DEL SISTEMA FINANCIERO</campoAdicional><campoAdicional nombre="Fecha Maxima de pago">01/08/2024</campoAdicional></infoAdicional><ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:etsi="http://uri.etsi.org/01903/v1.3.2#" Id="Signature933652">
+<ds:SignedInfo Id="Signature-SignedInfo262641">
+<ds:CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/>
+<ds:SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/>
+<ds:Reference Id="SignedPropertiesID591860" Type="http://uri.etsi.org/01903#SignedProperties" URI="#Signature933652-SignedProperties711748">
+<ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
+<ds:DigestValue>/IodItqdw9BcxLxWNrBjVvzPhZM=</ds:DigestValue>
+</ds:Reference>
+<ds:Reference URI="#Certificate1617715">
+<ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
+<ds:DigestValue>ABCc4lYZT1V9LF0F5nROKDINS/A=</ds:DigestValue>
+</ds:Reference>
+<ds:Reference Id="Reference-ID-8833" URI="#comprobante">
+<ds:Transforms>
+<ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/>
+</ds:Transforms>
+<ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
+<ds:DigestValue>z8D9R/l69Wf67zxL3zHyrJMTJ14=</ds:DigestValue>
+</ds:Reference>
+</ds:SignedInfo>
+<ds:SignatureValue Id="SignatureValue501783">
+ZDGym3ctUnB4y50zEVRDGlV8Kahbk3uT9MSBRxN3vgH7QcfJvfpbEt2+yvhxWoCar+D/of9hL5s8
+Pz3xxx0vnafUE/9VbOnXqsV1UCPCJ2ceK8Si36lZ13QyvRhRTlSZO4BMrG+tU75tL+Tj0fGBL+Mv
+z0V8aYid/2fVAtr/P/EZgIcN9mZjWwNpuPyao/3UjVtzNLxL+xfDKJsEcNNVRHfH67gHXgpK4erF
+bpqeXQ9ZzcDJXB0UaF1Y/OqqrPZmGcUB/YpIwN41OEcv43YDshxABB9Ompcov2hJ5+uOmY3Ux1ql
+2Y83rsijzNf7B0ML73p0LT9CkQtnM2ALKj+GgA==
+</ds:SignatureValue>
+<ds:KeyInfo Id="Certificate1617715">
+<ds:X509Data>
+<ds:X509Certificate>
+MIIKKjCCCBKgAwIBAgIEW3OagTANBgkqhkiG9w0BAQsFADCBoTELMAkGA1UEBhMCRUMxIjAgBgNV
+BAoTGUJBTkNPIENFTlRSQUwgREVMIEVDVUFET1IxNzA1BgNVBAsTLkVOVElEQUQgREUgQ0VSVElG
+SUNBQ0lPTiBERSBJTkZPUk1BQ0lPTi1FQ0lCQ0UxDjAMBgNVBAcTBVFVSVRPMSUwIwYDVQQDExxB
+QyBCQU5DTyBDRU5UUkFMIERFTCBFQ1VBRE9SMB4XDTIzMDYwODIwNDQ0MloXDTI1MDYwODIxMTQ0
+MVowgbUxCzAJBgNVBAYTAkVDMSIwIAYDVQQKExlCQU5DTyBDRU5UUkFMIERFTCBFQ1VBRE9SMTcw
+NQYDVQQLEy5FTlRJREFEIERFIENFUlRJRklDQUNJT04gREUgSU5GT1JNQUNJT04tRUNJQkNFMQ4w
+DAYDVQQHEwVRVUlUTzE5MBEGA1UEBRMKMDIwMDAwODIzNTAkBgNVBAMTHUVEV0lOIE1BVVJJQ0lP
+IFRPUlJFUyBTQU5UQU5BMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvvhHPHexDhOM
+MBS5TV4GXvVa91ATH2YkA01C2q1X+WHVHr4Quw7mWzKGgCGgPHceL1YqmInoKv+EFHKev9RHshw9
+YIc/tAo5ikgQf8tHDBJQA+/iqWrrkguK3trApv3rRkMoAG1Bk3IQsDpKcqtmMvKLXzc2xmD8jbwj
+WPU9/ll/zqTj5lM/NEFErcnxrK2sWLscRpoCZQpHfK2jtTyX2okf51g1JW5u+sAeIdAWQBPBJbXM
+aVhXtQy48Grqt0xYjA/NcIY/r5nnOuzpxZsXR52JPkJ1kygZLrIgpNsmpIdu17ftV5/G3Ou78pbp
+iu6oQ32BHOLbP4at7Q7ZJenEnQIDAQABo4IFUjCCBU4wCwYDVR0PBAQDAgeAMGcGA1UdIARgMF4w
+XAYLKwYBBAGCqDsCAgEwTTBLBggrBgEFBQcCARY/aHR0cDovL3d3dy5lY2kuYmNlLmVjL3BvbGl0
+aWNhLWNlcnRpZmljYWRvL3BlcnNvbmEtanVyaWRpY2EucGRmMIGRBggrBgEFBQcBAQSBhDCBgTA+
+BggrBgEFBQcwAYYyaHR0cDovL29jc3AuZWNpLmJjZS5lYy9lamJjYS9wdWJsaWN3ZWIvc3RhdHVz
+L29jc3AwPwYIKwYBBQUHMAGGM2h0dHA6Ly9vY3NwMS5lY2kuYmNlLmVjL2VqYmNhL3B1YmxpY3dl
+Yi9zdGF0dXMvb2NzcDBYBgorBgEEAYKoOwMKBEoTSEVNUFJFU0EgUFVCTElDQSBNVU5JQ0lQQUwg
+REUgQUdVQSBQT1RBQkxFIFkgU0FORUFNSUVOVE8gREUgUE9SVE9WSUVKTyBFUDAdBgorBgEEAYKo
+OwMLBA8TDTEzNjAwNjYzMDAwMDEwGgYKKwYBBAGCqDsDAQQMEwoxNzE1ODgxNjc2MB4GCisGAQQB
+gqg7AwIEEBMORURXSU4gTUFVUklDSU8wFgYKKwYBBAGCqDsDAwQIEwZUT1JSRVMwFwYKKwYBBAGC
+qDsDBAQJEwdTQU5UQU5BMCsGCisGAQQBgqg7AwUEHRMbQ09PUkRJTkFET1IgREUgQ09OVEFCSUxJ
+REFEMCMGCisGAQQBgqg7AwcEFRMTQXYuIDIxIGRlIE5vdmllbWJyZTAZBgorBgEEAYKoOwMIBAsT
+CTA1MjMwNTczMzAaBgorBgEEAYKoOwMJBAwTClBPUlRPVklFSk8wFwYKKwYBBAGCqDsDDAQJEwdF
+Q1VBRE9SMCAGCisGAQQBgqg7AzMEEhMQU09GVFdBUkUtQVJDSElWTzAgBgNVHREEGTAXgRVlLm1h
+b3RvcnJlc0BnbWFpbC5jb20wggHhBgNVHR8EggHYMIIB1DCCAdCgggHMoIIByIaB1mxkYXA6Ly9i
+Y2VxbGRhcHN1YnAxLmJjZS5lYy9jbj1DUkwxODM4LGNuPUFDJTIwQkFOQ08lMjBDRU5UUkFMJTIw
+REVMJTIwRUNVQURPUixsPVFVSVRPLG91PUVOVElEQUQlMjBERSUyMENFUlRJRklDQUNJT04lMjBE
+RSUyMElORk9STUFDSU9OLUVDSUJDRSxvPUJBTkNPJTIwQ0VOVFJBTCUyMERFTCUyMEVDVUFET1Is
+Yz1FQz9jZXJ0aWZpY2F0ZVJldm9jYXRpb25MaXN0P2Jhc2WGNGh0dHA6Ly93d3cuZWNpLmJjZS5l
+Yy9DUkwvZWNpX2JjZV9lY19jcmxmaWxlY29tYi5jcmykgbYwgbMxCzAJBgNVBAYTAkVDMSIwIAYD
+VQQKExlCQU5DTyBDRU5UUkFMIERFTCBFQ1VBRE9SMTcwNQYDVQQLEy5FTlRJREFEIERFIENFUlRJ
+RklDQUNJT04gREUgSU5GT1JNQUNJT04tRUNJQkNFMQ4wDAYDVQQHEwVRVUlUTzElMCMGA1UEAxMc
+QUMgQkFOQ08gQ0VOVFJBTCBERUwgRUNVQURPUjEQMA4GA1UEAxMHQ1JMMTgzODArBgNVHRAEJDAi
+gA8yMDIzMDYwODIwNDQ0MlqBDzIwMjUwNjA4MjExNDQxWjAfBgNVHSMEGDAWgBRIot8jHx34LFF6
+jAPNSTKlCcGUqzAdBgNVHQ4EFgQUs30beNoGUHB89gdYOcFAMpJy2NQwCQYDVR0TBAIwADAZBgkq
+hkiG9n0HQQAEDDAKGwRWOC4xAwIEMDANBgkqhkiG9w0BAQsFAAOCAgEAKgYLUkge6tesgZIb3MQQ
+tnZpfWFxvI+9m4EWCKSNU9iNXBgVI/M1i8waKMV00vZ64b+275CAE2nXM06YdbEN9ClC9TuL6tTT
+pmuOLmtRdrNek8QX7UhgTceZK7dTHVI8zikT9OEa2k5sAtmSuKQk1nXm7gjGGN4eX0zla0670hO8
+u5JQsvmB981Z3xfJldAkGvOhQgld5QWSeRffalGZplqW3ZimNW7osk6mSuQj1fouasFIX6pykexD
+rCKBBTOR9iDNqot+IGLvONK0ZwMH6SllStUBELq48M++TLImvJbk2o7gjB2rnJ1RV4bAKDCji2nb
+ag+jd1U8/hYVDCrQOHUUt9ajA5PeZv9eskIbICqyc8SO+6QKFADJHuJK3Rix1Sb2BDoPX/6OdUA/
+HWqb//TFYndyNvOa8AgIdChso8MwWhimjPbKnJZzzYm+Yvb1Bx/EG2Ydf1mT+BstQo0eHa5Yn85u
+UrbHXjBTxT4N1GimVoaDRFqNqIzi11fzaFlQRy+UHZLDx/TaqNW4JXvH5oGDfWrfNgEHyqiEr23A
+pRa1ocG0BC6Wka+yorNzdA0FBXbetsggV57t6mLbFdgtvQvau+Ge0iKFfIHv4nqbGucq1cLt94N+
+/TEJzbWbi+osQqb5e9enZvYD88hRJC/+9OY2fvqxS8W6el2MTzo02RA=
+</ds:X509Certificate>
+</ds:X509Data>
+<ds:KeyValue>
+<ds:RSAKeyValue>
+<ds:Modulus>
+vvhHPHexDhOMMBS5TV4GXvVa91ATH2YkA01C2q1X+WHVHr4Quw7mWzKGgCGgPHceL1YqmInoKv+E
+FHKev9RHshw9YIc/tAo5ikgQf8tHDBJQA+/iqWrrkguK3trApv3rRkMoAG1Bk3IQsDpKcqtmMvKL
+Xzc2xmD8jbwjWPU9/ll/zqTj5lM/NEFErcnxrK2sWLscRpoCZQpHfK2jtTyX2okf51g1JW5u+sAe
+IdAWQBPBJbXMaVhXtQy48Grqt0xYjA/NcIY/r5nnOuzpxZsXR52JPkJ1kygZLrIgpNsmpIdu17ft
+V5/G3Ou78pbpiu6oQ32BHOLbP4at7Q7ZJenEnQ==
+</ds:Modulus>
+<ds:Exponent>AQAB</ds:Exponent>
+</ds:RSAKeyValue>
+</ds:KeyValue>
+</ds:KeyInfo>
+<ds:Object Id="Signature933652-Object315924"><etsi:QualifyingProperties Target="#Signature933652"><etsi:SignedProperties Id="Signature933652-SignedProperties711748"><etsi:SignedSignatureProperties><etsi:SigningTime>2024-07-05T08:47:35+02:00</etsi:SigningTime><etsi:SigningCertificate><etsi:Cert><etsi:CertDigest><ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/><ds:DigestValue>PT32OojKfOkLPBkoh32hy7Jqx6A=</ds:DigestValue></etsi:CertDigest><etsi:IssuerSerial><ds:X509IssuerName>CN=AC BANCO CENTRAL DEL ECUADOR,L=QUITO,OU=ENTIDAD DE CERTIFICACION DE INFORMACION-ECIBCE,O=BANCO CENTRAL DEL ECUADOR,C=EC</ds:X509IssuerName><ds:X509SerialNumber>1534302849</ds:X509SerialNumber></etsi:IssuerSerial></etsi:Cert></etsi:SigningCertificate></etsi:SignedSignatureProperties><etsi:SignedDataObjectProperties><etsi:DataObjectFormat ObjectReference="#Reference-ID-8833"><etsi:Description>contenido comprobante</etsi:Description><etsi:MimeType>text/xml</etsi:MimeType></etsi:DataObjectFormat></etsi:SignedDataObjectProperties></etsi:SignedProperties></etsi:QualifyingProperties></ds:Object></ds:Signature></factura>

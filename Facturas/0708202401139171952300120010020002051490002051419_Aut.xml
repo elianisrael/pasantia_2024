@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<autorizacion>
+<estado>AUTORIZADO</estado>
+<numeroAutorizacion>0708202401139171952300120010020002051490002051419</numeroAutorizacion>
+<fechaAutorizacion>2024-08-07T12:42:15-05:00</fechaAutorizacion>
+<ambiente>PRODUCCIÓN</ambiente>
+<comprobante><![CDATA[<?xml version="1.0" encoding="UTF-8"?><factura id="comprobante" version="1.1.0"><infoTributaria><ambiente>2</ambiente><tipoEmision>1</tipoEmision><razonSocial>UNIDAD EDUCATIVA PARTICULAR CRISTO REY</razonSocial><nombreComercial>UNIDAD EDUCATIVA PARTICULAR CRISTO REY</nombreComercial><ruc>1391719523001</ruc><claveAcceso>0708202401139171952300120010020002051490002051419</claveAcceso><codDoc>01</codDoc><estab>001</estab><ptoEmi>002</ptoEmi><secuencial>000205149</secuencial><dirMatriz>CALLE CRISTO REY ENTRE SUCRE Y BAQUERIZO MORENO</dirMatriz></infoTributaria><infoFactura><fechaEmision>07/08/2024</fechaEmision><dirEstablecimiento>CALLE CRISTO REY ENTRE SUCRE Y BAQUERIZO MORENO</dirEstablecimiento><obligadoContabilidad>SI</obligadoContabilidad><tipoIdentificacionComprador>05</tipoIdentificacionComprador><razonSocialComprador>CARDENAS COLCHA ELVIS HERNAN</razonSocialComprador><identificacionComprador>1310839541</identificacionComprador><totalSinImpuestos>195.19</totalSinImpuestos><totalDescuento>34.44</totalDescuento><totalConImpuestos><totalImpuesto><codigo>2</codigo><codigoPorcentaje>0</codigoPorcentaje><baseImponible>195.19</baseImponible><tarifa>0</tarifa><valor>0.00</valor></totalImpuesto></totalConImpuestos><propina>0.00</propina><importeTotal>195.19</importeTotal><moneda>DOLAR</moneda></infoFactura><detalles><detalle><codigoPrincipal>00124</codigoPrincipal><descripcion>PENSION OCTAVO GRADO</descripcion><cantidad>1</cantidad><precioUnitario>229.63</precioUnitario><descuento>34.44</descuento><precioTotalSinImpuesto>195.19</precioTotalSinImpuesto><impuestos><impuesto><codigo>2</codigo><codigoPorcentaje>0</codigoPorcentaje><tarifa>0</tarifa><baseImponible>195.19</baseImponible><valor>0.00</valor></impuesto></impuestos></detalle></detalles>  <infoAdicional><campoAdicional nombre="Alumno">CARDENAS ALVARADO   ASHELEN NICOLE</campoAdicional><campoAdicional nombre="Codigo">4421</campoAdicional><campoAdicional nombre="Curso">OCTAVO GRADO DE EDUCACIÓN GENERAL BÁSICA</campoAdicional><campoAdicional nombre="Paralelo">D</campoAdicional><campoAdicional nombre="Direccion">CDLA CEVALLOS</campoAdicional><campoAdicional nombre="Email">ELHECACO@HOTMAIL.COM</campoAdicional><campoAdicional nombre="Telefono">00</campoAdicional><campoAdicional nombre="Agente de Retención">No. Resolución:1</campoAdicional></infoAdicional><ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:etsi="http://uri.etsi.org/01903/v1.3.2#" Id="Signature799192">
+<ds:SignedInfo Id="Signature-SignedInfo633828">
+<ds:CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/>
+<ds:SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/>
+<ds:Reference Id="SignedPropertiesID245378" Type="http://uri.etsi.org/01903#SignedProperties" URI="#Signature799192-SignedProperties923481">
+<ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
+<ds:DigestValue>6itN7bPvh9kv6AwaqfgZbb/cgYs=</ds:DigestValue>
+</ds:Reference>
+<ds:Reference URI="#Certificate1368254">
+<ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
+<ds:DigestValue>9msgk23wCSCqM7tnEqJvD0lPPzA=</ds:DigestValue>
+</ds:Reference>
+<ds:Reference Id="Reference-ID-780189" URI="#comprobante">
+<ds:Transforms>
+<ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/>
+</ds:Transforms>
+<ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
+<ds:DigestValue>68TBo2hqhTMtPixVpHxLMIpFcQg=</ds:DigestValue>
+</ds:Reference>
+</ds:SignedInfo>
+<ds:SignatureValue Id="SignatureValue413138">
+X1PcabMRn12It3T0CcJvnAkMC7f1qXraLgNtXVfHWrH69vGBFe/E4FnZC9ESdct4XoD+r9kTosue
+x7/6PQZW6JIEQROiDZp3+WFaJoBx1Dg+M10auDxXlHSwHNHBa9jbmSmumweQ799l7qCggkUst7ST
+iOU5Jz+d72hcngLXEZaEKIEICenxQbPTML1xjXK+Oiw1n/sf9SPBoL6ooUjFtIhZcyOR6mIEX6sr
+fnkDacvVBe1w086Mdu3RvzBXAEc0krkUBTAg8kevNcmO3tgiD3QIc5Yzrs+fO2l5TPlsepZwrLy0
+ltWud247DGF17P72ew70h76KMESZ5HjEOqUTLw==
+</ds:SignatureValue>
+<ds:KeyInfo Id="Certificate1368254">
+<ds:X509Data>
+<ds:X509Certificate>
+MIIL8DCCCdigAwIBAgIMAzdAS242uEPFYSw1MA0GCSqGSIb3DQEBCwUAMIG5MRYwFAYDVQQFEw0x
+NzkyNjAxMjE1MDAxMQswCQYDVQQGEwJFQzE2MDQGA1UEChMtQU5GQUMgQVVUT1JJREFEIERFIENF
+UlRJRklDQUNJT04gRUNVQURPUiBDLkEuMSUwIwYDVQQLExxBTkYgQXV0b3JpZGFkIGludGVybWVk
+aWEgIEVDMTMwMQYDVQQDEypBTkYgSGlnaCBBc3N1cmFuY2UgRWN1YWRvciBJbnRlcm1lZGlhdGUg
+Q0EwHhcNMjMxMDMwMDAzMjIxWhcNMjYxMDI5MDAzMjIxWjCCAfkxGjAYBgorBgEEAYKkQgoEDAox
+NzE2MTIwMjY0MS8wLQYDVQQKDCZVTklEQUQgRURVQ0FUSVZBIFBBUlRJQ1VMQVIgQ1JJU1RPIFJF
+WTEoMCYGA1UECwwfQ2VydGlmaWNhZG8gUGVyc29uYSBKdXJpZGljYSBFQzEUMBIGA1UEKgwLREFO
+SUVMIEpPU0UxFjAUBgNVBGETDTEzOTE3MTk1MjMwMDExCzAJBgNVBAYTAkVDMRMwEQYDVQQFEwox
+NzE2MTIwMjY0MRcwFQYDVQQEDA5PQkFORE8gQkFMU0VDQTEuMCwGA1UEAwwlMTcxNjEyMDI2NCBE
+QU5JRUwgSk9TRSBPQkFORE8gQkFMU0VDQTEqMCgGCSqGSIb3DQEJARYbZGpvYmFuZG9zakBjcmlz
+dG9yZXkuZWR1LmVjMRwwGgYDVQQMDBNSRVBSRVNFTlRBTlRFIExFR0FMMXYwdAYDVQQNDG1SZWcu
+IFB1Yi46QU5GQUMgSW5zY3JpcGNpw7NuOiBBTkZBQywgVG9tbyAwLCBMaWJybyAwLCBGb2xpbyAw
+LCBIb2phIDAgQ2FyZ286UkVQUkVTRU5UQU5URSBMRUdBTCBOb3RhcmlvOkFORkFDMRAwDgYDVQQI
+DAdNQU5BQsONMRMwEQYDVQQHDApQT1JUT1ZJRUpPMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIB
+CgKCAQEAqAD5LXF3rdTuZZiSOWxy8vNRv1nozbrLKzzp48UnRyGQk4GucRe5rgGegHZjXpCgJzbM
+41+4CTb+UDo6wQeVPSEKg7aj2IUxG8J+ybeYDwz7Ymz2j9k7uNJL3udS6PTU7ELZtP2pj2DVIOD6
+LIWHJMXtlYYQ/fpVcZkD3sx4EDEH5zSDAMyTMMmor8v+KIHrR2zbJPgBIGa+eOTB266eVFAfSgjc
+nREtxzBQU3o6u56V+ETIc8U8Lfv312XEFaY25bljD4TdQ8tmvcxnnTgXppqT1kSj1GfmBACv6Nqi
+MSBCJA+u/UxvlUZRZjj5RR9FB6uUNK6KfLLLtChl41VAXwIDAQABo4IFszCCBa8wHwYDVR0jBBgw
+FoAUkq7Uy4K0mcbRexFsZerFTWgh+awwHQYDVR0OBBYEFDGqQduFUK366264/gFhRUMcr74kMIH4
+BgNVHREEgfAwge2BG2Rqb2JhbmRvc2pAY3Jpc3RvcmV5LmVkdS5lY6SBzTCByjEbMBkGCisGAQQB
+gqRCCgEMC0RBTklFTCBKT1NFMRYwFAYKKwYBBAGCpEIKAgwGT0JBTkRPMRcwFQYKKwYBBAGCpEIK
+AwwHQkFMU0VDQTEaMBgGCisGAQQBgqRCCgQMCjE3MTYxMjAyNjQxGTAXBgkrBgEEAYO9bgEMCkEt
+MjcxMDIwMjMxLjAsBgNVBAMMJTE3MTYxMjAyNjQgREFOSUVMIEpPU0UgT0JBTkRPIEJBTFNFQ0Ex
+EzARBgNVBAUMCjE3MTYxMjAyNjQwDgYDVR0PAQH/BAQDAgbAMB0GA1UdJQQWMBQGCCsGAQUFBwMC
+BggrBgEFBQcDBDBQBgNVHR8ESTBHMEWgQ6BBhj9odHRwOi8vY3JsLmFuZi5lcy9jcmwvQU5GSGln
+aEFzc3VyYW5jZUVjdWFkb3JJbnRlcm1lZGlhdGVDQS5jcmwwggEDBgNVHSAEgfswgfgwgd8GDCsG
+AQQBgqRCAgUBAzCBzjAoBggrBgEFBQcCARYcaHR0cDovL3d3dy5hbmYuZXMvZG9jdW1lbnRvczCB
+oQYIKwYBBQUHAgIwgZQMgZFDZXJ0aWZpY2FkbyBjb25mb3JtZSBhIGxhIGxlZ2lzbGFjacOzbiBk
+ZSBmaXJtYSBlbGVjdHLDs25pY2EuIEFudGVzIGRlIGFjZXB0YXJsbyBjb21wcnVlYmUgaW50ZWdy
+aWRhZCwgbGltaXRhY2lvbmVzLCB2aWdlbmNpYSB5IHVzb3MgYXV0b3JpemFkb3MuMAkGBwQAi+xA
+AQEwCQYHYIVUAQMFCDCBmwYIKwYBBQUHAQEEgY4wgYswJwYIKwYBBQUHMAGGG2h0dHA6Ly9vY3Nw
+LmFuZi5lcy9zcGFpbi9BVjBgBggrBgEFBQcwAoZUaHR0cDovL3d3dy5hbmYuZXMvZXMvY2VydGlm
+aWNhdGVzLWRvd25sb2FkL0FORkhpZ2hBc3N1cmFuY2VFY3VhZG9ySW50ZXJtZWRpYXRlQ0EuY2Vy
+MAwGA1UdEwEB/wQCMAAwKAYJKwYBBAGBjxwTBBsMGTU5MTIwNzYwNjQ4My00ODk1OTg0NTQwNDIw
+HQYKKwYBBAGBjxwTAgQPDA0xMzkxNzE5NTIzMDAxMCkGCisGAQQBgqRCEwEEGwwZNDg5NTk4NDU0
+MDQyLTQ4NzA2NTEyMjM0ODAaBgorBgEEAYKkQgMBBAwMCjE3MTYxMjAyNjQwNgYKKwYBBAGCpEID
+CgQoDCZVTklEQUQgRURVQ0FUSVZBIFBBUlRJQ1VMQVIgQ1JJU1RPIFJFWTAdBgorBgEEAYKkQgML
+BA8MDTEzOTE3MTk1MjMwMDEwEgYKKwYBBAGCpEIDDAQEDAJFQzAbBgorBgEEAYKkQgMCBA0MC0RB
+TklFTCBKT1NFMB4GCisGAQQBgqRCAwMEEAwOT0JBTkRPIEJBTFNFQ0EwIwYKKwYBBAGCpEIDBQQV
+DBNSRVBSRVNFTlRBTlRFIExFR0FMMBoGCisGAQQBgqRCAwkEDAwKUE9SVE9WSUVKTzAXBgorBgEE
+AYKkQioBBAkMB1VJTy0wMjIwFAYKKwYBBAGCpEIuAQQGDAQxMDk1MFAGCisGAQQBgqRCLwEEQgxA
+MWRjN2E1M2I2MzdkNjMwYmExZTE3MTIyZjc0MDczYWY4YjcxZjUyZTYwOTQzYTZlNzBlYzI3ODE2
+MDdhMTg0MjBEBggrBgEFBQcBAwQ4MDYwCAYGBACORgEBMBMGBgQAjkYBBjAJBgcEAI5GAQYBMAkG
+BwQAi+xJAQEwCgYIKwYBBQUHCwIwDQYJKoZIhvcNAQELBQADggIBAJkMci4m32zHXdLSHLXDiKhU
+J9UhvPhl9M43qgVEA6GNQsbpaWE9SDbbIiZEw4MvaK0X2EzvJ3iUknkDW81mzOVhVPaZ4JdYp21b
+H5ltWGZS9txg3RyzoJeotJKYplk7vGFffKBtjAYiSp0NURI20vQUZYJ+9gQZodWNvypbxsRRG2Ga
+jyS3THjr3PHjDCuEHaZ6mAelP+/qr7kGrql92Pyueb69uD6voatjuU5zSfddbipnsRGucXsfu9Hx
+pBCBp8ba9Q/WQ38j54q6yoaHt3nY8BEsW0Zsy5hXDHrgKaqapCr8XCDXmWXAdJLPJanPc3F52lOj
+p2nN3V0g2NJHNUTbfHqI8SIE+HazmwMgv/Vzs2T5klp1TpceWuXtEqdGQR2PYH56Yh9PF275z4x0
+GA6NWJ/Itn8jTXk33szdMFceALMx4ucIbNP3hch4SW1qs9mD/x2DKS9/5Moy9laE1Lm3hP1dbU73
+lO5sg862LaGYOIEweqgr7UcGceequcpotYWjUIIpuJmJ8rR6n0kMKYHbWYQoWmhxn1sFE0aGry27
+nC7kT99w+WbNbhOO2JpUhIHb7/CarshUb9FSfGdbsC/IAEfqJYs5ZK/e8/jnP8c1l+IApr14tkbG
+jnbZDW6DNS2Fl9zWPdUiAiY4+ETzU3xGNDaKlvXxY7xFFhla6ZQ5
+</ds:X509Certificate>
+</ds:X509Data>
+<ds:KeyValue>
+<ds:RSAKeyValue>
+<ds:Modulus>
+qAD5LXF3rdTuZZiSOWxy8vNRv1nozbrLKzzp48UnRyGQk4GucRe5rgGegHZjXpCgJzbM41+4CTb+
+UDo6wQeVPSEKg7aj2IUxG8J+ybeYDwz7Ymz2j9k7uNJL3udS6PTU7ELZtP2pj2DVIOD6LIWHJMXt
+lYYQ/fpVcZkD3sx4EDEH5zSDAMyTMMmor8v+KIHrR2zbJPgBIGa+eOTB266eVFAfSgjcnREtxzBQ
+U3o6u56V+ETIc8U8Lfv312XEFaY25bljD4TdQ8tmvcxnnTgXppqT1kSj1GfmBACv6NqiMSBCJA+u
+/UxvlUZRZjj5RR9FB6uUNK6KfLLLtChl41VAXw==
+</ds:Modulus>
+<ds:Exponent>AQAB</ds:Exponent>
+</ds:RSAKeyValue>
+</ds:KeyValue>
+</ds:KeyInfo>
+<ds:Object Id="Signature799192-Object125180"><etsi:QualifyingProperties Target="#Signature799192"><etsi:SignedProperties Id="Signature799192-SignedProperties923481"><etsi:SignedSignatureProperties><etsi:SigningTime>2024-08-07T12:42:14-05:00</etsi:SigningTime><etsi:SigningCertificate><etsi:Cert><etsi:CertDigest><ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/><ds:DigestValue>5QMeedQIb97xQN0RkrpXZOpItPE=</ds:DigestValue></etsi:CertDigest><etsi:IssuerSerial><ds:X509IssuerName>CN=ANF High Assurance Ecuador Intermediate CA,OU=ANF Autoridad intermedia  EC,O=ANFAC AUTORIDAD DE CERTIFICACION ECUADOR C.A.,C=EC,2.5.4.5=#130d31373932363031323135303031</ds:X509IssuerName><ds:X509SerialNumber>995249572445286590421478453</ds:X509SerialNumber></etsi:IssuerSerial></etsi:Cert></etsi:SigningCertificate></etsi:SignedSignatureProperties><etsi:SignedDataObjectProperties><etsi:DataObjectFormat ObjectReference="#Reference-ID-780189"><etsi:Description>contenido comprobante</etsi:Description><etsi:MimeType>text/xml</etsi:MimeType></etsi:DataObjectFormat></etsi:SignedDataObjectProperties></etsi:SignedProperties></etsi:QualifyingProperties></ds:Object></ds:Signature></factura>]]></comprobante>
+<mensajes/>
+</autorizacion>
+

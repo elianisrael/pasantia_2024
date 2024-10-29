@@ -1,0 +1,563 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<factura id="comprobante" version="1.1.0">
+  <infoTributaria>
+    <ambiente>2</ambiente>
+    <tipoEmision>1</tipoEmision>
+    <razonSocial>ARBOLEDA VACA LETTY VIRGINIA</razonSocial>
+    <nombreComercial>COMISARIATO GONZALO ZAMBRANO</nombreComercial>
+    <ruc>1301868426001</ruc>
+    <claveAcceso>0907202401130186842600120010060002346930029217416</claveAcceso>
+    <codDoc>01</codDoc>
+    <estab>001</estab>
+    <ptoEmi>006</ptoEmi>
+    <secuencial>000234693</secuencial>
+    <dirMatriz>CALLE ALAJUELA Y 1 DE ENERO</dirMatriz>
+  </infoTributaria>
+  <infoFactura>
+    <fechaEmision>09/07/2024</fechaEmision>
+    <dirEstablecimiento>CALLE ALAJUELA Y 1 DE ENERO</dirEstablecimiento>
+    <obligadoContabilidad>SI</obligadoContabilidad>
+    <tipoIdentificacionComprador>05</tipoIdentificacionComprador>
+    <razonSocialComprador>CARDENAS COLCHA ELVIS HERNAN</razonSocialComprador>
+    <identificacionComprador>1310839541</identificacionComprador>
+    <totalSinImpuestos>54.21</totalSinImpuestos>
+    <totalDescuento>0</totalDescuento>
+    <totalConImpuestos>
+      <totalImpuesto>
+        <codigo>2</codigo>
+        <codigoPorcentaje>0</codigoPorcentaje>
+        <baseImponible>39.02</baseImponible>
+        <valor>0</valor>
+      </totalImpuesto>
+      <totalImpuesto>
+        <codigo>2</codigo>
+        <codigoPorcentaje>4</codigoPorcentaje>
+        <baseImponible>15.19</baseImponible>
+        <valor>2.28</valor>
+      </totalImpuesto>
+    </totalConImpuestos>
+    <propina>0</propina>
+    <importeTotal>56.49</importeTotal>
+    <moneda>DOLAR</moneda>
+  </infoFactura>
+  <detalles>
+    <detalle>
+      <codigoPrincipal>18442</codigoPrincipal>
+      <codigoAuxiliar>759494000323</codigoAuxiliar>
+      <descripcion>AGUA MINERAL GUITIG 6X1.5LT</descripcion>
+      <cantidad>12.0000</cantidad>
+      <precioUnitario>0.78259</precioUnitario>
+      <descuento>0</descuento>
+      <precioTotalSinImpuesto>9.39</precioTotalSinImpuesto>
+      <impuestos>
+        <impuesto>
+          <codigo>2</codigo>
+          <codigoPorcentaje>4</codigoPorcentaje>
+          <tarifa>15.00</tarifa>
+          <baseImponible>9.39</baseImponible>
+          <valor>1.41</valor>
+        </impuesto>
+      </impuestos>
+    </detalle>
+    <detalle>
+      <codigoPrincipal>17759</codigoPrincipal>
+      <codigoAuxiliar>8719200257139</codigoAuxiliar>
+      <descripcion>MARG BONELLA 24X490G</descripcion>
+      <cantidad>1.00</cantidad>
+      <precioUnitario>1.95000</precioUnitario>
+      <descuento>0</descuento>
+      <precioTotalSinImpuesto>1.95</precioTotalSinImpuesto>
+      <impuestos>
+        <impuesto>
+          <codigo>2</codigo>
+          <codigoPorcentaje>0</codigoPorcentaje>
+          <tarifa>0</tarifa>
+          <baseImponible>1.95</baseImponible>
+          <valor>0</valor>
+        </impuesto>
+      </impuestos>
+    </detalle>
+    <detalle>
+      <codigoPrincipal>6814</codigoPrincipal>
+      <codigoAuxiliar>7861012510535</codigoAuxiliar>
+      <descripcion>LECHE TONI SEMIDESCREMADA 6X1LT</descripcion>
+      <cantidad>1.00</cantidad>
+      <precioUnitario>1.45000</precioUnitario>
+      <descuento>0</descuento>
+      <precioTotalSinImpuesto>1.45</precioTotalSinImpuesto>
+      <impuestos>
+        <impuesto>
+          <codigo>2</codigo>
+          <codigoPorcentaje>0</codigoPorcentaje>
+          <tarifa>0</tarifa>
+          <baseImponible>1.45</baseImponible>
+          <valor>0</valor>
+        </impuesto>
+      </impuestos>
+    </detalle>
+    <detalle>
+      <codigoPrincipal>4052</codigoPrincipal>
+      <codigoAuxiliar>7861029700028</codigoAuxiliar>
+      <descripcion>AZUCAR SAN CARLOS 6X2KG</descripcion>
+      <cantidad>1.00</cantidad>
+      <precioUnitario>2.05000</precioUnitario>
+      <descuento>0</descuento>
+      <precioTotalSinImpuesto>2.05</precioTotalSinImpuesto>
+      <impuestos>
+        <impuesto>
+          <codigo>2</codigo>
+          <codigoPorcentaje>0</codigoPorcentaje>
+          <tarifa>0</tarifa>
+          <baseImponible>2.05</baseImponible>
+          <valor>0</valor>
+        </impuesto>
+      </impuestos>
+    </detalle>
+    <detalle>
+      <codigoPrincipal>24335</codigoPrincipal>
+      <codigoAuxiliar>2124335001001</codigoAuxiliar>
+      <descripcion>ALMENDRA LIBRA</descripcion>
+      <cantidad>0.50</cantidad>
+      <precioUnitario>4.90000</precioUnitario>
+      <descuento>0</descuento>
+      <precioTotalSinImpuesto>2.45</precioTotalSinImpuesto>
+      <impuestos>
+        <impuesto>
+          <codigo>2</codigo>
+          <codigoPorcentaje>0</codigoPorcentaje>
+          <tarifa>0</tarifa>
+          <baseImponible>2.45</baseImponible>
+          <valor>0</valor>
+        </impuesto>
+      </impuestos>
+    </detalle>
+    <detalle>
+      <codigoPrincipal>2279</codigoPrincipal>
+      <codigoAuxiliar>2279</codigoAuxiliar>
+      <descripcion>PISTACHOS C/CASCARA LIBRA</descripcion>
+      <cantidad>0.50</cantidad>
+      <precioUnitario>9.50000</precioUnitario>
+      <descuento>0</descuento>
+      <precioTotalSinImpuesto>4.75</precioTotalSinImpuesto>
+      <impuestos>
+        <impuesto>
+          <codigo>2</codigo>
+          <codigoPorcentaje>0</codigoPorcentaje>
+          <tarifa>0</tarifa>
+          <baseImponible>4.75</baseImponible>
+          <valor>0</valor>
+        </impuesto>
+      </impuestos>
+    </detalle>
+    <detalle>
+      <codigoPrincipal>232</codigoPrincipal>
+      <codigoAuxiliar>7861000171670</codigoAuxiliar>
+      <descripcion>FIDEO MI ABUELITA 50X200GR</descripcion>
+      <cantidad>3.00</cantidad>
+      <precioUnitario>0.48000</precioUnitario>
+      <descuento>0</descuento>
+      <precioTotalSinImpuesto>1.44</precioTotalSinImpuesto>
+      <impuestos>
+        <impuesto>
+          <codigo>2</codigo>
+          <codigoPorcentaje>0</codigoPorcentaje>
+          <tarifa>0</tarifa>
+          <baseImponible>1.44</baseImponible>
+          <valor>0</valor>
+        </impuesto>
+      </impuestos>
+    </detalle>
+    <detalle>
+      <codigoPrincipal>20280</codigoPrincipal>
+      <codigoAuxiliar>7861138613622</codigoAuxiliar>
+      <descripcion>BEBIDA LENUTRIT 200ML CREMA DE LECH</descripcion>
+      <cantidad>3.00</cantidad>
+      <precioUnitario>0.15652</precioUnitario>
+      <descuento>0</descuento>
+      <precioTotalSinImpuesto>0.47</precioTotalSinImpuesto>
+      <impuestos>
+        <impuesto>
+          <codigo>2</codigo>
+          <codigoPorcentaje>4</codigoPorcentaje>
+          <tarifa>15.00</tarifa>
+          <baseImponible>0.47</baseImponible>
+          <valor>0.07</valor>
+        </impuesto>
+      </impuestos>
+    </detalle>
+    <detalle>
+      <codigoPrincipal>23142</codigoPrincipal>
+      <codigoAuxiliar>7861013731465</codigoAuxiliar>
+      <descripcion>CHORIZO PLUMROSE TIPO I 130G</descripcion>
+      <cantidad>1.00</cantidad>
+      <precioUnitario>0.80000</precioUnitario>
+      <descuento>0</descuento>
+      <precioTotalSinImpuesto>0.80</precioTotalSinImpuesto>
+      <impuestos>
+        <impuesto>
+          <codigo>2</codigo>
+          <codigoPorcentaje>0</codigoPorcentaje>
+          <tarifa>0</tarifa>
+          <baseImponible>0.80</baseImponible>
+          <valor>0</valor>
+        </impuesto>
+      </impuestos>
+    </detalle>
+    <detalle>
+      <codigoPrincipal>22544</codigoPrincipal>
+      <codigoAuxiliar>7861013731472</codigoAuxiliar>
+      <descripcion>SALCH PLUMROSE TIPO II 100G</descripcion>
+      <cantidad>1.00</cantidad>
+      <precioUnitario>0.65000</precioUnitario>
+      <descuento>0</descuento>
+      <precioTotalSinImpuesto>0.65</precioTotalSinImpuesto>
+      <impuestos>
+        <impuesto>
+          <codigo>2</codigo>
+          <codigoPorcentaje>0</codigoPorcentaje>
+          <tarifa>0</tarifa>
+          <baseImponible>0.65</baseImponible>
+          <valor>0</valor>
+        </impuesto>
+      </impuestos>
+    </detalle>
+    <detalle>
+      <codigoPrincipal>27672</codigoPrincipal>
+      <codigoAuxiliar>7862100603221</codigoAuxiliar>
+      <descripcion>ATUN REAL DE GIRASOL 48X160G</descripcion>
+      <cantidad>5.00</cantidad>
+      <precioUnitario>1.20000</precioUnitario>
+      <descuento>0</descuento>
+      <precioTotalSinImpuesto>6.00</precioTotalSinImpuesto>
+      <impuestos>
+        <impuesto>
+          <codigo>2</codigo>
+          <codigoPorcentaje>0</codigoPorcentaje>
+          <tarifa>0</tarifa>
+          <baseImponible>6.00</baseImponible>
+          <valor>0</valor>
+        </impuesto>
+      </impuestos>
+    </detalle>
+    <detalle>
+      <codigoPrincipal>415</codigoPrincipal>
+      <codigoAuxiliar>7750243049870</codigoAuxiliar>
+      <descripcion>FIDEO DON VITTORIO TALLARIN 87 30X200G</descripcion>
+      <cantidad>2.00</cantidad>
+      <precioUnitario>0.80000</precioUnitario>
+      <descuento>0</descuento>
+      <precioTotalSinImpuesto>1.60</precioTotalSinImpuesto>
+      <impuestos>
+        <impuesto>
+          <codigo>2</codigo>
+          <codigoPorcentaje>0</codigoPorcentaje>
+          <tarifa>0</tarifa>
+          <baseImponible>1.60</baseImponible>
+          <valor>0</valor>
+        </impuesto>
+      </impuestos>
+    </detalle>
+    <detalle>
+      <codigoPrincipal>20827</codigoPrincipal>
+      <codigoAuxiliar>7750243286145</codigoAuxiliar>
+      <descripcion>FIDEO DON VITTORIO SPAGHETTI 24X400G</descripcion>
+      <cantidad>1.00</cantidad>
+      <precioUnitario>1.50000</precioUnitario>
+      <descuento>0</descuento>
+      <precioTotalSinImpuesto>1.50</precioTotalSinImpuesto>
+      <impuestos>
+        <impuesto>
+          <codigo>2</codigo>
+          <codigoPorcentaje>0</codigoPorcentaje>
+          <tarifa>0</tarifa>
+          <baseImponible>1.50</baseImponible>
+          <valor>0</valor>
+        </impuesto>
+      </impuestos>
+    </detalle>
+    <detalle>
+      <codigoPrincipal>4726</codigoPrincipal>
+      <codigoAuxiliar>7622201760670</codigoAuxiliar>
+      <descripcion>GELATINA ROYAL FRAMBUESA 24X385G</descripcion>
+      <cantidad>1.00</cantidad>
+      <precioUnitario>2.88696</precioUnitario>
+      <descuento>0</descuento>
+      <precioTotalSinImpuesto>2.89</precioTotalSinImpuesto>
+      <impuestos>
+        <impuesto>
+          <codigo>2</codigo>
+          <codigoPorcentaje>4</codigoPorcentaje>
+          <tarifa>15.00</tarifa>
+          <baseImponible>2.89</baseImponible>
+          <valor>0.43</valor>
+        </impuesto>
+      </impuestos>
+    </detalle>
+    <detalle>
+      <codigoPrincipal>19890</codigoPrincipal>
+      <codigoAuxiliar>090388001416</codigoAuxiliar>
+      <descripcion>ATUN REAL GIRASOL TRIPACK 20X3X240G</descripcion>
+      <cantidad>2.00</cantidad>
+      <precioUnitario>2.18000</precioUnitario>
+      <descuento>0</descuento>
+      <precioTotalSinImpuesto>4.36</precioTotalSinImpuesto>
+      <impuestos>
+        <impuesto>
+          <codigo>2</codigo>
+          <codigoPorcentaje>0</codigoPorcentaje>
+          <tarifa>0</tarifa>
+          <baseImponible>4.36</baseImponible>
+          <valor>0</valor>
+        </impuesto>
+      </impuestos>
+    </detalle>
+    <detalle>
+      <codigoPrincipal>19228</codigoPrincipal>
+      <codigoAuxiliar>7861013735104</codigoAuxiliar>
+      <descripcion>MORT PLUMROSE 100G</descripcion>
+      <cantidad>1.00</cantidad>
+      <precioUnitario>0.65000</precioUnitario>
+      <descuento>0</descuento>
+      <precioTotalSinImpuesto>0.65</precioTotalSinImpuesto>
+      <impuestos>
+        <impuesto>
+          <codigo>2</codigo>
+          <codigoPorcentaje>0</codigoPorcentaje>
+          <tarifa>0</tarifa>
+          <baseImponible>0.65</baseImponible>
+          <valor>0</valor>
+        </impuesto>
+      </impuestos>
+    </detalle>
+    <detalle>
+      <codigoPrincipal>17366</codigoPrincipal>
+      <codigoAuxiliar>7861013734022</codigoAuxiliar>
+      <descripcion>JAMON PLUMROSE TIPO II 85G</descripcion>
+      <cantidad>1.00</cantidad>
+      <precioUnitario>0.85000</precioUnitario>
+      <descuento>0</descuento>
+      <precioTotalSinImpuesto>0.85</precioTotalSinImpuesto>
+      <impuestos>
+        <impuesto>
+          <codigo>2</codigo>
+          <codigoPorcentaje>0</codigoPorcentaje>
+          <tarifa>0</tarifa>
+          <baseImponible>0.85</baseImponible>
+          <valor>0</valor>
+        </impuesto>
+      </impuestos>
+    </detalle>
+    <detalle>
+      <codigoPrincipal>23954</codigoPrincipal>
+      <codigoAuxiliar>7861002898896</codigoAuxiliar>
+      <descripcion>SALCHICHA PLUMROSE PAVO 200G</descripcion>
+      <cantidad>1.00</cantidad>
+      <precioUnitario>1.90000</precioUnitario>
+      <descuento>0</descuento>
+      <precioTotalSinImpuesto>1.90</precioTotalSinImpuesto>
+      <impuestos>
+        <impuesto>
+          <codigo>2</codigo>
+          <codigoPorcentaje>0</codigoPorcentaje>
+          <tarifa>0</tarifa>
+          <baseImponible>1.90</baseImponible>
+          <valor>0</valor>
+        </impuesto>
+      </impuestos>
+    </detalle>
+    <detalle>
+      <codigoPrincipal>21005</codigoPrincipal>
+      <codigoAuxiliar>7702018880409</codigoAuxiliar>
+      <descripcion>PRESTOBARBA GILLETTE TRIPLE HOJA 12X10X1U</descripcion>
+      <cantidad>1.00</cantidad>
+      <precioUnitario>0.93913</precioUnitario>
+      <descuento>0</descuento>
+      <precioTotalSinImpuesto>0.94</precioTotalSinImpuesto>
+      <impuestos>
+        <impuesto>
+          <codigo>2</codigo>
+          <codigoPorcentaje>4</codigoPorcentaje>
+          <tarifa>15.00</tarifa>
+          <baseImponible>0.94</baseImponible>
+          <valor>0.14</valor>
+        </impuesto>
+      </impuestos>
+    </detalle>
+    <detalle>
+      <codigoPrincipal>4078</codigoPrincipal>
+      <codigoAuxiliar>7861006762742</codigoAuxiliar>
+      <descripcion>TORTILLAS MAMA FANY INTEGRAL 250G</descripcion>
+      <cantidad>1.00</cantidad>
+      <precioUnitario>2.05000</precioUnitario>
+      <descuento>0</descuento>
+      <precioTotalSinImpuesto>2.05</precioTotalSinImpuesto>
+      <impuestos>
+        <impuesto>
+          <codigo>2</codigo>
+          <codigoPorcentaje>0</codigoPorcentaje>
+          <tarifa>0</tarifa>
+          <baseImponible>2.05</baseImponible>
+          <valor>0</valor>
+        </impuesto>
+      </impuestos>
+    </detalle>
+    <detalle>
+      <codigoPrincipal>4585</codigoPrincipal>
+      <codigoAuxiliar>7861018630503</codigoAuxiliar>
+      <descripcion>JAMON JURIS DE POLLO TIPO I 200G</descripcion>
+      <cantidad>1.00</cantidad>
+      <precioUnitario>3.65000</precioUnitario>
+      <descuento>0</descuento>
+      <precioTotalSinImpuesto>3.65</precioTotalSinImpuesto>
+      <impuestos>
+        <impuesto>
+          <codigo>2</codigo>
+          <codigoPorcentaje>0</codigoPorcentaje>
+          <tarifa>0</tarifa>
+          <baseImponible>3.65</baseImponible>
+          <valor>0</valor>
+        </impuesto>
+      </impuestos>
+    </detalle>
+    <detalle>
+      <codigoPrincipal>26446</codigoPrincipal>
+      <codigoAuxiliar>7861002002583</codigoAuxiliar>
+      <descripcion>LECHE ANDINA ENTERA FDA 12X900ML</descripcion>
+      <cantidad>1.00</cantidad>
+      <precioUnitario>0.92000</precioUnitario>
+      <descuento>0</descuento>
+      <precioTotalSinImpuesto>0.92</precioTotalSinImpuesto>
+      <impuestos>
+        <impuesto>
+          <codigo>2</codigo>
+          <codigoPorcentaje>0</codigoPorcentaje>
+          <tarifa>0</tarifa>
+          <baseImponible>0.92</baseImponible>
+          <valor>0</valor>
+        </impuesto>
+      </impuestos>
+    </detalle>
+    <detalle>
+      <codigoPrincipal>16378</codigoPrincipal>
+      <codigoAuxiliar>039800014009</codigoAuxiliar>
+      <descripcion>PILAS ENERGIZER AAA 4X12X2U</descripcion>
+      <cantidad>1.00</cantidad>
+      <precioUnitario>1.50435</precioUnitario>
+      <descuento>0</descuento>
+      <precioTotalSinImpuesto>1.50</precioTotalSinImpuesto>
+      <impuestos>
+        <impuesto>
+          <codigo>2</codigo>
+          <codigoPorcentaje>4</codigoPorcentaje>
+          <tarifa>15.00</tarifa>
+          <baseImponible>1.50</baseImponible>
+          <valor>0.23</valor>
+        </impuesto>
+      </impuestos>
+    </detalle>
+  </detalles>
+  <infoAdicional>
+    <campoAdicional nombre="Dir. Cliente">PORTOVIEJO</campoAdicional>
+    <campoAdicional nombre="Vendedor">HERNAN JARAMILLO ANDRADE</campoAdicional>
+    <campoAdicional nombre=".">..</campoAdicional>
+  </infoAdicional>
+<ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:etsi="http://uri.etsi.org/01903/v1.3.2#" Id="Signature721719">
+<ds:SignedInfo Id="Signature-SignedInfo446403">
+<ds:CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"></ds:CanonicalizationMethod>
+<ds:SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"></ds:SignatureMethod>
+<ds:Reference Id="SignedPropertiesID74982" Type="http://uri.etsi.org/01903#SignedProperties" URI="#Signature721719-SignedProperties666406">
+<ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"></ds:DigestMethod>
+<ds:DigestValue>FWpL3aoJIC1fCbsHIRkBCQmRI2c=</ds:DigestValue>
+</ds:Reference>
+<ds:Reference URI="#Certificate1447898">
+<ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"></ds:DigestMethod>
+<ds:DigestValue>r2HAdzCm2SyeotXFkC4f2fnAjec=</ds:DigestValue>
+</ds:Reference>
+<ds:Reference Id="Reference-ID-636112" URI="#comprobante">
+<ds:Transforms>
+<ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"></ds:Transform>
+</ds:Transforms>
+<ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"></ds:DigestMethod>
+<ds:DigestValue>nNPeem9L+fNBUwaMn9URAJaBZsg=</ds:DigestValue>
+</ds:Reference>
+</ds:SignedInfo>
+<ds:SignatureValue Id="SignatureValue927472">
+StxMvI2qKiCOg8ssZVroxw+kBPrg+G9AZeVGNlNYOhIQkePJSxLMYOjBoyqAdjYMvRceLt3xZIZx
+OU1Dawy7Zy3gQnnwHIcBObEjbhoJbkD/xSqKsAr902VqVoWQRrGqV4v8MBALWT5F/w5FcooA9pv0
+7QSoTm9d9pWptFdkpG29V9YSLVf02sjJ9p6M99Q3tjNEDqYHzXK1YK6qhBPBeUKkItqvS2EaqoZI
+WWu673cPYrx23TnI3fK3NBK6PIXl8Yvxa9siKmdj+VRc6/H/tfOkcbYDkmyETqrzSrpWXZNRUPEC
+W5Ne+L8kEi6Z/vcOAdOH2lkvIl4ekIoaebxZ9A==
+</ds:SignatureValue>
+<ds:KeyInfo Id="Certificate1447898">
+<ds:X509Data>
+<ds:X509Certificate>
+MIIL1DCCCbygAwIBAgIEHOfNpjANBgkqhkiG9w0BAQsFADCBmTELMAkGA1UEBhMCRUMxHTAbBgNV
+BAoMFFNFQ1VSSVRZIERBVEEgUy5BLiAyMTAwLgYDVQQLDCdFTlRJREFEIERFIENFUlRJRklDQUNJ
+T04gREUgSU5GT1JNQUNJT04xOTA3BgNVBAMMMEFVVE9SSURBRCBERSBDRVJUSUZJQ0FDSU9OIFNV
+QkNBLTIgU0VDVVJJVFkgREFUQTAeFw0yMTA1MDQyMDMyNThaFw0yNjA1MDQyMDMyNThaMIGcMSUw
+IwYDVQQDDBxMRVRUWSBWSVJHSU5JQSBBUkJPTEVEQSBWQUNBMRUwEwYDVQQFEwwwNDA1MjExNTQy
+NTUxMDAuBgNVBAsMJ0VOVElEQUQgREUgQ0VSVElGSUNBQ0lPTiBERSBJTkZPUk1BQ0lPTjEdMBsG
+A1UECgwUU0VDVVJJVFkgREFUQSBTLkEuIDIxCzAJBgNVBAYTAkVDMIIBIjANBgkqhkiG9w0BAQEF
+AAOCAQ8AMIIBCgKCAQEAuRcPHIpya1MMOJwrtKDKK0Vu9y7nvzGMDxkxMpx6DfMXKxygJODZ2Uex
+/07Oq92aj//YwMma9q15vRLaG72uWKnQrT8YHNnvQZWr2tIV9M25Y3lT1bnU7AUWfsj4fBYqsKXR
+Mzp7aYqwJH1uCzuSIMz/J7PFeIPgDdaUP7WYHFVpKjpzd69GKfD7AIXoSG7DidiJOGxotLghzymK
+P5i0iWXhF8FbvoHdlbjJKqGLSnQPHXUu2SNPTKHdZXBG44z3eTFxjHZDcX2IfROBAIFy3iheg3IB
+Z5yr54j33SxFyvsuClypsbpWhxZT9oa+EsYWzEdbUZXfxE9x2JLbJAb2ZwIDAQABo4IHHTCCBxkw
+DAYDVR0TAQH/BAIwADAfBgNVHSMEGDAWgBSMusoRV3glgB1rCktVv42uYt29jzBZBggrBgEFBQcB
+AQRNMEswSQYIKwYBBQUHMAGGPWh0dHA6Ly9vY3NwZ3cuc2VjdXJpdHlkYXRhLm5ldC5lYy9lamJj
+YS9wdWJsaWN3ZWIvc3RhdHVzL29jc3Awgc8GA1UdLgSBxzCBxDCBwaCBvqCBu4aBuGxkYXA6Ly9s
+ZGFwc2RjYTIuc2VjdXJpdHlkYXRhLm5ldC5lYy9DTj1BVVRPUklEQUQgREUgQ0VSVElGSUNBQ0lP
+TiBTVUJDQS0yIFNFQ1VSSVRZIERBVEEsT1U9RU5USURBRCBERSBDRVJUSUZJQ0FDSU9OIERFIElO
+Rk9STUFDSU9OLE89U0VDVVJJVFkgREFUQSBTLkEuIDIsQz1FQz9kZWx0YVJldm9jYXRpb25MaXN0
+P2Jhc2UwJgYDVR0RBB8wHYEbYXV4aWxpYXJjb250YWJsZUBjZ3ouY29tLmVjMIIBBgYDVR0gBIH+
+MIH7MFoGCisGAQQBgqZyAgcwTDBKBggrBgEFBQcCAjA+HjwAQwBlAHIAdABpAGYAaQBjAGEAZABv
+ACAAZABlACAAUABlAHIAcwBvAG4AYQAgAE4AYQB0AHUAcgBhAGwwgZwGCisGAQQBgqZyAgEwgY0w
+gYoGCCsGAQUFBwIBFn5odHRwczovL3d3dy5zZWN1cml0eWRhdGEubmV0LmVjL3dwLWNvbnRlbnQv
+ZG93bmxvYWRzL05vcm1hdGl2YXMvUF9kZV9DZXJ0aWZpY2Fkb3MvUG9saXRpY2FzIGRlIENlcnRp
+ZmljYWRvIFBlcnNvbmEgTmF0dXJhbC5wZGYwggKiBgNVHR8EggKZMIIClTCB5aBBoD+GPWh0dHA6
+Ly9vY3NwZ3cuc2VjdXJpdHlkYXRhLm5ldC5lYy9lamJjYS9wdWJsaWN3ZWIvc3RhdHVzL29jc3Ci
+gZ+kgZwwgZkxOTA3BgNVBAMMMEFVVE9SSURBRCBERSBDRVJUSUZJQ0FDSU9OIFNVQkNBLTIgU0VD
+VVJJVFkgREFUQTEwMC4GA1UECwwnRU5USURBRCBERSBDRVJUSUZJQ0FDSU9OIERFIElORk9STUFD
+SU9OMR0wGwYDVQQKDBRTRUNVUklUWSBEQVRBIFMuQS4gMjELMAkGA1UEBhMCRUMwgceggcSggcGG
+gb5sZGFwOi8vbGRhcHNkY2EyLnNlY3VyaXR5ZGF0YS5uZXQuZWMvQ049QVVUT1JJREFEIERFIENF
+UlRJRklDQUNJT04gU1VCQ0EtMiBTRUNVUklUWSBEQVRBLE9VPUVOVElEQUQgREUgQ0VSVElGSUNB
+Q0lPTiBERSBJTkZPUk1BQ0lPTixPPVNFQ1VSSVRZIERBVEEgUy5BLiAyLEM9RUM/Y2VydGlmaWNh
+dGVSZXZvY2F0aW9uTGlzdD9iYXNlMIHgoIHdoIHahoHXaHR0cHM6Ly9wb3J0YWwtb3BlcmFkb3Iy
+LnNlY3VyaXR5ZGF0YS5uZXQuZWMvZWpiY2EvcHVibGljd2ViL3dlYmRpc3QvY2VydGRpc3Q/Y21k
+PWNybCZpc3N1ZXI9Q049QVVUT1JJREFEIERFIENFUlRJRklDQUNJT04gU1VCQ0EtMiBTRUNVUklU
+WSBEQVRBLE9VPUVOVElEQUQgREUgQ0VSVElGSUNBQ0lPTiBERSBJTkZPUk1BQ0lPTixPPVNFQ1VS
+SVRZIERBVEEgUy5BLiAyLEM9RUMwHQYDVR0OBBYEFOdJ/z17MzutpBWtWAbGFVSNvuXLMCsGA1Ud
+EAQkMCKADzIwMjEwNTA0MjAzMjU4WoEPMjAyNjA1MDQyMDMyNThaMAsGA1UdDwQEAwIF4DAaBgor
+BgEEAYKmcgMBBAwMCjEzMDE4Njg0MjYwGgYKKwYBBAGCpnIDCQQMDApQT1JUT1ZJRUpPMBEGCisG
+AQQBgqZyAyIEAwwBLjAqBgorBgEEAYKmcgMHBBwMGiBBTEFKVUVMQSBTIE4gWSAxIERFIEVORVJP
+MB4GCisGAQQBgqZyAwIEEAwOTEVUVFkgVklSR0lOSUEwHwYKKwYBBAGCpnIDIAQRDA8wMDQwMDEw
+MDAwMDIwNzMwEQYKKwYBBAGCpnIDIwQDDAEuMBMGCisGAQQBgqZyAyEEBQwDUEZYMBcGCisGAQQB
+gqZyAwwECQwHRUNVQURPUjAYBgorBgEEAYKmcgMDBAoMCEFSQk9MRURBMBEGCisGAQQBgqZyAx4E
+AwwBLjAdBgorBgEEAYKmcgMLBA8MDTEzMDE4Njg0MjYwMDEwEQYKKwYBBAGCpnIDHQQDDAEuMBQG
+CisGAQQBgqZyAwQEBgwEVkFDQTAcBgorBgEEAYKmcgMIBA4MDDU5Mzk5NTY2OTU3MDANBgkqhkiG
+9w0BAQsFAAOCAgEAfCHQzpMdspIJo0GDF+NNdKyQeXZdZ7l6s6aX5mYt0TT0vGbx2mrzEsrXsZH/
+vk7ifxuoXBcTvXzdNpksqFHHDIX1DKr87JAOlHasTjDrDOg9x06K5LBq+LCEacf+sPNyDAn7xsx2
+jZnmXAHkkkzJB+DTUhoWn95TR/GaVYD7/MAFLbdJJqVbUKxZmnHRtUArp3PwekqPQzTU+Qyf1NL9
+EwudyYh779cXqwfteHBL6hXkU/8JChijO4Z6k4YXE4bH+lngLW79dwrIyluwzj4QR82e/7FEWNfP
+AD7xLjJFqy5OCI1xQ31A1Of6oRNK2M1t2EHWImRMj4xie/0mzc/UcYuTaAvMdY8OqlsZs4n3zS3O
+kLRs0vWc70qkaZvSyX3KXOOKe5LpO4/iw5uy3n/bG7OwoQqL1589zPtJQ7Y6LsrXM7i1CWmUNPoU
+0iLanMfluy8pmynIGtF9PKx6XDPEo22Qb1twnlUXPNvTh49tQtQgg+dU5YQDc7xJ2udZa6tqdNax
+WxR5RAh/EsXxkPk4GhuPSXLnzogmaJrZgu3fOMHW99DRMc5Ccc216AWWyp5DF3Sy9UG1JukVymc/
+3H20PfbEuWTL/6IlT6DQfUQIhKuP8cg6oqX2MmIuUlf+zHXBHarVvcwu/RNtm59yUkg+0dj3T1qf
+qMJ8O8Yp86s2K4M=
+</ds:X509Certificate>
+</ds:X509Data>
+<ds:KeyValue>
+<ds:RSAKeyValue>
+<ds:Modulus>
+uRcPHIpya1MMOJwrtKDKK0Vu9y7nvzGMDxkxMpx6DfMXKxygJODZ2Uex/07Oq92aj//YwMma9q15
+vRLaG72uWKnQrT8YHNnvQZWr2tIV9M25Y3lT1bnU7AUWfsj4fBYqsKXRMzp7aYqwJH1uCzuSIMz/
+J7PFeIPgDdaUP7WYHFVpKjpzd69GKfD7AIXoSG7DidiJOGxotLghzymKP5i0iWXhF8FbvoHdlbjJ
+KqGLSnQPHXUu2SNPTKHdZXBG44z3eTFxjHZDcX2IfROBAIFy3iheg3IBZ5yr54j33SxFyvsuClyp
+sbpWhxZT9oa+EsYWzEdbUZXfxE9x2JLbJAb2Zw==
+</ds:Modulus>
+<ds:Exponent>AQAB</ds:Exponent>
+</ds:RSAKeyValue>
+</ds:KeyValue>
+</ds:KeyInfo>
+<ds:Object Id="Signature721719-Object97806"><etsi:QualifyingProperties Target="#Signature721719"><etsi:SignedProperties Id="Signature721719-SignedProperties666406"><etsi:SignedSignatureProperties><etsi:SigningTime>2024-07-09T23:27:48-05:00</etsi:SigningTime><etsi:SigningCertificate><etsi:Cert><etsi:CertDigest><ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"></ds:DigestMethod><ds:DigestValue>UT9Hkj3znSx9uQw/w396/LAFVjU=</ds:DigestValue></etsi:CertDigest><etsi:IssuerSerial><ds:X509IssuerName>CN=AUTORIDAD DE CERTIFICACION SUBCA-2 SECURITY DATA,OU=ENTIDAD DE CERTIFICACION DE INFORMACION,O=SECURITY DATA S.A. 2,C=EC</ds:X509IssuerName><ds:X509SerialNumber>484953510</ds:X509SerialNumber></etsi:IssuerSerial></etsi:Cert></etsi:SigningCertificate></etsi:SignedSignatureProperties><etsi:SignedDataObjectProperties><etsi:DataObjectFormat ObjectReference="#Reference-ID-636112"><etsi:Description>contenido comprobante</etsi:Description><etsi:MimeType>text/xml</etsi:MimeType></etsi:DataObjectFormat></etsi:SignedDataObjectProperties></etsi:SignedProperties></etsi:QualifyingProperties></ds:Object></ds:Signature></factura>

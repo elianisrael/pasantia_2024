@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<autorizacion>
+<estado>AUTORIZADO</estado>
+<numeroAutorizacion>0508202401179207222000120010020001079961234567811</numeroAutorizacion>
+<fechaAutorizacion>2024-08-06T00:05:55-05:00</fechaAutorizacion>
+<ambiente>PRODUCCIÓN</ambiente>
+<comprobante><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<factura id="comprobante" version="1.0.0">
+  <infoTributaria>
+    <ambiente>2</ambiente>
+    <tipoEmision>1</tipoEmision>
+    <razonSocial>GIGALAPTOS CIA. LTDA.</razonSocial>
+    <nombreComercial>REPUESTOS LAPTOP</nombreComercial>
+    <ruc>1792072220001</ruc>
+    <claveAcceso>0508202401179207222000120010020001079961234567811</claveAcceso>
+    <codDoc>01</codDoc>
+    <estab>001</estab>
+    <ptoEmi>002</ptoEmi>
+    <secuencial>000107996</secuencial>
+    <dirMatriz>DIEGO DE ALMAGRO N30-98 Y AV. REPUBLICA - EDIFICIO CASA BLANCA</dirMatriz>
+  </infoTributaria>
+  <infoFactura>
+    <fechaEmision>05/08/2024</fechaEmision>
+    <dirEstablecimiento>Av Diego Almagro y Av Republica</dirEstablecimiento>
+    <obligadoContabilidad>SI</obligadoContabilidad>
+    <tipoIdentificacionComprador>04</tipoIdentificacionComprador>
+    <razonSocialComprador>Elvis Cardenas Colcha</razonSocialComprador>
+    <identificacionComprador>1310839541001</identificacionComprador>
+    <direccionComprador>AV UNIVERSITARIA Y CALLE INGLATERRA A LOS LADOS DE TECNICENTRO MONJE LOCAL SYSTEMS EC</direccionComprador>
+    <totalSinImpuestos>56.96</totalSinImpuestos>
+    <totalDescuento>0</totalDescuento>
+    <totalConImpuestos>
+      <totalImpuesto>
+        <codigo>2</codigo>
+        <codigoPorcentaje>4</codigoPorcentaje>
+        <baseImponible>56.96</baseImponible>
+        <tarifa>15</tarifa>
+        <valor>8.54</valor>
+      </totalImpuesto>
+    </totalConImpuestos>
+    <propina>0.00</propina>
+    <importeTotal>65.5</importeTotal>
+    <moneda>DOLAR</moneda>
+    <pagos>
+      <pago>
+        <formaPago>20</formaPago>
+        <total>65.5</total>
+        <plazo>0</plazo>
+        <unidadTiempo>dias</unidadTiempo>
+      </pago>
+    </pagos>
+  </infoFactura>
+  <detalles>
+    <detalle>
+      <codigoPrincipal>PRO01950</codigoPrincipal>
+      <descripcion>BATERIA HP HT03XL  INTERNA *ORIGINAL*</descripcion>
+      <cantidad>1</cantidad>
+      <precioUnitario>51.30</precioUnitario>
+      <descuento>0</descuento>
+      <precioTotalSinImpuesto>51.30</precioTotalSinImpuesto>
+      <impuestos>
+        <impuesto>
+          <codigo>2</codigo>
+          <codigoPorcentaje>4</codigoPorcentaje>
+          <tarifa>15</tarifa>
+          <baseImponible>51.30</baseImponible>
+          <valor>7.7</valor>
+        </impuesto>
+      </impuestos>
+    </detalle>
+    <detalle>
+      <codigoPrincipal>SERV00003</codigoPrincipal>
+      <descripcion>SERVICIO DE LOGISTICA Y MANIPULEO</descripcion>
+      <cantidad>1</cantidad>
+      <precioUnitario>5.65</precioUnitario>
+      <descuento>0</descuento>
+      <precioTotalSinImpuesto>5.65</precioTotalSinImpuesto>
+      <impuestos>
+        <impuesto>
+          <codigo>2</codigo>
+          <codigoPorcentaje>4</codigoPorcentaje>
+          <tarifa>15</tarifa>
+          <baseImponible>5.65</baseImponible>
+          <valor>0.85</valor>
+        </impuesto>
+      </impuestos>
+    </detalle>
+  </detalles>
+  <infoAdicional>
+    <campoAdicional nombre="Dir">AV UNIVERSITARIA Y CALLE INGLATERRA A LOS LADOS DE TECNICENTRO MONJE LOCAL SYSTEMS EC</campoAdicional>
+    <campoAdicional nombre="Email">elhecaco@hotmail.com</campoAdicional>
+    <campoAdicional nombre="telf">0984934276</campoAdicional>
+    <campoAdicional nombre="Agente de Retencion">Resolucion No. NAC-DNCRASC20-00000001</campoAdicional>
+  </infoAdicional>
+<ds:Signature Id="Signature815583" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:etsi="http://uri.etsi.org/01903/v1.3.2#">
+<ds:SignedInfo Id="Signature-SignedInfo668913">
+<ds:CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/>
+<ds:SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/>
+<ds:Reference Id="SignedPropertiesID634427" Type="http://uri.etsi.org/01903#SignedProperties" URI="#Signature815583-SignedProperties839461">
+<ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
+<ds:DigestValue>leGV7uBmIfCIrl1Y+vXuIiJIV3E=</ds:DigestValue>
+</ds:Reference>
+<ds:Reference URI="#Certificate1452916">
+<ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
+<ds:DigestValue>kSyrq45pmbpsX6wtW3HTfX0EoRg=</ds:DigestValue>
+</ds:Reference>
+<ds:Reference Id="Reference-ID-646570" URI="#comprobante">
+<ds:Transforms>
+<ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/>
+</ds:Transforms>
+<ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
+<ds:DigestValue>NkLfUV2vs70flyDxwybtgqPSsX4=</ds:DigestValue>
+</ds:Reference>
+</ds:SignedInfo>
+<ds:SignatureValue Id="SignatureValue48055">
+mIQczI474hCRkxgs5EAI3UXAdf7LhrAfahUQ8bZu+xjHyUFKGOpO6ru10bQHHVKJWAXEgqiKAKt6
+Jfp1atU0P9rDE3p2iBfoRcxXGY0NXOttKNOKqsAfZQshS+mtXCGtl5n3ywh1kWpgL5EjyeoC0C2c
+w3N57wNkppW8Y2gI8Nxn9v3eoMKUAOPRw2eBpKO0qNltGnGUiX5a0/rLGU2tc4ERStYnBhG5+E6J
+gq6N1CJjR/wRhQGv5VUOUSHU2Ob09bxpduwpK8V18Yxxe+J440nuokhV6/wbR4KDrYoKhc+rfCJb
+azyA39t0Tzx2SDDW04vV12iQiIdXMJfG38nQuw==
+</ds:SignatureValue>
+<ds:KeyInfo Id="Certificate1452916">
+<ds:X509Data>
+<ds:X509Certificate>
+MIIMAzCCCeugAwIBAgIEF+l6yTANBgkqhkiG9w0BAQsFADCBmTELMAkGA1UEBhMCRUMxHTAbBgNV
+BAoMFFNFQ1VSSVRZIERBVEEgUy5BLiAyMTAwLgYDVQQLDCdFTlRJREFEIERFIENFUlRJRklDQUNJ
+T04gREUgSU5GT1JNQUNJT04xOTA3BgNVBAMMMEFVVE9SSURBRCBERSBDRVJUSUZJQ0FDSU9OIFNV
+QkNBLTIgU0VDVVJJVFkgREFUQTAeFw0yMjEyMDIxNDEzMjRaFw0yNDEyMDExNDEzMjRaMIGgMSkw
+JwYDVQQDDCBDQVJMT1MgRkVSTkFORE8gVkFMQVJFWk8gTEFTQ0FOTzEVMBMGA1UEBRMMMDIxMjIy
+MDkyMzA2MTAwLgYDVQQLDCdFTlRJREFEIERFIENFUlRJRklDQUNJT04gREUgSU5GT1JNQUNJT04x
+HTAbBgNVBAoMFFNFQ1VSSVRZIERBVEEgUy5BLiAyMQswCQYDVQQGEwJFQzCCASIwDQYJKoZIhvcN
+AQEBBQADggEPADCCAQoCggEBAPCWUoOraOSD65saOvh/2So1uaM+m3IChC1HgrEdG1cyaOrvfcy6
+8AdoFBp1mFgWyHARNFh1kjsD8l17BBJe3fTwk9ockTPdPHX3jIcRldb47dMBc0AD8+aNDDU+wf5i
+wQ0lteDEbnxSOrk2+UUdcfHmMV2MZ7/S9+9cVkipLRrG+WrCuBLoCTmJV/oip0/8NicTg6D9XmpU
+QlURheJWPlTuJHLlopqLHsP1TvNonxI+ZlsTcJsXFAVNniVbW9p/31PdYqocnGJWDAdCxfout5/C
+GCyoRADB3/hj4uyFsRATee/bTPlStHJ0/pQnQ413RRuIp4sqW2a9RKDsybplIncCAwEAAaOCB0gw
+ggdEMAwGA1UdEwEB/wQCMAAwHwYDVR0jBBgwFoAUjLrKEVd4JYAdawpLVb+NrmLdvY8wWQYIKwYB
+BQUHAQEETTBLMEkGCCsGAQUFBzABhj1odHRwOi8vb2NzcGd3LnNlY3VyaXR5ZGF0YS5uZXQuZWMv
+ZWpiY2EvcHVibGljd2ViL3N0YXR1cy9vY3NwMIHPBgNVHS4EgccwgcQwgcGggb6ggbuGgbhsZGFw
+Oi8vbGRhcHNkY2EyLnNlY3VyaXR5ZGF0YS5uZXQuZWMvQ049QVVUT1JJREFEIERFIENFUlRJRklD
+QUNJT04gU1VCQ0EtMiBTRUNVUklUWSBEQVRBLE9VPUVOVElEQUQgREUgQ0VSVElGSUNBQ0lPTiBE
+RSBJTkZPUk1BQ0lPTixPPVNFQ1VSSVRZIERBVEEgUy5BLiAyLEM9RUM/ZGVsdGFSZXZvY2F0aW9u
+TGlzdD9iYXNlMCEGA1UdEQQaMBiBFmNhcmxvc3ZhbGFAaG90bWFpbC5jb20wggEVBgNVHSAEggEM
+MIIBCDBiBgorBgEEAYKmcgIJMFQwUgYIKwYBBQUHAgIwRh5EAEMAZQByAHQAaQBmAGkAYwBhAGQA
+bwAgAGQAZQAgAFIAZQBwAHIAZQBzAGUAbgB0AGEAbgB0AGUAIABMAGUAZwBhAGwwgaEGCisGAQQB
+gqZyAgMwgZIwgY8GCCsGAQUFBwIBFoGCaHR0cHM6Ly93d3cuc2VjdXJpdHlkYXRhLm5ldC5lYy93
+cC1jb250ZW50L2Rvd25sb2Fkcy9Ob3JtYXRpdmFzL1BfZGVfQ2VydGlmaWNhZG9zL1BvbGl0aWNh
+cyBkZSBDZXJ0aWZpY2FkbyBSZXByZXNlbnRhbnRlIExlZ2FsLnBkZjCCAqIGA1UdHwSCApkwggKV
+MIHloEGgP4Y9aHR0cDovL29jc3Bndy5zZWN1cml0eWRhdGEubmV0LmVjL2VqYmNhL3B1YmxpY3dl
+Yi9zdGF0dXMvb2NzcKKBn6SBnDCBmTE5MDcGA1UEAwwwQVVUT1JJREFEIERFIENFUlRJRklDQUNJ
+T04gU1VCQ0EtMiBTRUNVUklUWSBEQVRBMTAwLgYDVQQLDCdFTlRJREFEIERFIENFUlRJRklDQUNJ
+T04gREUgSU5GT1JNQUNJT04xHTAbBgNVBAoMFFNFQ1VSSVRZIERBVEEgUy5BLiAyMQswCQYDVQQG
+EwJFQzCBx6CBxKCBwYaBvmxkYXA6Ly9sZGFwc2RjYTIuc2VjdXJpdHlkYXRhLm5ldC5lYy9DTj1B
+VVRPUklEQUQgREUgQ0VSVElGSUNBQ0lPTiBTVUJDQS0yIFNFQ1VSSVRZIERBVEEsT1U9RU5USURB
+RCBERSBDRVJUSUZJQ0FDSU9OIERFIElORk9STUFDSU9OLE89U0VDVVJJVFkgREFUQSBTLkEuIDIs
+Qz1FQz9jZXJ0aWZpY2F0ZVJldm9jYXRpb25MaXN0P2Jhc2UwgeCggd2ggdqGgddodHRwczovL3Bv
+cnRhbC1vcGVyYWRvcjIuc2VjdXJpdHlkYXRhLm5ldC5lYy9lamJjYS9wdWJsaWN3ZWIvd2ViZGlz
+dC9jZXJ0ZGlzdD9jbWQ9Y3JsJmlzc3Vlcj1DTj1BVVRPUklEQUQgREUgQ0VSVElGSUNBQ0lPTiBT
+VUJDQS0yIFNFQ1VSSVRZIERBVEEsT1U9RU5USURBRCBERSBDRVJUSUZJQ0FDSU9OIERFIElORk9S
+TUFDSU9OLE89U0VDVVJJVFkgREFUQSBTLkEuIDIsQz1FQzAdBgNVHQ4EFgQUThXJNTQmLXDRCecm
+f+h2dMfDTGswKwYDVR0QBCQwIoAPMjAyMjEyMDIxNDEzMjRagQ8yMDI0MTIwMTE0MTMyNFowCwYD
+VR0PBAQDAgXgMBcGCisGAQQBgqZyAwUECQwHR0VSRU5URTAaBgorBgEEAYKmcgMBBAwMCjE3MTEw
+OTM4MTMwFQYKKwYBBAGCpnIDCQQHDAVRVUlUTzARBgorBgEEAYKmcgMiBAMMAS4wNQYKKwYBBAGC
+pnIDBwQnDCVESUVHTyBERSBBTE1BR1JPIE4zMDk4IFkgQVYgUkVQVUJMSUNBMB8GCisGAQQBgqZy
+AwIEEQwPQ0FSTE9TIEZFUk5BTkRPMB8GCisGAQQBgqZyAyAEEQwPMDAyMDAxMDAwNTA0NjYzMBMG
+CisGAQQBgqZyAyEEBQwDUEZYMBcGCisGAQQBgqZyAwwECQwHRUNVQURPUjAYBgorBgEEAYKmcgMD
+BAoMCFZBTEFSRVpPMCMGCisGAQQBgqZyAwoEFQwTR0lHQUxBUFRPUyBDSUEgTFREQTAdBgorBgEE
+AYKmcgMLBA8MDTE3OTIwNzIyMjAwMDEwEgYKKwYBBAGCpnIDHQQEDAJObzAXBgorBgEEAYKmcgME
+BAkMB0xBU0NBTk8wGgYKKwYBBAGCpnIDCAQMDAowOTg0NjM0ODY4MA0GCSqGSIb3DQEBCwUAA4IC
+AQB4IvVcHXmBN7GUl5q1w56ocuBShVLkOO2XPshJx3R8XpkLVAL/zNFjYO12Fry6938KY6OhAq9Q
+HWaCf5ubsKSi26ydqa7d2Y4tCF3PHHXof+FTjYN394+mox6K3C/mo14eS9+/KIOOT1Kd5mvoJhfW
+I+jzYptaH5vwP5Tu6hubkfH6jR/6G6rYRnOn4JrDa60dEqIJkcXVnnyy6tOD6dIDDRqUQ44YSBTD
+Z2WGHo2+3HfLW/uXyBAY2FzfMasse0SPKfXjsGKB1KStVKjNiaPSl5IYdIyP7OaEDJ69WNswCJ9m
+Dbig9slfb6PmonmJybdZhzBPireLecFbLPBE/TKbPG5/udEBsL8GQb9f94lB6dYSGi19Mbocet7G
+w3pdmN8ES9Gn+C5zQgsEdu2+1NXJh1EB0HusVI57ksxT/HX+yfJ8WyUDAnsjVQpGuEzylWKKUNwl
+plLHbHPFWvQ9/G8P8NYyzp/zbrd1drt1Ah15QYqPVoRBbexmJw+HQGS/HRLzzDgKZRPUN4HD+4Qt
+TEzzBgfCa+A1gTMu0+Esis/4ir/E8yuD3N+zVLqUBMlxznrcY+Ln6iRpEBGImhQytyonHbgrw9oa
+dz4b2yX085/Sqrmco3flnJrOG2AO6qTGQpv7VTmVwLoRGfVPsD5krfsWEvtelxWByH8tgVqeiUgW
+vQ==
+</ds:X509Certificate>
+</ds:X509Data>
+<ds:KeyValue>
+<ds:RSAKeyValue>
+<ds:Modulus>
+8JZSg6to5IPrmxo6+H/ZKjW5oz6bcgKELUeCsR0bVzJo6u99zLrwB2gUGnWYWBbIcBE0WHWSOwPy
+XXsEEl7d9PCT2hyRM908dfeMhxGV1vjt0wFzQAPz5o0MNT7B/mLBDSW14MRufFI6uTb5RR1x8eYx
+XYxnv9L371xWSKktGsb5asK4EugJOYlX+iKnT/w2JxODoP1ealRCVRGF4lY+VO4kcuWimosew/VO
+82ifEj5mWxNwmxcUBU2eJVtb2n/fU91iqhycYlYMB0LF+i63n8IYLKhEAMHf+GPi7IWxEBN579tM
++VK0cnT+lCdDjXdFG4iniypbZr1EoOzJumUidw==
+</ds:Modulus>
+<ds:Exponent>AQAB</ds:Exponent>
+</ds:RSAKeyValue>
+</ds:KeyValue>
+</ds:KeyInfo>
+<ds:Object Id="Signature815583-Object551343"><etsi:QualifyingProperties Target="#Signature815583"><etsi:SignedProperties Id="Signature815583-SignedProperties839461"><etsi:SignedSignatureProperties><etsi:SigningTime>2024-08-06T05:01:28+00:00</etsi:SigningTime><etsi:SigningCertificate><etsi:Cert><etsi:CertDigest><ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/><ds:DigestValue>mx5rEiVMP95ElqGo5pcbFsg09G8=</ds:DigestValue></etsi:CertDigest><etsi:IssuerSerial><ds:X509IssuerName>CN=AUTORIDAD DE CERTIFICACION SUBCA-2 SECURITY DATA,OU=ENTIDAD DE CERTIFICACION DE INFORMACION,O=SECURITY DATA S.A. 2,C=EC</ds:X509IssuerName><ds:X509SerialNumber>401177289</ds:X509SerialNumber></etsi:IssuerSerial></etsi:Cert></etsi:SigningCertificate></etsi:SignedSignatureProperties><etsi:SignedDataObjectProperties><etsi:DataObjectFormat ObjectReference="#Reference-ID-646570"><etsi:Description>contenido comprobante</etsi:Description><etsi:MimeType>text/xml</etsi:MimeType></etsi:DataObjectFormat></etsi:SignedDataObjectProperties></etsi:SignedProperties></etsi:QualifyingProperties></ds:Object></ds:Signature></factura>]]></comprobante>
+<mensajes/>
+</autorizacion>
+

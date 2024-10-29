@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<factura id="comprobante" version="1.1.0">
+  <infoTributaria>
+    <ambiente>2</ambiente>
+    <tipoEmision>1</tipoEmision>
+    <razonSocial>CEDENO ARGANDONA ISABEL PAOLA</razonSocial>
+    <nombreComercial>CCP</nombreComercial>
+    <ruc>1309769238001</ruc>
+    <claveAcceso>0507202401130976923800120010020002576950052583016</claveAcceso>
+    <codDoc>01</codDoc>
+    <estab>001</estab>
+    <ptoEmi>002</ptoEmi>
+    <secuencial>000257695</secuencial>
+    <dirMatriz>CALLE CHILE Y LOS AMIGOS (ESQUINA)</dirMatriz>
+  </infoTributaria>
+  <infoFactura>
+    <fechaEmision>05/07/2024</fechaEmision>
+    <dirEstablecimiento>CALLE CHILE Y LOS AMIGOS (ESQUINA)</dirEstablecimiento>
+    <obligadoContabilidad>SI</obligadoContabilidad>
+    <tipoIdentificacionComprador>04</tipoIdentificacionComprador>
+    <razonSocialComprador>CARDENAS COLCHA ELVIS HERNAN</razonSocialComprador>
+    <identificacionComprador>1310839541001</identificacionComprador>
+    <direccionComprador>PORTOVIEJO</direccionComprador>
+    <totalSinImpuestos>15.25</totalSinImpuestos>
+    <totalDescuento>0.00</totalDescuento>
+    <totalConImpuestos>
+      <totalImpuesto>
+        <codigo>2</codigo>
+        <codigoPorcentaje>0</codigoPorcentaje>
+        <baseImponible>15.25</baseImponible>
+        <valor>0.00</valor>
+      </totalImpuesto>
+    </totalConImpuestos>
+    <propina>0.00</propina>
+    <importeTotal>15.25</importeTotal>
+    <moneda>DOLAR</moneda>
+    <pagos>
+      <pago>
+        <formaPago>01</formaPago>
+        <total>15.25</total>
+        <plazo>0</plazo>
+        <unidadTiempo>dias</unidadTiempo>
+      </pago>
+    </pagos>
+  </infoFactura>
+  <detalles>
+    <detalle>
+      <codigoPrincipal>3</codigoPrincipal>
+      <codigoAuxiliar>000003</codigoAuxiliar>
+      <descripcion>QUESO DURO</descripcion>
+      <cantidad>2.02</cantidad>
+      <precioUnitario>2.65</precioUnitario>
+      <descuento>0.00</descuento>
+      <precioTotalSinImpuesto>5.35</precioTotalSinImpuesto>
+      <detallesAdicionales>
+        <detAdicional nombre="." valor="QUESO DURO"></detAdicional>
+      </detallesAdicionales>
+      <impuestos>
+        <impuesto>
+          <codigo>2</codigo>
+          <codigoPorcentaje>0</codigoPorcentaje>
+          <tarifa>0</tarifa>
+          <baseImponible>5.35</baseImponible>
+          <valor>0.00</valor>
+        </impuesto>
+      </impuestos>
+    </detalle>
+    <detalle>
+      <codigoPrincipal>53</codigoPrincipal>
+      <codigoAuxiliar>53</codigoAuxiliar>
+      <descripcion>HUEVO DE GRANJA CUBETA</descripcion>
+      <cantidad>2.00</cantidad>
+      <precioUnitario>3.70</precioUnitario>
+      <descuento>0.00</descuento>
+      <precioTotalSinImpuesto>7.40</precioTotalSinImpuesto>
+      <detallesAdicionales>
+        <detAdicional nombre="." valor="HUEVO DE GRANJA CUBETA"></detAdicional>
+      </detallesAdicionales>
+      <impuestos>
+        <impuesto>
+          <codigo>2</codigo>
+          <codigoPorcentaje>0</codigoPorcentaje>
+          <tarifa>0</tarifa>
+          <baseImponible>7.40</baseImponible>
+          <valor>0.00</valor>
+        </impuesto>
+      </impuestos>
+    </detalle>
+    <detalle>
+      <codigoPrincipal>106</codigoPrincipal>
+      <codigoAuxiliar>106</codigoAuxiliar>
+      <descripcion>EMPANADA  ARTESANAL</descripcion>
+      <cantidad>2.00</cantidad>
+      <precioUnitario>1.25</precioUnitario>
+      <descuento>0.00</descuento>
+      <precioTotalSinImpuesto>2.50</precioTotalSinImpuesto>
+      <detallesAdicionales>
+        <detAdicional nombre="." valor="EMPANADA  ARTESANAL"></detAdicional>
+      </detallesAdicionales>
+      <impuestos>
+        <impuesto>
+          <codigo>2</codigo>
+          <codigoPorcentaje>0</codigoPorcentaje>
+          <tarifa>0</tarifa>
+          <baseImponible>2.50</baseImponible>
+          <valor>0.00</valor>
+        </impuesto>
+      </impuestos>
+    </detalle>
+  </detalles>
+  <infoAdicional>
+    <campoAdicional nombre=".">CONTRIBUYENTE REGIMEN  GENERAL</campoAdicional>
+    <campoAdicional nombre="Dir. Cliente">PORTOVIEJO</campoAdicional>
+    <campoAdicional nombre="Vendedor">NOEMI FARIAS</campoAdicional>
+  </infoAdicional>
+<ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:etsi="http://uri.etsi.org/01903/v1.3.2#" Id="Signature749553">
+<ds:SignedInfo Id="Signature-SignedInfo845570">
+<ds:CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"></ds:CanonicalizationMethod>
+<ds:SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"></ds:SignatureMethod>
+<ds:Reference Id="SignedPropertiesID881949" Type="http://uri.etsi.org/01903#SignedProperties" URI="#Signature749553-SignedProperties392440">
+<ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"></ds:DigestMethod>
+<ds:DigestValue>nB4wJ5Rfm8IP1TYgsM/SJr7dtlQ=</ds:DigestValue>
+</ds:Reference>
+<ds:Reference URI="#Certificate1592262">
+<ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"></ds:DigestMethod>
+<ds:DigestValue>zvbY9Fl/ZQYmnj/N8kyzFDF0raU=</ds:DigestValue>
+</ds:Reference>
+<ds:Reference Id="Reference-ID-648102" URI="#comprobante">
+<ds:Transforms>
+<ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"></ds:Transform>
+</ds:Transforms>
+<ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"></ds:DigestMethod>
+<ds:DigestValue>QLLA3ofyppBUM4CnnrKVRAu+uOA=</ds:DigestValue>
+</ds:Reference>
+</ds:SignedInfo>
+<ds:SignatureValue Id="SignatureValue453177">
+Plym4UnTu5yz5K2ObDDytpb5Xyt3fuHaDA1rqY94TrTO70lLpHDchUEGp823Z2S/9E8ToE82GK9o
+2BTsd/wXbZWAV4lWdAmcEvUVS1HOzdDonpN6b+GNn0LgIdpaXQlzXae2JyAn1huxw/6HsuSoEjsP
+324WKCycRaNgioHdIXJzsJ7Cx2P23YZ2TrDTtlFHefAhK+ajMemeFibmB2hjpN5ptxgHA6ZDzJBw
+G0d6ar5SGi/x5kZrZNEBbGpZnU3/JT75fvXvxE9EyKAMvQ3+SNLiRjYsRgvP3P0ifPwpsXbB8a23
+iWpvLJXYYwlaS6c0zQtKBeycjOgJX8wTP1RlVA==
+</ds:SignatureValue>
+<ds:KeyInfo Id="Certificate1592262">
+<ds:X509Data>
+<ds:X509Certificate>
+MIILdjCCCV6gAwIBAgIMAze815WSzLl+OVR1MA0GCSqGSIb3DQEBCwUAMIG5MRYwFAYDVQQFEw0x
+NzkyNjAxMjE1MDAxMQswCQYDVQQGEwJFQzE2MDQGA1UEChMtQU5GQUMgQVVUT1JJREFEIERFIENF
+UlRJRklDQUNJT04gRUNVQURPUiBDLkEuMSUwIwYDVQQLExxBTkYgQXV0b3JpZGFkIGludGVybWVk
+aWEgIEVDMTMwMQYDVQQDEypBTkYgSGlnaCBBc3N1cmFuY2UgRWN1YWRvciBJbnRlcm1lZGlhdGUg
+Q0EwHhcNMjMwNTE4MTUzMTQ4WhcNMjYwNTE3MTUzMTQ4WjCCAYYxKDAmBgNVBAoMH0NFREXDkU8g
+QVJHQU5ET8ORQSBJU0FCRUwgUEFPTEExGjAYBgorBgEEAYKkQgoEDAoxMzA5NzY5MjM4MTMwMQYD
+VQQLDCpDZXJ0aWZpY2FkbyBQZXJzb25hIE5hdHVyYWwgUlVDIEVDIChGSVJNQSkxFTATBgNVBCoM
+DElTQUJFTCBQQU9MQTEWMBQGA1UEYRMNMTMwOTc2OTIzODAwMTELMAkGA1UEBhMCRUMxEzARBgNV
+BAUTCjEzMDk3NjkyMzgxGzAZBgNVBAQMEkNFREXDkU8gQVJHQU5ET8ORQTEzMDEGA1UEAwwqMTMw
+OTc2OTIzOCBJU0FCRUwgUEFPTEEgQ0VERcORTyBBUkdBTkRPw5FBMSUwIwYJKoZIhvcNAQkBFhZp
+c2FwYW9jZWFyQGhvdG1haWwuY29tMRgwFgYDVQQNDA9DYXJnbzp1bmRlZmluZWQxEDAOBgNVBAgM
+B01BTkFCw40xEzARBgNVBAcMClBPUlRPVklFSk8wggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEK
+AoIBAQDfPqs32rIzHJYo+dEEk48T0jwtDE2SnAq0oW/mSr1RUrHs+VnsX9Pxzd1axk2MTn7ODQPq
+D6EXJ9mfkiIw353mpvEQygmdbz5GzxTyI5+/Vq/JhiaK58KThYiGoQMgGAcUbWaONS8CSo+itZE8
+4KoOItxDiCLidSC3+bru8Lbew9XZm57k3E2ZiGMQCMQ7v3J49T5KllR7GmhaYYgeZaUa/a0QRGkH
+Y7QsVkv1Yrtbm4O/OOPPruUhzF7w3eKmgC2uA6ByfExWCWdcRRuuF/2XAbt5MVNRFW+PTdU1AE+T
+UGFK/kv0kyhujr6IsrNz/qAy8VWdVtx2Hc0Z6JoGHqOvAgMBAAGjggWsMIIFqDAfBgNVHSMEGDAW
+gBSSrtTLgrSZxtF7EWxl6sVNaCH5rDAdBgNVHQ4EFgQUxnJyx5qOOnmX7INnavhE1IFfPYkwgf0G
+A1UdEQSB9TCB8oEWaXNhcGFvY2VhckBob3RtYWlsLmNvbaSB1zCB1DEcMBoGCisGAQQBgqRCCgEM
+DElTQUJFTCBQQU9MQTEXMBUGCisGAQQBgqRCCgIMB0NFREXDkU8xGjAYBgorBgEEAYKkQgoDDApB
+UkdBTkRPw5FBMRowGAYKKwYBBAGCpEIKBAwKMTMwOTc2OTIzODEZMBcGCSsGAQQBg71uAQwKQS0x
+ODA1MjAyMzEzMDEGA1UEAwwqMTMwOTc2OTIzOCBJU0FCRUwgUEFPTEEgQ0VERcORTyBBUkdBTkRP
+w5FBMRMwEQYDVQQFDAoxMzA5NzY5MjM4MA4GA1UdDwEB/wQEAwIGwDAdBgNVHSUEFjAUBggrBgEF
+BQcDAgYIKwYBBQUHAwQwUAYDVR0fBEkwRzBFoEOgQYY/aHR0cDovL2NybC5hbmYuZXMvY3JsL0FO
+RkhpZ2hBc3N1cmFuY2VFY3VhZG9ySW50ZXJtZWRpYXRlQ0EuY3JsMIIBAwYDVR0gBIH7MIH4MIHf
+BgwrBgEEAYKkQgIFAQMwgc4wKAYIKwYBBQUHAgEWHGh0dHA6Ly93d3cuYW5mLmVzL2RvY3VtZW50
+b3MwgaEGCCsGAQUFBwICMIGUDIGRQ2VydGlmaWNhZG8gY29uZm9ybWUgYSBsYSBsZWdpc2xhY2nD
+s24gZGUgZmlybWEgZWxlY3Ryw7NuaWNhLiBBbnRlcyBkZSBhY2VwdGFybG8gY29tcHJ1ZWJlIGlu
+dGVncmlkYWQsIGxpbWl0YWNpb25lcywgdmlnZW5jaWEgeSB1c29zIGF1dG9yaXphZG9zLjAJBgcE
+AIvsQAEBMAkGB2CFVAEDBQgwgZsGCCsGAQUFBwEBBIGOMIGLMCcGCCsGAQUFBzABhhtodHRwOi8v
+b2NzcC5hbmYuZXMvc3BhaW4vQVYwYAYIKwYBBQUHMAKGVGh0dHA6Ly93d3cuYW5mLmVzL2VzL2Nl
+cnRpZmljYXRlcy1kb3dubG9hZC9BTkZIaWdoQXNzdXJhbmNlRWN1YWRvckludGVybWVkaWF0ZUNB
+LmNlcjAMBgNVHRMBAf8EAjAAMCgGCSsGAQQBgY8cEwQbDBk1NzcyMDU5NDI2MjctNTU3MTM0NjQz
+MDYwMB0GCisGAQQBgY8cEwIEDwwNMTMwOTc2OTIzODAwMTApBgorBgEEAYKkQhMBBBsMGTU1NzEz
+NDY0MzA2MC01MzY2ODQwMTUxNjYwGgYKKwYBBAGCpEIDAQQMDAoxMzA5NzY5MjM4MC8GCisGAQQB
+gqRCAwoEIQwfQ0VERcORTyBBUkdBTkRPw5FBIElTQUJFTCBQQU9MQTAdBgorBgEEAYKkQgMLBA8M
+DTEzMDk3NjkyMzgwMDEwEgYKKwYBBAGCpEIDDAQEDAJFQzAcBgorBgEEAYKkQgMCBA4MDElTQUJF
+TCBQQU9MQTAiBgorBgEEAYKkQgMDBBQMEkNFREXDkU8gQVJHQU5ET8ORQTAZBgorBgEEAYKkQgMF
+BAsMCXVuZGVmaW5lZDAaBgorBgEEAYKkQgMJBAwMClBPUlRPVklFSk8wFwYKKwYBBAGCpEIqAQQJ
+DAdVSU8tMDMyMBQGCisGAQQBgqRCLgEEBgwEMTA5NTBQBgorBgEEAYKkQi8BBEIMQGY1NTZjMWZh
+MWE3YjM0Mjk4YmMzNGViNDk5NjM5MjYwZmZiZDNmNWJiOGNmN2VlYzM5Y2QzOTU5Y2NiMTBkOTgw
+RAYIKwYBBQUHAQMEODA2MAgGBgQAjkYBATATBgYEAI5GAQYwCQYHBACORgEGATAJBgcEAIvsSQEB
+MAoGCCsGAQUFBwsCMA0GCSqGSIb3DQEBCwUAA4ICAQBVaEzeJ3RF4cGRB4I8FDGbBgcoXAyE7+80
+/jlyhuqoBgR23NY/JaI4l886jRHl+uXK5zucI9PjxSq0c5LKCRBvvmWj90PVKiu8koTiM1NxQtHd
+BjZ95K0Yg0QY7BoNF5jpZCAc4TXqzx7H8X+Q5b8GE077v5jrsXH+DhZ0UPzA79tnxTt+atudK+LH
+2xxARHM8iIeSgXMUkuXfg3e7ARXT/gU/NYYbcWxilVfengVaHPt5Ih571UlFI8ebwVJgYJVSjuUC
+pdqwU3zFl079sV/CmDvl9Vri9viAokOuEUSd7DMuJ4b/DiTRR9ii+4g4byFkX5vSuBzNGPtt5xh7
+sXT5yIfZXmnqSdvY518DNzmcwBNYZbXz/HMvJkot82pFW0XeNNqOo3IYiC8iRxVF70ZCO51PAoHB
+ujUeIY5JB3TeprH89aYAsu/5tKuJ8dDvr2FRKZWFyg6nS4lEbHGxWguBadt/TNU9dAeIvMsYk89U
+eQeN3ZfPLXMc7yjwhXgMPfBN0rh7XieUjODukZ6y/mR1juIGymEkqpZT9XOLbXMPyDLq5gKsCACW
+pRpXtCFiNzSgOePKosOha7TMFqkWTzGDllX9tj7rUF/iZWB/BRcr7GF8dbYUV4AevgbH1rgWHqyS
+fJm81DqPR92ZNrFCTzkwtWTFsUAYtqiP+OEAa3plAg==
+</ds:X509Certificate>
+</ds:X509Data>
+<ds:KeyValue>
+<ds:RSAKeyValue>
+<ds:Modulus>
+3z6rN9qyMxyWKPnRBJOPE9I8LQxNkpwKtKFv5kq9UVKx7PlZ7F/T8c3dWsZNjE5+zg0D6g+hFyfZ
+n5IiMN+d5qbxEMoJnW8+Rs8U8iOfv1avyYYmiufCk4WIhqEDIBgHFG1mjjUvAkqPorWRPOCqDiLc
+Q4gi4nUgt/m67vC23sPV2Zue5NxNmYhjEAjEO79yePU+SpZUexpoWmGIHmWlGv2tEERpB2O0LFZL
+9WK7W5uDvzjjz67lIcxe8N3ipoAtrgOgcnxMVglnXEUbrhf9lwG7eTFTURVvj03VNQBPk1BhSv5L
+9JMobo6+iLKzc/6gMvFVnVbcdh3NGeiaBh6jrw==
+</ds:Modulus>
+<ds:Exponent>AQAB</ds:Exponent>
+</ds:RSAKeyValue>
+</ds:KeyValue>
+</ds:KeyInfo>
+<ds:Object Id="Signature749553-Object1030013"><etsi:QualifyingProperties Target="#Signature749553"><etsi:SignedProperties Id="Signature749553-SignedProperties392440"><etsi:SignedSignatureProperties><etsi:SigningTime>2024-07-05T09:29:38-05:00</etsi:SigningTime><etsi:SigningCertificate><etsi:Cert><etsi:CertDigest><ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"></ds:DigestMethod><ds:DigestValue>HufXLQbAW2iWo44HweacFGYmkKs=</ds:DigestValue></etsi:CertDigest><etsi:IssuerSerial><ds:X509IssuerName>CN=ANF High Assurance Ecuador Intermediate CA,OU=ANF Autoridad intermedia  EC,O=ANFAC AUTORIDAD DE CERTIFICACION ECUADOR C.A.,C=EC,2.5.4.5=#130d31373932363031323135303031</ds:X509IssuerName><ds:X509SerialNumber>995837731269497106946675829</ds:X509SerialNumber></etsi:IssuerSerial></etsi:Cert></etsi:SigningCertificate></etsi:SignedSignatureProperties><etsi:SignedDataObjectProperties><etsi:DataObjectFormat ObjectReference="#Reference-ID-648102"><etsi:Description>contenido comprobante</etsi:Description><etsi:MimeType>text/xml</etsi:MimeType></etsi:DataObjectFormat></etsi:SignedDataObjectProperties></etsi:SignedProperties></etsi:QualifyingProperties></ds:Object></ds:Signature></factura>

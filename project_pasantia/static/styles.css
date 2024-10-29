@@ -771,3 +771,11 @@ h2 {
 .logout-button:hover {
     color: #12d508;
 }
+
+.hidden-checkbox {
+    display: none;
+}
+
+.checkbox-item.selected {
+    background-color: #e0e0e0;
+}

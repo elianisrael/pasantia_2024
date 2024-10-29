@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<factura id="comprobante" version="1.1.0"><infoTributaria><ambiente>2</ambiente><tipoEmision>1</tipoEmision><razonSocial>CABLEADOS PARA COMUNICACIONES CABLECOMSA SA</razonSocial><nombreComercial>CABLECOM S.A.</nombreComercial><ruc>1791308417001</ruc><claveAcceso>1908202401179130841700120030010000091591234567810</claveAcceso><codDoc>01</codDoc><estab>003</estab><ptoEmi>001</ptoEmi><secuencial>000009159</secuencial><dirMatriz>Quito - AV. DE LOS ARUPOS E1-66 Y GALO PLAZA LASSO</dirMatriz><agenteRetencion>1</agenteRetencion></infoTributaria><infoFactura><fechaEmision>19/08/2024</fechaEmision><dirEstablecimiento>Quito - AV. DE LOS ARUPOS E1-66 Y GALO PLAZA LASSO</dirEstablecimiento><obligadoContabilidad>SI</obligadoContabilidad><tipoIdentificacionComprador>04</tipoIdentificacionComprador><razonSocialComprador>CARDENAS COLCHA ELVIS HERNAN</razonSocialComprador><identificacionComprador>1310839541001</identificacionComprador><direccionComprador>AVENIDA UNIVERSITARIA S/N Y CALLE INGLATERRAPORTOVIEJOECUADOR</direccionComprador><totalSinImpuestos>645.20</totalSinImpuestos><totalDescuento>259.65</totalDescuento><totalConImpuestos><totalImpuesto><codigo>2</codigo><codigoPorcentaje>4</codigoPorcentaje><baseImponible>645.200000</baseImponible><valor>96.78</valor></totalImpuesto></totalConImpuestos><propina>0.00</propina><importeTotal>741.98</importeTotal><moneda>DOLAR</moneda><pagos><pago><formaPago>20</formaPago><total>741.98</total></pago></pagos></infoFactura><detalles><detalle><codigoPrincipal>PUL6004IG-FE</codigoPrincipal><codigoAuxiliar>0.6324</codigoAuxiliar><descripcion>CABLE UTP CAT. 6  4 PARES 23 AWG LSZH GRIS</descripcion><cantidad>610.00</cantidad><precioUnitario>0.9300</precioUnitario><descuento>181.54</descuento><precioTotalSinImpuesto>385.76</precioTotalSinImpuesto><detallesAdicionales><detAdicional nombre="Linea" valor="--"></detAdicional></detallesAdicionales><impuestos><impuesto><codigo>2</codigo><codigoPorcentaje>4</codigoPorcentaje><tarifa>15.00</tarifa><baseImponible>385.76</baseImponible><valor>57.86</valor></impuesto></impuestos></detalle><detalle><codigoPrincipal>UTP28SP7</codigoPrincipal><codigoAuxiliar>6.9633</codigoAuxiliar><descripcion>PATCH CORD UTP CAT. 6 7 FT BLANCO 28AWG</descripcion><cantidad>5.00</cantidad><precioUnitario>8.6500</precioUnitario><descuento>8.43</descuento><precioTotalSinImpuesto>34.82</precioTotalSinImpuesto><detallesAdicionales><detAdicional nombre="Linea" valor="--"></detAdicional></detallesAdicionales><impuestos><impuesto><codigo>2</codigo><codigoPorcentaje>4</codigoPorcentaje><tarifa>15.00</tarifa><baseImponible>34.82</baseImponible><valor>5.22</valor></impuesto></impuestos></detalle><detalle><codigoPrincipal>UTP28SP3</codigoPrincipal><codigoAuxiliar>5.6707</codigoAuxiliar><descripcion>PATCH CORD UTP CAT. 6 3 FT BLANCO 28AWG</descripcion><cantidad>15.00</cantidad><precioUnitario>7.0000</precioUnitario><descuento>19.94</descuento><precioTotalSinImpuesto>85.06</precioTotalSinImpuesto><detallesAdicionales><detAdicional nombre="Linea" valor="--"></detAdicional></detallesAdicionales><impuestos><impuesto><codigo>2</codigo><codigoPorcentaje>4</codigoPorcentaje><tarifa>15.00</tarifa><baseImponible>85.06</baseImponible><valor>12.76</valor></impuesto></impuestos></detalle><detalle><codigoPrincipal>DXN10051</codigoPrincipal><codigoAuxiliar>2.3985</codigoAuxiliar><descripcion>CANALETA DEXSON 20X12 BLANCO CON ADHESIVO</descripcion><cantidad>10.00</cantidad><precioUnitario>3.6900</precioUnitario><descuento>12.92</descuento><precioTotalSinImpuesto>23.99</precioTotalSinImpuesto><detallesAdicionales><detAdicional nombre="Linea" valor="--"></detAdicional></detallesAdicionales><impuestos><impuesto><codigo>2</codigo><codigoPorcentaje>4</codigoPorcentaje><tarifa>15.00</tarifa><baseImponible>23.99</baseImponible><valor>3.60</valor></impuesto></impuestos></detalle><detalle><codigoPrincipal>CFPE2IW</codigoPrincipal><codigoAuxiliar>1.5912</codigoAuxiliar><descripcion>FACE PLATE 2 POSICIONES BLANCO</descripcion><cantidad>10.00</cantidad><precioUnitario>2.0400</precioUnitario><descuento>4.49</descuento><precioTotalSinImpuesto>15.91</precioTotalSinImpuesto><detallesAdicionales><detAdicional nombre="Linea" valor="--"></detAdicional></detallesAdicionales><impuestos><impuesto><codigo>2</codigo><codigoPorcentaje>4</codigoPorcentaje><tarifa>15.00</tarifa><baseImponible>15.91</baseImponible><valor>2.39</valor></impuesto></impuestos></detalle><detalle><codigoPrincipal>CJ688TGIW</codigoPrincipal><codigoAuxiliar>4.983</codigoAuxiliar><descripcion>JACK CAT. 6 MINICOM BLANCO</descripcion><cantidad>20.00</cantidad><precioUnitario>6.6000</precioUnitario><descuento>32.34</descuento><precioTotalSinImpuesto>99.66</precioTotalSinImpuesto><detallesAdicionales><detAdicional nombre="Linea" valor="--"></detAdicional></detallesAdicionales><impuestos><impuesto><codigo>2</codigo><codigoPorcentaje>4</codigoPorcentaje><tarifa>15.00</tarifa><baseImponible>99.66</baseImponible><valor>14.95</valor></impuesto></impuestos></detalle></detalles><infoAdicional><campoAdicional nombre="DIRECCION">AVENIDA UNIVERSITARIA S/N Y CALLE INGLATERRA</campoAdicional><campoAdicional nombre="CIUDAD">PORTOVIEJO</campoAdicional><campoAdicional nombre="TELEFONO">098 493 4276</campoAdicional><campoAdicional nombre="CORREO">elhecaco@hotmail.com</campoAdicional><campoAdicional nombre="VENDEDOR">PARRALES IRENE</campoAdicional><campoAdicional nombre="FECHA DE VENCIMIENTO">19/08/2024</campoAdicional><campoAdicional nombre="COMENTARIOS">Basado en Pedidos de cliente 20009846.</campoAdicional><campoAdicional nombre="DÍAS DE CRÉDITO">CL - CONTADO</campoAdicional><campoAdicional nombre="Agente de Retención">RESOLUCIÓN Nro. NAC-DNCRASC20-00000001</campoAdicional></infoAdicional><ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:etsi="http://uri.etsi.org/01903/v1.3.2#" Id="Signature497131">
+<ds:SignedInfo Id="Signature-SignedInfo503973">
+<ds:CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"></ds:CanonicalizationMethod>
+<ds:SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"></ds:SignatureMethod>
+<ds:Reference Id="SignedPropertiesID539596" Type="http://uri.etsi.org/01903#SignedProperties" URI="#Signature497131-SignedProperties415427">
+<ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"></ds:DigestMethod>
+<ds:DigestValue>SimcARDQV1o1lGaBIKA4D3fApRQ=</ds:DigestValue>
+</ds:Reference>
+<ds:Reference URI="#Certificate1341191">
+<ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"></ds:DigestMethod>
+<ds:DigestValue>PZS2YMIECkTTBn6DUQzCV1bZh4U=</ds:DigestValue>
+</ds:Reference>
+<ds:Reference Id="Reference-ID-706478" URI="#comprobante">
+<ds:Transforms>
+<ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"></ds:Transform>
+</ds:Transforms>
+<ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"></ds:DigestMethod>
+<ds:DigestValue>cbhAxlcmdwfwORHCEVtPfulmuQI=</ds:DigestValue>
+</ds:Reference>
+</ds:SignedInfo>
+<ds:SignatureValue Id="SignatureValue20252">
+UPEJKP97EG0UtHB2oMLMAlkZx3zZ+f8H443BcDIisOkNuKon/ice5KfnsDWsGJo25JMUJRtOUlRC
+3cL8e3L+oJZN5tbMAE6k5OsyffJ+kC38W0EDs0apRDy5VEBThOhDEywEn45ftA6xH+7UO7+Yafx7
+xkI4T9WMFPH4j4b352+tIGaZ7C0IS/3X5m6QCPL0ZtPR5gYDcwm0Z6ZsUP+PpQq3VWVAhmNLbsJe
+AQaOiuPIBk8j5eWfOk8v6KVYbTiiAJLC6qEW6L0TwXRUeEtUqkCGTMldCttFzS4MdYotmpW9+oGh
+Qj4U0apysFHEq9ZJ7LLVk+tBcWNdPKPoReTh4g==
+</ds:SignatureValue>
+<ds:KeyInfo Id="Certificate1341191">
+<ds:X509Data>
+<ds:X509Certificate>
+MIIJ1TCCCL2gAwIBAgIEXc2k2DANBgkqhkiG9w0BAQsFADCBkzELMAkGA1UEBhMCRUMxGzAZBgNV
+BAoTElNFQ1VSSVRZIERBVEEgUy5BLjEwMC4GA1UECxMnRU5USURBRCBERSBDRVJUSUZJQ0FDSU9O
+IERFIElORk9STUFDSU9OMTUwMwYDVQQDEyxBVVRPUklEQUQgREUgQ0VSVElGSUNBQ0lPTiBTVUIg
+U0VDVVJJVFkgREFUQTAeFw0yMDA2MTgxMzQxMjFaFw0yNTA2MTgxNDExMjFaMIGbMQswCQYDVQQG
+EwJFQzEbMBkGA1UEChMSU0VDVVJJVFkgREFUQSBTLkEuMTAwLgYDVQQLEydFTlRJREFEIERFIENF
+UlRJRklDQUNJT04gREUgSU5GT1JNQUNJT04xPTATBgNVBAUTDDE4MDYyMDA5MDUxOTAmBgNVBAMT
+H01BUkNFTE8gUEFUUklDSU8gQk9OSUxMQSBKQUNPTUUwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAw
+ggEKAoIBAQDkajtTy7Efw0za2W9nZVxl827UC0s05V1Z9EES8TIfwitRhevTE/NzMM1+cSqw8xNp
+zdymyAJuHNr9y1wu5nzy8IRZUEt2Krqwq8fWz6qrx77w4+0bzJdcV7DZwTM0gMMD/HKiaWAX43Ef
+l3XIPsApVFCDyIy6mTPTRHKWBk1CM9BBABteaaVReRNxSC91ru8qaaJlCbOjIAF165CpZaL8WatA
+cyJ4vxeAKvKU7KY9pEmfTgMGzhmq6BuVrJoYFu88/T0uIo3ZHYpz7T7c81hsQMM/fysZe3bs1/3u
+M4P8PIUF6GhMAyoZizNJLd7qjMbh4MaRoWgwZR3bsXUK0Yz/AgMBAAGjggYlMIIGITALBgNVHQ8E
+BAMCBeAwWQYIKwYBBQUHAQEETTBLMEkGCCsGAQUFBzABhj1odHRwOi8vb2NzcGd3LnNlY3VyaXR5
+ZGF0YS5uZXQuZWMvZWpiY2EvcHVibGljd2ViL3N0YXR1cy9vY3NwMIHMBgNVHSAEgcQwgcEwQAYK
+KwYBBAGCpnICCTAyMDAGCCsGAQUFBwICMCQaIkNlcnRpZmljYWRvIGRlIFJlcHJlc2VudGFudGUg
+TGVnYWwwfQYKKwYBBAGCpnICAzBvMG0GCCsGAQUFBwIBFmFodHRwczovL3d3dy5zZWN1cml0eWRh
+dGEubmV0LmVjL2xleWVzX25vcm1hdGl2YXMvUG9saXRpY2FzIGRlIENlcnRpZmljYWRvIFJlcHJl
+c2VudGFudGUgTGVnYWwucGRmMD0GCisGAQQBgqZyAwoELxMtQ0FCTEVBRE9TIFBBUkEgQ09NVU5J
+Q0FDSU9ORVMgQ0FCTEVDT01TQSBTLkEuMB0GCisGAQQBgqZyAwsEDxMNMTc5MTMwODQxNzAwMTAa
+BgorBgEEAYKmcgMBBAwTCjE3MDQzNjM4ODQwIAYKKwYBBAGCpnIDAgQSExBNQVJDRUxPIFBBVFJJ
+Q0lPMBcGCisGAQQBgqZyAwMECRMHQk9OSUxMQTAWBgorBgEEAYKmcgMEBAgTBkpBQ09NRTAfBgor
+BgEEAYKmcgMFBBETD0dFUkVOVEUgR0VORVJBTDA2BgorBgEEAYKmcgMHBCgTJkRFIExPUyBBUlVQ
+T1MgRTEtNjYgWSBHQUxPIFBMQVpBIExBU1NPMBsGCisGAQQBgqZyAwgEDRMLNTkzMjM4MTQzMTAw
+FQYKKwYBBAGCpnIDCQQHEwVRVUlUTzAXBgorBgEEAYKmcgMMBAkTB0VDVUFET1IwHwYKKwYBBAGC
+pnIDIAQREw8wMDIwMDEwMDAwNTMzNTIwHQYKKwYBBAGCpnIDIQQPEw1TRUNEQVRLNDY1OTdIMCMG
+A1UdEQQcMBqBGG1ib25pbGxhQGNhYmxlY29tLmNvbS5lYzCCAnsGA1UdHwSCAnIwggJuMIICaqCC
+AmagggJihj1odHRwOi8vb2NzcGd3LnNlY3VyaXR5ZGF0YS5uZXQuZWMvZWpiY2EvcHVibGljd2Vi
+L3N0YXR1cy9vY3NwhoHVbGRhcDovL2RpcmVjdC5zZWN1cml0eWRhdGEubmV0LmVjL2NuPUNSTDcy
+NSxjbj1BVVRPUklEQUQlMjBERSUyMENFUlRJRklDQUNJT04lMjBTVUIlMjBTRUNVUklUWSUyMERB
+VEEsb3U9RU5USURBRCUyMERFJTIwQ0VSVElGSUNBQ0lPTiUyMERFJTIwSU5GT1JNQUNJT04sbz1T
+RUNVUklUWSUyMERBVEElMjBTLkEuLGM9RUM/Y2VydGlmaWNhdGVSZXZvY2F0aW9uTGlzdD9iYXNl
+hoGeaHR0cHM6Ly9kaXJlY3Quc2VjdXJpdHlkYXRhLm5ldC5lYy9+Y3JsL2F1dG9yaWRhZF9kZV9j
+ZXJ0aWZpY2FjaW9uX3N1Yl9zZWN1cml0eV9kYXRhX2VudGlkYWRfZGVfY2VydGlmaWNhY2lvbl9k
+ZV9pbmZvcm1hY2lvbl9jdXJpdHlfZGF0YV9zLmEuX2NfZWNfY3JsZmlsZS5jcmykgacwgaQxCzAJ
+BgNVBAYTAkVDMRswGQYDVQQKExJTRUNVUklUWSBEQVRBIFMuQS4xMDAuBgNVBAsTJ0VOVElEQUQg
+REUgQ0VSVElGSUNBQ0lPTiBERSBJTkZPUk1BQ0lPTjE1MDMGA1UEAxMsQVVUT1JJREFEIERFIENF
+UlRJRklDQUNJT04gU1VCIFNFQ1VSSVRZIERBVEExDzANBgNVBAMTBkNSTDcyNTArBgNVHRAEJDAi
+gA8yMDIwMDYxODEzNDEyMVqBDzIwMjUwNjE4MTQxMTIxWjAfBgNVHSMEGDAWgBT3L0zgdedio3iW
+Wwa2LnE7zGw/kDAdBgNVHQ4EFgQUsK9lJMf/+T46UoAlRhmBD3/TmtkwCQYDVR0TBAIwADAZBgkq
+hkiG9n0HQQAEDDAKGwRWOC4xAwIDqDANBgkqhkiG9w0BAQsFAAOCAQEAXf8YPQFFXibyjkUJeCUc
+QFI5d+WfM5BBdLn504JO+JDpjJeYFOwIF0/C6FE9q11BOskiEZtbFJbopORKeUc/6wY1EftC40QL
+QPtO0Yls9GTDkq8wSEgWn3A1rN2oW7qyhXZIKs8MWaaGFBOz8eZC+9ZY+nFr+ytmOXxmka72NgyD
+HzpdF4f63KoI9ArUIwsD122AfuJVPFjhfGVYkOPiy/bN8QntnRDRD4/rcTmlHHS3UsnZZmJ+Gdqw
+hrroVKf3ZnNWuLRSOJx5LQZKlebFMa81/f5JAbpmUGoVyQqiB0OJgplA4Co5KDWFDONir2EHDLSz
+wJ0Mv00Y3d5kX7A3cA==
+</ds:X509Certificate>
+</ds:X509Data>
+<ds:KeyValue>
+<ds:RSAKeyValue>
+<ds:Modulus>
+5Go7U8uxH8NM2tlvZ2VcZfNu1AtLNOVdWfRBEvEyH8IrUYXr0xPzczDNfnEqsPMTac3cpsgCbhza
+/ctcLuZ88vCEWVBLdiq6sKvH1s+qq8e+8OPtG8yXXFew2cEzNIDDA/xyomlgF+NxH5d1yD7AKVRQ
+g8iMupkz00RylgZNQjPQQQAbXmmlUXkTcUgvda7vKmmiZQmzoyABdeuQqWWi/FmrQHMieL8XgCry
+lOymPaRJn04DBs4ZqugblayaGBbvPP09LiKN2R2Kc+0+3PNYbEDDP38rGXt27Nf97jOD/DyFBeho
+TAMqGYszSS3e6ozG4eDGkaFoMGUd27F1CtGM/w==
+</ds:Modulus>
+<ds:Exponent>AQAB</ds:Exponent>
+</ds:RSAKeyValue>
+</ds:KeyValue>
+</ds:KeyInfo>
+<ds:Object Id="Signature497131-Object85261"><etsi:QualifyingProperties Target="#Signature497131"><etsi:SignedProperties Id="Signature497131-SignedProperties415427"><etsi:SignedSignatureProperties><etsi:SigningTime>2024-08-19T15:37:51-05:00</etsi:SigningTime><etsi:SigningCertificate><etsi:Cert><etsi:CertDigest><ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"></ds:DigestMethod><ds:DigestValue>Tid809XTrJEsPdUPt8xYKLE3BjE=</ds:DigestValue></etsi:CertDigest><etsi:IssuerSerial><ds:X509IssuerName>CN=AUTORIDAD DE CERTIFICACION SUB SECURITY DATA,OU=ENTIDAD DE CERTIFICACION DE INFORMACION,O=SECURITY DATA S.A.,C=EC</ds:X509IssuerName><ds:X509SerialNumber>1573758168</ds:X509SerialNumber></etsi:IssuerSerial></etsi:Cert></etsi:SigningCertificate></etsi:SignedSignatureProperties><etsi:SignedDataObjectProperties><etsi:DataObjectFormat ObjectReference="#Reference-ID-706478"><etsi:Description>Descripcion del documento</etsi:Description><etsi:MimeType>text/xml</etsi:MimeType></etsi:DataObjectFormat></etsi:SignedDataObjectProperties></etsi:SignedProperties></etsi:QualifyingProperties></ds:Object></ds:Signature></factura>

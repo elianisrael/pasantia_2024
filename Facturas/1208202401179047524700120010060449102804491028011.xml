@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><factura id="comprobante" version="1.1.0">
+  <infoTributaria>
+    <ambiente>2</ambiente>
+    <tipoEmision>1</tipoEmision>
+    <razonSocial>AIG METROPOLITANA CIA. DE SEGUROS Y REASEGUROS S.A.</razonSocial>
+    <nombreComercial>AIG Metropolitana</nombreComercial>
+    <ruc>1790475247001</ruc>
+    <claveAcceso>1208202401179047524700120010060449102804491028011</claveAcceso>
+    <codDoc>01</codDoc>
+    <estab>001</estab>
+    <ptoEmi>006</ptoEmi>
+    <secuencial>044910280</secuencial>
+    <dirMatriz>QUITO BRASIL 293 Y ANTONIO GRANDA CENTENO</dirMatriz>
+  </infoTributaria>
+  <infoFactura>
+    <fechaEmision>12/08/2024</fechaEmision>
+    <dirEstablecimiento>GUAYAQUIL:Parque Empresarial Colon Edif. Corp II 2piso Of.203 CUENCA:ROBERTO CRESPO TORAL 2-46 Y MIGUEL CORDERO ESQUINA EDIFICIO LAS ACACIAS</dirEstablecimiento>
+    <contribuyenteEspecial>5368</contribuyenteEspecial>
+    <obligadoContabilidad>SI</obligadoContabilidad>
+    <tipoIdentificacionComprador>05</tipoIdentificacionComprador>
+    <razonSocialComprador>CARDENAS COLCHA ELVIS HERNAN</razonSocialComprador>
+    <identificacionComprador>1310839541</identificacionComprador>
+    <totalSinImpuestos>2.98</totalSinImpuestos>
+    <totalDescuento>0.00</totalDescuento>
+    <totalConImpuestos>
+      <totalImpuesto>
+        <codigo>2</codigo>
+        <codigoPorcentaje>0</codigoPorcentaje>
+        <baseImponible>2.98</baseImponible>
+        <tarifa>0</tarifa>
+        <valor>0.00</valor>
+      </totalImpuesto>
+    </totalConImpuestos>
+    <propina>0.00</propina>
+    <importeTotal>2.98</importeTotal>
+    <moneda>DOLAR</moneda>
+    <pagos>
+      <pago>
+        <formaPago>20</formaPago>
+        <total>2.98</total>
+        <plazo>15</plazo>
+        <unidadTiempo>DIAS</unidadTiempo>
+      </pago>
+    </pagos>
+  </infoFactura>
+  <detalles>
+    <detalle>
+      <codigoPrincipal>1203321</codigoPrincipal>
+      <codigoAuxiliar>71463</codigoAuxiliar>
+      <descripcion>50308 - PLAN DEUDA PROTEGIDA</descripcion>
+      <cantidad>1.00</cantidad>
+      <precioUnitario>2.87</precioUnitario>
+      <descuento>0.00</descuento>
+      <precioTotalSinImpuesto>2.87</precioTotalSinImpuesto>
+      <detallesAdicionales>
+        <detAdicional nombre="Sucursal" valor="QUITO"/>
+        <detAdicional nombre="Ramo" valor="VIDA COLECTIVO"/>
+        <detAdicional nombre="NroPoliza" valor="50308"/>
+      </detallesAdicionales>
+      <impuestos>
+        <impuesto>
+          <codigo>2</codigo>
+          <codigoPorcentaje>0</codigoPorcentaje>
+          <tarifa>0</tarifa>
+          <baseImponible>2.87</baseImponible>
+          <valor>0.00</valor>
+        </impuesto>
+      </impuestos>
+    </detalle>
+    <detalle>
+      <codigoPrincipal>1</codigoPrincipal>
+      <codigoAuxiliar>0</codigoAuxiliar>
+      <descripcion>SUPER DE BANCOS</descripcion>
+      <cantidad>1.00</cantidad>
+      <precioUnitario>0.10</precioUnitario>
+      <descuento>0.00</descuento>
+      <precioTotalSinImpuesto>0.10</precioTotalSinImpuesto>
+      <impuestos>
+        <impuesto>
+          <codigo>2</codigo>
+          <codigoPorcentaje>0</codigoPorcentaje>
+          <tarifa>0</tarifa>
+          <baseImponible>0.10</baseImponible>
+          <valor>0.00</valor>
+        </impuesto>
+      </impuestos>
+    </detalle>
+    <detalle>
+      <codigoPrincipal>2</codigoPrincipal>
+      <codigoAuxiliar>0</codigoAuxiliar>
+      <descripcion>SEGURO CAMPESINO</descripcion>
+      <cantidad>1.00</cantidad>
+      <precioUnitario>0.01</precioUnitario>
+      <descuento>0.00</descuento>
+      <precioTotalSinImpuesto>0.01</precioTotalSinImpuesto>
+      <impuestos>
+        <impuesto>
+          <codigo>2</codigo>
+          <codigoPorcentaje>0</codigoPorcentaje>
+          <tarifa>0</tarifa>
+          <baseImponible>0.01</baseImponible>
+          <valor>0.00</valor>
+        </impuesto>
+      </impuestos>
+    </detalle>
+  </detalles>
+  <infoAdicional>
+    <campoAdicional nombre="CodInternoSAP">48552676</campoAdicional>
+    <campoAdicional nombre="CodSociedad">1078</campoAdicional>
+    <campoAdicional nombre="DetInfoAdic">VIDA COLECTIVO</campoAdicional>
+    <campoAdicional nombre="DetInfoAdic1">Suma Asegurada: 25000.00</campoAdicional>
+    <campoAdicional nombre="DetInfoAdic2">Vigencia: 2024.07.01 AL 2024.07.31</campoAdicional>
+    <campoAdicional nombre="Gran Contribuyente">Resolución NAC-GCFOIOC21-00001097-E</campoAdicional>
+  </infoAdicional>
+<ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:etsi="http://uri.etsi.org/01903/v1.3.2#" Id="Signature404125">
+<ds:SignedInfo Id="Signature-SignedInfo900335">
+<ds:CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/>
+<ds:SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/>
+<ds:Reference Id="SignedPropertiesID646570" Type="http://uri.etsi.org/01903#SignedProperties" URI="#Signature404125-SignedProperties841434">
+<ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
+<ds:DigestValue>ur24UzMPBXrwCy9qSa+crpX9md8=</ds:DigestValue>
+</ds:Reference>
+<ds:Reference URI="#Certificate1291644">
+<ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
+<ds:DigestValue>hA+mreY3ZhTFqrNlHisdvkAaQ5U=</ds:DigestValue>
+</ds:Reference>
+<ds:Reference Id="Reference-ID-179249" URI="#comprobante">
+<ds:Transforms>
+<ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/>
+</ds:Transforms>
+<ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
+<ds:DigestValue>l6VQhRDKx9xoe/LmIXeWJc2dEqo=</ds:DigestValue>
+</ds:Reference>
+</ds:SignedInfo>
+<ds:SignatureValue Id="SignatureValue980429">
+c8iOQY2JYJDV8rNBS2mA+lTtYtmQiEP34ab5/+/2xVac+qmvJ/A03k6z77CajPbk9aBWwaFvL9Gz
+nTuA3SLGIxpRpZZaX8yxA+tfwyeRZePnxM/QCV+B0aEdPDn9tCrmGmFcEGjfvgRBF0L/02CONyYF
+L1X4hWX4jy+ddJGdDv21hzh+TYsPrNRTfWwwn1g+F3EeIAAk2k8cUJa9nZGUw5IuevC495qVAbtn
+MgFLkvm4p+crSJeCnzugMTOdhU1ZnvNDjr56SU/caUu7vcl7uTOeJyywhJ/NkVSjuhKAyJk81bG4
+L55vD2mFSwJMX6IvcNSAkvpZcCVsRCu6BuZuMg==
+</ds:SignatureValue>
+<ds:KeyInfo Id="Certificate1291644">
+<ds:X509Data>
+<ds:X509Certificate>
+MIIMJTCCCg2gAwIBAgIEK/ZXqzANBgkqhkiG9w0BAQsFADCBmTELMAkGA1UEBhMCRUMxHTAbBgNV
+BAoMFFNFQ1VSSVRZIERBVEEgUy5BLiAyMTAwLgYDVQQLDCdFTlRJREFEIERFIENFUlRJRklDQUNJ
+T04gREUgSU5GT1JNQUNJT04xOTA3BgNVBAMMMEFVVE9SSURBRCBERSBDRVJUSUZJQ0FDSU9OIFNV
+QkNBLTIgU0VDVVJJVFkgREFUQTAeFw0yMzA0MjAxNDI0NTZaFw0yNTA0MTkxNDI0NTZaMIGbMSQw
+IgYDVQQDDBtKVUFOIFRPTUFTIERVUkFOT05BIFkgVkVESUExFTATBgNVBAUTDDIwMDQyMzA5MzQy
+OTEwMC4GA1UECwwnRU5USURBRCBERSBDRVJUSUZJQ0FDSU9OIERFIElORk9STUFDSU9OMR0wGwYD
+VQQKDBRTRUNVUklUWSBEQVRBIFMuQS4gMjELMAkGA1UEBhMCRUMwggEiMA0GCSqGSIb3DQEBAQUA
+A4IBDwAwggEKAoIBAQDL5tkUdARhdRIKShp4oxuBS2ZeATYTtX3s8SgXImehhRxGcXa8LDt8tEKa
+BF74PV4Fjw4LX1dxDYYHaQW1nVC0ndAakBI0llHpW133c/MyC0+a3+11DVgJXyieLIm9b9UPjzSI
+awRGbx/+iImOBcT9Y1bGfoEAwXZpFb6ltlrNk+Vqzko9aoZleO8dafG9S5Tf79yK18F+vwdOV1vN
+j+hIM66CgizEpZAkpTSFOsItZTwTVvboqYkgveBnAQMQH/J1TWbKhQFCzTQfmXv39mgyBQDVGBnV
+D7TRkQSPilDXFzaLol39pPMNOBXiP21WKMIPRVW8AHd8J4qg25p7q9KlAgMBAAGjggdvMIIHazAM
+BgNVHRMBAf8EAjAAMB8GA1UdIwQYMBaAFIy6yhFXeCWAHWsKS1W/ja5i3b2PMFkGCCsGAQUFBwEB
+BE0wSzBJBggrBgEFBQcwAYY9aHR0cDovL29jc3Bndy5zZWN1cml0eWRhdGEubmV0LmVjL2VqYmNh
+L3B1YmxpY3dlYi9zdGF0dXMvb2NzcDCBzwYDVR0uBIHHMIHEMIHBoIG+oIG7hoG4bGRhcDovL2xk
+YXBzZGNhMi5zZWN1cml0eWRhdGEubmV0LmVjL0NOPUFVVE9SSURBRCBERSBDRVJUSUZJQ0FDSU9O
+IFNVQkNBLTIgU0VDVVJJVFkgREFUQSxPVT1FTlRJREFEIERFIENFUlRJRklDQUNJT04gREUgSU5G
+T1JNQUNJT04sTz1TRUNVUklUWSBEQVRBIFMuQS4gMixDPUVDP2RlbHRhUmV2b2NhdGlvbkxpc3Q/
+YmFzZTAfBgNVHREEGDAWgRRhbmEuaXJpZ295ZW5AYWlnLmNvbTCCARUGA1UdIASCAQwwggEIMGIG
+CisGAQQBgqZyAgkwVDBSBggrBgEFBQcCAjBGHkQAQwBlAHIAdABpAGYAaQBjAGEAZABvACAAZABl
+ACAAUgBlAHAAcgBlAHMAZQBuAHQAYQBuAHQAZQAgAEwAZQBnAGEAbDCBoQYKKwYBBAGCpnICAzCB
+kjCBjwYIKwYBBQUHAgEWgYJodHRwczovL3d3dy5zZWN1cml0eWRhdGEubmV0LmVjL3dwLWNvbnRl
+bnQvZG93bmxvYWRzL05vcm1hdGl2YXMvUF9kZV9DZXJ0aWZpY2Fkb3MvUG9saXRpY2FzIGRlIENl
+cnRpZmljYWRvIFJlcHJlc2VudGFudGUgTGVnYWwucGRmMIICogYDVR0fBIICmTCCApUwgeWgQaA/
+hj1odHRwOi8vb2NzcGd3LnNlY3VyaXR5ZGF0YS5uZXQuZWMvZWpiY2EvcHVibGljd2ViL3N0YXR1
+cy9vY3NwooGfpIGcMIGZMTkwNwYDVQQDDDBBVVRPUklEQUQgREUgQ0VSVElGSUNBQ0lPTiBTVUJD
+QS0yIFNFQ1VSSVRZIERBVEExMDAuBgNVBAsMJ0VOVElEQUQgREUgQ0VSVElGSUNBQ0lPTiBERSBJ
+TkZPUk1BQ0lPTjEdMBsGA1UECgwUU0VDVVJJVFkgREFUQSBTLkEuIDIxCzAJBgNVBAYTAkVDMIHH
+oIHEoIHBhoG+bGRhcDovL2xkYXBzZGNhMi5zZWN1cml0eWRhdGEubmV0LmVjL0NOPUFVVE9SSURB
+RCBERSBDRVJUSUZJQ0FDSU9OIFNVQkNBLTIgU0VDVVJJVFkgREFUQSxPVT1FTlRJREFEIERFIENF
+UlRJRklDQUNJT04gREUgSU5GT1JNQUNJT04sTz1TRUNVUklUWSBEQVRBIFMuQS4gMixDPUVDP2Nl
+cnRpZmljYXRlUmV2b2NhdGlvbkxpc3Q/YmFzZTCB4KCB3aCB2oaB12h0dHBzOi8vcG9ydGFsLW9w
+ZXJhZG9yMi5zZWN1cml0eWRhdGEubmV0LmVjL2VqYmNhL3B1YmxpY3dlYi93ZWJkaXN0L2NlcnRk
+aXN0P2NtZD1jcmwmaXNzdWVyPUNOPUFVVE9SSURBRCBERSBDRVJUSUZJQ0FDSU9OIFNVQkNBLTIg
+U0VDVVJJVFkgREFUQSxPVT1FTlRJREFEIERFIENFUlRJRklDQUNJT04gREUgSU5GT1JNQUNJT04s
+Tz1TRUNVUklUWSBEQVRBIFMuQS4gMixDPUVDMB0GA1UdDgQWBBSnki8vTHak21w3Az1PDDJZDvsI
+NzArBgNVHRAEJDAigA8yMDIzMDQyMDE0MjQ1NlqBDzIwMjUwNDE5MTQyNDU2WjALBgNVHQ8EBAMC
+BeAwJAYKKwYBBAGCpnIDBQQWDBRQUkVTSURFTlRFIEVKRUNVVElWTzAaBgorBgEEAYKmcgMBBAwM
+CjE3NjE2MTgzNDUwFQYKKwYBBAGCpnIDCQQHDAVRVUlUTzARBgorBgEEAYKmcgMiBAMMAS4wNgYK
+KwYBBAGCpnIDBwQoDCZBViBCUkFTSUwgMjkzIFkgQU5UT05JTyBHUkFOREEgQ0VOVEVOTzAaBgor
+BgEEAYKmcgMCBAwMCkpVQU4gVE9NQVMwHwYKKwYBBAGCpnIDIAQRDA8wMDAwMDAwMDAwMDAwMDAw
+EwYKKwYBBAGCpnIDIQQFDANQRlgwFwYKKwYBBAGCpnIDDAQJDAdFQ1VBRE9SMBgGCisGAQQBgqZy
+AwMECgwIRFVSQU5PTkEwQwYKKwYBBAGCpnIDCgQ1DDNBSUcgTUVUUk9QT0xJVEFOQSBDSUEuIERF
+IFNFR1VST1MgWSBSRUFTRUdVUk9TIFMuQS4wHQYKKwYBBAGCpnIDCwQPDA0xNzkwNDc1MjQ3MDAx
+MBIGCisGAQQBgqZyAx0EBAwCTm8wFwYKKwYBBAGCpnIDBAQJDAdZIFZFRElBMBoGCisGAQQBgqZy
+AwgEDAwKMDk5OTk5OTk5OTANBgkqhkiG9w0BAQsFAAOCAgEAm28em7YJRlvFTFBrGQqWDO1/i7S4
+K9SIvDE0V/iAILswASLnrPao9x5M1gXXbduU0oGqDKJNe2GNed2Ax9OkYcsmbvi6z7aQ2hcZN19p
+0KWYfBs1xRSzwJa4OBNMh+7k2tOw3DqYZn56njhsbopPKm8Drnz3gnBazkw8ipsikd8t10EG3zY5
+MjnxbObYTDK2Zh/rmBIGo/dt8mZlPs+8DXLAsDA3rXZWRnqC177dSe6kRyGEsajFuYuZxVJuT1ID
+E04fI5pVAuCCfLVfzxs2rXbITa4ICjXM4GMjoLXHbKqgDczU/rgBo2yGTliL01AgGo6QPtPHnm8I
+8vktLvejsKY3EUCvO2HDBh2y3Uo36qSjCyyWv98//ZUl28fsRazD929FQX5YgYDHTsu+zjhIpsco
+4t7lw9Pa8nd3jiKU0nBYjQUHK21lGeYHQzuEMrOILP1mUV1+6Fa5Jg+OjhnPxyOH0AsI2ExgTERR
+Y/zTOH6zs7DmRePmkgxYMAhTfVDSzQySDSMuX0P91UnwovsfrMPpCV5CZXWfNf5Nsi0q01V2Xy4s
+3su5WHPDYjXCldewOur31y1T5yFk5YwbkBFHbdEmY5FJC9WSnQRvjCbZC757e69oX9OAM1gllPL7
+wbIWFTOO2ladc8L70eARnOTUfkEOsck5uQ4JBKs94ORy7f0=
+</ds:X509Certificate>
+</ds:X509Data>
+<ds:KeyValue>
+<ds:RSAKeyValue>
+<ds:Modulus>
+y+bZFHQEYXUSCkoaeKMbgUtmXgE2E7V97PEoFyJnoYUcRnF2vCw7fLRCmgRe+D1eBY8OC19XcQ2G
+B2kFtZ1QtJ3QGpASNJZR6Vtd93PzMgtPmt/tdQ1YCV8oniyJvW/VD480iGsERm8f/oiJjgXE/WNW
+xn6BAMF2aRW+pbZazZPlas5KPWqGZXjvHWnxvUuU3+/citfBfr8HTldbzY/oSDOugoIsxKWQJKU0
+hTrCLWU8E1b26KmJIL3gZwEDEB/ydU1myoUBQs00H5l79/ZoMgUA1RgZ1Q+00ZEEj4pQ1xc2i6Jd
+/aTzDTgV4j9tVijCD0VVvAB3fCeKoNuae6vSpQ==
+</ds:Modulus>
+<ds:Exponent>AQAB</ds:Exponent>
+</ds:RSAKeyValue>
+</ds:KeyValue>
+</ds:KeyInfo>
+<ds:Object Id="Signature404125-Object978708"><etsi:QualifyingProperties Target="#Signature404125"><etsi:SignedProperties Id="Signature404125-SignedProperties841434"><etsi:SignedSignatureProperties><etsi:SigningTime>2024-08-13T06:11:23-05:00</etsi:SigningTime><etsi:SigningCertificate><etsi:Cert><etsi:CertDigest><ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/><ds:DigestValue>emF3aB4zHoSxG8SkCGLWWNrvAls=</ds:DigestValue></etsi:CertDigest><etsi:IssuerSerial><ds:X509IssuerName>CN=AUTORIDAD DE CERTIFICACION SUBCA-2 SECURITY DATA,OU=ENTIDAD DE CERTIFICACION DE INFORMACION,O=SECURITY DATA S.A. 2,C=EC</ds:X509IssuerName><ds:X509SerialNumber>737564587</ds:X509SerialNumber></etsi:IssuerSerial></etsi:Cert></etsi:SigningCertificate></etsi:SignedSignatureProperties><etsi:SignedDataObjectProperties><etsi:DataObjectFormat ObjectReference="#Reference-ID-179249"><etsi:Description>comprobante</etsi:Description><etsi:MimeType>text/xml</etsi:MimeType></etsi:DataObjectFormat></etsi:SignedDataObjectProperties></etsi:SignedProperties></etsi:QualifyingProperties></ds:Object></ds:Signature></factura>

@@ -48,50 +48,14 @@
                     <div id="clientes-list" class="checkbox-container hidden">
                         {% for cliente in clientes_unicos %}
                         <div class="checkbox-item" data-cliente="{{ cliente }}">
+                            <input type="checkbox" name="clientes[]" value="{{ cliente }}" class="hidden-checkbox"
+                                {% if cliente in clientes_filtro %}checked{% endif %}>
                             <label>{{ cliente }}</label>
                         </div>
                         {% endfor %}
                     </div>
                 </div>
                 
-                
-                <script>
-                    // Alternar visibilidad de la lista de clientes al hacer clic en el texto
-                    document.getElementById('selected-client').addEventListener('click', function(event) {
-                        const clientesList = document.getElementById('clientes-list');
-                        clientesList.classList.toggle('show');
-                        event.stopPropagation(); // Evita que el clic se propague y cierre el desplegable
-                    });
-                
-                    // Manejar la selección de clientes al hacer clic en el nombre
-                    document.querySelectorAll('.checkbox-item').forEach(item => {
-                        item.addEventListener('click', function(event) {
-                            this.classList.toggle('selected'); // Alternar la clase 'selected'
-                
-                            // Actualizar la lista de clientes seleccionados
-                            const selectedClients = Array.from(document.querySelectorAll('.checkbox-item.selected'))
-                                .map(item => item.dataset.cliente);
-                            document.getElementById('selected-client').textContent = selectedClients.length ? selectedClients.join(', ') : 'Selecciona clientes';
-                            event.stopPropagation(); // Evita que el clic se propague y cierre el desplegable
-                        });
-                    });
-                
-                    // Evitar que la lista de clientes se cierre al hacer clic en un elemento dentro de la lista
-                    document.getElementById('clientes-list').addEventListener('click', function(event) {
-                        event.stopPropagation();
-                    });
-                
-                    // Cerrar la lista cuando se hace clic fuera de ella
-                    document.addEventListener('click', function(event) {
-                        const clientesList = document.getElementById('clientes-list');
-                        if (!event.target.closest('#selected-client') && !clientesList.contains(event.target)) {
-                            clientesList.classList.remove('show');
-                        }
-                    });
-                </script>
-                
-                
-
                 <div class="filter-group">
                     <label for="rango_monto">Rango de Monto:</label>
                     <select id="rango_monto" name="rango_monto">
@@ -165,8 +129,47 @@
                 <canvas id="ivaChart"></canvas>
             </div>
         </div>
+
         
         <script>
+
+                    // Alternar visibilidad de la lista de clientes al hacer clic en el texto
+                    document.getElementById('selected-client').addEventListener('click', function(event) {
+                        const clientesList = document.getElementById('clientes-list');
+                        clientesList.classList.toggle('show');
+                        event.stopPropagation(); // Evita que el clic se propague y cierre el desplegable
+                    });
+                
+                    // Manejar la selección de clientes al hacer clic en el nombre
+                    document.querySelectorAll('.checkbox-item').forEach(item => {
+                    item.addEventListener('click', function(event) {
+                        const checkbox = this.querySelector('input[type="checkbox"]');
+                        checkbox.checked = !checkbox.checked;
+                        this.classList.toggle('selected');
+
+                        // Actualizar la lista de clientes seleccionados
+                        const selectedClients = Array.from(document.querySelectorAll('.checkbox-item.selected'))
+                            .map(item => item.dataset.cliente);
+                        document.getElementById('selected-client').textContent = 
+                            selectedClients.length ? selectedClients.join(', ') : 'Selecciona clientes';
+                        event.stopPropagation();
+                        });
+                    });
+                
+                    // Evitar que la lista de clientes se cierre al hacer clic en un elemento dentro de la lista
+                    document.getElementById('clientes-list').addEventListener('click', function(event) {
+                        event.stopPropagation();
+                    });
+                
+                    // Cerrar la lista cuando se hace clic fuera de ella
+                    document.addEventListener('click', function(event) {
+                        const clientesList = document.getElementById('clientes-list');
+                        if (!event.target.closest('#selected-client') && !clientesList.contains(event.target)) {
+                            clientesList.classList.remove('show');
+                        }
+                    });
+                
+
             // Función para crear y actualizar gráficos
             function createChart(ctx, type, labels, data, label) {
                 return new Chart(ctx, {

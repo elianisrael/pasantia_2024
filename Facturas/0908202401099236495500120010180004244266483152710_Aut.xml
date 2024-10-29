@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<autorizacion>
+<estado>AUTORIZADO</estado>
+<numeroAutorizacion>0908202401099236495500120010180004244266483152710</numeroAutorizacion>
+<fechaAutorizacion>2024-08-09T02:19:48-05:00</fechaAutorizacion>
+<ambiente>PRODUCCIÓN</ambiente>
+<comprobante><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<factura id="comprobante" version="1.1.0">
+  <infoTributaria>
+    <ambiente>2</ambiente>
+    <tipoEmision>1</tipoEmision>
+    <razonSocial>DFECUADOR S.A.</razonSocial>
+    <nombreComercial>DUTY FREE ECUADOR</nombreComercial>
+    <ruc>0992364955001</ruc>
+    <claveAcceso>0908202401099236495500120010180004244266483152710</claveAcceso>
+    <codDoc>01</codDoc>
+    <estab>001</estab>
+    <ptoEmi>018</ptoEmi>
+    <secuencial>000424426</secuencial>
+    <dirMatriz>Av. De las Americas S/N Aeropuerto Jose Joaquin de Olmedo salida internacional pasando los filtros de seguridad</dirMatriz>
+  </infoTributaria>
+  <infoFactura>
+    <fechaEmision>09/08/2024</fechaEmision>
+    <dirEstablecimiento>Av. De las Americas S/N Aeropuerto Jose Joaquin de Olmedo salida internacional pasando los filtros de seguridad</dirEstablecimiento>
+    <contribuyenteEspecial>1305</contribuyenteEspecial>
+    <obligadoContabilidad>SI</obligadoContabilidad>
+    <tipoIdentificacionComprador>06</tipoIdentificacionComprador>
+    <razonSocialComprador>ELVIS HERNAN CARDENAS COLCHA</razonSocialComprador>
+    <identificacionComprador>1310839541</identificacionComprador>
+    <totalSinImpuestos>251.20</totalSinImpuestos>
+    <totalDescuento>81.50</totalDescuento>
+    <totalConImpuestos>
+      <totalImpuesto>
+        <codigo>2</codigo>
+        <codigoPorcentaje>0</codigoPorcentaje>
+        <baseImponible>251.00</baseImponible>
+        <tarifa>0.00</tarifa>
+        <valor>0.00</valor>
+      </totalImpuesto>
+    </totalConImpuestos>
+    <propina>0.00</propina>
+    <importeTotal>251.20</importeTotal>
+    <moneda>DOLAR</moneda>
+    <pagos>
+      <pago>
+        <formaPago>01</formaPago>
+        <total>0.00</total>
+      </pago>
+      <pago>
+        <formaPago>19</formaPago>
+        <total>251.20</total>
+      </pago>
+    </pagos>
+  </infoFactura>
+  <detalles>
+    <detalle>
+      <codigoPrincipal>4390510</codigoPrincipal>
+      <codigoAuxiliar>4390510</codigoAuxiliar>
+      <descripcion>Icebreakers IceCubes Gum Grape</descripcion>
+      <cantidad>1.000000</cantidad>
+      <precioUnitario>7.500000</precioUnitario>
+      <descuento>0.00</descuento>
+      <precioTotalSinImpuesto>7.50</precioTotalSinImpuesto>
+      <impuestos>
+        <impuesto>
+          <codigo>2</codigo>
+          <codigoPorcentaje>0</codigoPorcentaje>
+          <tarifa>0.00</tarifa>
+          <baseImponible>7.50</baseImponible>
+          <valor>0.00</valor>
+        </impuesto>
+      </impuestos>
+    </detalle>
+    <detalle>
+      <codigoPrincipal>6547978</codigoPrincipal>
+      <codigoAuxiliar>6547978</codigoAuxiliar>
+      <descripcion>FUNDA TRANSPARENTES L  21.5X25</descripcion>
+      <cantidad>2.000000</cantidad>
+      <precioUnitario>0.100000</precioUnitario>
+      <descuento>0.00</descuento>
+      <precioTotalSinImpuesto>0.20</precioTotalSinImpuesto>
+      <impuestos>
+        <impuesto>
+          <codigo>2</codigo>
+          <codigoPorcentaje>0</codigoPorcentaje>
+          <tarifa>0.00</tarifa>
+          <baseImponible>0.20</baseImponible>
+          <valor>0.00</valor>
+        </impuesto>
+      </impuestos>
+    </detalle>
+    <detalle>
+      <codigoPrincipal>765017</codigoPrincipal>
+      <codigoAuxiliar>8315676</codigoAuxiliar>
+      <descripcion>Buchanans Masters 40  100cl</descripcion>
+      <cantidad>5.000000</cantidad>
+      <precioUnitario>65.000000</precioUnitario>
+      <descuento>81.50</descuento>
+      <precioTotalSinImpuesto>243.50</precioTotalSinImpuesto>
+      <impuestos>
+        <impuesto>
+          <codigo>2</codigo>
+          <codigoPorcentaje>0</codigoPorcentaje>
+          <tarifa>0.00</tarifa>
+          <baseImponible>243.50</baseImponible>
+          <valor>0.00</valor>
+        </impuesto>
+      </impuestos>
+    </detalle>
+  </detalles>
+  <infoAdicional>
+    <campoAdicional nombre="LEYENDA RESOLUCION SRI">EXPORTADOR HABITUAL DE BIENES</campoAdicional>
+  </infoAdicional>
+<ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:etsi="http://uri.etsi.org/01903/v1.3.2#" Id="Signature149964">
+<ds:SignedInfo Id="Signature-SignedInfo174489">
+<ds:CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"></ds:CanonicalizationMethod>
+<ds:SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"></ds:SignatureMethod>
+<ds:Reference Id="SignedPropertiesID863039" Type="http://uri.etsi.org/01903#SignedProperties" URI="#Signature149964-SignedProperties771707">
+<ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"></ds:DigestMethod>
+<ds:DigestValue>kBrhG5EFZIfJAiW4tY4BH+XUnUg=</ds:DigestValue>
+</ds:Reference>
+<ds:Reference URI="#Certificate1694020">
+<ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"></ds:DigestMethod>
+<ds:DigestValue>HJJwnKf+dcO/X3WDYFdhw/MRVGE=</ds:DigestValue>
+</ds:Reference>
+<ds:Reference Id="Reference-ID-761913" URI="#comprobante">
+<ds:Transforms>
+<ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"></ds:Transform>
+</ds:Transforms>
+<ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"></ds:DigestMethod>
+<ds:DigestValue>2QAbgKY9xMoGHWGMAokjClrOLeY=</ds:DigestValue>
+</ds:Reference>
+</ds:SignedInfo>
+<ds:SignatureValue Id="SignatureValue597377">
+RTn+qzKT9J9YO2z6pqNUdH3JY37UNrWHV1OFX/MEPgXR4hO5PJsN+M/Kf6EGi7Yo7weAyTV/unpY
+L1jSdPVtMiskyEFWY8njzbVzdra0Ps/Qjb8LdV+3B07q72JAqtLyhFYdUCsW+Dyb0akuXPI/p31N
+r3ktzWfK49T6ixPED41gIHpWEfs7zwxF+vAAgkeHX3phuJlHDJfs/Kkguj1OE7AiSWVYIIIj2XIF
+Kdu1jyQDlvbJPjb9pFwD8tyxlbNRm7nUV+Hhw64gqdNhIPme2sq7BwH6YQbju6P7oKs4ha6I9ybt
+nTpe3gccG7mIpGOrlCuyWQEbwwvp/EMUzUKNzg==
+</ds:SignatureValue>
+<ds:KeyInfo Id="Certificate1694020">
+<ds:X509Data>
+<ds:X509Certificate>
+MIIMCzCCCfOgAwIBAgIETOu9xzANBgkqhkiG9w0BAQsFADCBmTELMAkGA1UEBhMCRUMxHTAbBgNV
+BAoMFFNFQ1VSSVRZIERBVEEgUy5BLiAyMTAwLgYDVQQLDCdFTlRJREFEIERFIENFUlRJRklDQUNJ
+T04gREUgSU5GT1JNQUNJT04xOTA3BgNVBAMMMEFVVE9SSURBRCBERSBDRVJUSUZJQ0FDSU9OIFNV
+QkNBLTIgU0VDVVJJVFkgREFUQTAeFw0yNDA0MDQxNDMzNDNaFw0yNjA0MDQxNDMzNDNaMIGsMSow
+KAYDVQQDDCFFU1RFRkFOSUEgSkFaTUlOIERFTEdBRE8gQVJBR1VOREkxIDAeBgNVBAUTFzA5MTkz
+NjcyMTktMDQwNDI0MDk0MzI5MTAwLgYDVQQLDCdFTlRJREFEIERFIENFUlRJRklDQUNJT04gREUg
+SU5GT1JNQUNJT04xHTAbBgNVBAoMFFNFQ1VSSVRZIERBVEEgUy5BLiAyMQswCQYDVQQGEwJFQzCC
+ASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAIkppp9oz8hlFuvNMIe1lGo9GR9Vq3W+nGR4
+LKaG3J/UleFOhcKl7AvJOAxoOnQEOaMKP5eIOoZ9t49AWaOwOwj9a8JiVHToffU4F5Vrt2iGgQir
+8IPhO+z88YUiGfIWy7PC3202Ei0KyVLyJv2Rt0odeeZMswMgvVTitw0Xx9szTeR1ckYBwR5SPi3E
+6arOdHeAK8ZRQp1OM15rOxthyzxfRNe4JwR5ro0DI8sVFS7OdaozBwx7O/cvTAsYBfXAWwO9jIcF
+DY44dgjVrPvd1f03tdkV6IvhYDA+m7eItYkd52v0vJQnN5Ibi/WAY2J8ljxfIo3YfvmGmSpgeuOM
+BokCAwEAAaOCB0QwggdAMAwGA1UdEwEB/wQCMAAwHwYDVR0jBBgwFoAUjLrKEVd4JYAdawpLVb+N
+rmLdvY8wWQYIKwYBBQUHAQEETTBLMEkGCCsGAQUFBzABhj1odHRwOi8vb2NzcGd3LnNlY3VyaXR5
+ZGF0YS5uZXQuZWMvZWpiY2EvcHVibGljd2ViL3N0YXR1cy9vY3NwMIHPBgNVHS4EgccwgcQwgcGg
+gb6ggbuGgbhsZGFwOi8vbGRhcHNkY2EyLnNlY3VyaXR5ZGF0YS5uZXQuZWMvQ049QVVUT1JJREFE
+IERFIENFUlRJRklDQUNJT04gU1VCQ0EtMiBTRUNVUklUWSBEQVRBLE9VPUVOVElEQUQgREUgQ0VS
+VElGSUNBQ0lPTiBERSBJTkZPUk1BQ0lPTixPPVNFQ1VSSVRZIERBVEEgUy5BLiAyLEM9RUM/ZGVs
+dGFSZXZvY2F0aW9uTGlzdD9iYXNlMCkGA1UdEQQiMCCBHmVzdGVmYW5pYS5kZWxnYWRvQGVjLmR1
+ZnJ5LmNvbTCCARIGA1UdIASCAQkwggEFMGAGCisGAQQBgqZyAgowUjBQBggrBgEFBQcCAjBEHkIA
+QwBlAHIAdABpAGYAaQBjAGEAZABvACAAZABlACAATQBpAGUAbQBiAHIAbwAgAGQAZQAgAEUAbQBw
+AHIAZQBzAGEwgaAGCisGAQQBgqZyAgQwgZEwgY4GCCsGAQUFBwIBFoGBaHR0cHM6Ly93d3cuc2Vj
+dXJpdHlkYXRhLm5ldC5lYy93cC1jb250ZW50L2Rvd25sb2Fkcy9Ob3JtYXRpdmFzL1BfZGVfQ2Vy
+dGlmaWNhZG9zL1BvbGl0aWNhcyBkZSBDZXJ0aWZpY2FkbyBNaWVtYnJvIGRlIEVtcHJlc2EucGRm
+MIICogYDVR0fBIICmTCCApUwgeWgQaA/hj1odHRwOi8vb2NzcGd3LnNlY3VyaXR5ZGF0YS5uZXQu
+ZWMvZWpiY2EvcHVibGljd2ViL3N0YXR1cy9vY3NwooGfpIGcMIGZMTkwNwYDVQQDDDBBVVRPUklE
+QUQgREUgQ0VSVElGSUNBQ0lPTiBTVUJDQS0yIFNFQ1VSSVRZIERBVEExMDAuBgNVBAsMJ0VOVElE
+QUQgREUgQ0VSVElGSUNBQ0lPTiBERSBJTkZPUk1BQ0lPTjEdMBsGA1UECgwUU0VDVVJJVFkgREFU
+QSBTLkEuIDIxCzAJBgNVBAYTAkVDMIHHoIHEoIHBhoG+bGRhcDovL2xkYXBzZGNhMi5zZWN1cml0
+eWRhdGEubmV0LmVjL0NOPUFVVE9SSURBRCBERSBDRVJUSUZJQ0FDSU9OIFNVQkNBLTIgU0VDVVJJ
+VFkgREFUQSxPVT1FTlRJREFEIERFIENFUlRJRklDQUNJT04gREUgSU5GT1JNQUNJT04sTz1TRUNV
+UklUWSBEQVRBIFMuQS4gMixDPUVDP2NlcnRpZmljYXRlUmV2b2NhdGlvbkxpc3Q/YmFzZTCB4KCB
+3aCB2oaB12h0dHBzOi8vcG9ydGFsLW9wZXJhZG9yMi5zZWN1cml0eWRhdGEubmV0LmVjL2VqYmNh
+L3B1YmxpY3dlYi93ZWJkaXN0L2NlcnRkaXN0P2NtZD1jcmwmaXNzdWVyPUNOPUFVVE9SSURBRCBE
+RSBDRVJUSUZJQ0FDSU9OIFNVQkNBLTIgU0VDVVJJVFkgREFUQSxPVT1FTlRJREFEIERFIENFUlRJ
+RklDQUNJT04gREUgSU5GT1JNQUNJT04sTz1TRUNVUklUWSBEQVRBIFMuQS4gMixDPUVDMB0GA1Ud
+DgQWBBSD0ll9mfsP+8UipAjPo6C51vR/szArBgNVHRAEJDAigA8yMDI0MDQwNDE0MzM0M1qBDzIw
+MjYwNDA0MTQzMzQzWjALBgNVHQ8EBAMCBeAwIgYKKwYBBAGCpnIDBQQUDBJHRVJFTlRFIEZJTkFO
+Q0lFUk8wGgYKKwYBBAGCpnIDAQQMDAowOTE5MzY3MjE5MBYGCisGAQQBgqZyAwkECAwGVEFSUVVJ
+MBEGCisGAQQBgqZyAyIEAwwBLjAmBgorBgEEAYKmcgMHBBgMFkFWIERFIExBUyBBTUVSSUNBUyBT
+IE4wIAYKKwYBBAGCpnIDAgQSDBBFU1RFRkFOSUEgSkFaTUlOMB8GCisGAQQBgqZyAyAEEQwPMDAx
+MDAyMDAwNTY1ODc0MBMGCisGAQQBgqZyAyEEBQwDUEZYMBcGCisGAQQBgqZyAwwECQwHRUNVQURP
+UjAXBgorBgEEAYKmcgMDBAkMB0RFTEdBRE8wHQYKKwYBBAGCpnIDCgQPDA1ERkVDVUFET1IgUyBB
+MB0GCisGAQQBgqZyAwsEDwwNMDk5MjM2NDk1NTAwMTARBgorBgEEAYKmcgMdBAMMAS4wGAYKKwYB
+BAGCpnIDBAQKDAhBUkFHVU5ESTAaBgorBgEEAYKmcgMIBAwMCjA5ODI4NzE2MjgwDQYJKoZIhvcN
+AQELBQADggIBACUrvd5jSo5gmyqwF05nEVJk1NwMQBvqDacQxtrmzriMGvHygfND6zNK/TBff1/t
+B4z9YFI65HsUcnQ4iC0D61/WjczZCXaXnGsKdMTtJxgSU/A8dDjABxC54FP2d8oMggo5zyw0psEG
+YAheVQYr+Jsis/DGoWCV2HbYX1GldSgwhsL8kghjILRfnXhkJgRvOU4Yl7YzT6pMFWxi5mgdWHS0
+eC6CUYWdcC+sMyEmFDJmRxiFcuWSfNmFTyjxx5QBRnHxoOmlUxuMy4WzhmGAvgEDR6a2FeXzLoHY
+K2H0QubuSnUdmi5JXgyD3Wr7rcEJHmMSRKnoK2uATdaFfa80477IkuBimK6SP/DZookurABbHpu2
+HjJDqYoeSN4Ny89ZabnZDNp2HsZRMT+FY3xztz0Hx/kbG4s4PbJoulcARnCWgkYPrcngj2zSx3E7
+rfihay18PlPjgGVF5lPKafmN1EiZ8K1CjYuHzuMNUw8khn3joIYMuAa4KVT7BaEV5KTzkAUofpy7
+Tu/Whr/yJSyboN1yR6fnS5HgVw3La7TCMUECxeDbweHhWBL9fUpyrReAI1hX3+M2C1Xc/C8T05mE
+4Czl0YIff8sdr8DeRp5JsnvYwTQEBk5vo+aCW3jwKN/YsCAFU8wd3GWFFzc9RJq3oDvktVhBLWUo
++2FvBVtmp97x
+</ds:X509Certificate>
+</ds:X509Data>
+<ds:KeyValue>
+<ds:RSAKeyValue>
+<ds:Modulus>
+iSmmn2jPyGUW680wh7WUaj0ZH1Wrdb6cZHgspobcn9SV4U6FwqXsC8k4DGg6dAQ5owo/l4g6hn23
+j0BZo7A7CP1rwmJUdOh99TgXlWu3aIaBCKvwg+E77PzxhSIZ8hbLs8LfbTYSLQrJUvIm/ZG3Sh15
+5kyzAyC9VOK3DRfH2zNN5HVyRgHBHlI+LcTpqs50d4ArxlFCnU4zXms7G2HLPF9E17gnBHmujQMj
+yxUVLs51qjMHDHs79y9MCxgF9cBbA72MhwUNjjh2CNWs+93V/Te12RXoi+FgMD6bt4i1iR3na/S8
+lCc3khuL9YBjYnyWPF8ijdh++YaZKmB644wGiQ==
+</ds:Modulus>
+<ds:Exponent>AQAB</ds:Exponent>
+</ds:RSAKeyValue>
+</ds:KeyValue>
+</ds:KeyInfo>
+<ds:Object Id="Signature149964-Object282328"><etsi:QualifyingProperties Target="#Signature149964"><etsi:SignedProperties Id="Signature149964-SignedProperties771707"><etsi:SignedSignatureProperties><etsi:SigningTime>2024-08-09T02:19:49-05:00</etsi:SigningTime><etsi:SigningCertificate><etsi:Cert><etsi:CertDigest><ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"></ds:DigestMethod><ds:DigestValue>gujFkK4XYvB5eUlJ0+8chv6ZE10=</ds:DigestValue></etsi:CertDigest><etsi:IssuerSerial><ds:X509IssuerName>CN=AUTORIDAD DE CERTIFICACION SUBCA-2 SECURITY DATA,OU=ENTIDAD DE CERTIFICACION DE INFORMACION,O=SECURITY DATA S.A. 2,C=EC</ds:X509IssuerName><ds:X509SerialNumber>1290517959</ds:X509SerialNumber></etsi:IssuerSerial></etsi:Cert></etsi:SigningCertificate></etsi:SignedSignatureProperties><etsi:SignedDataObjectProperties><etsi:DataObjectFormat ObjectReference="#Reference-ID-761913"><etsi:Description>GuruSoft S.A Tel.045109312</etsi:Description><etsi:MimeType>text/xml</etsi:MimeType></etsi:DataObjectFormat></etsi:SignedDataObjectProperties></etsi:SignedProperties></etsi:QualifyingProperties></ds:Object></ds:Signature></factura>]]></comprobante>
+<mensajes/>
+</autorizacion>
+

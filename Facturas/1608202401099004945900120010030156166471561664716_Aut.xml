@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<autorizacion>
+<estado>AUTORIZADO</estado>
+<numeroAutorizacion>1608202401099004945900120010030156166471561664716</numeroAutorizacion>
+<fechaAutorizacion>2024-08-19T11:45:48-05:00</fechaAutorizacion>
+<ambiente>PRODUCCIÓN</ambiente>
+<comprobante><![CDATA[<?xml version="1.0" encoding="UTF-8"?><factura id="comprobante" version="2.1.0">
+    <infoTributaria>
+        <ambiente>2</ambiente>
+        <tipoEmision>1</tipoEmision>
+        <razonSocial>BANCO GUAYAQUIL S.A.</razonSocial>
+        <nombreComercial>BANCO GUAYAQUIL S.A.</nombreComercial>
+        <ruc>0990049459001</ruc>
+        <claveAcceso>1608202401099004945900120010030156166471561664716</claveAcceso>
+        <codDoc>01</codDoc>
+        <estab>001</estab>
+        <ptoEmi>003</ptoEmi>
+        <secuencial>015616647</secuencial>
+        <dirMatriz>PICHINCHA 105 - 107 Y FRANCISCO DE PAULA YCAZA</dirMatriz>
+    </infoTributaria>
+    <infoFactura>
+        <fechaEmision>16/08/2024</fechaEmision>
+        <dirEstablecimiento>PICHINCHA 105 - 107 Y FRANCISCO DE PAULA YCAZA</dirEstablecimiento>
+        <contribuyenteEspecial>6925</contribuyenteEspecial>
+        <obligadoContabilidad>SI</obligadoContabilidad>
+        <tipoIdentificacionComprador>04</tipoIdentificacionComprador>
+        <razonSocialComprador>CARDENAS COLCHA ELVIS HERNAN</razonSocialComprador>
+        <identificacionComprador>1310839541001</identificacionComprador>
+        <direccionComprador>NO REGISTRA DIRECCION</direccionComprador>
+        <totalSinImpuestos>6.06</totalSinImpuestos>
+        <totalDescuento>0.00</totalDescuento>
+        <totalConImpuestos>
+            <totalImpuesto>
+                <codigo>2</codigo>
+                <codigoPorcentaje>4</codigoPorcentaje>
+                <baseImponible>6.06</baseImponible>
+                <tarifa>15.00</tarifa>
+                <valor>0.91</valor>
+            </totalImpuesto>
+        </totalConImpuestos>
+        <propina>0.00</propina>
+        <importeTotal>6.97</importeTotal>
+        <moneda>DOLAR</moneda>
+        <pagos>
+            <pago>
+                <formaPago>20</formaPago>
+                <total>6.97</total>
+                <plazo>0</plazo>
+                <unidadTiempo>DIAS</unidadTiempo>
+            </pago>
+        </pagos>
+    </infoFactura>
+    <detalles>
+        <detalle>
+            <codigoPrincipal>TCLIQCOM</codigoPrincipal>
+            <descripcion>LIQUIDACION COMERCIO</descripcion>
+            <cantidad>1.00</cantidad>
+            <precioUnitario>6.06</precioUnitario>
+            <descuento>0.00</descuento>
+            <precioTotalSinImpuesto>6.06</precioTotalSinImpuesto>
+            <impuestos>
+                <impuesto>
+                    <codigo>2</codigo>
+                    <codigoPorcentaje>4</codigoPorcentaje>
+                    <tarifa>15.00</tarifa>
+                    <baseImponible>6.06</baseImponible>
+                    <valor>0.91</valor>
+                </impuesto>
+            </impuestos>
+        </detalle>
+    </detalles>
+    <infoAdicional>
+        <campoAdicional nombre="valor1">FACT.COMIS.LIQUIDACION PAGO DEPOSITOS DE VOUCHERS TARJETAS DE CREDITO</campoAdicional>
+        <campoAdicional nombre="valor2">GRAN CONTRIBUYENTE SEGUN OFICIO NRO. NAC-GCFOIOC21-00000882-E</campoAdicional>
+    </infoAdicional>
+<ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:etsi="http://uri.etsi.org/01903/v1.3.2#" Id="Signature269531">
+<ds:SignedInfo Id="Signature-SignedInfo99161">
+<ds:CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/>
+<ds:SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/>
+<ds:Reference Id="SignedPropertiesID99242" Type="http://uri.etsi.org/01903#SignedProperties" URI="#Signature269531-SignedProperties491621">
+<ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
+<ds:DigestValue>S2lPSXVr0qe/7aWZHKUvCWIx+WA=</ds:DigestValue>
+</ds:Reference>
+<ds:Reference URI="#Certificate127155">
+<ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
+<ds:DigestValue>ROnGEhA9ccdadQ476n0Q7FdPbEQ=</ds:DigestValue>
+</ds:Reference>
+<ds:Reference Id="Reference-ID-201722" URI="#comprobante">
+<ds:Transforms>
+<ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/>
+</ds:Transforms>
+<ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
+<ds:DigestValue>iKFCs9dbhay+n5wv4z2iCb+p424=</ds:DigestValue>
+</ds:Reference>
+</ds:SignedInfo>
+<ds:SignatureValue Id="SignatureValue197218">
+awJ4VzRGAGorotv0lDyoWgnjJS/75JbOHqnclgh+2jFPnijzBCKjyTUkRpePgqqE95T6f5jbcXFI
+8WOn32QNfflD2wJ3t7UpH82zLCNlPIm9CVvNUZOAPpo5Avot8Qo3BpoH5bIkgS8NtNsiFW9kQDE4
+pxdNBlYMoT0D9htpHXuFHEsBs7K3Dkw9u/d7ZEuFN9Rvw689nuq4UMazekHFDv3PyCWjnDuJ1LbB
+uveGW+3zyg3A/3sASg8r3XUfcM8d9xBRed+t0otNzmhAJOBtQfecv2vFzXq1LoRCD+EwZ4d/4wOK
+9VrUq7wL6pGaSTBCg1qNiPQIYo1gnByM5Cp0qw==
+</ds:SignatureValue>
+<ds:KeyInfo Id="Certificate127155">
+<ds:X509Data>
+<ds:X509Certificate>
+MIIMIjCCCgqgAwIBAgIEGzYZbTANBgkqhkiG9w0BAQsFADCBmTELMAkGA1UEBhMCRUMxHTAbBgNV
+BAoMFFNFQ1VSSVRZIERBVEEgUy5BLiAyMTAwLgYDVQQLDCdFTlRJREFEIERFIENFUlRJRklDQUNJ
+T04gREUgSU5GT1JNQUNJT04xOTA3BgNVBAMMMEFVVE9SSURBRCBERSBDRVJUSUZJQ0FDSU9OIFNV
+QkNBLTIgU0VDVVJJVFkgREFUQTAeFw0yNDAyMDcxNjIxMDZaFw0yNjAyMDYxNjIxMDZaMIGgMSkw
+JwYDVQQDDCBGUkFOQ0lTQ08gSkFWSUVSIEpBUkFNSUxMTyBNVU5PWjEVMBMGA1UEBRMMMDcwMjI0
+MTEzMDQxMTAwLgYDVQQLDCdFTlRJREFEIERFIENFUlRJRklDQUNJT04gREUgSU5GT1JNQUNJT04x
+HTAbBgNVBAoMFFNFQ1VSSVRZIERBVEEgUy5BLiAyMQswCQYDVQQGEwJFQzCCASIwDQYJKoZIhvcN
+AQEBBQADggEPADCCAQoCggEBAJtwDLGzxp6oYU+cS8HWq0f6IO+SkTJ7y+spPMJJMdrdIQdDPy3v
+XhFEuN+6ZiURykGTWHR0pw+SFxp387fanXsZojkydH1ceTLA3mRaeZjfq9UzLLfGgoLvT4sOoeWy
+SdMx+XXWkwooLR8Q4jOtQYoFB6Guaqz6zPUoU7TJbXmqd5bY4eCtbn2sNVsVjCuBWjitGFuld9QZ
+Lr3YwKAm+Rf/mWKPvxbQzfjVNOCb3jiMZUyIzjWds7q5R3m+2FcbSjkyZjLgh7Exygiw2RmBON7/
+ee5JVatoOcC/y5f3DWpZA2Me5c4h5A+VErBr2BjPPHnIKRFKai/1nG3PgLu17UMCAwEAAaOCB2cw
+ggdjMAwGA1UdEwEB/wQCMAAwHwYDVR0jBBgwFoAUjLrKEVd4JYAdawpLVb+NrmLdvY8wWQYIKwYB
+BQUHAQEETTBLMEkGCCsGAQUFBzABhj1odHRwOi8vb2NzcGd3LnNlY3VyaXR5ZGF0YS5uZXQuZWMv
+ZWpiY2EvcHVibGljd2ViL3N0YXR1cy9vY3NwMIHPBgNVHS4EgccwgcQwgcGggb6ggbuGgbhsZGFw
+Oi8vbGRhcHNkY2EyLnNlY3VyaXR5ZGF0YS5uZXQuZWMvQ049QVVUT1JJREFEIERFIENFUlRJRklD
+QUNJT04gU1VCQ0EtMiBTRUNVUklUWSBEQVRBLE9VPUVOVElEQUQgREUgQ0VSVElGSUNBQ0lPTiBE
+RSBJTkZPUk1BQ0lPTixPPVNFQ1VSSVRZIERBVEEgUy5BLiAyLEM9RUM/ZGVsdGFSZXZvY2F0aW9u
+TGlzdD9iYXNlMCgGA1UdEQQhMB+BHWZqYXJhbWlsbG9AYmFuY29ndWF5YXF1aWwuY29tMIIBEgYD
+VR0gBIIBCTCCAQUwYAYKKwYBBAGCpnICCjBSMFAGCCsGAQUFBwICMEQeQgBDAGUAcgB0AGkAZgBp
+AGMAYQBkAG8AIABkAGUAIABNAGkAZQBtAGIAcgBvACAAZABlACAARQBtAHAAcgBlAHMAYTCBoAYK
+KwYBBAGCpnICBDCBkTCBjgYIKwYBBQUHAgEWgYFodHRwczovL3d3dy5zZWN1cml0eWRhdGEubmV0
+LmVjL3dwLWNvbnRlbnQvZG93bmxvYWRzL05vcm1hdGl2YXMvUF9kZV9DZXJ0aWZpY2Fkb3MvUG9s
+aXRpY2FzIGRlIENlcnRpZmljYWRvIE1pZW1icm8gZGUgRW1wcmVzYS5wZGYwggKiBgNVHR8EggKZ
+MIIClTCB5aBBoD+GPWh0dHA6Ly9vY3NwZ3cuc2VjdXJpdHlkYXRhLm5ldC5lYy9lamJjYS9wdWJs
+aWN3ZWIvc3RhdHVzL29jc3CigZ+kgZwwgZkxOTA3BgNVBAMMMEFVVE9SSURBRCBERSBDRVJUSUZJ
+Q0FDSU9OIFNVQkNBLTIgU0VDVVJJVFkgREFUQTEwMC4GA1UECwwnRU5USURBRCBERSBDRVJUSUZJ
+Q0FDSU9OIERFIElORk9STUFDSU9OMR0wGwYDVQQKDBRTRUNVUklUWSBEQVRBIFMuQS4gMjELMAkG
+A1UEBhMCRUMwgceggcSggcGGgb5sZGFwOi8vbGRhcHNkY2EyLnNlY3VyaXR5ZGF0YS5uZXQuZWMv
+Q049QVVUT1JJREFEIERFIENFUlRJRklDQUNJT04gU1VCQ0EtMiBTRUNVUklUWSBEQVRBLE9VPUVO
+VElEQUQgREUgQ0VSVElGSUNBQ0lPTiBERSBJTkZPUk1BQ0lPTixPPVNFQ1VSSVRZIERBVEEgUy5B
+LiAyLEM9RUM/Y2VydGlmaWNhdGVSZXZvY2F0aW9uTGlzdD9iYXNlMIHgoIHdoIHahoHXaHR0cHM6
+Ly9wb3J0YWwtb3BlcmFkb3IyLnNlY3VyaXR5ZGF0YS5uZXQuZWMvZWpiY2EvcHVibGljd2ViL3dl
+YmRpc3QvY2VydGRpc3Q/Y21kPWNybCZpc3N1ZXI9Q049QVVUT1JJREFEIERFIENFUlRJRklDQUNJ
+T04gU1VCQ0EtMiBTRUNVUklUWSBEQVRBLE9VPUVOVElEQUQgREUgQ0VSVElGSUNBQ0lPTiBERSBJ
+TkZPUk1BQ0lPTixPPVNFQ1VSSVRZIERBVEEgUy5BLiAyLEM9RUMwHQYDVR0OBBYEFJsZwnWhl1PG
+0RtyFPfOypxv84YBMCsGA1UdEAQkMCKADzIwMjQwMjA3MTYyMTA2WoEPMjAyNjAyMDYxNjIxMDZa
+MAsGA1UdDwQEAwIF4DAmBgorBgEEAYKmcgMFBBgMFkdFUkVOVEUgQURNSU5JU1RSQUNJT04wGgYK
+KwYBBAGCpnIDAQQMDAoxNzA3MzE4MDQyMBkGCisGAQQBgqZyAwkECwwJR1VBWUFRVUlMMBEGCisG
+AQQBgqZyAyIEAwwBLjA8BgorBgEEAYKmcgMHBC4MLFBJQ0hJTkNIQSAxMDUgMTA3IFkgRlJBTkNJ
+U0NPIERFIFBBVUxBIFlDQVpBMCAGCisGAQQBgqZyAwIEEgwQRlJBTkNJU0NPIEpBVklFUjAfBgor
+BgEEAYKmcgMgBBEMDzk5OTk5OTk5OTk5OTk5OTATBgorBgEEAYKmcgMhBAUMA1BGWDAXBgorBgEE
+AYKmcgMMBAkMB0VDVUFET1IwGQYKKwYBBAGCpnIDAwQLDAlKQVJBTUlMTE8wJAYKKwYBBAGCpnID
+CgQWDBRCQU5DTyBHVUFZQVFVSUwgUy5BLjAdBgorBgEEAYKmcgMLBA8MDTA5OTAwNDk0NTkwMDEw
+EgYKKwYBBAGCpnIDHQQEDAJObzAVBgorBgEEAYKmcgMEBAcMBU1VTk9aMBoGCisGAQQBgqZyAwgE
+DAwKMDkzNzMwMTAwMDANBgkqhkiG9w0BAQsFAAOCAgEAmU9CjnqUcB7mqFGQ8LDWYWFmh3Og/iA1
+F5E+iZ4FauAlbYi0s6c1nCW5MoorcHJfvFIR/lKPxfLkLw2lMDQ2sXYjpZ1p5/GN6QB0uj/hiJbf
+EVXVJcl/pqvaPJdTwnEXKn83H7I3MzMi4Df3SYoQha9zfwbk66WIe3PSqKibau39lgRmwIMFh+j2
+5urPwU9Fp1d6jfSUVZ3H4zfINSyeFDlaMnzxelsB9+5Jh3fuuUQZe4vH14YmJN6NyVAP9og5+CY5
+Wog1NsuYfHloAGRbiCUPPuu2knfNbz7nxhYN78p5OXRFYI05TuyJhZNtPGARrsE6YHKZBmiwscdg
+Unq7IAcDSSxXCugx+qVQtxL0ka8ERjsFj2DS9jMFsXL/+oIAzIPPAOUO0HssPBM9D+Eg7OiGt9yL
+3fVat3tIWi+pDWfTChRMWqxXm3gQ5EyhZeLDzlps5fnYDZeIwxXHR8QTlSeJqFYttBTy4QZO73Bo
+ru+FrMdjQ+Fwc/TR1At9bhe4IWCrtbmY1wL1k05Ajd4ZZeTZ4NECahuKvP1tY3QVSn0U89/xtsBD
+andIGqKD2ZSoFDZFLWq5UXGpcNI+tOGRQOF4Oqjfdy9y+EX4VqbjnhPBKtkcvp8OfwQB+tr7pl/8
+Ir7liVwYYixdCgBXNpekTjzIjwi60tIQ3N9vvcC0rJ0=
+</ds:X509Certificate>
+</ds:X509Data>
+<ds:KeyValue>
+<ds:RSAKeyValue>
+<ds:Modulus>
+m3AMsbPGnqhhT5xLwdarR/og75KRMnvL6yk8wkkx2t0hB0M/Le9eEUS437pmJRHKQZNYdHSnD5IX
+Gnfzt9qdexmiOTJ0fVx5MsDeZFp5mN+r1TMst8aCgu9Piw6h5bJJ0zH5ddaTCigtHxDiM61BigUH
+oa5qrPrM9ShTtMlteap3ltjh4K1ufaw1WxWMK4FaOK0YW6V31BkuvdjAoCb5F/+ZYo+/FtDN+NU0
+4JveOIxlTIjONZ2zurlHeb7YVxtKOTJmMuCHsTHKCLDZGYE43v957klVq2g5wL/Ll/cNalkDYx7l
+ziHkD5USsGvYGM88ecgpEUpqL/Wcbc+Au7XtQw==
+</ds:Modulus>
+<ds:Exponent>AQAB</ds:Exponent>
+</ds:RSAKeyValue>
+</ds:KeyValue>
+</ds:KeyInfo>
+<ds:Object Id="Signature269531-Object987717"><etsi:QualifyingProperties Target="#Signature269531"><etsi:SignedProperties Id="Signature269531-SignedProperties491621"><etsi:SignedSignatureProperties><etsi:SigningTime>2024-08-19T11:45:22-05:00</etsi:SigningTime><etsi:SigningCertificate><etsi:Cert><etsi:CertDigest><ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/><ds:DigestValue>rVY163sSDFAyqAy6Bv9Je1pqCHk=</ds:DigestValue></etsi:CertDigest><etsi:IssuerSerial><ds:X509IssuerName>CN=AUTORIDAD DE CERTIFICACION SUBCA-2 SECURITY DATA,OU=ENTIDAD DE CERTIFICACION DE INFORMACION,O=SECURITY DATA S.A. 2,C=EC</ds:X509IssuerName><ds:X509SerialNumber>456530285</ds:X509SerialNumber></etsi:IssuerSerial></etsi:Cert></etsi:SigningCertificate></etsi:SignedSignatureProperties><etsi:SignedDataObjectProperties><etsi:DataObjectFormat ObjectReference="#Reference-ID-201722"><etsi:Description>comprobante</etsi:Description><etsi:MimeType>text/xml</etsi:MimeType></etsi:DataObjectFormat></etsi:SignedDataObjectProperties></etsi:SignedProperties></etsi:QualifyingProperties></ds:Object></ds:Signature></factura>]]></comprobante>
+<mensajes/>
+</autorizacion>
+

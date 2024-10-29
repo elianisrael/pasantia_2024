@@ -626,24 +626,35 @@ def dashboard():
     # Filtrar facturas según los parámetros
     facturas_filtradas = facturas_info.copy()
     
+    # Aplicar filtro de fechas
     if fecha_inicio and fecha_fin:
-        facturas_filtradas = [
-            f for f in facturas_filtradas 
-            if fecha_inicio <= f['Fecha de Emisión'] <= fecha_fin
-        ]
+        try:
+            fecha_inicio_dt = datetime.strptime(fecha_inicio, '%Y-%m-%d')
+            fecha_fin_dt = datetime.strptime(fecha_fin, '%Y-%m-%d')
+            facturas_filtradas = [
+                f for f in facturas_filtradas 
+                if fecha_inicio_dt <= datetime.strptime(f['Fecha de Emisión'], '%d/%m/%Y') <= fecha_fin_dt
+            ]
+        except ValueError:
+            flash("Formato de fecha inválido")
     
+    # Aplicar filtro de clientes
     if clientes_filtro:
         facturas_filtradas = [
             f for f in facturas_filtradas 
             if f['Razón Social comprador'] in clientes_filtro
         ]
     
+    # Aplicar filtro de rango de monto
     if rango_monto:
-        min_monto, max_monto = map(float, rango_monto.split('-'))
-        facturas_filtradas = [
-            f for f in facturas_filtradas 
-            if min_monto <= float(f['Total con impuestos']) <= max_monto
-        ]
+        try:
+            min_monto, max_monto = map(float, rango_monto.split('-'))
+            facturas_filtradas = [
+                f for f in facturas_filtradas 
+                if min_monto <= float(f['Total con impuestos']) <= max_monto
+            ]
+        except ValueError:
+            flash("Rango de monto inválido")
 
     # Procesar datos filtrados
     total_facturas = len(facturas_filtradas)
@@ -677,18 +688,18 @@ def dashboard():
     clientes_unicos = sorted(list(set(f['Razón Social comprador'] for f in facturas_info)))
 
     return render_template('dashboard.html',
-                           total_facturas=total_facturas,
-                           total_ventas=total_ventas,
-                           ventas_sin_impuestos=ventas_sin_impuestos,
-                           promedio_venta=promedio_venta,
-                           ventas_por_cliente=ventas_por_cliente,
-                           iva_totales=iva_totales,
-                           ventas_por_mes=ventas_por_mes,
-                           clientes_unicos=clientes_unicos,
-                           fecha_inicio=fecha_inicio,
-                           fecha_fin=fecha_fin,
-                           clientes_filtro=clientes_filtro,
-                           rango_monto=rango_monto)
+                         total_facturas=total_facturas,
+                         total_ventas=total_ventas,
+                         ventas_sin_impuestos=ventas_sin_impuestos,
+                         promedio_venta=promedio_venta,
+                         ventas_por_cliente=ventas_por_cliente,
+                         iva_totales=iva_totales,
+                         ventas_por_mes=ventas_por_mes,
+                         clientes_unicos=clientes_unicos,
+                         fecha_inicio=fecha_inicio,
+                         fecha_fin=fecha_fin,
+                         clientes_filtro=clientes_filtro,
+                         rango_monto=rango_monto)
 
 
 if __name__ == '__main__':

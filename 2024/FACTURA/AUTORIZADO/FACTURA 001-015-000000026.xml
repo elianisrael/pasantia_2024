@@ -1,0 +1,260 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<autorizacion>
+    <estado>AUTORIZADO</estado>
+    <numeroAutorizacion>2710202401131083954100110010150000000261234567812</numeroAutorizacion>
+    <fechaAutorizacion>2024-10-28T16:24:16-05:00</fechaAutorizacion>
+    <ambiente>PRUEBAS</ambiente>
+    <comprobante>
+        <![CDATA[<?xml version="1.0" encoding="UTF-8" standalone="no"?><factura id="comprobante" version="1.1.0">
+    <infoTributaria>
+        <ambiente>1</ambiente>
+        <tipoEmision>1</tipoEmision>
+        <razonSocial>CARDENAS COLCHA ELVIS HERNAN</razonSocial>
+        <nombreComercial>SYSTEMSEC</nombreComercial>
+        <ruc>1310839541001</ruc>
+        <claveAcceso>2710202401131083954100110010150000000261234567812</claveAcceso>
+        <codDoc>01</codDoc>
+        <estab>001</estab>
+        <ptoEmi>015</ptoEmi>
+        <secuencial>000000026</secuencial>
+        <dirMatriz>AVENIDA UNIVERSITARIA S/N Y CALLE INGLATERRA</dirMatriz>
+        <contribuyenteRimpe>CONTRIBUYENTE NEGOCIO POPULAR - RÉGIMEN RIMPE</contribuyenteRimpe>
+    </infoTributaria>
+    <infoFactura>
+        <fechaEmision>27/10/2024</fechaEmision>
+        <dirEstablecimiento>AVENIDA UNIVERSITARIA S/N Y CALLE INGLATERRA</dirEstablecimiento>
+        <obligadoContabilidad>NO</obligadoContabilidad>
+        <tipoIdentificacionComprador>05</tipoIdentificacionComprador>
+        <razonSocialComprador>MIELES CHAVEZ ANA MARIA</razonSocialComprador>
+        <identificacionComprador>1302273733</identificacionComprador>
+        <direccionComprador>S/D</direccionComprador>
+        <totalSinImpuestos>436.46</totalSinImpuestos>
+        <totalDescuento>11.20</totalDescuento>
+        <totalConImpuestos>
+            <totalImpuesto>
+                <codigo>2</codigo>
+                <codigoPorcentaje>4</codigoPorcentaje>
+                <descuentoAdicional>0.00</descuentoAdicional>
+                <baseImponible>388.96</baseImponible>
+                <valor>58.34</valor>
+            </totalImpuesto>
+            <totalImpuesto>
+                <codigo>2</codigo>
+                <codigoPorcentaje>0</codigoPorcentaje>
+                <descuentoAdicional>0.00</descuentoAdicional>
+                <baseImponible>47.50</baseImponible>
+                <valor>0.00</valor>
+            </totalImpuesto>
+        </totalConImpuestos>
+        <propina>0.00</propina>
+        <importeTotal>494.80</importeTotal>
+        <moneda>DOLAR</moneda>
+        <pagos>
+            <pago>
+                <formaPago>01</formaPago>
+                <total>494.80</total>
+                <plazo>0</plazo>
+                <unidadTiempo>dias</unidadTiempo>
+            </pago>
+        </pagos>
+    </infoFactura>
+    <detalles>
+        <detalle>
+            <codigoPrincipal>2</codigoPrincipal>
+            <codigoAuxiliar>2</codigoAuxiliar>
+            <descripcion>VESTIMENTA</descripcion>
+            <cantidad>1</cantidad>
+            <precioUnitario>86.956522</precioUnitario>
+            <descuento>8.70</descuento>
+            <precioTotalSinImpuesto>78.26</precioTotalSinImpuesto>
+            <impuestos>
+                <impuesto>
+                    <codigo>2</codigo>
+                    <codigoPorcentaje>4</codigoPorcentaje>
+                    <tarifa>15.00</tarifa>
+                    <baseImponible>78.26</baseImponible>
+                    <valor>11.74</valor>
+                </impuesto>
+            </impuestos>
+        </detalle>
+        <detalle>
+            <codigoPrincipal>3</codigoPrincipal>
+            <codigoAuxiliar>3</codigoAuxiliar>
+            <descripcion>TRANSPORTE</descripcion>
+            <cantidad>1</cantidad>
+            <precioUnitario>50.000000</precioUnitario>
+            <descuento>2.50</descuento>
+            <precioTotalSinImpuesto>47.50</precioTotalSinImpuesto>
+            <impuestos>
+                <impuesto>
+                    <codigo>2</codigo>
+                    <codigoPorcentaje>0</codigoPorcentaje>
+                    <tarifa>0</tarifa>
+                    <baseImponible>47.50</baseImponible>
+                    <valor>0.00</valor>
+                </impuesto>
+            </impuestos>
+        </detalle>
+        <detalle>
+            <codigoPrincipal>4</codigoPrincipal>
+            <codigoAuxiliar>4</codigoAuxiliar>
+            <descripcion>HAMBURGUESA</descripcion>
+            <cantidad>1</cantidad>
+            <precioUnitario>102.000000</precioUnitario>
+            <descuento>0.00</descuento>
+            <precioTotalSinImpuesto>102.00</precioTotalSinImpuesto>
+            <detallesAdicionales>
+                <detAdicional nombre="detAdicional" valor="PRUEBA"/>
+                <detAdicional nombre="detAdicional" valor="PRUEBA1"/>
+            </detallesAdicionales>
+            <impuestos>
+                <impuesto>
+                    <codigo>2</codigo>
+                    <codigoPorcentaje>4</codigoPorcentaje>
+                    <tarifa>15.00</tarifa>
+                    <baseImponible>102.00</baseImponible>
+                    <valor>15.30</valor>
+                </impuesto>
+            </impuestos>
+        </detalle>
+        <detalle>
+            <codigoPrincipal>5</codigoPrincipal>
+            <codigoAuxiliar>5</codigoAuxiliar>
+            <descripcion>COMISIONES</descripcion>
+            <cantidad>1</cantidad>
+            <precioUnitario>17.391304</precioUnitario>
+            <descuento>0.00</descuento>
+            <precioTotalSinImpuesto>17.39</precioTotalSinImpuesto>
+            <impuestos>
+                <impuesto>
+                    <codigo>2</codigo>
+                    <codigoPorcentaje>4</codigoPorcentaje>
+                    <tarifa>15.00</tarifa>
+                    <baseImponible>17.39</baseImponible>
+                    <valor>2.61</valor>
+                </impuesto>
+            </impuestos>
+        </detalle>
+        <detalle>
+            <codigoPrincipal>2</codigoPrincipal>
+            <codigoAuxiliar>2</codigoAuxiliar>
+            <descripcion>PRUEBA ELECTRONICA</descripcion>
+            <cantidad>1</cantidad>
+            <precioUnitario>191.304348</precioUnitario>
+            <descuento>0.00</descuento>
+            <precioTotalSinImpuesto>191.30</precioTotalSinImpuesto>
+            <impuestos>
+                <impuesto>
+                    <codigo>2</codigo>
+                    <codigoPorcentaje>4</codigoPorcentaje>
+                    <tarifa>15.00</tarifa>
+                    <baseImponible>191.30</baseImponible>
+                    <valor>28.70</valor>
+                </impuesto>
+            </impuestos>
+        </detalle>
+    </detalles>
+    <infoAdicional>
+        <campoAdicional nombre="PRUEBA">PRUEBA SYSTEMSEC</campoAdicional>
+    </infoAdicional>
+<ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:etsi="http://uri.etsi.org/01903/v1.3.2#" Id="Signature775709">
+<ds:SignedInfo Id="Signature-SignedInfo588488">
+<ds:CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/>
+<ds:SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/>
+<ds:Reference Id="SignedPropertiesID513005" Type="http://uri.etsi.org/01903#SignedProperties" URI="#Signature775709-SignedProperties789926">
+<ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
+<ds:DigestValue>M7naHdX9dMMeYSchk/SBdanFAv0=</ds:DigestValue>
+</ds:Reference>
+<ds:Reference URI="#Certificate1741196">
+<ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
+<ds:DigestValue>2PeJwkhA8CJp0MZnj6O450mvVc4=</ds:DigestValue>
+</ds:Reference>
+<ds:Reference Id="Reference-ID-591561" URI="#comprobante">
+<ds:Transforms>
+<ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/>
+</ds:Transforms>
+<ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
+<ds:DigestValue>LTqVNxCkvNY8shj3X10at+nwgQc=</ds:DigestValue>
+</ds:Reference>
+</ds:SignedInfo>
+<ds:SignatureValue Id="SignatureValue526935">
+GCELoHJ5R9PMVhoaRt95Kx5jGdOkX3Gcd0YMii/aohYIuC60r2qSWyDltQ0rwuyYGR5dleTw8RoI
+Zo/s6utIudHQcwbMXAybE69dkAr5vrjOfb5h2OTMC10Xg+0kOE0rcYlh0+zgCg/1LqShVL2UtqdI
+ht6jynCQvYWIvDrX0Iuis+fqvHmBAbr/EBApItgcmM0UF2sDcN41gNT+z+YX8x0NKDKVt6D1htEV
+hPJP1SIDF4i2MBtF8Ozn5SDdaCleOkD0P/jsPx7cqSdMSfa5aQ9z5ZHslcqjkX7mPUspAIvxj1FA
+GLngyTXx497F/xSB+jqqffv2TfJDu4nguJBIAA==
+</ds:SignatureValue>
+<ds:KeyInfo Id="Certificate1741196">
+<ds:X509Data>
+<ds:X509Certificate>
+MIILhzCCCW+gAwIBAgIMAzeQpt9SI0NCh5alMA0GCSqGSIb3DQEBCwUAMIG5MRYwFAYDVQQFEw0x
+NzkyNjAxMjE1MDAxMQswCQYDVQQGEwJFQzE2MDQGA1UEChMtQU5GQUMgQVVUT1JJREFEIERFIENF
+UlRJRklDQUNJT04gRUNVQURPUiBDLkEuMSUwIwYDVQQLExxBTkYgQXV0b3JpZGFkIGludGVybWVk
+aWEgIEVDMTMwMQYDVQQDEypBTkYgSGlnaCBBc3N1cmFuY2UgRWN1YWRvciBJbnRlcm1lZGlhdGUg
+Q0EwHhcNMjIwNzAxMjIzNzE3WhcNMjcwNjI1MjIzNzE3WjCCAaMxGjAYBgorBgEEAYKkQgoEDAox
+MzEwODM5NTQxMSUwIwYDVQQKDBxDQVJERU5BUyBDT0xDSEEgRUxWSVMgSEVSTkFOMTMwMQYDVQQL
+DCpDZXJ0aWZpY2FkbyBQZXJzb25hIE5hdHVyYWwgUlVDIEVDIChGSVJNQSkxFTATBgNVBCoMDEVM
+VklTIEhFUk5BTjEWMBQGA1UEYRMNMTMxMDgzOTU0MTAwMTELMAkGA1UEBhMCRUMxEzARBgNVBAUT
+CjEzMTA4Mzk1NDExGDAWBgNVBAQMD0NBUkRFTkFTIENPTENIQTEwMC4GA1UEAwwnMTMxMDgzOTU0
+MSBFTFZJUyBIRVJOQU4gQ0FSREVOQVMgQ09MQ0hBMSMwIQYJKoZIhvcNAQkBFhRlbGhlY2Fjb0Bo
+b3RtYWlsLmNvbTEcMBoGA1UEDAwTUkVQUkVTRU5UQU5URSBMRUdBTDEiMCAGA1UEDQwZQ2FyZ286
+UkVQUkVTRU5UQU5URSBMRUdBTDEQMA4GA1UECAwHTWFuYWLDrTETMBEGA1UEBwwKUG9ydG92aWVq
+bzCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBALUgjiMQYeE5r0XYcRkdFQ9JL/0Z4iRU
+IFsGWULfuRWPmGPHfIdmaVJjYN0vRAPDkW91EpixsmVlsv4TiLxdUNYXoiCF/cK3Xw+V9kzNY8Kx
+nha9OS00r+sln9wpwlXJp1frWPe55j9YhoIZD8ZKEwwH/ElzUgtJ6ovcFx4AxcFnSd1oHW7PpIOx
+tZX3Y4SA+ONPVIvd4fy3v/w9tJ/rmZ0XbYNuQHo1Zgx29t3Evqlt5R40XFDl9K6qDKK5py0xof7g
+JD/7MRnBIA/UaZUzHDgvBYXkOjf5VSHJilr8eaUVRYJOcFCNH9RXufyGZA8YqFsqD3E88Y2Labkp
+mzth9+8CAwEAAaOCBaAwggWcMB8GA1UdIwQYMBaAFJKu1MuCtJnG0XsRbGXqxU1oIfmsMB0GA1Ud
+DgQWBBS13FfTRFpmpe1VDSj7cIqWvmGQnTCB9QYDVR0RBIHtMIHqgRRlbGhlY2Fjb0Bob3RtYWls
+LmNvbaSB0TCBzjEcMBoGCisGAQQBgqRCCgEMDEVMVklTIEhFUk5BTjEYMBYGCisGAQQBgqRCCgIM
+CENBUkRFTkFTMRYwFAYKKwYBBAGCpEIKAwwGQ09MQ0hBMRowGAYKKwYBBAGCpEIKBAwKMTMxMDgz
+OTU0MTEZMBcGCSsGAQQBg71uAQwKQS0wMTA3MjAyMjEwMC4GA1UEAwwnMTMxMDgzOTU0MSBFTFZJ
+UyBIRVJOQU4gQ0FSREVOQVMgQ09MQ0hBMRMwEQYDVQQFDAoxMzEwODM5NTQxMA4GA1UdDwEB/wQE
+AwIGwDAdBgNVHSUEFjAUBggrBgEFBQcDAgYIKwYBBQUHAwQwUAYDVR0fBEkwRzBFoEOgQYY/aHR0
+cDovL2NybC5hbmYuZXMvY3JsL0FORkhpZ2hBc3N1cmFuY2VFY3VhZG9ySW50ZXJtZWRpYXRlQ0Eu
+Y3JsMIIBAwYDVR0gBIH7MIH4MIHfBgwrBgEEAYKkQgIFAQMwgc4wKAYIKwYBBQUHAgEWHGh0dHA6
+Ly93d3cuYW5mLmVzL2RvY3VtZW50b3MwgaEGCCsGAQUFBwICMIGUDIGRQ2VydGlmaWNhZG8gY29u
+Zm9ybWUgYSBsYSBsZWdpc2xhY2nDs24gZGUgZmlybWEgZWxlY3Ryw7NuaWNhLiBBbnRlcyBkZSBh
+Y2VwdGFybG8gY29tcHJ1ZWJlIGludGVncmlkYWQsIGxpbWl0YWNpb25lcywgdmlnZW5jaWEgeSB1
+c29zIGF1dG9yaXphZG9zLjAJBgcEAIvsQAEBMAkGB2CFVAEDBQgwgZsGCCsGAQUFBwEBBIGOMIGL
+MCcGCCsGAQUFBzABhhtodHRwOi8vb2NzcC5hbmYuZXMvc3BhaW4vQVYwYAYIKwYBBQUHMAKGVGh0
+dHA6Ly93d3cuYW5mLmVzL2VzL2NlcnRpZmljYXRlcy1kb3dubG9hZC9BTkZIaWdoQXNzdXJhbmNl
+RWN1YWRvckludGVybWVkaWF0ZUNBLmNlcjAMBgNVHRMBAf8EAjAAMCgGCSsGAQQBgY8cEwQbDBk1
+NDk0NTgzNDQ3OTItNDg5NTk4NDU0MDQyMBUGCisGAQQBgY8cEwIEBwwFMzc0NDIwKQYKKwYBBAGC
+pEITAQQbDBk0ODk1OTg0NTQwNDItNDg3MDY1MTIyMzQ4MBoGCisGAQQBgqRCAwEEDAwKMTMxMDgz
+OTU0MTAsBgorBgEEAYKkQgMKBB4MHENBUkRFTkFTIENPTENIQSBFTFZJUyBIRVJOQU4wHQYKKwYB
+BAGCpEIDCwQPDA0xMzEwODM5NTQxMDAxMBIGCisGAQQBgqRCAwwEBAwCRUMwHAYKKwYBBAGCpEID
+AgQODAxFTFZJUyBIRVJOQU4wHwYKKwYBBAGCpEIDAwQRDA9DQVJERU5BUyBDT0xDSEEwIwYKKwYB
+BAGCpEIDBQQVDBNSRVBSRVNFTlRBTlRFIExFR0FMMBoGCisGAQQBgqRCAwkEDAwKUG9ydG92aWVq
+bzAXBgorBgEEAYKkQioBBAkMB1VJTy0wMjIwFAYKKwYBBAGCpEIuAQQGDAQxODIwMFAGCisGAQQB
+gqRCLwEEQgxAM2JhNzYyOGJkYTVkNGQwNjg4YTQxN2I3MWY5ODE0ZDdkMTE4NDYyOWYzYjVmMDAw
+Nzc0OGUyNzVmYjBkOTIyMzBEBggrBgEFBQcBAwQ4MDYwCAYGBACORgEBMBMGBgQAjkYBBjAJBgcE
+AI5GAQYBMAkGBwQAi+xJAQEwCgYIKwYBBQUHCwIwDQYJKoZIhvcNAQELBQADggIBABfm5WQYGiov
+kGZ3ZHVgugplb7TB3zRbon8werDeGEoKFeJEPVMCcc3uSIFH9EATJbQqncWrnUNb0ZOGuuUDNLrg
+0/Z+MAXZd7/uFyJPq/qGasnj5N/m8oW1goNO3UabxhvMhYndHW8yYSfd0h88FFzbLX48PfB2+Zpz
+Amy15Dv2hgrPPInVif4J0+D/3e3JQPV52DvUB8XZLWdcNlvPJJVx42F6y8tHvA+0xAj8j8VvBt7v
+SajUnqMcTNgoq2QmPd9UDCHzid5Gg54aAQ/uupcs2LNLwpAFY2KiLjJfAX9exALf0/NotcT/AGLq
+cho2LG0LTfu8d+Y4IpUy4NQ/zQm57ArHy07slUJSIR0P+L8+3qskRyNriLQcXzphcoddAe5hflfe
+BCzwujd4tVCCordXDCwSZnounmBPaWSeEObsb8u+WgVVkRxgO319ae1CjvP8VtN+YUUdGdcL5Srq
+7UE7X1u4+naGQCMgzwfpvdXcmKa+OG9XF3obYseKemgnE8UT9r+9Vnt9Ttr5i6b/ywsPY/8y/4n8
+HWgqwR+Bpxcal4eohBmfNLWbaaGUAkA+DwDutiRA+O4ANCpOownMB9cSgxQyXq0dT4Nxy+5jFVs/
+mWNFcrHZv3NIJLr1uCHaQdybt5Q6vekz31YqlEy+lD2x2kUkJxIws6CSH3sFqKD6
+</ds:X509Certificate>
+</ds:X509Data>
+<ds:KeyValue>
+<ds:RSAKeyValue>
+<ds:Modulus>
+tSCOIxBh4TmvRdhxGR0VD0kv/RniJFQgWwZZQt+5FY+YY8d8h2ZpUmNg3S9EA8ORb3USmLGyZWWy
+/hOIvF1Q1heiIIX9wrdfD5X2TM1jwrGeFr05LTSv6yWf3CnCVcmnV+tY97nmP1iGghkPxkoTDAf8
+SXNSC0nqi9wXHgDFwWdJ3Wgdbs+kg7G1lfdjhID4409Ui93h/Le//D20n+uZnRdtg25AejVmDHb2
+3cS+qW3lHjRcUOX0rqoMormnLTGh/uAkP/sxGcEgD9RplTMcOC8FheQ6N/lVIcmKWvx5pRVFgk5w
+UI0f1Fe5/IZkDxioWyoPcTzxjYtpuSmbO2H37w==
+</ds:Modulus>
+<ds:Exponent>AQAB</ds:Exponent>
+</ds:RSAKeyValue>
+</ds:KeyValue>
+</ds:KeyInfo>
+<ds:Object Id="Signature775709-Object932649"><etsi:QualifyingProperties Target="#Signature775709"><etsi:SignedProperties Id="Signature775709-SignedProperties789926"><etsi:SignedSignatureProperties><etsi:SigningTime>2024-10-28T16:24:14-05:00</etsi:SigningTime><etsi:SigningCertificate><etsi:Cert><etsi:CertDigest><ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/><ds:DigestValue>UxsUEs+Zp1TA0BIV2GDJ7wvFj1g=</ds:DigestValue></etsi:CertDigest><etsi:IssuerSerial><ds:X509IssuerName>CN=ANF High Assurance Ecuador Intermediate CA,OU=ANF Autoridad intermedia  EC,O=ANFAC AUTORIDAD DE CERTIFICACION ECUADOR C.A.,C=EC,2.5.4.5=#130d31373932363031323135303031</ds:X509IssuerName><ds:X509SerialNumber>995629048567852465813690021</ds:X509SerialNumber></etsi:IssuerSerial></etsi:Cert></etsi:SigningCertificate></etsi:SignedSignatureProperties><etsi:SignedDataObjectProperties><etsi:DataObjectFormat ObjectReference="#Reference-ID-591561"><etsi:Description>contenido comprobante</etsi:Description><etsi:MimeType>text/xml</etsi:MimeType></etsi:DataObjectFormat></etsi:SignedDataObjectProperties></etsi:SignedProperties></etsi:QualifyingProperties></ds:Object></ds:Signature></factura>]]>
+    </comprobante>
+    <mensajes>null</mensajes>
+</autorizacion>

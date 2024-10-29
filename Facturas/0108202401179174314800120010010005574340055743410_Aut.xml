@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<autorizacion>
+<estado>AUTORIZADO</estado>
+<numeroAutorizacion>0108202401179174314800120010010005574340055743410</numeroAutorizacion>
+<fechaAutorizacion>2024-08-01T15:50:18-05:00</fechaAutorizacion>
+<ambiente>PRODUCCIÓN</ambiente>
+<comprobante><![CDATA[<?xml version="1.0" encoding="UTF-8" standalone="no"?><factura id="comprobante" version="1.1.0">
+  <infoTributaria>
+    <ambiente>2</ambiente>
+    <tipoEmision>1</tipoEmision>
+    <razonSocial>INTCOMEX del Ecuador S.A.</razonSocial>
+    <nombreComercial>INTCOMEX del Ecuador S.A.</nombreComercial>
+    <ruc>1791743148001</ruc>
+    <claveAcceso>0108202401179174314800120010010005574340055743410</claveAcceso>
+    <codDoc>01</codDoc>
+    <estab>001</estab>
+    <ptoEmi>001</ptoEmi>
+    <secuencial>000557434</secuencial>
+    <dirMatriz>Yanez Pinzon 295 y La Nina. Quito. Pichincha. Ecuador</dirMatriz>
+  </infoTributaria>
+  <infoFactura>
+    <fechaEmision>01/08/2024</fechaEmision>
+    <dirEstablecimiento>Yanez Pinzon 295 y La Nina</dirEstablecimiento>
+    <contribuyenteEspecial>393</contribuyenteEspecial>
+    <obligadoContabilidad>SI</obligadoContabilidad>
+    <tipoIdentificacionComprador>04</tipoIdentificacionComprador>
+    <razonSocialComprador>CARDENAS COLCHA ELVIS HERNAN</razonSocialComprador>
+    <identificacionComprador>1310839541001</identificacionComprador>
+    <totalSinImpuestos>204.27</totalSinImpuestos>
+    <totalDescuento>0.00</totalDescuento>
+    <totalConImpuestos>
+      <totalImpuesto>
+        <codigo>2</codigo>
+        <codigoPorcentaje>4</codigoPorcentaje>
+        <baseImponible>204.27</baseImponible>
+        <tarifa>15.00</tarifa>
+        <valor>30.64</valor>
+      </totalImpuesto>
+    </totalConImpuestos>
+    <propina>0.00</propina>
+    <importeTotal>234.91</importeTotal>
+    <moneda>DOLAR</moneda>
+    <pagos>
+      <pago>
+        <formaPago>20</formaPago>
+        <total>234.91</total>
+        <plazo>30</plazo>
+        <unidadTiempo>dias</unidadTiempo>
+      </pago>
+    </pagos>
+  </infoFactura>
+  <detalles>
+    <detalle>
+      <codigoPrincipal>PT336EPS76</codigoPrincipal>
+      <codigoAuxiliar>C11CJ67301</codigoAuxiliar>
+      <descripcion>Epson Multifunction L3250USBWIFI</descripcion>
+      <cantidad>1.00</cantidad>
+      <precioUnitario>202.52</precioUnitario>
+      <descuento>0.00</descuento>
+      <precioTotalSinImpuesto>202.52</precioTotalSinImpuesto>
+      <detallesAdicionales>
+        <detAdicional nombre="Series" valor="XAGZ881843"/>
+        <detAdicional nombre="BarCode" valor="N/A"/>
+      </detallesAdicionales>
+      <impuestos>
+        <impuesto>
+          <codigo>2</codigo>
+          <codigoPorcentaje>4</codigoPorcentaje>
+          <tarifa>15.00</tarifa>
+          <baseImponible>202.52</baseImponible>
+          <valor>30.38</valor>
+        </impuesto>
+      </impuestos>
+    </detalle>
+    <detalle>
+      <codigoPrincipal>xfreight</codigoPrincipal>
+      <descripcion>Flete por Envio</descripcion>
+      <cantidad>1.00</cantidad>
+      <precioUnitario>1.75</precioUnitario>
+      <descuento>0.00</descuento>
+      <precioTotalSinImpuesto>1.75</precioTotalSinImpuesto>
+      <detallesAdicionales>
+        <detAdicional nombre="Series" valor="No_Series"/>
+        <detAdicional nombre="BarCode" valor="N/A"/>
+      </detallesAdicionales>
+      <impuestos>
+        <impuesto>
+          <codigo>2</codigo>
+          <codigoPorcentaje>4</codigoPorcentaje>
+          <tarifa>15.00</tarifa>
+          <baseImponible>1.75</baseImponible>
+          <valor>0.26</valor>
+        </impuesto>
+      </impuestos>
+    </detalle>
+  </detalles>
+  <infoAdicional>
+    <campoAdicional nombre="emailCliente">elhecaco@hotmail.com;mayra.molina@intcomex.com</campoAdicional>
+    <campoAdicional nombre="CodInternoSAP">in1329813</campoAdicional>
+    <campoAdicional nombre="Condiciones">p30</campoAdicional>
+    <campoAdicional nombre="ReferenciaOC">N/A</campoAdicional>
+    <campoAdicional nombre="FechaVencimiento">31/08/2024</campoAdicional>
+    <campoAdicional nombre="DireccionCliente">AV UNIVERSITARIA E INGLATERRA TECNIMONGE</campoAdicional>
+    <campoAdicional nombre="DireccionLinea2">FARMACIA PORTOVIEJO FARMACIA PORTOVIEJ</campoAdicional>
+    <campoAdicional nombre="DireccionLinea3">PORTOVIEJO.MANABI</campoAdicional>
+    <campoAdicional nombre="Cesion">Estimado cliente. notificamos que los derechos de cobro de esta factura son cedidos a favor de Servicios Financieros Intcomex LLC. por favor realizar el pago a nombre de FIDEICOMISO FLUJOS INTCOMEX.</campoAdicional>
+    <campoAdicional nombre="emailClienteVisualizacion">elhecaco@hotmail.com</campoAdicional>
+    <campoAdicional nombre="Nota">N/A</campoAdicional>
+    <campoAdicional nombre="Gran Contribuyente">NAC-GCFOIOC21-00001087-E</campoAdicional>
+  </infoAdicional>
+<ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:etsi="http://uri.etsi.org/01903/v1.3.2#" Id="Signature952978">
+<ds:SignedInfo Id="Signature-SignedInfo350909">
+<ds:CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/>
+<ds:SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/>
+<ds:Reference Id="SignedPropertiesID920168" Type="http://uri.etsi.org/01903#SignedProperties" URI="#Signature952978-SignedProperties559316">
+<ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
+<ds:DigestValue>hJFLpNcxKpw6dJaSnIhLga5+y84=</ds:DigestValue>
+</ds:Reference>
+<ds:Reference URI="#Certificate1699732">
+<ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
+<ds:DigestValue>/9+9gJd3c8MVEnsvYy9u5CK5tOs=</ds:DigestValue>
+</ds:Reference>
+<ds:Reference Id="Reference-ID-995148" URI="#comprobante">
+<ds:Transforms>
+<ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/>
+</ds:Transforms>
+<ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
+<ds:DigestValue>dTi0No1pqCoKCy1D12M9I9z9w5U=</ds:DigestValue>
+</ds:Reference>
+</ds:SignedInfo>
+<ds:SignatureValue Id="SignatureValue150942">
+kAJts4NAdYudjMlvSlfPeose/gMzlAWxQAepzs5niymBmUCJyj3iYiKmklHBHDf6eoGhXxI/6etG
+psTBNFrQhCKsfOLVtC4nKjxfCGJJ10iFC8Bco1Fq05NMTlUIQAT0BgoOOnhTuVGRHo0WzYQ2xpms
+4Gl5niHhgttitwNqaiXLwY2o3tLmrHeIdYSU/MuD0uKcsamgurVjf0XD5oYGIaIr6rJobGBoneeC
+T+uCapc6IEfbxo1nnlFvPHjrZrj2hupHOPyQWsthJyLoqAz+hKidfh5zYcScUKfZK/5R3lMWyTUv
+Ie0pcLg4Am4JPtneMiymY9Kspwr2KQ6JG675ow==
+</ds:SignatureValue>
+<ds:KeyInfo Id="Certificate1699732">
+<ds:X509Data>
+<ds:X509Certificate>
+MIIMATCCCemgAwIBAgIEDeuLMTANBgkqhkiG9w0BAQsFADCBmTELMAkGA1UEBhMCRUMxHTAbBgNV
+BAoMFFNFQ1VSSVRZIERBVEEgUy5BLiAyMTAwLgYDVQQLDCdFTlRJREFEIERFIENFUlRJRklDQUNJ
+T04gREUgSU5GT1JNQUNJT04xOTA3BgNVBAMMMEFVVE9SSURBRCBERSBDRVJUSUZJQ0FDSU9OIFNV
+QkNBLTIgU0VDVVJJVFkgREFUQTAeFw0yMzA1MTEyMzE4MDlaFw0yODA1MTAyMzE4MDlaMIGeMScw
+JQYDVQQDDB5QQVVMIEFMQlJFQ0hUIEJFUkdNQU5OIEJVQ0hFTEkxFTATBgNVBAUTDDExMDUyMzE4
+Mjc0MjEwMC4GA1UECwwnRU5USURBRCBERSBDRVJUSUZJQ0FDSU9OIERFIElORk9STUFDSU9OMR0w
+GwYDVQQKDBRTRUNVUklUWSBEQVRBIFMuQS4gMjELMAkGA1UEBhMCRUMwggEiMA0GCSqGSIb3DQEB
+AQUAA4IBDwAwggEKAoIBAQDH5+vs5QMUxx/53zqjkTf99R2R/g1z3uiwIN6NfsYxi9r3fkAcPlaW
+w9LrGZ0lhL5amHRRXKosEqwp+1QzSe2kUvAXQyOLv5zV5FCqJW62OfMU3c3VjedYK0Ff0hK+nyEk
+KPoO95CHoQHEkRrSAyx5ey3gdCaCgDGxRwd82Mg9ZskKgmkCpv0WKqg2as34kuSiwt1Th56CNB/T
+aW195hde0wk7xziclaKNh2IipSEIsKNVLLLMJkIXYNMO+Vz6vZYfruiAkhgSW6qBcv/KoZd8eygT
+QPBQWVL1A+AGrqceHJfRTGUDxJqvflxPD7wf9IrjK+EgGU/V4BKqgUJFXO4PAgMBAAGjggdIMIIH
+RDAMBgNVHRMBAf8EAjAAMB8GA1UdIwQYMBaAFIy6yhFXeCWAHWsKS1W/ja5i3b2PMFkGCCsGAQUF
+BwEBBE0wSzBJBggrBgEFBQcwAYY9aHR0cDovL29jc3Bndy5zZWN1cml0eWRhdGEubmV0LmVjL2Vq
+YmNhL3B1YmxpY3dlYi9zdGF0dXMvb2NzcDCBzwYDVR0uBIHHMIHEMIHBoIG+oIG7hoG4bGRhcDov
+L2xkYXBzZGNhMi5zZWN1cml0eWRhdGEubmV0LmVjL0NOPUFVVE9SSURBRCBERSBDRVJUSUZJQ0FD
+SU9OIFNVQkNBLTIgU0VDVVJJVFkgREFUQSxPVT1FTlRJREFEIERFIENFUlRJRklDQUNJT04gREUg
+SU5GT1JNQUNJT04sTz1TRUNVUklUWSBEQVRBIFMuQS4gMixDPUVDP2RlbHRhUmV2b2NhdGlvbkxp
+c3Q/YmFzZTAhBgNVHREEGjAYgRZwYmVyZ21hbm5AaW50Y29tZXguY29tMIIBFQYDVR0gBIIBDDCC
+AQgwYgYKKwYBBAGCpnICCTBUMFIGCCsGAQUFBwICMEYeRABDAGUAcgB0AGkAZgBpAGMAYQBkAG8A
+IABkAGUAIABSAGUAcAByAGUAcwBlAG4AdABhAG4AdABlACAATABlAGcAYQBsMIGhBgorBgEEAYKm
+cgIDMIGSMIGPBggrBgEFBQcCARaBgmh0dHBzOi8vd3d3LnNlY3VyaXR5ZGF0YS5uZXQuZWMvd3At
+Y29udGVudC9kb3dubG9hZHMvTm9ybWF0aXZhcy9QX2RlX0NlcnRpZmljYWRvcy9Qb2xpdGljYXMg
+ZGUgQ2VydGlmaWNhZG8gUmVwcmVzZW50YW50ZSBMZWdhbC5wZGYwggKiBgNVHR8EggKZMIIClTCB
+5aBBoD+GPWh0dHA6Ly9vY3NwZ3cuc2VjdXJpdHlkYXRhLm5ldC5lYy9lamJjYS9wdWJsaWN3ZWIv
+c3RhdHVzL29jc3CigZ+kgZwwgZkxOTA3BgNVBAMMMEFVVE9SSURBRCBERSBDRVJUSUZJQ0FDSU9O
+IFNVQkNBLTIgU0VDVVJJVFkgREFUQTEwMC4GA1UECwwnRU5USURBRCBERSBDRVJUSUZJQ0FDSU9O
+IERFIElORk9STUFDSU9OMR0wGwYDVQQKDBRTRUNVUklUWSBEQVRBIFMuQS4gMjELMAkGA1UEBhMC
+RUMwgceggcSggcGGgb5sZGFwOi8vbGRhcHNkY2EyLnNlY3VyaXR5ZGF0YS5uZXQuZWMvQ049QVVU
+T1JJREFEIERFIENFUlRJRklDQUNJT04gU1VCQ0EtMiBTRUNVUklUWSBEQVRBLE9VPUVOVElEQUQg
+REUgQ0VSVElGSUNBQ0lPTiBERSBJTkZPUk1BQ0lPTixPPVNFQ1VSSVRZIERBVEEgUy5BLiAyLEM9
+RUM/Y2VydGlmaWNhdGVSZXZvY2F0aW9uTGlzdD9iYXNlMIHgoIHdoIHahoHXaHR0cHM6Ly9wb3J0
+YWwtb3BlcmFkb3IyLnNlY3VyaXR5ZGF0YS5uZXQuZWMvZWpiY2EvcHVibGljd2ViL3dlYmRpc3Qv
+Y2VydGRpc3Q/Y21kPWNybCZpc3N1ZXI9Q049QVVUT1JJREFEIERFIENFUlRJRklDQUNJT04gU1VC
+Q0EtMiBTRUNVUklUWSBEQVRBLE9VPUVOVElEQUQgREUgQ0VSVElGSUNBQ0lPTiBERSBJTkZPUk1B
+Q0lPTixPPVNFQ1VSSVRZIERBVEEgUy5BLiAyLEM9RUMwHQYDVR0OBBYEFEXqDy7PUd8cXqtOmBcu
+uMzYVu7uMCsGA1UdEAQkMCKADzIwMjMwNTExMjMxODA5WoEPMjAyODA1MTAyMzE4MDlaMAsGA1Ud
+DwQEAwIF4DAfBgorBgEEAYKmcgMFBBEMD0dFUkVOVEUgR0VORVJBTDAaBgorBgEEAYKmcgMBBAwM
+CjE3MDQ0MjQ1ODcwFQYKKwYBBAGCpnIDCQQHDAVRVUlUTzARBgorBgEEAYKmcgMiBAMMAS4wKgYK
+KwYBBAGCpnIDBwQcDBpZQU5FWiBQSU5aT04gMjk1IFkgTEEgTklOQTAdBgorBgEEAYKmcgMCBA8M
+DVBBVUwgQUxCUkVDSFQwHwYKKwYBBAGCpnIDIAQRDA8wMDIwMDEwMDA2MjI0MjQwEwYKKwYBBAGC
+pnIDIQQFDANQRlgwFwYKKwYBBAGCpnIDDAQJDAdFQ1VBRE9SMBgGCisGAQQBgqZyAwMECgwIQkVS
+R01BTk4wKAYKKwYBBAGCpnIDCgQaDBhJTlRDT01FWCBERUwgRUNVQURPUiBTIEEwHQYKKwYBBAGC
+pnIDCwQPDA0xNzkxNzQzMTQ4MDAxMBIGCisGAQQBgqZyAx0EBAwCTm8wFwYKKwYBBAGCpnIDBAQJ
+DAdCVUNIRUxJMBoGCisGAQQBgqZyAwgEDAwKMDk4NDAyMzg1MzANBgkqhkiG9w0BAQsFAAOCAgEA
+AfMPuKy8qmd2oombzAhgbvMlOIbuPpLTXGJFc/5Lbq6IwiwtEF2BwnKsa9/jKjRDc4oKDxeAIGHV
+TVDN4HWfnePL6ObMJq3eW7Dbp1RI+zKw14IRkPIYLPqBiEPEENXagy/RYYBAxohZYfWnKuuHdQg4
+BYYmUM1mQnPO/MhayWqrxQooaNHKvo+wBZmG0MiDmJCD8ZNhpnPFa1e25EfRHpqrKIpa8rLiEjex
+pmKQBWYyH7+hcGY/DcGONifsjXRUsv+akYBBYuVoEnyR9b8q6Gls8PpCAgl/TByIuHyyy98cQaxr
+f6BuqksmayG9j4ZKnndvh24PvE+3fFt4ko40al9N3GkOHqreTGEBdwoqDEFSyPEdr92ZTMy7zb5z
+3SZR/qPNAp/AYwF4Ot/d40qKOOQ+hb0PKfy1200xhrs1Fpdd11JIQn8ilxsqbnqwYLpD52HapJZa
+39yhIDHpibDTMXYPPbpwxVeZHSiyrejYGnySrHy6YjRwtEQ6ogXdiuPJIgT/j7jV1ySL0onuNYvr
+NPg90Y6oSzI1nlMMW/x+8xR8r0q8VYv3CN+rpeUf7U4rHbDW+se+W2aatzora3jpCmgv8zmWI1wc
+UxElXDNK/gwLTRhAay61bdsEX8VwipeYWvUDhhLL+zdTs/f24ZUilIYC99SudNCsxDdeSCHcImA=
+</ds:X509Certificate>
+</ds:X509Data>
+<ds:KeyValue>
+<ds:RSAKeyValue>
+<ds:Modulus>
+x+fr7OUDFMcf+d86o5E3/fUdkf4Nc97osCDejX7GMYva935AHD5WlsPS6xmdJYS+Wph0UVyqLBKs
+KftUM0ntpFLwF0Mji7+c1eRQqiVutjnzFN3N1Y3nWCtBX9ISvp8hJCj6DveQh6EBxJEa0gMseXst
+4HQmgoAxsUcHfNjIPWbJCoJpAqb9FiqoNmrN+JLkosLdU4eegjQf02ltfeYXXtMJO8c4nJWijYdi
+IqUhCLCjVSyyzCZCF2DTDvlc+r2WH67ogJIYEluqgXL/yqGXfHsoE0DwUFlS9QPgBq6nHhyX0Uxl
+A8Sar35cTw+8H/SK4yvhIBlP1eASqoFCRVzuDw==
+</ds:Modulus>
+<ds:Exponent>AQAB</ds:Exponent>
+</ds:RSAKeyValue>
+</ds:KeyValue>
+</ds:KeyInfo>
+<ds:Object Id="Signature952978-Object603904"><etsi:QualifyingProperties Target="#Signature952978"><etsi:SignedProperties Id="Signature952978-SignedProperties559316"><etsi:SignedSignatureProperties><etsi:SigningTime>2024-08-01T15:50:13-05:00</etsi:SigningTime><etsi:SigningCertificate><etsi:Cert><etsi:CertDigest><ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/><ds:DigestValue>X2WLjijrcJrxsJ17L6LoZphaZdM=</ds:DigestValue></etsi:CertDigest><etsi:IssuerSerial><ds:X509IssuerName>CN=AUTORIDAD DE CERTIFICACION SUBCA-2 SECURITY DATA,OU=ENTIDAD DE CERTIFICACION DE INFORMACION,O=SECURITY DATA S.A. 2,C=EC</ds:X509IssuerName><ds:X509SerialNumber>233540401</ds:X509SerialNumber></etsi:IssuerSerial></etsi:Cert></etsi:SigningCertificate></etsi:SignedSignatureProperties><etsi:SignedDataObjectProperties><etsi:DataObjectFormat ObjectReference="#Reference-ID-995148"><etsi:Description>comprobante</etsi:Description><etsi:MimeType>text/xml</etsi:MimeType></etsi:DataObjectFormat></etsi:SignedDataObjectProperties></etsi:SignedProperties></etsi:QualifyingProperties></ds:Object></ds:Signature></factura>]]></comprobante>
+<mensajes/>
+</autorizacion>
+
