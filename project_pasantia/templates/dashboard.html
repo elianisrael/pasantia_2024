@@ -11,6 +11,7 @@
 
    <nav class="navbar">
     <ul class="menu">
+        <!-- <li><a href="{{ url_for('upload_files') }}">Ver Último Reporte</a></li> -->
         <li><a href="/index">Subir Archivos</a></li>
         <li><a href="/dashboard">Dashboard</a></li>
         <li><a href="/reportes.anteriores">Reportes</a></li>
@@ -27,6 +28,9 @@
    
 </nav>
 <body class="bodydashboard">
+    <div class="navigation-buttons">
+        <a href="{{ url_for('upload_files') }}" class="btn-nav">Cargar Nuevos Archivos</a>
+    </div>
     <div class="dashboard-container">
         <!-- Sección de Filtros -->
         <div class="filters-section">
@@ -44,12 +48,21 @@
                 
                 <div class="filter-group">
                     <label for="clientes-select" style="font-weight: bold;">Clientes:</label>
-                    <span id="selected-client" style="cursor: pointer; color: #333; border: 1px solid #ddd; padding: 7.7px; display: inline-block; border-radius: 4px; width: calc(100% - 9px); text-align: left; margin-left: 5.5px; margin-bottom: 5px;">Selecciona clientes</span>
+                    <!-- Botón de selección de clientes -->
+                    <span id="selected-client" style="cursor: pointer; color: #333; border: 1px solid #ddd; padding: 7.7px; display: inline-block; border-radius: 4px; width: calc(100% - 9px); text-align: left; margin-left: 5.5px; margin-bottom: 5px;">
+                        Selecciona clientes
+                    </span>
+                    
+                    <!-- Lista desplegable de checkboxes -->
                     <div id="clientes-list" class="checkbox-container hidden">
+                        <div>
+                            <input type="checkbox" id="select-all" style="margin-right: 5px;">
+                            <label for="select-all"><strong>Seleccionar todos</strong></label>
+                        </div>
                         {% for cliente in clientes_unicos %}
                         <div class="checkbox-item" data-cliente="{{ cliente }}">
                             <input type="checkbox" name="clientes[]" value="{{ cliente }}" class="hidden-checkbox"
-                                {% if cliente in clientes_filtro %}checked{% endif %}>
+                                {% if cliente in clientes_filtro %}checked{% endif %} style="margin-right: 5px;">
                             <label>{{ cliente }}</label>
                         </div>
                         {% endfor %}
@@ -132,7 +145,6 @@
 
         
         <script>
-
                     // Alternar visibilidad de la lista de clientes al hacer clic en el texto
                     document.getElementById('selected-client').addEventListener('click', function(event) {
                         const clientesList = document.getElementById('clientes-list');
