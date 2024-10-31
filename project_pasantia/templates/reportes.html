@@ -49,31 +49,80 @@
     
 
     <!-- En reportes.html -->
-<div class="container">
-    <h1>Reportes Anteriores</h1>
-
-    {% if reportes %}
-        <table class="report-table">
-            <thead>
-                <tr>
-                    <th>Nombre del Reporte</th>
-                    <th>Fecha</th>
-                    <th>Total</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for reporte in reportes %}
+    <div class="container">
+        <h1>Reportes Anteriores</h1>
+    
+        <!-- Botón para seleccionar varios y borrar -->
+        <button id="delete-selected" style="margin-bottom: 10px;">Borrar Seleccionados</button>
+    
+        {% if reportes %}
+            <table class="report-table">
+                <thead>
                     <tr>
-                        <td>{{ reporte['nombre'] }}</td>
-                        <td>{{ reporte['fecha'] }}</td>
-                        <td>${{ "%.2f"|format(reporte['total']) }}</td>
+                        <th><input type="checkbox" id="select-all"></th>
+                        <th>Nombre del Reporte</th>
+                        <th>Fecha</th>
+                        <th>Total</th>
+                        <th>Acciones</th>
                     </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    {% else %}
-        <p>No hay reportes anteriores para mostrar.</p>
-    {% endif %}
+                </thead>
+                <tbody>
+                    {% for reporte in reportes %}
+                        <tr>
+                            <td><input type="checkbox" class="select-report" data-id="{{ reporte['id'] }}"></td>
+                            <td>{{ reporte['nombre'] }}</td>
+                            <td>{{ reporte['fecha'] }}</td>
+                            <td>${{ "%.2f"|format(reporte['total']) }}</td>
+                            <td>
+                                <button onclick="viewReport('{{ reporte['id'] }}')">Ver</button>
+                                <button onclick="deleteReport('{{ reporte['id'] }}')">Borrar</button>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No hay reportes anteriores para mostrar.</p>
+        {% endif %}
+    </div>
+    
+    <script>
+        // Función para ver un reporte
+        function viewReport(id) {
+            window.location.href = `/reporte/${id}`;
+        }
+    
+        // Función para borrar un reporte
+        function deleteReport(id) {
+            if (confirm('¿Estás seguro de que deseas borrar este reporte?')) {
+                // Lógica de eliminación aquí (ejemplo de solicitud de eliminación)
+                fetch(`/borrar-reporte/${id}`, { method: 'DELETE' })
+                    .then(response => location.reload())
+                    .catch(error => console.error('Error:', error));
+            }
+        }
+    
+        // Selección y borrado múltiple
+        document.getElementById('select-all').addEventListener('change', function() {
+            const checkboxes = document.querySelectorAll('.select-report');
+            checkboxes.forEach(checkbox => checkbox.checked = this.checked);
+        });
+    
+        document.getElementById('delete-selected').addEventListener('click', function() {
+            const selectedReports = Array.from(document.querySelectorAll('.select-report:checked'))
+                .map(checkbox => checkbox.dataset.id);
+    
+            if (selectedReports.length && confirm('¿Deseas borrar los reportes seleccionados?')) {
+                Promise.all(selectedReports.map(id => 
+                    fetch(`/borrar-reporte/${id}`, { method: 'DELETE' })
+                )).then(() => location.reload())
+                  .catch(error => console.error('Error:', error));
+            } else if (!selectedReports.length) {
+                alert('No se seleccionaron reportes para borrar.');
+            }
+        });
+    </script>
+    
 </div>
 </body>
 

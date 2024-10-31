@@ -715,6 +715,32 @@ def dashboard():
                          fecha_fin=fecha_fin,
                          clientes_filtro=clientes_filtro,
                          rango_monto=rango_monto)
+@app.route('/reporte/<int:id>')
+def ver_reporte(id):
+    if 'user_id' not in session:
+        return redirect(url_for('login'))
+
+    conn = get_db_connection()
+    reporte = conn.execute('SELECT * FROM reportes WHERE id = ?', (id,)).fetchone()
+    conn.close()
+
+    if reporte is None:
+        flash("Reporte no encontrado.")
+        return redirect(url_for('reportes_anteriores'))
+    
+    return render_template('ver_reporte.html', reporte=reporte)
+
+@app.route('/borrar-reporte/<int:id>', methods=['DELETE'])
+def borrar_reporte(id):
+    if 'user_id' not in session:
+        return redirect(url_for('login'))
+
+    conn = get_db_connection()
+    conn.execute('DELETE FROM reportes WHERE id = ?', (id,))
+    conn.commit()
+    conn.close()
+    
+    return '', 204
 
 
 if __name__ == '__main__':

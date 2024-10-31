@@ -159,14 +159,15 @@
                         checkbox.checked = !checkbox.checked;
                         this.classList.toggle('selected');
 
-                        // Actualizar la lista de clientes seleccionados
-                        const selectedClients = Array.from(document.querySelectorAll('.checkbox-item.selected'))
-                            .map(item => item.dataset.cliente);
-                        document.getElementById('selected-client').textContent = 
-                            selectedClients.length ? selectedClients.join(', ') : 'Selecciona clientes';
-                        event.stopPropagation();
-                        });
-                    });
+                        // Actualizar la cantidad de clientes seleccionados
+        const selectedClientsCount = document.querySelectorAll('.checkbox-item.selected').length;
+        
+        document.getElementById('selected-client').textContent = 
+            selectedClientsCount ? `${selectedClientsCount} cliente${selectedClientsCount > 1 ? 's' : ''}` : 'Selecciona clientes';
+
+        event.stopPropagation();
+    });
+});
                 
                     // Evitar que la lista de clientes se cierre al hacer clic en un elemento dentro de la lista
                     document.getElementById('clientes-list').addEventListener('click', function(event) {
