@@ -636,6 +636,7 @@ def dashboard():
     fecha_inicio = request.args.get('fecha_inicio')
     fecha_fin = request.args.get('fecha_fin')
     clientes_filtro = request.args.getlist('clientes[]')
+    vendedores_filtro = request.args.getlist('vendedores[]')
     rango_monto = request.args.get('rango_monto')
     
     # Filtrar facturas según los parámetros
@@ -659,6 +660,13 @@ def dashboard():
             f for f in facturas_filtradas 
             if f['Razón Social comprador'] in clientes_filtro
         ]
+
+    # Aplicar filtro de vendedores
+    if vendedores_filtro:
+        facturas_filtradas = [
+            f for f in facturas_filtradas
+            if f['Razón Social del Vendedor'] in vendedores_filtro
+        ]
     
     # Aplicar filtro de rango de monto
     if rango_monto:
@@ -676,6 +684,13 @@ def dashboard():
     total_ventas = sum(float(f['Total con impuestos']) for f in facturas_filtradas)
     ventas_sin_impuestos = sum(float(f['Total sin impuestos']) for f in facturas_filtradas)
     promedio_venta = total_ventas / total_facturas if total_facturas > 0 else 0
+
+    # Análisis por vendedor
+    ventas_por_vendedor = {}
+    for factura in facturas_filtradas:
+        vendedor = factura.get('Razón Social del Vendedor', 'Vendedor no especificado')
+        monto = float(factura['Total con impuestos'])
+        ventas_por_vendedor[vendedor] = ventas_por_vendedor.get(vendedor, 0) + monto
 
     # Análisis por cliente
     ventas_por_cliente = {}
@@ -702,19 +717,26 @@ def dashboard():
     # Obtener lista única de clientes para el filtro
     clientes_unicos = sorted(list(set(f['Razón Social comprador'] for f in facturas_info)))
 
+    # Obtener lista única de vendedores para el filtro
+    vendedores_unicos = sorted(list(set(f['Razón Social del Vendedor'] for f in facturas_info)))
+
     return render_template('dashboard.html',
                          total_facturas=total_facturas,
                          total_ventas=total_ventas,
                          ventas_sin_impuestos=ventas_sin_impuestos,
                          promedio_venta=promedio_venta,
                          ventas_por_cliente=ventas_por_cliente,
+                         ventas_por_vendedor=ventas_por_vendedor,
                          iva_totales=iva_totales,
                          ventas_por_mes=ventas_por_mes,
                          clientes_unicos=clientes_unicos,
+                         vendedores_unicos=vendedores_unicos,
                          fecha_inicio=fecha_inicio,
                          fecha_fin=fecha_fin,
                          clientes_filtro=clientes_filtro,
+                         vendedores_filtro=vendedores_filtro,
                          rango_monto=rango_monto)
+
 @app.route('/reporte/<int:id>')
 def ver_reporte(id):
     if 'user_id' not in session:

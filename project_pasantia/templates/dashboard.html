@@ -44,26 +44,46 @@
                     <label for="fecha_fin">Fecha Fin:</label>
                     <input type="date" id="fecha_fin" name="fecha_fin" value="{{ fecha_fin }}">
                 </div>
-
                 
+                <!-- Filtro de Clientes -->
                 <div class="filter-group">
                     <label for="clientes-select" style="font-weight: bold;">Clientes:</label>
-                    <!-- Botón de selección de clientes -->
                     <span id="selected-client" style="cursor: pointer; color: #333; border: 1px solid #ddd; padding: 7.7px; display: inline-block; border-radius: 4px; width: calc(100% - 9px); text-align: left; margin-left: 5.5px; margin-bottom: 5px;">
                         Selecciona clientes
                     </span>
                     
-                    <!-- Lista desplegable de checkboxes -->
                     <div id="clientes-list" class="checkbox-container hidden">
                         <div>
-                            <input type="checkbox" id="select-all" style="margin-right: 5px;">
-                            <label for="select-all"><strong>Seleccionar todos</strong></label>
+                            <input type="checkbox" id="select-all-clients" style="margin-right: 5px;">
+                            <label for="select-all-clients"><strong>Seleccionar todos</strong></label>
                         </div>
                         {% for cliente in clientes_unicos %}
-                        <div class="checkbox-item" data-cliente="{{ cliente }}">
-                            <input type="checkbox" name="clientes[]" value="{{ cliente }}" class="hidden-checkbox"
-                                {% if cliente in clientes_filtro %}checked{% endif %} style="margin-right: 5px;">
-                            <label>{{ cliente }}</label>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="cliente-{{ loop.index }}" name="clientes[]" value="{{ cliente }}" 
+                                {% if cliente in clientes_filtro %}checked{% endif %}>
+                            <label for="cliente-{{ loop.index }}">{{ cliente }}</label>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <!-- Filtro de Vendedores -->
+                <div class="filter-group">
+                    <label for="vendedores-select" style="font-weight: bold;">Vendedores:</label>
+                    <span id="selected-vendor" style="cursor: pointer; color: #333; border: 1px solid #ddd; padding: 7.7px; display: inline-block; border-radius: 4px; width: calc(100% - 9px); text-align: left; margin-left: 5.5px; margin-bottom: 5px;">
+                        Selecciona vendedores
+                    </span>
+                    
+                    <div id="vendedores-list" class="checkbox-container hidden">
+                        <div>
+                            <input type="checkbox" id="select-all-vendors" style="margin-right: 5px;">
+                            <label for="select-all-vendors"><strong>Seleccionar todos</strong></label>
+                        </div>
+                        {% for vendedor in vendedores_unicos %}
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="vendedor-{{ loop.index }}" name="vendedores[]" value="{{ vendedor }}" 
+                                {% if vendedor in vendedores_filtro %}checked{% endif %}>
+                            <label for="vendedor-{{ loop.index }}">{{ vendedor }}</label>
                         </div>
                         {% endfor %}
                     </div>
@@ -115,6 +135,19 @@
                 </select>
                 <canvas id="clientesChart"></canvas>
             </div>
+
+            <!-- Gráfico de Ventas por Vendedor -->
+            <div class="chart-box">
+                <h3>Ventas por Vendedor</h3>
+                <label for="chartTypeVendedores">Selecciona el tipo de gráfico:</label>
+                <select id="chartTypeVendedores">
+                    <option value="line">Línea</option>
+                    <option value="doughnut">Dona</option>
+                    <option value="radar">Radar</option>
+                    <option value="bar">Barra</option>
+                </select>
+                <canvas id="vendedoresChart"></canvas>
+            </div>
         
             <!-- Gráfico de Ventas por Mes -->
             <div class="chart-box">
@@ -145,44 +178,83 @@
 
         
         <script>
-                    // Alternar visibilidad de la lista de clientes al hacer clic en el texto
-                    document.getElementById('selected-client').addEventListener('click', function(event) {
-                        const clientesList = document.getElementById('clientes-list');
-                        clientesList.classList.toggle('show');
-                        event.stopPropagation(); // Evita que el clic se propague y cierre el desplegable
+             document.addEventListener('DOMContentLoaded', function() {
+                // Funcionalidad para el filtro de clientes
+                const selectedClient = document.getElementById('selected-client');
+                const clientesList = document.getElementById('clientes-list');
+                const selectAllClients = document.getElementById('select-all-clients');
+                const clientCheckboxes = clientesList.querySelectorAll('input[type="checkbox"]:not(#select-all-clients)');
+
+                // Funcionalidad para el filtro de vendedores
+                const selectedVendor = document.getElementById('selected-vendor');
+                const vendedoresList = document.getElementById('vendedores-list');
+                const selectAllVendors = document.getElementById('select-all-vendors');
+                const vendorCheckboxes = vendedoresList.querySelectorAll('input[type="checkbox"]:not(#select-all-vendors)');
+
+                // Función genérica para actualizar el texto de selección
+                function updateSelectedText(selectedElement, checkboxes, singularText, pluralText) {
+                    const selectedCount = Array.from(checkboxes).filter(cb => cb.checked).length;
+                    selectedElement.textContent = selectedCount ? 
+                        `${selectedCount} ${selectedCount === 1 ? singularText : pluralText} seleccionado${selectedCount !== 1 ? 's' : ''}` : 
+                        `Selecciona ${pluralText}`;
+                }
+
+                // Configurar evento para clientes
+                selectedClient.addEventListener('click', function(event) {
+                    clientesList.classList.toggle('show');
+                    event.stopPropagation();
+                });
+
+                clientCheckboxes.forEach(checkbox => {
+                    checkbox.addEventListener('change', function() {
+                        updateSelectedText(selectedClient, clientCheckboxes, 'cliente', 'clientes');
                     });
-                
-                    // Manejar la selección de clientes al hacer clic en el nombre
-                    document.querySelectorAll('.checkbox-item').forEach(item => {
-                    item.addEventListener('click', function(event) {
-                        const checkbox = this.querySelector('input[type="checkbox"]');
-                        checkbox.checked = !checkbox.checked;
-                        this.classList.toggle('selected');
+                });
 
-                        // Actualizar la cantidad de clientes seleccionados
-        const selectedClientsCount = document.querySelectorAll('.checkbox-item.selected').length;
-        
-        document.getElementById('selected-client').textContent = 
-            selectedClientsCount ? `${selectedClientsCount} cliente${selectedClientsCount > 1 ? 's' : ''}` : 'Selecciona clientes';
+                selectAllClients.addEventListener('change', function() {
+                    clientCheckboxes.forEach(cb => cb.checked = this.checked);
+                    updateSelectedText(selectedClient, clientCheckboxes, 'cliente', 'clientes');
+                });
 
-        event.stopPropagation();
-    });
-});
-                
-                    // Evitar que la lista de clientes se cierre al hacer clic en un elemento dentro de la lista
-                    document.getElementById('clientes-list').addEventListener('click', function(event) {
+                // Configurar evento para vendedores
+                selectedVendor.addEventListener('click', function(event) {
+                    vendedoresList.classList.toggle('show');
+                    event.stopPropagation();
+                });
+
+                vendorCheckboxes.forEach(checkbox => {
+                    checkbox.addEventListener('change', function() {
+                        updateSelectedText(selectedVendor, vendorCheckboxes, 'vendedor', 'vendedores');
+                    });
+                });
+
+                selectAllVendors.addEventListener('change', function() {
+                    vendorCheckboxes.forEach(cb => cb.checked = this.checked);
+                    updateSelectedText(selectedVendor, vendorCheckboxes, 'vendedor', 'vendedores');
+                });
+
+                // Cerrar las listas cuando se hace clic fuera de ellas
+                document.addEventListener('click', function(event) {
+                    if (!event.target.closest('#selected-client') && !clientesList.contains(event.target)) {
+                        clientesList.classList.remove('show');
+                    }
+                    if (!event.target.closest('#selected-vendor') && !vendedoresList.contains(event.target)) {
+                        vendedoresList.classList.remove('show');
+                    }
+                });
+
+                // Inicializar los textos de selección
+                updateSelectedText(selectedClient, clientCheckboxes, 'cliente', 'clientes');
+                updateSelectedText(selectedVendor, vendorCheckboxes, 'vendedor', 'vendedores');
+
+                // Prevenir que los clicks dentro de las listas cierren el desplegable
+                [clientesList, vendedoresList].forEach(list => {
+                    list.addEventListener('click', function(event) {
                         event.stopPropagation();
                     });
-                
-                    // Cerrar la lista cuando se hace clic fuera de ella
-                    document.addEventListener('click', function(event) {
-                        const clientesList = document.getElementById('clientes-list');
-                        if (!event.target.closest('#selected-client') && !clientesList.contains(event.target)) {
-                            clientesList.classList.remove('show');
-                        }
-                    });
-                
-
+                });
+            });
+             
             // Función para crear y actualizar gráficos
             function createChart(ctx, type, labels, data, label) {
                 return new Chart(ctx, {
@@ -229,6 +301,23 @@
                 clientesChart.destroy();
                 clientesChart = createChart(ctxClientes, newType, Object.keys({{ ventas_por_cliente | tojson }}), Object.values({{ ventas_por_cliente | tojson }}), 'Ventas por Cliente');
             });
+
+            // Gráfico Ventas por Vendedor
+            const ctxVendedores = document.getElementById('vendedoresChart').getContext('2d');
+            let vendedoresChart = createChart(ctxVendedores, 'line', 
+                Object.keys({{ ventas_por_vendedor | tojson }}), 
+                Object.values({{ ventas_por_vendedor | tojson }}), 
+                'Ventas por Vendedor');
+
+            document.getElementById('chartTypeVendedores').addEventListener('change', function() {
+                const newType = this.value;
+                vendedoresChart.destroy();
+                vendedoresChart = createChart(ctxVendedores, newType, 
+                    Object.keys({{ ventas_por_vendedor | tojson }}), 
+                    Object.values({{ ventas_por_vendedor | tojson }}), 
+                    'Ventas por Vendedor');
+            });
+
         
             // Gráfico Ventas por Mes
             const ctxMeses = document.getElementById('mesesChart').getContext('2d');

@@ -762,3 +762,20 @@ h2 {
     background-color: #e0e0e0;
 }
 
+/* Estilo para los spans que actúan como botones */
+#selected-client, #selected-vendor {
+    background-color: white;
+    border: 1px solid #ddd;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 5px;
+}
+
+#selected-client:hover, #selected-vendor:hover {
+    background-color: #f8f9fa;
+}
+
