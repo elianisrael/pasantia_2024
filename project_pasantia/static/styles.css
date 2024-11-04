@@ -692,11 +692,12 @@ h2 {
     
     /* Estilo de la lista de clientes desplegable */
     .checkbox-container {
-        display: none;
-        position: absolute;
-        top: calc(100% + 1px);
-        left: 0;
+        display:none;
+        position:absolute;
+        top: calc(100% + 9px);
+        left: 100;
         width: 100%;
+        text-justify: distribute;
         max-height: 200px;
         overflow-y: auto;
         border: 1px solid #ddd;
@@ -707,8 +708,8 @@ h2 {
     }
     .checkbox-item {
         padding: 5px; 
-        font-size: 14px; 
-        cursor: pointer;
+        font-size: 14px;
+        cursor:pointer;
     }
     .checkbox-item:hover {
         background-color: #f0f0f0; /* Efecto hover para mejor visibilidad */
@@ -719,7 +720,7 @@ h2 {
     }
     /* Mostrar lista desplegable cuando está activa */
     .checkbox-container.show {
-        display: block;
+        display:block;
     }
 
 /* Estilos para menú desplegable e icono */
@@ -733,7 +734,7 @@ h2 {
 .dropdownn-content {
     display: none;
     position: absolute;
-    right: 0;
+    right: 100;
     background-color: #f9f9f9;
     min-width: 160px;
     box-shadow: 0 8px 16px rgba(0,0,0,0.2);
