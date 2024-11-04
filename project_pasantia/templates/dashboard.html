@@ -58,7 +58,7 @@
                             <label for="select-all-clients"><strong>Seleccionar todos</strong></label>
                         </div>
                         {% for cliente in clientes_unicos %}
-                        <div class="checkbox-item" style="display:flex; width: 5%; align-items:center; margin-bottom: 5px;">
+                        <div class="checkbox-item" style="display:flex; width: 70%; align-items:center; margin-bottom: 5px;">
                             <input type="checkbox" id="cliente-{{ loop.index }}" name="clientes[]" value="{{ cliente }}" 
                                 {% if cliente in clientes_filtro %}checked{% endif %}>
                             <label for="cliente-{{ loop.index }}">{{ cliente }}</label>
@@ -80,7 +80,7 @@
                             <label for="select-all-vendors"><strong>Seleccionar todos</strong></label>
                         </div>
                         {% for vendedor in vendedores_unicos %}
-                        <div class="checkbox-item"style="display:flex ;width: 40%; align-items:center; margin-bottom: 5px;">
+                        <div class="checkbox-item"style="display:flex ;width: 70%; align-items:center; margin-bottom: 5px;">
                             <input type="checkbox" id="vendedor-{{ loop.index }}" name="vendedores[]" value="{{ vendedor }}" 
                                 {% if vendedor in vendedores_filtro %}checked{% endif %}>
                             <label for="vendedor-{{ loop.index }}">{{ vendedor }}</label>
