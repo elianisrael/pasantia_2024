@@ -47,15 +47,15 @@
                     <label for="fecha_fin">Fecha Fin:</label>
                     <input type="date" id="fecha_fin" name="fecha_fin" value="{{ fecha_fin }}" class="filter-date">
                 </div>
-
-                <button type="submit" class="filter-button">Buscar</button>
-                <button type="button" class="reset-button" onclick="resetFilters()">Resetear Filtros</button>
+                <div>
+                    <button type="submit" class="filter-button">Buscar</button>
+                    <button type="button" class="reset-button" onclick="resetFilters()">Resetear Filtros</button>
+                    <button id="delete-selected" class="filter-button">Borrar Seleccionados</button>
+                </div>
             </form>
         </div>
         </div>
 
-    <!-- Botón para seleccionar varios y borrar -->
-    <button id="delete-selected" class="filter-button">Borrar Seleccionados</button>
 
     {% if reportes %}
         <table class="report-table">

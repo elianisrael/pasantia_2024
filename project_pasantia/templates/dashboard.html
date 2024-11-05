@@ -102,9 +102,10 @@
                         <option value="50000-100000" {% if rango_monto == '50000-100000' %}selected{% endif %}>$50,000+</option>
                     </select>
                 </div>
-
-                <button type="submit" class="filter-button">Aplicar Filtros</button>
-                <a href="{{ url_for('dashboard') }}" class="reset-button">Resetear Filtros</a>
+                <div>
+                    <button type="submit" class="filter-button">Aplicar Filtros</button>
+                    <a href="{{ url_for('dashboard') }}" class="reset-button">Resetear Filtros</a>
+                </div>
             </form>
         </div>
 
