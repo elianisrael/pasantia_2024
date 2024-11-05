@@ -90,8 +90,9 @@ def login():
         session['user_id'] = user['id']
         session['user_name'] = user['username']  # Guardar el nombre en la sesión
         session['user_email'] = user['email']    # Guardar el correo en la sesión
+        
         flash("Has iniciado sesión correctamente.")
-        return redirect('/index')
+        return redirect('/upload')
 
     return render_template('login.html')
 
@@ -102,14 +103,11 @@ def logout():
         # Eliminar el usuario de la sesión
         session.pop('user_id', None)
         flash("Has cerrado sesión correctamente.")
-        return redirect('/login')
+        return redirect('/index')
 
 @app.route('/index')
 def destino():
-    # Verificar si el usuario está autenticado
-    if 'user_id' not in session:
-        flash("Debes iniciar sesión para acceder a esta página.")
-        return redirect('/login')
+
     return render_template('index.html')
 
 
@@ -173,23 +171,23 @@ def crear_factura():
 # Ruta para la página principal
 @app.route('/')
 def home():
-    return redirect('/inicio')  # Redirige a la página de login
+    return redirect('/index')  # Redirige a la página de login
 
 @app.route('/upload')
 def upload():
-    return render_template('index.html')
+    return render_template('upload.html')
 
 #Ruta para página de inicio
-@app.route('/inicio')
-def inicio():
-    return render_template('inicio.html')
+#@app.route('/inicio')
+#def inicio():
+ #   return render_template('inicio.html')
 
 #Ruta para sección en donde se almacenaran
 @app.route('/guardar_reporte', methods=['POST'])
 def guardar_reporte():
     if 'user_id' not in session:
         flash("Debes iniciar sesión para guardar reportes.")
-        return redirect(url_for('login'))
+        return redirect(url_for('index'))
 
     user_id = session['user_id']
     excel_filename = request.form.get('excel_filename')
@@ -232,7 +230,7 @@ def calcular_total_reporte(excel_filename):
 @app.route('/reportes.anteriores')
 def reportes_anteriores():
     if 'user_id' not in session:
-        return redirect(url_for('login'))
+        return redirect(url_for('index'))
 
     user_id = session['user_id']
     conn = get_db_connection()
@@ -256,7 +254,7 @@ def upload_files():
     if 'user_id' not in session:
         print("Usuario no autenticado")
         flash("Debes iniciar sesión para acceder a esta página.")
-        return redirect(url_for('login'))
+        return redirect(url_for('index'))
 
     uploaded_files = request.files.getlist('xml_files')
     print(f"Número de archivos cargados: {len(uploaded_files)}")
@@ -630,7 +628,7 @@ def download_pdf():
 def dashboard():
     if 'user_id' not in session:
         flash("Debes iniciar sesión para acceder a esta página.")
-        return redirect('/login')
+        return redirect('/index')
     
     # Obtener parámetros de filtro de la URL
     fecha_inicio = request.args.get('fecha_inicio')

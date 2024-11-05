@@ -25,13 +25,13 @@
 </nav>
 </head>
 
-<body>
-    <div class="container">
+<div class="container">
     <h1>Detalle del Reporte</h1>
     <p><strong>Nombre:</strong> {{ reporte['nombre'] }}</p>
     <p><strong>Fecha:</strong> {{ reporte['fecha'] }}</p>
     <p><strong>Total:</strong> ${{ "%.2f"|format(reporte['total']) }}</p>
-    <a href="/reportes.anteriores">Volver a Reportes</a>
+    <!-- Botón para volver a reportes -->
+    <button onclick="window.location.href='/reportes.anteriores'" class="back-button">Volver a Reportes</button>
 </div>
 </body>
 </html>

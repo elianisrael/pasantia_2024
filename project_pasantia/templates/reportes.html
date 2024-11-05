@@ -7,111 +7,111 @@
     <link rel="stylesheet" href="/static/styles.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        .top-right {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 16px;
-            text-align: right;
-        }
-        .report-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        .report-table th, .report-table td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
-        }
-    </style>
+    
 </head>
 <nav class="navbar">
     <ul class="menu">
         <!-- <li><a href="{{ url_for('upload_files') }}">Archivos Cargados</a></li> -->
-        <li><a href="/index">Subir Archivos</a></li>
+        <li><a href="/upload">Generar reporte</a></li>
         <li><a href="/dashboard">Dashboard</a></li>
         <li><a href="/reportes.anteriores">Reportes</a></li>
     </ul>
-    <!-- Menú de usuario en la esquina derecha -->
     <div class="user-info">
-        <i class="fas fa-user"></i> <!-- Ícono de usuario -->
-        <span>{{ session['user_email'] }}</span> <!-- Correo del usuario -->
+        <i class="fas fa-user user-icon"></i> <!-- Ícono de usuario -->
+        <span class="user-email">{{ session['user_email'] }}</span> <!-- Correo del usuario -->
         <a href="/logout" class="logout-icon">
             <i class="fas fa-sign-out-alt"></i> <!-- Ícono de cerrar sesión -->
+            <span class="logout-text">Cerrar sesión</span> <!-- Texto de cerrar sesión -->
         </a>
     </div>
 </nav>
    
 </nav>
 <body>
-    
+    <div class="main-container principal">
+        <div class="main-container">
+        <!-- Filtro de reportes -->
+        <div class="filters-section">
+            <form id="report-filter-form" method="GET" action="/reportes.anteriores" class="filters-form">
+                <div class="filter-group">
+                    <label for="nombre">Nombre del reporte:</label>
+                    <input type="text" name="nombre" placeholder="Buscar por nombre" class="filter-input">
+                </div>
 
-    <!-- En reportes.html -->
-    <div class="container">
-        <h1>Reportes Anteriores</h1>
-    
-        <!-- Botón para seleccionar varios y borrar -->
-        <button id="delete-selected" style="margin-bottom: 10px;">Borrar Seleccionados</button>
-    
-        {% if reportes %}
-            <table class="report-table">
-                <thead>
+                <div class="filter-group">
+                    <label for="fecha_inicio">Fecha Inicio:</label>
+                    <input type="date" id="fecha_inicio" name="fecha_inicio" value="{{ fecha_inicio }}" class="filter-date">
+                </div>
+
+                <div class="filter-group">
+                    <label for="fecha_fin">Fecha Fin:</label>
+                    <input type="date" id="fecha_fin" name="fecha_fin" value="{{ fecha_fin }}" class="filter-date">
+                </div>
+
+                <button type="submit" class="filter-button">Buscar</button>
+                <button type="button" class="reset-button" onclick="resetFilters()">Resetear Filtros</button>
+            </form>
+        </div>
+        </div>
+
+    <!-- Botón para seleccionar varios y borrar -->
+    <button id="delete-selected" class="filter-button">Borrar Seleccionados</button>
+
+    {% if reportes %}
+        <table class="report-table">
+            <thead>
+                <tr>
+                    <th><input type="checkbox" id="select-all"></th>
+                    <th>Nombre del Reporte</th>
+                    <th>Fecha</th>
+                    <th>Total</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for reporte in reportes %}
                     <tr>
-                        <th><input type="checkbox" id="select-all"></th>
-                        <th>Nombre del Reporte</th>
-                        <th>Fecha</th>
-                        <th>Total</th>
-                        <th>Acciones</th>
+                        <td><input type="checkbox" class="select-report" data-id="{{ reporte['id'] }}"></td>
+                        <td>{{ reporte['nombre'] }}</td>
+                        <td>{{ reporte['fecha'] }}</td>
+                        <td>${{ "%.2f"|format(reporte['total']) }}</td>
+                        <td>
+                            <button onclick="viewReport('{{ reporte['id'] }}')">Ver</button>
+                            <button onclick="deleteReport('{{ reporte['id'] }}')">Borrar</button>
+                        </td>
                     </tr>
-                </thead>
-                <tbody>
-                    {% for reporte in reportes %}
-                        <tr>
-                            <td><input type="checkbox" class="select-report" data-id="{{ reporte['id'] }}"></td>
-                            <td>{{ reporte['nombre'] }}</td>
-                            <td>{{ reporte['fecha'] }}</td>
-                            <td>${{ "%.2f"|format(reporte['total']) }}</td>
-                            <td>
-                                <button onclick="viewReport('{{ reporte['id'] }}')">Ver</button>
-                                <button onclick="deleteReport('{{ reporte['id'] }}')">Borrar</button>
-                            </td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        {% else %}
-            <p>No hay reportes anteriores para mostrar.</p>
-        {% endif %}
-    </div>
-    
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No hay reportes anteriores para mostrar.</p>
+    {% endif %}
+
     <script>
         // Función para ver un reporte
         function viewReport(id) {
             window.location.href = `/reporte/${id}`;
         }
-    
+
         // Función para borrar un reporte
         function deleteReport(id) {
             if (confirm('¿Estás seguro de que deseas borrar este reporte?')) {
-                // Lógica de eliminación aquí (ejemplo de solicitud de eliminación)
                 fetch(`/borrar-reporte/${id}`, { method: 'DELETE' })
                     .then(response => location.reload())
                     .catch(error => console.error('Error:', error));
             }
         }
-    
+
         // Selección y borrado múltiple
         document.getElementById('select-all').addEventListener('change', function() {
             const checkboxes = document.querySelectorAll('.select-report');
             checkboxes.forEach(checkbox => checkbox.checked = this.checked);
         });
-    
+
         document.getElementById('delete-selected').addEventListener('click', function() {
             const selectedReports = Array.from(document.querySelectorAll('.select-report:checked'))
                 .map(checkbox => checkbox.dataset.id);
-    
+
             if (selectedReports.length && confirm('¿Deseas borrar los reportes seleccionados?')) {
                 Promise.all(selectedReports.map(id => 
                     fetch(`/borrar-reporte/${id}`, { method: 'DELETE' })
@@ -121,6 +121,11 @@
                 alert('No se seleccionaron reportes para borrar.');
             }
         });
+        // Función para resetear filtros
+        function resetFilters() {
+            document.getElementById('report-filter-form').reset();
+            window.location.href = '/reportes.anteriores'; // Volver a la página sin filtros
+        }
     </script>
     
 </div>

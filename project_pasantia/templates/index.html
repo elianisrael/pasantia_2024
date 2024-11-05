@@ -8,44 +8,47 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
-<nav class="navbar">
-    <ul class="menu">
-        <li><a href="/index">Subir Archivos</a></li>
-        <li><a href="/dashboard">Dashboard</a></li>
-        <li><a href="/reportes.anteriores">Reportes</a></li>
-    </ul>
-    <!-- Menú de usuario en la esquina derecha -->
-    <div class="user-info">
-        <i class="fas fa-user"></i> <!-- Ícono de usuario -->
-        <span>{{ session['user_email'] }}</span> <!-- Correo del usuario -->
-        <a href="/logout" class="logout-icon">
-            <i class="fas fa-sign-out-alt"></i> <!-- Ícono de cerrar sesión -->
-        </a>
-    </div>
-</nav>
-<body>
+
+<body class="bodyindex">
     <div class="main-container">
-        <div class="left-panel">
-
-            <h1>Subir archivos XML</h1>
-            <p>Selecciona los archivos XML para generar el reporte en Excel y PDF.</p>
-            <form action="/upload" method="post" enctype="multipart/form-data">
-                <label for="xml_files">Archivos XML:</label>
-                <input type="file" id="xml_files" name="xml_files" multiple accept=".xml" required>
-                <button type="submit">Generar Reporte</button>
+          <div class="containerinicio">
+            <div class="welcome-text">
+                <h1>Bienvenido a Nuestra Plataforma</h1>
+                <p>Descubre todas las posibilidades que tenemos para ti. 
+                   Únete a nuestra comunidad y comienza a disfrutar de todos los beneficios.</p>
+            </div>
+            <div class="buttons">
+                <a href="/registro" class="btn register-btn">Registrarse</a>
+            </div>
+        </div>
+        <div class="login-container">
+            <h2>Iniciar Sesión</h2>
+    
+            <!-- Mostrar mensajes flash -->
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <ul>
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                    </ul>
+                {% endif %}
+            {% endwith %}
+                       
+            <form action="/login" method="POST">
+                <div class="form-group">
+                    <label for="email">Correo electrónico</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Contraseña</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit" class="btn">Ingresar</button>
             </form>
-
-            {% if excel_report %}
-            <div class="reports">
-
+            <div class="login-link">
+                <p>¿No tienes una cuenta? <a href="/registro">Regístrate</a></p>
             </div>
-            <div class="new-report">
-                <a href="/" class="btn-new-report">Generar Nuevo Reporte</a>
-            </div>
-            <div>
-                <a href="{{ url_for('dashboard') }}" class="btn-dashboard">Ver Dashboard</a>
-            </div>
-            {% endif %}
         </div>
 </body>
 </html>

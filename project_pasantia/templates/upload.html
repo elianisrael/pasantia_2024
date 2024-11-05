@@ -10,16 +10,17 @@
 </head>
 <nav class="navbar">
     <ul class="menu">
-        <li><a href="/index">Subir Archivos</a></li>
+        <li><a href="/upload">Generar reporte</a></li>
         <li><a href="/dashboard">Dashboard</a></li>
         <li><a href="/reportes.anteriores">Reportes</a></li>
     </ul>
     <!-- Menú de usuario en la esquina derecha -->
     <div class="user-info">
-        <i class="fas fa-user"></i> <!-- Ícono de usuario -->
-        <span>{{ session['user_email'] }}</span> <!-- Correo del usuario -->
+        <i class="fas fa-user user-icon"></i> <!-- Ícono de usuario -->
+        <span class="user-email">{{ session['user_email'] }}</span> <!-- Correo del usuario -->
         <a href="/logout" class="logout-icon">
             <i class="fas fa-sign-out-alt"></i> <!-- Ícono de cerrar sesión -->
+            <span class="logout-text">Cerrar sesión</span> <!-- Texto de cerrar sesión -->
         </a>
     </div>
 </nav>
@@ -50,19 +51,27 @@
                     <input type="text" id="custom_name_pdf" name="custom_name" placeholder="Nombre personalizado (PDF)">
                     <button type="submit" class="btn-download" onclick="setDefaultName('pdf-form', 'custom_name_pdf', 'Reporte.pdf')">Descargar PDF</button>
                 </form>
-                
-                <form action="{{ url_for('guardar_reporte') }}" method="post" class="download-form">
-                    <input type="hidden" name="excel_filename" value="{{ excel_report }}">
-                    <input type="hidden" name="pdf_filename" value="{{ pdf_report }}">
-                    <input type="text" name="reporte_nombre" placeholder="Nombre del reporte" required>
-                    <button type="submit" class="btn-save">Guardar Reporte</button>  
-                </form>
+               <!-- Formulario para guardar reporte -->
+               <form action="{{ url_for('guardar_reporte') }}" method="post" class="download-form" id="save-form">
+                <input type="hidden" name="excel_filename" value="{{ excel_report }}">
+                <input type="hidden" name="pdf_filename" value="{{ pdf_report }}">
+                <input type="text" id="reporte_nombre" name="reporte_nombre" required placeholder="Nombre del reporte">
+                <button type="submit" class="btn-save" onclick="setDefaultName('reporte_nombre', 'Reporte Guardado')">Guardar Reporte</button>  
+            </form>
                 
             </div>
             
         </div>
 
 <script>
+    //guardar reporte
+    function setDefaultName(inputId, defaultName) {
+    const inputField = document.getElementById(inputId);
+    if (!inputField.value) { // Si el campo está vacío
+        inputField.value = defaultName; // Asigna el nombre predeterminado
+    }
+}
+
     function setDefaultName(formId, inputId, defaultName) {
         // Obtener el campo del nombre personalizado
         var inputField = document.getElementById(inputId);

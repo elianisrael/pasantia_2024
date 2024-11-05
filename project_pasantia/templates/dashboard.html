@@ -12,18 +12,20 @@
    <nav class="navbar">
     <ul class="menu">
         <!-- <li><a href="{{ url_for('upload_files') }}">Ver Último Reporte</a></li> -->
-        <li><a href="/index">Subir Archivos</a></li>
+        <li><a href="/upload">Generar reporte</a></li>
         <li><a href="/dashboard">Dashboard</a></li>
         <li><a href="/reportes.anteriores">Reportes</a></li>
     </ul>
     <!-- Menú de usuario en la esquina derecha -->
     <div class="user-info">
-        <i class="fas fa-user"></i> <!-- Ícono de usuario -->
-        <span>{{ session['user_email'] }}</span> <!-- Correo del usuario -->
+        <i class="fas fa-user user-icon"></i> <!-- Ícono de usuario -->
+        <span class="user-email">{{ session['user_email'] }}</span> <!-- Correo del usuario -->
         <a href="/logout" class="logout-icon">
             <i class="fas fa-sign-out-alt"></i> <!-- Ícono de cerrar sesión -->
+            <span class="logout-text">Cerrar sesión</span> <!-- Texto de cerrar sesión -->
         </a>
     </div>
+    
 </nav>
    
 </nav>
@@ -145,7 +147,7 @@
                     <option value="bar">Barra</option>
                     <option value="line">Línea</option>
                     <option value="doughnut">Dona</option>
-                    <option value="radar">Radar</option>
+                    <option value="bubble">Burbuja</option>
                     
                 </select>
                 <canvas id="vendedoresChart"></canvas>
@@ -295,7 +297,75 @@
                     }
                 });
             }
-        
+           ///**
+           document.addEventListener('DOMContentLoaded', function() {
+                // Datos de ventas por vendedor, ajustados para múltiples vendedores
+                const ventasPorVendedor = [
+                    {% for vendedor, monto in ventas_por_vendedor.items() %}
+                    { 'name': '{{ vendedor }}', 'y': {{ monto }}, 'size': {{ monto / 100 }} },
+                    {% endfor %}
+                ];
+
+                const ctxVendedores = document.getElementById('vendedoresChart').getContext('2d');
+                let vendedoresChart = createChart(ctxVendedores, 'bar', 
+                    ventasPorVendedor.map(v => v.name), 
+                    ventasPorVendedor.map(v => v.y), 
+                    'Ventas por Vendedor');
+
+                document.getElementById('chartTypeVendedores').addEventListener('change', function() {
+                    const newType = this.value;
+                    vendedoresChart.destroy();
+
+                    if (newType === 'bubble') {
+                        // Gráfico de burbujas mostrando nombres de todos los vendedores
+                        vendedoresChart = new Chart(ctxVendedores, {
+                            type: 'bubble',
+                            data: {
+                                datasets: [{
+                                    label: 'Ventas por Vendedor',
+                                    data: ventasPorVendedor.map((v, index) => ({
+                                        x: index,          // Usa el índice como coordenada x
+                                        y: v.y,            // Monto de ventas en el eje y
+                                        r: v.size          // Tamaño de la burbuja
+                                    })),
+                                    backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                                    borderColor: 'rgba(54, 162, 235, 1)',
+                                    borderWidth: 1
+                                }]
+                            },
+                            options: {
+                                responsive: true,
+                                scales: {
+                                    x: {
+                                        type: 'category',
+                                        labels: ventasPorVendedor.map(v => v.name), // Nombres de los vendedores en el eje x
+                                        beginAtZero: true
+                                    },
+                                    y: { beginAtZero: true }
+                                },
+                                plugins: {
+                                    tooltip: {
+                                        callbacks: {
+                                            label: function(context) {
+                                                const vendedor = ventasPorVendedor[context.dataIndex].name;
+                                                const monto = ventasPorVendedor[context.dataIndex].y;
+                                                return `${vendedor}: $${monto}`;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        });
+                    } else {
+                        // Otro tipo de gráfico
+                        vendedoresChart = createChart(ctxVendedores, newType, 
+                            ventasPorVendedor.map(v => v.name), 
+                            ventasPorVendedor.map(v => v.y), 
+                            'Ventas por Vendedor');
+                    }
+                });
+            });
+
             // Gráfico Ventas por Cliente
             const ctxClientes = document.getElementById('clientesChart').getContext('2d');
             let clientesChart = createChart(ctxClientes, 'bar', Object.keys({{ ventas_por_cliente | tojson }}), Object.values({{ ventas_por_cliente | tojson }}), 'Ventas por Cliente');
@@ -306,22 +376,7 @@
                 clientesChart = createChart(ctxClientes, newType, Object.keys({{ ventas_por_cliente | tojson }}), Object.values({{ ventas_por_cliente | tojson }}), 'Ventas por Cliente');
             });
 
-            // Gráfico Ventas por Vendedor
-            const ctxVendedores = document.getElementById('vendedoresChart').getContext('2d');
-            let vendedoresChart = createChart(ctxVendedores, 'bar', 
-                Object.keys({{ ventas_por_vendedor | tojson }}), 
-                Object.values({{ ventas_por_vendedor | tojson }}), 
-                'Ventas por Vendedor');
-
-            document.getElementById('chartTypeVendedores').addEventListener('change', function() {
-                const newType = this.value;
-                vendedoresChart.destroy();
-                vendedoresChart = createChart(ctxVendedores, newType, 
-                    Object.keys({{ ventas_por_vendedor | tojson }}), 
-                    Object.values({{ ventas_por_vendedor | tojson }}), 
-                    'Ventas por Vendedor');
-            });
-
+           
         
             // Gráfico Ventas por Mes
             const ctxMeses = document.getElementById('mesesChart').getContext('2d');
