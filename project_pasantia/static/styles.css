@@ -780,3 +780,8 @@ h2 {
     background-color: #f8f9fa;
 }
 
+/* Aumentar el tamaño del contenedor del gráfico */
+#vendedoresChartContainer {
+    width: 100%;
+    height: 600px; /* Ajusta la altura para hacer el gráfico más grande */
+}
