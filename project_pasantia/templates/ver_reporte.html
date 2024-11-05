@@ -7,31 +7,32 @@
     <link rel="stylesheet" href="/static/styles.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-   <nav class="navbar">
+</head>
+
+<nav class="navbar">
     <ul class="menu">
-        <!-- <li><a href="{{ url_for('upload_files') }}">Ver Último Reporte</a></li> -->
         <li><a href="/index">Subir Archivos</a></li>
         <li><a href="/dashboard">Dashboard</a></li>
         <li><a href="/reportes.anteriores">Reportes</a></li>
     </ul>
-    <!-- Menú de usuario en la esquina derecha -->
     <div class="user-info">
-        <i class="fas fa-user"></i> <!-- Ícono de usuario -->
-        <span>{{ session['user_email'] }}</span> <!-- Correo del usuario -->
+        <i class="fas fa-user"></i>
+        <span>{{ session['user_email'] }}</span>
         <a href="/logout" class="logout-icon">
-            <i class="fas fa-sign-out-alt"></i> <!-- Ícono de cerrar sesión -->
+            <i class="fas fa-sign-out-alt"></i>
         </a>
     </div>
 </nav>
-</head>
 
 <body>
     <div class="container">
-    <h1>Detalle del Reporte</h1>
-    <p><strong>Nombre:</strong> {{ reporte['nombre'] }}</p>
-    <p><strong>Fecha:</strong> {{ reporte['fecha'] }}</p>
-    <p><strong>Total:</strong> ${{ "%.2f"|format(reporte['total']) }}</p>
-    <a href="/reportes.anteriores">Volver a Reportes</a>
-</div>
+        <h1>Detalle del Reporte</h1>
+        <p><strong>Nombre:</strong> {{ reporte['nombre'] }}</p>
+        <p><strong>Fecha:</strong> {{ reporte['fecha'] }}</p>
+        <p><strong>Total:</strong> ${{ "%.2f"|format(reporte['total']) }}</p>
+        <!-- Botón para volver a reportes -->
+        <button onclick="window.location.href='/reportes.anteriores'" class="back-button">Volver a Reportes</button>
+    </div>
 </body>
+
 </html>
