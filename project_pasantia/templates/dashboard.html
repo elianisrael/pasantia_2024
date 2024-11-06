@@ -49,48 +49,61 @@
                 
                 <!-- Filtro de Clientes -->
                 <div class="filter-group">
-                    <label for="clientes-select" style="font-weight: bold;">Clientes:</label>
+                    <label for="clientes-select" style="font-weight: bold;">Clientes (RUC):</label>
                     <span id="selected-client" style="cursor: pointer; color: #333; border: 1px solid #ddd; padding: 7.7px; display: inline-block; border-radius: 4px; width: calc(100% - 9px); text-align: left; margin-left: 5.5px; margin-bottom: 5px;">
-                        Selecciona clientes
+                        Selecciona RUC de clientes
                     </span>
                     
                     <div id="clientes-list" class="checkbox-container hidden">
+                        <!-- Agregar campo de búsqueda -->
+                        <div class="search-box">
+                            <input type="text" id="search-clients" placeholder="Buscar clientes..." class="search-input">
+                        </div>
                         <div>
                             <input type="checkbox" id="select-all-clients" style="margin-right: 15px;">
                             <label for="select-all-clients"><strong>Seleccionar todos</strong></label>
                         </div>
-                        {% for cliente in clientes_unicos %}
-                        <div class="checkbox-item" style="display:flex; width: 70%; align-items:center; margin-bottom: 5px;">
-                            <input type="checkbox" id="cliente-{{ loop.index }}" name="clientes[]" value="{{ cliente }}" 
-                                {% if cliente in clientes_filtro %}checked{% endif %}>
-                            <label for="cliente-{{ loop.index }}">{{ cliente }}</label>
+                        <div id="clients-container">
+                            {% for cliente in clientes_unicos %}
+                            <div class="checkbox-item" style="display:flex; width: 70%; align-items:center; margin-bottom: 5px;">
+                                <input type="checkbox" id="cliente-{{ loop.index }}" name="clientes[]" value="{{ cliente }}" 
+                                    {% if cliente in clientes_filtro %}checked{% endif %}>
+                                <label for="cliente-{{ loop.index }}" class="cliente-label">{{ cliente }} - {{ clientes_nombres[cliente] }}</label>
+                            </div>
+                            {% endfor %}
                         </div>
-                        {% endfor %}
                     </div>
                 </div>
 
                 <!-- Filtro de Vendedores -->
                 <div class="filter-group">
-                    <label for="vendedores-select" style="font-weight: bold;">Vendedores:</label>
+                    <label for="vendedores-select" style="font-weight: bold;">Vendedores (RUC):</label>
                     <span id="selected-vendor" style="cursor: pointer; color: #333; border: 1px solid #ddd; padding: 7.7px; display: inline-block; border-radius: 4px; width: calc(100% - 9px); text-align: left; margin-left: 5.5px; margin-bottom: 5px;">
-                        Selecciona vendedores
+                        Selecciona RUC de vendedores
                     </span>
                     
                     <div id="vendedores-list" class="checkbox-container hidden">
+                        <!-- Agregar campo de búsqueda -->
+                        <div class="search-box">
+                            <input type="text" id="search-vendors" placeholder="Buscar vendedores..." class="search-input">
+                        </div>
                         <div>
                             <input type="checkbox" id="select-all-vendors" style="margin-right: 5px;">
                             <label for="select-all-vendors"><strong>Seleccionar todos</strong></label>
                         </div>
-                        {% for vendedor in vendedores_unicos %}
-                        <div class="checkbox-item"style="display:flex ;width: 70%; align-items:center; margin-bottom: 5px;">
-                            <input type="checkbox" id="vendedor-{{ loop.index }}" name="vendedores[]" value="{{ vendedor }}" 
-                                {% if vendedor in vendedores_filtro %}checked{% endif %}>
-                            <label for="vendedor-{{ loop.index }}">{{ vendedor }}</label>
+                        <div id="vendors-container">
+                            {% for vendedor in vendedores_unicos %}
+                            <div class="checkbox-item" style="display:flex; width: 70%; align-items:center; margin-bottom: 5px;">
+                                <input type="checkbox" id="vendedor-{{ loop.index }}" name="vendedores[]" value="{{ vendedor }}" 
+                                    {% if vendedor in vendedores_filtro %}checked{% endif %}>
+                                <label for="vendedor-{{ loop.index }}" class="vendedor-label">{{ vendedor }} - {{ vendedores_nombres[vendedor] }}</label>
+                            </div>
+                            {% endfor %}
                         </div>
-                        {% endfor %}
                     </div>
                 </div>
                 
+                <!-- Filtro de Monto -->
                 <div class="filter-group">
                     <label for="rango_monto">Rango de Monto:</label>
                     <select id="rango_monto" name="rango_monto">
@@ -185,6 +198,34 @@
 
         
         <script>
+             // Función de búsqueda
+                function setupSearch(searchInputId, containerSelector, itemSelector) {
+                    const searchInput = document.getElementById(searchInputId);
+                    const items = document.querySelectorAll(itemSelector);
+                    
+                    searchInput.addEventListener('input', function() {
+                        const searchTerm = this.value.toLowerCase();
+                        
+                        items.forEach(item => {
+                            const label = item.querySelector('label');
+                            const text = label.textContent.toLowerCase();
+                            if (text.includes(searchTerm)) {
+                                item.style.display = 'flex';
+                            } else {
+                                item.style.display = 'none';
+                            }
+                        });
+                    });
+                }
+
+                document.addEventListener('DOMContentLoaded', function() {
+                    // Configurar búsqueda para clientes
+                    setupSearch('search-clients', '#clients-container', '#clients-container .checkbox-item');
+                    
+                    // Configurar búsqueda para vendedores
+                    setupSearch('search-vendors', '#vendors-container', '#vendors-container .checkbox-item');
+                });   
+
              document.addEventListener('DOMContentLoaded', function() {
                 // Funcionalidad para el filtro de clientes
                 const selectedClient = document.getElementById('selected-client');

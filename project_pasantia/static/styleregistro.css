@@ -1,0 +1,204 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilos del body */
+body {
+    font-family: 'Poppins', sans-serif; /* Fuente más moderna */
+    background: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%); /* Gradiente más suave */
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Contenedor del registro */
+.register-container {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 450px;
+    backdrop-filter: blur(10px); /* Efecto de cristal */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.register-container:hover {
+    transform: translateY(-5px);
+}
+
+/* Encabezado */
+.register-container h2 {
+    color: #2d3436;
+    font-size: 2.2em;
+    margin-bottom: 35px;
+    text-align: center;
+    font-weight: 600;
+    position: relative;
+}
+
+.register-container h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 3px;
+    background: linear-gradient(90deg, #a1c4fd, #c2e9fb);
+    border-radius: 2px;
+}
+
+/* Grupos de formulario */
+.form-group {
+    margin-bottom: 25px;
+    position: relative;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #2d3436;
+    font-size: 0.95em;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    font-size: 1em;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.9);
+}
+
+.form-group input:focus {
+    border-color: #a1c4fd;
+    box-shadow: 0 0 0 4px rgba(161, 196, 253, 0.2);
+    outline: none;
+}
+
+/* Botón de registro */
+.btn {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn:hover {
+    background: linear-gradient(120deg, #88b3fc 0%, #a1d8fa 100%);
+    box-shadow: 0 7px 20px rgba(161, 196, 253, 0.4);
+    transform: translateY(-2px);
+}
+
+/* Enlaces y registro */
+.register-link {
+    text-align: center;
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+.register-link p {
+    color: #636e72;
+    font-size: 0.95em;
+}
+
+.register-link a {
+    color: #a1c4fd;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.register-link a:hover {
+    color: #88b3fc;
+    text-decoration: underline;
+}
+
+/* Mensajes flash */
+.flash-messages {
+    list-style: none;
+    padding: 15px;
+    margin-bottom: 25px;
+    border-radius: 12px;
+    background-color: #fff3cd;
+    border: 1px solid #ffeeba;
+    color: #856404;
+    animation: slideIn 0.5s ease-out;
+}
+
+/* Animaciones */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive design */
+@media (max-width: 480px) {
+    .register-container {
+        padding: 30px 20px;
+    }
+
+    .register-container h2 {
+        font-size: 1.8em;
+    }
+
+    .form-group input {
+        padding: 12px;
+    }
+
+    .btn {
+        padding: 12px;
+        font-size: 1em;
+    }
+}
+
+/* Efecto de focus en los campos */
+.form-group input:focus + label {
+    color: #a1c4fd;
+}
+
+/* Efecto hover en los campos */
+.form-group input:hover {
+    border-color: #c2e9fb;
+}
+
+/* Animación de carga del formulario */
+.register-container {
+    animation: fadeIn 0.8s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

@@ -580,10 +580,6 @@ def upload_files():
         pdf.output(archivo_pdf, 'F')
         return archivo_pdf
 
-
-
-
-
     # Llamar a la función para generar el PDF
     archivo_pdf = generar_pdf_facturas(facturas_info, productos_info)
 
@@ -652,19 +648,28 @@ def dashboard():
         except ValueError:
             flash("Formato de fecha inválido")
     
-    # Aplicar filtro de clientes
+    # Aplicar filtro de clientes por RUC
     if clientes_filtro:
         facturas_filtradas = [
-            f for f in facturas_filtradas 
-            if f['Razón Social comprador'] in clientes_filtro
+            f for f in facturas_filtradas
+            if f['RUC del Comprador'] in clientes_filtro
         ]
 
-    # Aplicar filtro de vendedores
+    # Aplicar filtro de vendedores por RUC
     if vendedores_filtro:
         facturas_filtradas = [
             f for f in facturas_filtradas
-            if f['Razón Social del Vendedor'] in vendedores_filtro
+            if f['RUC del Vendedor'] in vendedores_filtro
         ]
+
+    # Obtener lista única de RUCs de clientes y sus nombres
+    clientes_unicos = sorted(list(set(f['RUC del Comprador'] for f in facturas_info)))
+    clientes_nombres = {f['RUC del Comprador']: f['Razón Social comprador'] for f in facturas_info}
+
+    # Obtener lista única de RUCs de vendedores y sus nombres
+    vendedores_unicos = sorted(list(set(f['RUC del Vendedor'] for f in facturas_info)))
+    vendedores_nombres = {f['RUC del Vendedor']: f['Razón Social del Vendedor'] for f in facturas_info}
+
     
     # Aplicar filtro de rango de monto
     if rango_monto:
@@ -712,11 +717,6 @@ def dashboard():
         mes_año = fecha.strftime('%Y-%m')
         ventas_por_mes[mes_año] = ventas_por_mes.get(mes_año, 0) + float(factura['Total con impuestos'])
 
-    # Obtener lista única de clientes para el filtro
-    clientes_unicos = sorted(list(set(f['Razón Social comprador'] for f in facturas_info)))
-
-    # Obtener lista única de vendedores para el filtro
-    vendedores_unicos = sorted(list(set(f['Razón Social del Vendedor'] for f in facturas_info)))
 
     return render_template('dashboard.html',
                          total_facturas=total_facturas,
@@ -729,6 +729,8 @@ def dashboard():
                          ventas_por_mes=ventas_por_mes,
                          clientes_unicos=clientes_unicos,
                          vendedores_unicos=vendedores_unicos,
+                         clientes_nombres=clientes_nombres,
+                         vendedores_nombres=vendedores_nombres,
                          fecha_inicio=fecha_inicio,
                          fecha_fin=fecha_fin,
                          clientes_filtro=clientes_filtro,
