@@ -168,7 +168,7 @@ button[type="submit"] {
 }
 
 button[type="submit"]:hover {
-    background-color: #45a049;
+    background-color: #000000;
 }
 
 /* Estilos para los botones de descarga */
@@ -764,8 +764,8 @@ h2 {
         .filter-button,
         .reset-button {
             display:block;
-            padding: 10px 20px;
-            font-size: 16px;
+            padding: 10px 15px;
+            font-size: 14px;
             font-weight: bold;
             text-align: center;
             border: none;
@@ -774,7 +774,7 @@ h2 {
         }
        
         .reset-button {
-            background-color: #6c757d;
+            background-color: #ca492c;
             color: #fff;
         }
         .summary-cards {
@@ -1055,4 +1055,41 @@ h2 {
 
 .checkbox-item.hidden {
     display: none !important;
+}
+
+.filters-section {
+    margin-bottom: 20px;
+}
+
+.results-section {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.report-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1px;
+}
+
+.report-table th, .report-table td {
+    padding: 40px;
+    border: 1.5px solid #383737;
+    text-align: left;
+}
+
+.filter-group-report {
+    display: inline-block;
+    margin-right: 1px;
+}
+
+.results-section {
+    text-align: center; /* Centra el contenido dentro de la sección de resultados */
+    margin-top: 1px; /* Margen superior para separación */
+}
+
+.no-reportes {
+    color: #666; /* Color del texto */
+    font-size: 1.1em; /* Tamaño de la fuente */
+    margin-top: 2px; /* Espacio superior para separación */
 }

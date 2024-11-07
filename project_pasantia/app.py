@@ -233,17 +233,27 @@ def reportes_anteriores():
         return redirect(url_for('index'))
 
     user_id = session['user_id']
+    nombre = request.args.get('nombre', '')
+    fecha_inicio = request.args.get('fecha_inicio')
+    fecha_fin = request.args.get('fecha_fin')
+
     conn = get_db_connection()
-    
-    # Modificar la consulta para obtener solo los reportes del usuario actual
-    reportes = conn.execute('''
-        SELECT * FROM reportes 
-        WHERE user_id = ? 
-        ORDER BY fecha DESC
-    ''', (user_id,)).fetchall()
+    query = '''SELECT * FROM reportes WHERE user_id = ?'''
+    params = [user_id]
+
+    if nombre:
+        query += ' AND nombre LIKE ?'
+        params.append(f"%{nombre}%")
+    if fecha_inicio and fecha_fin:
+        query += ' AND fecha BETWEEN ? AND ?'
+        params.extend([fecha_inicio, fecha_fin])
+
+    query += ' ORDER BY fecha DESC'
+    reportes = conn.execute(query, params).fetchall()
     conn.close()
 
-    return render_template('reportes.html', reportes=reportes)
+    return render_template('reportes.html', reportes=reportes, fecha_inicio=fecha_inicio, fecha_fin=fecha_fin, nombre=nombre)
+
 
 # Ruta para subir los archivos XML y generar los reportes
 @app.route('/upload', methods=['GET', 'POST'])
@@ -752,6 +762,20 @@ def ver_reporte(id):
     
     return render_template('ver_reporte.html', reporte=reporte)
 
+@app.route('/borrar-reportes', methods=['POST'])
+def borrar_reportes():
+    if 'user_id' not in session:
+        return redirect(url_for('login'))
+
+    reportes_ids = request.json.get('ids', [])
+    if reportes_ids:
+        conn = get_db_connection()
+        conn.executemany('DELETE FROM reportes WHERE id = ?', [(id,) for id in reportes_ids])
+        conn.commit()
+        conn.close()
+    
+    return '', 204
+
 @app.route('/borrar-reporte/<int:id>', methods=['DELETE'])
 def borrar_reporte(id):
     if 'user_id' not in session:
@@ -761,7 +785,7 @@ def borrar_reporte(id):
     conn.execute('DELETE FROM reportes WHERE id = ?', (id,))
     conn.commit()
     conn.close()
-    
+
     return '', 204
 
 
