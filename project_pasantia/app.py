@@ -81,10 +81,10 @@ def login():
         # Verificar si el usuario existe y si la contraseña es correcta
         if user is None:
             flash("El correo electrónico no está registrado.")
-            return redirect('/login')
+            return redirect('/index')
         elif not check_password_hash(user['password'], password):
             flash("Contraseña incorrecta.")
-            return redirect('/login')
+            return redirect('/index')
 
         # Guardar el usuario en la sesión
         session['user_id'] = user['id']
@@ -94,7 +94,7 @@ def login():
         flash("Has iniciado sesión correctamente.")
         return redirect('/upload')
 
-    return render_template('login.html')
+    return render_template('index.html')
 
 
  # Cerrar sesión
