@@ -328,7 +328,7 @@ def upload_files():
             # Información adicional
             forma_pago = info_factura.find('.//pagos/pago/formaPago').text if info_factura is not None else None  # Extraer forma de pago
             direccion_matriz = info_tributaria.find('dirMatriz').text if info_tributaria is not None else "No especificado"  # Extraer dirección matriz
-            direcion_cliente = info_factura.find('direccionComprador').text if info_factura is notNone else "No especificado"  # Extraer dirección del comprador
+            direcion_cliente = info_factura.find('direccionComprador').text if info_factura is None else "No especificado"  # Extraer dirección del comprador
 
             # Información del comprador
             razon_social_comprador = comprobante_root.find('.//razonSocialComprador').text if comprobante_root.find('.//razonSocialComprador') is not None else "No especificado"
@@ -394,8 +394,8 @@ def upload_files():
                 'Razón Social comprador': razon_social_comprador,
                 'RUC del Comprador': ruc_comprador,
                 'Razón Social del Vendedor': razon_social,
-                #'Direccion del Vendedor': direccion_matriz,
-                #'Forma Pago': forma_pago,
+                'Direccion del Vendedor': direccion_matriz,
+                'Forma Pago': forma_pago,
                 'Nombre Comercial del Vendedor': nombre_comercial,
                 'RUC del Vendedor': ruc_vendedor,
                 'Fecha de Emisión': fecha_emision,
@@ -557,16 +557,14 @@ def upload_files():
             pdf.set_xy(120, 180)
             pdf.set_font('Arial', 'B', 10)
             pdf.cell(30, h, "Subtotal:", 1, 0, 'L')
-            pdf.cell(40, h, f"${factura['Total sin impuestos']:.2f}", 1, 1, 'R')
+            pdf.cell(40, h, f"${float(factura['Total sin impuestos']):.2f}", 1, 1, 'R')  # Conversión a float
 
             # IVAs y total final
             for iva_tipo in ['IVA 12%', 'IVA 0%', 'IVA 9%']:
                 if iva_tipo in factura:
                     pdf.cell(30, h, f"{iva_tipo}:", 1, 0, 'L')
-                    pdf.cell(40, h, f"${factura[iva_tipo]:.2f}", 1, 1, 'R')
+                    pdf.cell(40, h, f"${float(factura[iva_tipo]):.2f}", 1, 1, 'R')  # Conversión a float
 
-            pdf.cell(30, h, "Total:", 1, 0, 'L')
-            pdf.cell(40, h, f"${factura['Total con impuestos']:.2f}", 1, 1, 'R')
 
             # Forma de pago (parte inferior izquierda)
             pdf.set_xy(10, 200)
@@ -574,7 +572,8 @@ def upload_files():
             pdf.cell(60, h, "Forma de pago", 1, 0, 'L')
             pdf.cell(30, h, "Valor", 1, 1, 'R')
             pdf.cell(60, h, "20 - OTROS", 1, 0, 'L')
-            pdf.cell(30, h, f"${factura['Valor Pago']:.2f}", 1, 1, 'R')
+            pdf.cell(30, h, f"${float(factura.get('Valor Pago', 0)):.2f}", 1, 1, 'R')
+
 
         pdf.output(archivo_pdf, 'F')
         return archivo_pdf
