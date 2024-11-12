@@ -498,20 +498,19 @@ def upload_files():
             pdf.set_font('Arial', 'B', 12)
             pdf.cell(90, 10, factura['Nombre Comercial del Vendedor'], 1, 1, 'L')
             pdf.set_font('Arial', '', 10)
-            pdf.cell(90, 8, f"RUC: {factura['RUC del Vendedor']}", 1, 1, 'L')
-            pdf.cell(90, 8, f"Dirección: {direccion_matriz}", 1, 1, 'L')
-            #pdf.cell(90, 8, f"Teléfono: {factura['Teléfono del Vendedor']}", 1, 1, 'L')
+            pdf.cell(90, 10, f"RUC: {factura['RUC del Vendedor']}", 1, 1, 'L')
+            pdf.cell(90, 10, f"Dirección: {direccion_matriz}", 1, 1, 'L')
             pdf.ln(5)
 
             # Información de la factura (parte superior derecha)
-            pdf.set_xy(110, 10)
+            pdf.set_xy(80, 15)
             pdf.set_font('Arial', 'B', 12)
-            pdf.cell(90, 10, "Factura", 1, 1, 'L')
+            pdf.cell( 80, 15, "Factura", 1, 1, 'L')
             pdf.set_font('Arial', '', 10)
-            pdf.cell(90, 8, f"No: {factura['Codigo Factura']}", 1, 1, 'L')
-            pdf.cell(90, 8, f"Fecha de Emisión: {factura['Fecha de Emisión']}", 1, 1, 'L')
-            pdf.cell(90, 8, f"Número de Autorización: {factura['Número de autorización']}", 1, 1, 'L')
-            pdf.cell(90, 8, f"Clave de Acceso: {factura['Clave de Acceso']}", 1, 1, 'L')
+            pdf.cell( 80, 15, f"No: {factura['Codigo Factura']}", 1, 1, 'L')
+            pdf.cell( 80, 15, f"Fecha de Emisión: {factura['Fecha de Emisión']}", 2, 1, 'L')
+            pdf.cell( 80, 15, f"Número de Autorización: {factura['Número de autorización']}", 1, 1, 'L')
+            pdf.cell( 80, 15, f"Clave de Acceso: {factura['Clave de Acceso']}", 1, 1, 'L')
             pdf.ln(5)
 
             # Información del cliente (central, bajo la cabecera)
@@ -560,20 +559,52 @@ def upload_files():
             pdf.cell(40, h, f"${float(factura['Total sin impuestos']):.2f}", 1, 1, 'R')  # Conversión a float
 
             # IVAs y total final
-            for iva_tipo in ['IVA 12%', 'IVA 0%', 'IVA 9%']:
-                if iva_tipo in factura:
+            for iva_tipo in ['IVA 12%', 'IVA 0%', 'IVA 5%', 'IVA 15%']:
+                if iva_tipo in factura and float(factura[iva_tipo]) != 0:
+                    # Imprime cada IVA con valor diferente de 0 en su propia línea
                     pdf.cell(30, h, f"{iva_tipo}:", 1, 0, 'L')
-                    pdf.cell(40, h, f"${float(factura[iva_tipo]):.2f}", 1, 1, 'R')  # Conversión a float
+                    pdf.cell(40, h, f"${float(factura[iva_tipo]):.2f}", 1, 1, 'R')
 
 
-            # Forma de pago (parte inferior izquierda)
-            pdf.set_xy(10, 200)
-            pdf.set_font('Arial', '', 10)
-            pdf.cell(60, h, "Forma de pago", 1, 0, 'L')
-            pdf.cell(30, h, "Valor", 1, 1, 'R')
-            pdf.cell(60, h, "20 - OTROS", 1, 0, 'L')
-            pdf.cell(30, h, f"${float(factura.get('Valor Pago', 0)):.2f}", 1, 1, 'R')
+                # Forma de pago (parte inferior izquierda)
+                formas_pago = {
+                        '1': 'Efectivo',
+                        '2': 'Cheque',
+                        '3': 'Tarjeta de crédito',
+                        '4': 'Tarjeta de débito',
+                        '5': 'Transferencia bancaria',
+                        '6': 'Dinero electrónico',
+                        '7': 'Crédito',
+                        '8': 'Pago anticipado',
+                        '9': 'Compensación',
+                        '10': 'Pago en especie',
+                        '11': 'Cesión de derechos',
+                        '12': 'Pago en especie o compensación',
+                        '13': 'Tarjeta prepago',
+                        '14': 'Pago con bonos',
+                        '15': 'Pago por servicios intermedios',
+                        '16': 'Pago con criptomonedas',
+                        '17': 'Otros',
+                        '18': 'Devolución',
+                        '19': 'Tarjeta de débito',
+                        '20': 'Dinero electrónico',
+                    }
 
+                # Determinar el código de la forma de pago (puede ser 'forma_pago' o valor por defecto '20' si no se encuentra)
+                codigo_forma_pago = forma_pago if forma_pago else '17'
+
+                # Obtener la descripción de la forma de pago desde el diccionario
+                descripcion_forma_pago = formas_pago.get(codigo_forma_pago, 'Desconocido')
+
+                # Forma de pago (parte inferior izquierda)
+                pdf.set_xy(10, 200)
+                pdf.set_font('Arial', '', 10)
+                pdf.cell(60, h, "Forma de pago", 1, 0, 'L')
+                pdf.cell(30, h, "Valor", 1, 1, 'R')
+
+                # Mostrar la forma de pago y su valor
+                pdf.cell(60, h, f"{codigo_forma_pago} - {descripcion_forma_pago}", 1, 0, 'L')
+                pdf.cell(30, h, f"${float(factura.get('Total con impuestos', 0)):.2f}", 1, 1, 'R')
 
         pdf.output(archivo_pdf, 'F')
         return archivo_pdf
@@ -608,6 +639,14 @@ def download_excel():
     if not custom_name.endswith('.xlsx'):
         custom_name += '.xlsx'
     return send_file(filename, as_attachment=True, download_name=custom_name)
+    
+@app.route('/generate_pdf')
+def generate_pdf():
+    # Genera el PDF y guárdalo con un nombre temporal
+    archivo_pdf = generar_pdf_facturas(facturas_info, productos_info)
+    
+    # Redirige a la ruta de descarga con el nombre del archivo PDF generado
+    return redirect(url_for('download_pdf', filename=archivo_pdf, custom_name="Factura_Generada"))
 
 # Ruta para descargar el archivo Pdf
 @app.route('/download_pdf')
