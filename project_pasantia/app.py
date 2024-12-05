@@ -482,9 +482,6 @@ def upload_files():
         if productos_info is None:
             productos_info = []
         
-        print(f"Total de facturas: {len(facturas_info)}")
-        print(f"Total de productos: {len(productos_info)}")
-
         archivo_pdf = f'reporte_facturas_{datetime.now().strftime("%Y%m%d_%H%M%S")}.pdf'
         pdf = FPDF()
         pdf.set_auto_page_break(auto=True, margin=20)
@@ -492,122 +489,96 @@ def upload_files():
         for factura in facturas_info:
             pdf.add_page()
 
+            # Filtrar productos para la factura actual
+            productos_factura = [
+                producto for producto in productos_info 
+                if producto['Codigo Factura'] == factura['Codigo Factura']
+            ]
 
-            # Cabecera - Información del vendedor (parte superior izquierda)
+            # Cabecera - Información del vendedor
             pdf.set_xy(10, 10)
             pdf.set_font('Arial', 'B', 12)
-            pdf.cell(90, 10, factura['Nombre Comercial del Vendedor'], 1, 1, 'L')
+            pdf.cell(190, 10, factura['Razón Social del Vendedor'], 0, 1, 'L')
             pdf.set_font('Arial', '', 10)
-            pdf.cell(90, 10, f"RUC: {factura['RUC del Vendedor']}", 1, 1, 'L')
-            pdf.cell(90, 10, f"Dirección: {direccion_matriz}", 1, 1, 'L')
+            pdf.cell(190, 8, f"RUC: {factura['RUC del Vendedor']}", 0, 1, 'L')
+            pdf.cell(190, 8, f"Dirección: {factura['Direccion del Vendedor']}", 0, 1, 'L')
             pdf.ln(5)
 
-            # Información de la factura (parte superior derecha)
-            pdf.set_xy(80, 15)
+            # Información de la factura
             pdf.set_font('Arial', 'B', 12)
-            pdf.cell( 80, 15, "Factura", 1, 1, 'L')
+            pdf.cell(190, 8, f"Factura No: {factura['Codigo Factura']}", 0, 1, 'R')
             pdf.set_font('Arial', '', 10)
-            pdf.cell( 80, 15, f"No: {factura['Codigo Factura']}", 1, 1, 'L')
-            pdf.cell( 80, 15, f"Fecha de Emisión: {factura['Fecha de Emisión']}", 2, 1, 'L')
-            pdf.cell( 80, 15, f"Número de Autorización: {factura['Número de autorización']}", 1, 1, 'L')
-            pdf.cell( 80, 15, f"Clave de Acceso: {factura['Clave de Acceso']}", 1, 1, 'L')
-            pdf.ln(5)
-
-            # Información del cliente (central, bajo la cabecera)
-            pdf.set_xy(10, 50)
-            pdf.set_font('Arial', 'B', 12)
-            pdf.cell(190, 10, "Información del Cliente", 1, 1, 'L')
-            pdf.set_font('Arial', '', 10)
-            pdf.cell(190, 8, f"Razón Social: {factura['Razón Social comprador']}", 1, 1, 'L')
-            pdf.cell(190, 8, f"RUC: {factura['RUC del Comprador']}", 1, 1, 'L')
-            #pdf.cell(190, 8, f"Dirección: {factura['Dirección del Comprador']}", 1, 1, 'L')
+            pdf.cell(190, 8, f"Fecha de Emisión: {factura['Fecha de Emisión']}", 0, 1, 'R')
+            pdf.cell(190, 8, f"Clave de Acceso: {factura['Clave de Acceso']}", 0, 1, 'R')
+            pdf.cell(190, 8, f"Número de Autorización: {factura['Número de autorización']}", 0, 1, 'R')
             pdf.ln(10)
 
-            # Tabla de productos (centrada debajo de la información del cliente)
-            pdf.set_xy(10, 90)
+            # Información del cliente
+            pdf.cell(190, 8, "Información del Cliente:", 0, 1, 'L')
+            pdf.cell(190, 8, f"Razón Social: {factura['Razón Social comprador']}", 0, 1, 'L')
+            pdf.cell(190, 8, f"RUC: {factura['RUC del Comprador']}", 0, 1, 'L')
+            pdf.ln(10)
+
+            # Tabla de productos
             pdf.set_font('Arial', 'B', 10)
-            w_codigo = 30
-            w_descripcion = 70
-            w_cantidad = 20
-            w_precio = 35
-            w_total = 35
-            h = 8
-
-            # Encabezados de la tabla de productos
-            pdf.cell(w_codigo, h, "Código", 1, 0, 'C')
-            pdf.cell(w_descripcion, h, "Descripción", 1, 0, 'C')
-            pdf.cell(w_cantidad, h, "Cantidad", 1, 0, 'C')
-            pdf.cell(w_precio, h, "P. Unitario", 1, 0, 'C')
-            pdf.cell(w_total, h, "Total", 1, 1, 'C')
-
-            # Contenido de la tabla de productos
+            pdf.cell(40, 8, "Código", 1)
+            pdf.cell(70, 8, "Descripción", 1)
+            pdf.cell(20, 8, "Cantidad", 1)
+            pdf.cell(30, 8, "P. Unitario", 1)
+            pdf.cell(30, 8, "Total", 1, 1)
             pdf.set_font('Arial', '', 10)
-            for producto in productos_info:
-                pdf.cell(w_codigo, h, str(producto['Código']), 1)
-                pdf.cell(w_descripcion, h, str(producto['Descripción']), 1)
-                pdf.cell(w_cantidad, h, str(producto['Cantidad']), 1)
-                pdf.cell(w_precio, h, f"${producto['Precio Unitario']:.2f}", 1)
-                pdf.cell(w_total, h, f"${producto['Total']:.2f}", 1)
-                pdf.ln()
 
+            for producto in productos_factura:
+                pdf.cell(40, 8, str(producto['Código']), 1)
+                pdf.cell(70, 8, str(producto['Descripción']), 1)
+                pdf.cell(20, 8, str(producto['Cantidad']), 1)
+                pdf.cell(30, 8, f"${producto['Precio Unitario']:.2f}", 1)
+                pdf.cell(30, 8, f"${producto['Total']:.2f}", 1, 1)
+
+            # Totales
             pdf.ln(5)
+            pdf.cell(160, 8, "Subtotal:", 0, 0, 'R')
+            pdf.cell(30, 8, f"${float(factura['Total sin impuestos']):.2f}", 1, 1, 'R')
 
-            # Sección de totales (parte inferior derecha de la tabla)
-            pdf.set_xy(120, 180)
-            pdf.set_font('Arial', 'B', 10)
-            pdf.cell(30, h, "Subtotal:", 1, 0, 'L')
-            pdf.cell(40, h, f"${float(factura['Total sin impuestos']):.2f}", 1, 1, 'R')  # Conversión a float
+            # Detalle de IVAs
+            for iva_tipo in ['IVA 0%', 'IVA 5%', 'IVA 12%', 'IVA 15%']:
+                if iva_tipo in factura and float(factura[iva_tipo]) > 0:
+                    pdf.cell(160, 8, f"{iva_tipo}:", 0, 0, 'R')
+                    pdf.cell(30, 8, f"${float(factura[iva_tipo]):.2f}", 1, 1, 'R')
 
-            # IVAs y total final
-            for iva_tipo in ['IVA 12%', 'IVA 0%', 'IVA 5%', 'IVA 15%']:
-                if iva_tipo in factura and float(factura[iva_tipo]) != 0:
-                    # Imprime cada IVA con valor diferente de 0 en su propia línea
-                    pdf.cell(30, h, f"{iva_tipo}:", 1, 0, 'L')
-                    pdf.cell(40, h, f"${float(factura[iva_tipo]):.2f}", 1, 1, 'R')
+            pdf.cell(160, 8, "Total con impuestos:", 0, 0, 'R')
+            pdf.cell(30, 8, f"${float(factura['Total con impuestos']):.2f}", 1, 1, 'R')
+            pdf.ln(10)
 
-
-                # Forma de pago (parte inferior izquierda)
-                formas_pago = {
-                        '1': 'Efectivo',
-                        '2': 'Cheque',
-                        '3': 'Tarjeta de crédito',
-                        '4': 'Tarjeta de débito',
-                        '5': 'Transferencia bancaria',
-                        '6': 'Dinero electrónico',
-                        '7': 'Crédito',
-                        '8': 'Pago anticipado',
-                        '9': 'Compensación',
-                        '10': 'Pago en especie',
-                        '11': 'Cesión de derechos',
-                        '12': 'Pago en especie o compensación',
-                        '13': 'Tarjeta prepago',
-                        '14': 'Pago con bonos',
-                        '15': 'Pago por servicios intermedios',
-                        '16': 'Pago con criptomonedas',
-                        '17': 'Otros',
-                        '18': 'Devolución',
-                        '19': 'Tarjeta de débito',
-                        '20': 'Dinero electrónico',
-                    }
-
-                # Determinar el código de la forma de pago (puede ser 'forma_pago' o valor por defecto '20' si no se encuentra)
-                codigo_forma_pago = forma_pago if forma_pago else '17'
-
-                # Obtener la descripción de la forma de pago desde el diccionario
-                descripcion_forma_pago = formas_pago.get(codigo_forma_pago, 'Desconocido')
-
-                # Forma de pago (parte inferior izquierda)
-                pdf.set_xy(10, 200)
-                pdf.set_font('Arial', '', 10)
-                pdf.cell(60, h, "Forma de pago", 1, 0, 'L')
-                pdf.cell(30, h, "Valor", 1, 1, 'R')
-
-                # Mostrar la forma de pago y su valor
-                pdf.cell(60, h, f"{codigo_forma_pago} - {descripcion_forma_pago}", 1, 0, 'L')
-                pdf.cell(30, h, f"${float(factura.get('Total con impuestos', 0)):.2f}", 1, 1, 'R')
+            # Forma de pago
+            formas_pago = {
+                '01': 'Efectivo',
+                '02': 'Cheque',
+                '03': 'Tarjeta de crédito',
+                '04': 'Tarjeta de débito',
+                '05': 'Transferencia bancaria',
+                '06': 'Dinero electrónico',
+                '07': 'Crédito',
+                '08': 'Pago anticipado',
+                '09': 'Compensación',
+                '10': 'Pago en especie',
+                '11': 'Cesión de derechos',
+                '12': 'Pago en especie o compensación',
+                '13': 'Tarjeta prepago',
+                '14': 'Pago con bonos',
+                '15': 'Pago por servicios intermedios',
+                '16': 'Pago con criptomonedas',
+                '17': 'Otros',
+                '18': 'Devolución',
+            }
+            codigo_forma_pago = factura.get('Forma Pago', '17')
+            descripcion_forma_pago = formas_pago.get(codigo_forma_pago, 'Desconocido')
+            pdf.cell(190, 8, f"Forma de Pago: {descripcion_forma_pago}", 0, 1, 'L')
 
         pdf.output(archivo_pdf, 'F')
         return archivo_pdf
+
+
 
     # Llamar a la función para generar el PDF
     archivo_pdf = generar_pdf_facturas(facturas_info, productos_info)
