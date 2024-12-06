@@ -8,6 +8,9 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
+<body>
+
+<!-- Navbar -->
 <nav class="navbar">
     <ul class="menu">
         <li><a href="/upload">Generar reporte</a></li>
@@ -16,119 +19,104 @@
     </ul>
     <!-- Menú de usuario en la esquina derecha -->
     <div class="user-info">
-        <i class="fas fa-user user-icon"></i> <!-- Ícono de usuario -->
-        <span class="user-email">{{ session['user_email'] }}</span> <!-- Correo del usuario -->
+        <i class="fas fa-user user-icon"></i> 
+        <span class="user-email">{{ session['user_email'] }}</span> 
         <a href="/logout" class="logout-icon">
-            <i class="fas fa-sign-out-alt"></i> <!-- Ícono de cerrar sesión -->
-            <span class="logout-text">Cerrar sesión</span> <!-- Texto de cerrar sesión -->
+            <i class="fas fa-sign-out-alt"></i> 
+            <span class="logout-text">Cerrar sesión</span> 
         </a>
     </div>
 </nav>
-<body>
 
-    <div class="main-container">
-        <div class="left-panel">
-            <h1>Subir archivos XML</h1>
-            <p>Selecciona los archivos XML para generar el reporte en Excel y PDF.</p>
-            <form action="/upload" method="post" enctype="multipart/form-data">
-                <label for="xml_files">Archivos XML:</label>
-                <input type="file" id="xml_files" name="xml_files" multiple accept=".xml" required>
-                <button type="submit">Generar Reporte</button>
+<!-- Main content -->
+<div class="main-container">
+
+    <!-- Left panel: Form to upload XML -->
+    <div class="left-panel">
+        <h1>Subir archivos XML</h1>
+        <p>Selecciona los archivos XML para generar el reporte en Excel y PDF.</p>
+        <form action="/upload" method="post" enctype="multipart/form-data">
+            <label for="xml_files">Archivos XML:</label>
+            <input type="file" id="xml_files" name="xml_files" multiple accept=".xml" required>
+            <button type="submit">Generar Reporte</button>
+        </form>
+
+        {% if excel_report %}
+        <div class="reports">
+            <form action="/download_excel" method="get" class="download-form" id="excel-form">
+                <input type="hidden" name="filename" value="{{ excel_report }}">
+                <input type="text" id="custom_name_excel" name="custom_name" placeholder="Nombre personalizado (Excel)">
+                <button type="submit" class="btn-download" onclick="setDefaultName('excel-form', 'custom_name_excel', 'Reporte.xlsx')">Descargar Excel</button>
             </form>
 
-            {% if excel_report %}
-            <div class="reports">
-               <!-- Formulario para descargar Excel -->
-                <form action="/download_excel" method="get" class="download-form" id="excel-form">
-                    <input type="hidden" name="filename" value="{{ excel_report }}">
-                    <input type="text" id="custom_name_excel" name="custom_name" placeholder="Nombre personalizado (Excel)">
-                    <button type="submit" class="btn-download" onclick="setDefaultName('excel-form', 'custom_name_excel', 'Reporte.xlsx')">Descargar Excel</button>
-                </form>
+            <form action="/download_pdf" method="get" class="download-form" id="pdf-form">
+                <input type="hidden" name="filename" value="{{ pdf_report }}">
+                <input type="text" id="custom_name_pdf" name="custom_name" placeholder="Nombre personalizado (PDF)">
+                <button type="submit" class="btn-download" onclick="setDefaultName('pdf-form', 'custom_name_pdf', 'Reporte.pdf')">Descargar PDF</button>
+            </form>
 
-                <!-- Formulario para descargar PDF -->
-                <form action="/download_pdf" method="get" class="download-form" id="pdf-form">
-                    <input type="hidden" name="filename" value="{{ pdf_report }}">
-                    <input type="text" id="custom_name_pdf" name="custom_name" placeholder="Nombre personalizado (PDF)">
-                    <button type="submit" class="btn-download" onclick="setDefaultName('pdf-form', 'custom_name_pdf', 'Reporte.pdf')">Descargar PDF</button>
-                </form>
-               <!-- Formulario para guardar reporte -->
-               <form action="{{ url_for('guardar_reporte') }}" method="post" class="download-form" id="save-form">
+            <form action="{{ url_for('guardar_reporte_con_tabla') }}" method="post" class="download-form" id="save-form">
                 <input type="hidden" name="excel_filename" value="{{ excel_report }}">
                 <input type="hidden" name="pdf_filename" value="{{ pdf_report }}">
+                <input type="hidden" name="tabla_html" value="{{ tabla_html|tojson }}">
+                <input type="hidden" name="datos_json" value="{{ datos_json|tojson }}">
                 <input type="text" id="reporte_nombre" name="reporte_nombre" required placeholder="Nombre del reporte">
-                <button type="submit" class="btn-save" onclick="setDefaultName('reporte_nombre', 'Reporte Guardado')">Guardar Reporte</button>  
-            </form>
-                
-            </div>
-            
-        </div>
-
-<script>
-    //guardar reporte
-    function setDefaultName(inputId, defaultName) {
-    const inputField = document.getElementById(inputId);
-    if (!inputField.value) { // Si el campo está vacío
-        inputField.value = defaultName; // Asigna el nombre predeterminado
-    }
-}
-
-    function setDefaultName(formId, inputId, defaultName) {
-        // Obtener el campo del nombre personalizado
-        var inputField = document.getElementById(inputId);
-        
-        // Si el campo está vacío, asignar el nombre por defecto
-        if (!inputField.value) {
-            inputField.value = defaultName;
-        }
-        
-        // Enviar el formulario
-        document.getElementById(formId).submit();
-    }
-</script>
-        <div class="right-panel">
-            <div class="preview">
-                <h3>Previsualización del Reporte</h3>
-                <div class="table-container">
-                    {{ tabla_html|safe|replace('class="dataframe"', 'class="preview-table"') }}
-                </div>
-            </div>
-            <div class="chart-container">
-                <canvas id="myChart"></canvas>
-            </div>
+                <button type="submit" class="btn-save" onclick="setDefaultName('reporte_nombre', 'Reporte Guardado')">Guardar Reporte</button>
+            </form>            
         </div>
         {% endif %}
+
+        <!-- Botón para redirigir al dashboard -->
+        <form action="/dashboard" method="get">
+            <button type="submit" class="btn-dashboard">Ir al Dashboard</button>
+        </form>
     </div>
 
-    <script>
-        {% if datos_json %}
-        var datos = {{ datos_json|safe }};
-        var ctx = document.getElementById('myChart').getContext('2d');
-        var labels = datos.map(item => item['Razón Social comprador']);
-        var valores = datos.map(item => parseFloat(item['Total con impuestos']));
+    <!-- Right panel: Report preview and chart -->
+    <div class="right-panel">
+        <div class="preview">
+            <h3>Previsualización del Reporte</h3>
+            <div class="table-container">
+                {{ tabla_html|safe|replace('class="dataframe"', 'class="preview-table"') }}
+            </div>
+        </div>
+        <div class="chart-container">
+            <canvas id="myChart"></canvas>
+        </div>
+    </div>
+</div>
 
-        new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: labels,
-                datasets: [{
-                    label: 'Total con impuestos',
-                    data: valores,
-                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                    borderColor: 'rgba(255, 99, 132, 1)',
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
+<script>
+    {% if datos_json %}
+    var datos = {{ datos_json|safe }};
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var labels = datos.map(item => item['Razón Social comprador']);
+    var valores = datos.map(item => parseFloat(item['Total con impuestos']));
+
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Total con impuestos',
+                data: valores,
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderColor: 'rgba(255, 99, 132, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true
                 }
             }
-        });
-        {% endif %}
-    </script>
+        }
+    });
+    {% endif %}
+</script>
+
 </body>
 </html>
