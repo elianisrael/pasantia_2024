@@ -478,10 +478,12 @@ def upload_files():
    
 
     # Función para generar el PDF con diseño de factura
-    def generar_pdf_facturas(facturas_info, productos_info=None): 
+    
+
+    def generar_pdf_facturas(facturas_info, productos_info=None):
         if productos_info is None:
             productos_info = []
-        
+
         archivo_pdf = f'reporte_facturas_{datetime.now().strftime("%Y%m%d_%H%M%S")}.pdf'
         pdf = FPDF()
         pdf.set_auto_page_break(auto=True, margin=20)
@@ -489,45 +491,54 @@ def upload_files():
         for factura in facturas_info:
             pdf.add_page()
 
-            # Filtrar productos para la factura actual
-            productos_factura = [
-                producto for producto in productos_info 
-                if producto['Codigo Factura'] == factura['Codigo Factura']
-            ]
-
-            # Cabecera - Información del vendedor
+            # Añadir el cuadro principal de información
             pdf.set_xy(10, 10)
             pdf.set_font('Arial', 'B', 12)
-            pdf.cell(190, 10, factura['Razón Social del Vendedor'], 0, 1, 'L')
-            pdf.set_font('Arial', '', 10)
-            pdf.cell(190, 8, f"RUC: {factura['RUC del Vendedor']}", 0, 1, 'L')
-            pdf.cell(190, 8, f"Dirección: {factura['Direccion del Vendedor']}", 0, 1, 'L')
-            pdf.ln(5)
+            pdf.cell(190, 10, "NO TIENE LOGO", border=1, ln=1, align='C')
 
-            # Información de la factura
-            pdf.set_font('Arial', 'B', 12)
-            pdf.cell(190, 8, f"Factura No: {factura['Codigo Factura']}", 0, 1, 'R')
+            # Cuadro izquierdo: Información del vendedor
+            pdf.set_xy(10, 20)
             pdf.set_font('Arial', '', 10)
-            pdf.cell(190, 8, f"Fecha de Emisión: {factura['Fecha de Emisión']}", 0, 1, 'R')
-            pdf.cell(190, 8, f"Clave de Acceso: {factura['Clave de Acceso']}", 0, 1, 'R')
-            pdf.cell(190, 8, f"Número de Autorización: {factura['Número de autorización']}", 0, 1, 'R')
-            pdf.ln(10)
+            pdf.multi_cell(85, 8, f"""
+    DEMO SYSTEMSEC
+    VESO DERMATOLOGÍA INTEGRAL CIA LTDA
+   
+    """, border=1)
 
-            # Información del cliente
-            pdf.cell(190, 8, "Información del Cliente:", 0, 1, 'L')
-            pdf.cell(190, 8, f"Razón Social: {factura['Razón Social comprador']}", 0, 1, 'L')
-            pdf.cell(190, 8, f"RUC: {factura['RUC del Comprador']}", 0, 1, 'L')
-            pdf.ln(10)
+            # Cuadro derecho: Información del emisor
+            pdf.set_xy(100, 20)
+            pdf.multi_cell(100, 8, f"""
+    RUC: {factura['RUC del Vendedor']}
+    FACTURA: {factura['Codigo Factura']}
+    NÚMERO DE AUTORIZACIÓN: {factura['Número de autorización']}
+    FECHA Y HORA DE AUTORIZACIÓN: {factura['Fecha de Emisión']}
+    AMBIENTE: PRODUCCIÓN
+    EMISIÓN: NORMAL
+    CLAVE DE ACCESO: {factura['Clave de Acceso']}
+    """, border=1, align='L')
+
+            # Cuadro inferior: Información del comprador
+            pdf.set_xy(10, 70)
+            pdf.multi_cell(85, 8, f"""
+    Razón Social/Nombres: {factura['Razón Social comprador']}
+    Identificación: {factura['RUC del Comprador']}
+    Fecha: {factura['Fecha de Emisión']}
+    """, border=1)
 
             # Tabla de productos
+            pdf.set_xy(10, 130)
             pdf.set_font('Arial', 'B', 10)
             pdf.cell(40, 8, "Código", 1)
             pdf.cell(70, 8, "Descripción", 1)
             pdf.cell(20, 8, "Cantidad", 1)
             pdf.cell(30, 8, "P. Unitario", 1)
             pdf.cell(30, 8, "Total", 1, 1)
-            pdf.set_font('Arial', '', 10)
 
+            pdf.set_font('Arial', '', 10)
+            productos_factura = [
+                producto for producto in productos_info 
+                if producto['Codigo Factura'] == factura['Codigo Factura']
+            ]
             for producto in productos_factura:
                 pdf.cell(40, 8, str(producto['Código']), 1)
                 pdf.cell(70, 8, str(producto['Descripción']), 1)
@@ -540,7 +551,6 @@ def upload_files():
             pdf.cell(160, 8, "Subtotal:", 0, 0, 'R')
             pdf.cell(30, 8, f"${float(factura['Total sin impuestos']):.2f}", 1, 1, 'R')
 
-            # Detalle de IVAs
             for iva_tipo in ['IVA 0%', 'IVA 5%', 'IVA 12%', 'IVA 15%']:
                 if iva_tipo in factura and float(factura[iva_tipo]) > 0:
                     pdf.cell(160, 8, f"{iva_tipo}:", 0, 0, 'R')
@@ -548,9 +558,14 @@ def upload_files():
 
             pdf.cell(160, 8, "Total con impuestos:", 0, 0, 'R')
             pdf.cell(30, 8, f"${float(factura['Total con impuestos']):.2f}", 1, 1, 'R')
-            pdf.ln(10)
 
-            # Forma de pago
+            # Cuadro en la esquina inferior para forma de pago y total
+            pdf.ln(4)
+           # pdf.set_y(-130)  # Moverse a la parte inferior de la página
+            pdf.set_font('Arial', 'B', 10)
+            pdf.cell(80, 10, "Detalles de Pago", border=1, ln=1, align='C')
+                        # Forma de pago
+            pdf.set_font('Arial', '', 10)
             formas_pago = {
                 '01': 'Efectivo',
                 '02': 'Cheque',
@@ -571,13 +586,13 @@ def upload_files():
                 '17': 'Otros',
                 '18': 'Devolución',
             }
-            codigo_forma_pago = factura.get('Forma Pago', '17')
+            codigo_forma_pago = factura.get('Forma Pago', '17').zfill(2)  # Siempre convierte a dos dígitos
             descripcion_forma_pago = formas_pago.get(codigo_forma_pago, 'Desconocido')
-            pdf.cell(190, 8, f"Forma de Pago: {descripcion_forma_pago}", 0, 1, 'L')
+            pdf.cell(80, 8, f"Forma de Pago: {descripcion_forma_pago}", border=1, ln=1, align='L')
+            pdf.cell(80, 8, f"Total con impuestos: ${float(factura['Total con impuestos']):.2f}", border=1, ln=1, align='L')
 
         pdf.output(archivo_pdf, 'F')
         return archivo_pdf
-
 
 
     # Llamar a la función para generar el PDF
