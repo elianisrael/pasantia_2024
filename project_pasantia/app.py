@@ -10,7 +10,6 @@ import sqlite3
 from werkzeug.security import generate_password_hash
 from werkzeug.security import check_password_hash
 import json
-import struct
 
 app = Flask(__name__)
 app.secret_key = 'clave_secreta_para_flask'
@@ -53,7 +52,6 @@ def init_db():
     conn.commit()
     conn.close()
     
-    
 
 # Llamar a la función para crear las tablas al inicio
 init_db()
@@ -66,31 +64,6 @@ def get_db_connection():
 
 
 facturas_info = []
-
-def update_db():
-    """Agrega nuevas columnas a la tabla reportes si no existen."""
-    conn = get_db_connection()
-    cursor = conn.cursor()
-
-    # Agregar la columna tabla_html si no existe
-    cursor.execute("PRAGMA table_info(reportes)")
-    columns = [col[1] for col in cursor.fetchall()]  # Lista de nombres de columnas
-
-    if "tabla_html" not in columns:
-        cursor.execute("ALTER TABLE reportes ADD COLUMN tabla_html TEXT")
-        print("Columna 'tabla_html' agregada a la tabla 'reportes'.")
-
-    # Agregar la columna datos_json si no existe
-    if "datos_json" not in columns:
-        cursor.execute("ALTER TABLE reportes ADD COLUMN datos_json TEXT")
-        print("Columna 'datos_json' agregada a la tabla 'reportes'.")
-
-    conn.commit()
-    conn.close()
-
-# Llamar a esta función al inicio de la aplicación
-update_db()
-
 
 #conexion y uso de la base datos 
 #login
@@ -170,6 +143,7 @@ def registro():
 #seccion factura
 @app.route('/facturas')
 def ver_facturas():
+    
     conn = sqlite3.connect('app.db')
     cursor = conn.cursor()
     cursor.execute('SELECT * FROM facturas')
@@ -180,6 +154,9 @@ def ver_facturas():
 
 @app.route('/crear_factura', methods=['POST'])
 def crear_factura():
+    if 'user_id' not in session:
+        flash("Debes iniciar sesión para guardar reportes.")
+        return redirect(url_for('login'))
     detalles = request.form['detalles']
     fecha = request.form['fecha']
     total = request.form['total']
@@ -214,7 +191,7 @@ def upload():
 def guardar_reporte():
     if 'user_id' not in session:
         flash("Debes iniciar sesión para guardar reportes.")
-        return redirect(url_for('index'))
+        return redirect(url_for('login'))
 
     user_id = session['user_id']
     excel_filename = request.form.get('excel_filename')
@@ -254,12 +231,11 @@ def calcular_total_reporte(excel_filename):
         print(f"Error al calcular el total del reporte: {e}")
         return 0
 #Ruta para sección en donde se almacenaran reportes anteriores
-import struct
-
 @app.route('/reportes.anteriores')
 def reportes_anteriores():
     if 'user_id' not in session:
-        return redirect(url_for('index'))
+        flash("Debes iniciar sesión para guardar reportes.")
+        return redirect(url_for('login'))
 
     user_id = session['user_id']
     nombre = request.args.get('nombre', '')
@@ -281,109 +257,344 @@ def reportes_anteriores():
     reportes = conn.execute(query, params).fetchall()
     conn.close()
 
-    # Convertir la lista de reportes de sqlite3.Row a diccionarios y modificar los valores de 'total'
-    reportes_modificados = []
-    for reporte in reportes:
-        reporte_dict = dict(reporte)  # Convertir sqlite3.Row a diccionario
-        if isinstance(reporte_dict['total'], bytes):
-            try:
-                # Decodificar bytes a float usando struct
-                reporte_dict['total'] = struct.unpack('f', reporte_dict['total'])[0]
-            except Exception as e:
-                print(f"Error al convertir bytes a float: {e}")
-                reporte_dict['total'] = 0.0  # Asignar un valor por defecto en caso de error
-        reportes_modificados.append(reporte_dict)
-
-    return render_template('reportes.html', reportes=reportes_modificados, fecha_inicio=fecha_inicio, fecha_fin=fecha_fin, nombre=nombre)
+    return render_template('reportes.html', reportes=reportes, fecha_inicio=fecha_inicio, fecha_fin=fecha_fin, nombre=nombre)
 
 
+# Ruta para subir los archivos XML y generar los reportes
 @app.route('/upload', methods=['GET', 'POST'])
 def upload_files():
+    if 'user_id' not in session:
+            print("Usuario no autenticado")
+            flash("Debes iniciar sesión para acceder a esta página.")
+            return redirect(url_for('login'))
+     
+    print("Iniciando proceso de carga de archivos")
+
+    uploaded_files = request.files.getlist('xml_files')
+    print(f"Número de archivos cargados: {len(uploaded_files)}")
+
+    # Reiniciar facturas_info antes de procesar nuevos archivos
     global facturas_info
     facturas_info = []
     productos_info = []
 
-    if 'user_id' not in session:
-        flash("Debes iniciar sesión para acceder a esta página.")
-        return redirect(url_for('index'))
-
-    uploaded_files = request.files.getlist('xml_files')
-
-    # Dentro de la función upload_files
     for file in uploaded_files:
+
+        print(f"\nProcesando archivo: {file.filename}")
         try:
+            # Leer el contenido del archivo para depuración
             content = file.read().decode('utf-8')
-            file.seek(0)
+            print(f"Contenido del archivo {file.filename}:\n{content[:200]}...")  # Primeros 200 caracteres
+            file.seek(0)  # Regresar al inicio del archivo
 
             tree = ET.parse(file)
             root = tree.getroot()
+            print("XML parseado correctamente")
 
-            # Extraer datos del XML
+            # Extraer información básica de la autorización
             estado = root.find('estado').text if root.find('estado') is not None else None
             numero_autorizacion = root.find('numeroAutorizacion').text if root.find('numeroAutorizacion') is not None else None
             fecha_autorizacion = root.find('fechaAutorizacion').text if root.find('fechaAutorizacion') is not None else None
             ambiente = root.find('ambiente').text if root.find('ambiente') is not None else None
 
-            # Procesar comprobante y datos de la factura
+            print(f"Estado: {estado}")
+            print(f"Número de autorización: {numero_autorizacion}")
+
+            # Procesar el comprobante
             comprobante_element = root.find('comprobante')
             if comprobante_element is not None:
                 comprobante_xml = comprobante_element.text.strip()
                 if comprobante_xml.startswith('<?xml'):
                     comprobante_xml = comprobante_xml.split('?>', 1)[1].strip()
+                print("Elemento comprobante encontrado y procesado")
+            else:
+                print(f"El archivo {file.filename} no contiene un elemento 'comprobante'")
+                continue
 
-                comprobante_root = ET.fromstring(comprobante_xml)
+            comprobante_root = ET.fromstring(comprobante_xml)
+            print("Comprobante XML parseado correctamente")
 
-                # Acceder a infoTributaria y verificar que esté presente
-                info_tributaria = comprobante_root.find('infoTributaria')
+            # Información tributaria
+            info_tributaria = comprobante_root.find('infoTributaria')
+            razon_social = info_tributaria.find('razonSocial').text if info_tributaria.find('razonSocial') is not None else "No especificado"
+            nombre_comercial = info_tributaria.find('nombreComercial').text if info_tributaria.find('nombreComercial') is not None else "No especificado"
+            ruc_vendedor = info_tributaria.find('ruc').text if info_tributaria is not None else None
+            clave_acceso = info_tributaria.find('claveAcceso').text if info_tributaria is not None else None
+            codigo_factura = info_tributaria.find('secuencial').text if info_tributaria is not None else None
 
-                if info_tributaria is not None:
-                    razon_social = info_tributaria.find('razonSocial').text if info_tributaria.find('razonSocial') is not None else "No especificado"
-                    nombre_comercial = info_tributaria.find('nombreComercial').text if info_tributaria.find('nombreComercial') is not None else "No especificado"
-                    ruc_vendedor = info_tributaria.find('ruc').text if info_tributaria.find('ruc') is not None else "No especificado"  # Asegúrate que esta línea esté presente
-                    clave_acceso = info_tributaria.find('claveAcceso').text if info_tributaria is not None else None
-                    codigo_factura = info_tributaria.find('secuencial').text if info_tributaria is not None else None
-                else:
-                    razon_social = nombre_comercial = ruc_vendedor = clave_acceso = codigo_factura = "No especificado"
+            print(f"Información tributaria procesada - RUC: {ruc_vendedor}")
 
-                # Acceder a razonSocialComprador
-                razon_social_comprador = comprobante_root.find('.//razonSocialComprador').text if comprobante_root.find('.//razonSocialComprador') is not None else "No especificado"
+            # Información de la factura
+            info_factura = comprobante_root.find('infoFactura')
+            fecha_emision = info_factura.find('fechaEmision').text if info_factura is not None else None
+            total_sin_impuestos = info_factura.find('totalSinImpuestos').text if info_factura is not None else None
+            importe_total = info_factura.find('importeTotal').text if info_factura is not None else None
 
-                # Acceder a la información de la factura
-                info_factura = comprobante_root.find('infoFactura')
-                total_sin_impuestos = info_factura.find('totalSinImpuestos').text if info_factura is not None else 0.0
-                importe_total = info_factura.find('importeTotal').text if info_factura is not None else 0.0
+            # Información del comprador
+            razon_social_comprador = comprobante_root.find('.//razonSocialComprador').text if comprobante_root.find('.//razonSocialComprador') is not None else "No especificado"
+            ruc_comprador = comprobante_root.find('.//identificacionComprador').text if comprobante_root.find('.//identificacionComprador') is not None else "No especificado"
 
-                # Agregar datos de factura a la lista
-                factura_info = {
-                    'Codigo Factura': codigo_factura,
-                    'Razón Social comprador': razon_social_comprador,
-                    'RUC del Comprador': ruc_vendedor,  # Esto es el 'RUC del Comprador'
-                    'Razón Social del Vendedor': razon_social,
-                    'Fecha de Emisión': fecha_autorizacion,
-                    'Total sin impuestos': float(total_sin_impuestos),  # Agregar esta línea
-                    'Total con impuestos': float(importe_total),  # Agregar esta línea
-                    'RUC del Vendedor': ruc_vendedor  # Asegurarse de que esta clave esté definida
-                }
+            print(f"Información de factura procesada - Fecha: {fecha_emision}")
 
-                facturas_info.append(factura_info)
+            # Procesar detalles y productos
+            detalles = comprobante_root.find('detalles')
+            if detalles is not None:
+                print("Procesando detalles de productos")
+                productos = detalles.findall('detalle')
+                ivas = {"0%": 0, "5%": 0, "12%": 0, "15%": 0}
+                total_factura = 0
 
+                for producto in productos:
+                    codigo = producto.find('codigoPrincipal').text if producto.find('codigoPrincipal') is not None else None
+                    descripcion = producto.find('descripcion').text if producto.find('descripcion') is not None else None
+                    cantidad = float(producto.find('cantidad').text) if producto.find('cantidad') is not None else 0.0
+                    precio_unitario = float(producto.find('precioUnitario').text) if producto.find('precioUnitario') is not None else 0.0
+                    precio_total_sin_impuesto = float(producto.find('precioTotalSinImpuesto').text) if producto.find('precioTotalSinImpuesto') is not None else 0.0
+
+                    # Procesar impuestos del producto
+                    impuesto_element = producto.find('impuestos/impuesto')
+                    if impuesto_element is not None:
+                        impuesto = float(impuesto_element.find('valor').text) if impuesto_element.find('valor') is not None else 0.0
+                        tarifa = float(impuesto_element.find('tarifa').text) if impuesto_element.find('tarifa') is not None else 0.0
+                        
+                        # Sumar al IVA correspondiente
+                        if tarifa == 0:
+                            ivas["0%"] += impuesto
+                        elif tarifa == 5:
+                            ivas["5%"] += impuesto
+                        elif tarifa == 12:
+                            ivas["12%"] += impuesto
+                        elif tarifa == 15:
+                            ivas["15%"] += impuesto
+                    else:
+                        impuesto = 0.0
+                        tarifa = 0.0
+
+                    total_producto = precio_total_sin_impuesto + impuesto
+                    total_factura += total_producto
+
+                    productos_info.append({
+                        'Codigo Factura': codigo_factura,
+                        'Código': codigo,
+                        'Descripción': descripcion,
+                        'Cantidad': cantidad,
+                        'Precio Unitario': precio_unitario,
+                        'Precio Total Sin Impuesto': precio_total_sin_impuesto,
+                        'IVA': impuesto,
+                        'Total': total_producto
+                    })
+                    print(f"Producto procesado: {codigo} - {descripcion}")
+
+            # Agregar información de la factura
+            factura_info = {
+                'Codigo Factura': codigo_factura,
+                'Estado de la autorización': estado,
+                'Fecha de autorización': fecha_autorizacion,
+                'Ambiente': ambiente,
+                'Razón Social comprador': razon_social_comprador,
+                'RUC del Comprador': ruc_comprador,
+                'Razón Social del Vendedor': razon_social,
+                'Nombre Comercial del Vendedor': nombre_comercial,
+                'RUC del Vendedor': ruc_vendedor,
+                'Fecha de Emisión': fecha_emision,
+                'IVA 0%': ivas["0%"],
+                'IVA 5%': ivas["5%"],
+                'IVA 12%': ivas["12%"],
+                'IVA 15%': ivas["15%"],
+                'Total sin impuestos': total_sin_impuestos,
+                'Total con impuestos': importe_total,
+                'Número de autorización': numero_autorizacion,
+                'Clave de Acceso': clave_acceso
+            }
+            facturas_info.append(factura_info)
+            print(f"Factura procesada: {codigo_factura} - {razon_social_comprador}")
+
+        except ET.ParseError:
+            print(f"Error al analizar el archivo {file.filename}: El archivo no es un XML válido.")
         except Exception as e:
             print(f"Error procesando el archivo {file.filename}: {str(e)}")
 
-    # Generar la previsualización
-    df_facturas = pd.DataFrame(facturas_info)
-    tabla_html = df_facturas.to_html(classes='preview-table', index=False)
-    datos_json = df_facturas.to_json(orient='records')
+    print(f"Total de facturas procesadas: {len(facturas_info)}")
+    print(f"Total de productos procesados: {len(productos_info)}")
 
-    # Generar el PDF
-    archivo_pdf = generar_pdf_facturas(facturas_info, productos_info)
 
     # Generar reporte en Excel
+    df_facturas = pd.DataFrame(facturas_info)
+    df_productos = pd.DataFrame(productos_info)
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     archivo_excel = f'reporte_facturas_{timestamp}.xlsx'
+    
+
     writer = pd.ExcelWriter(archivo_excel, engine='openpyxl')
+
+    # Guardar el DataFrame en Excel
     df_facturas.to_excel(writer, index=False, sheet_name='Reporte')
+    df_productos.to_excel(writer, sheet_name='Productos', index=False)
+
+    # Obtener la hoja de trabajo
+    workbook = writer.book
+    worksheet_facturas = workbook['Reporte']
+    worksheet_productos = workbook['Productos']
+
+    # Aplicar formato a la hoja
+    for idx, col in enumerate(df_facturas.columns):
+        # Establecer el ancho de la columna basado en la longitud máxima en la columna
+        max_len = max(df_facturas[col].astype(str).map(len).max(), len(col))
+        worksheet_facturas.column_dimensions[openpyxl.utils.get_column_letter(idx+1)].width = max_len + 2
+
+    for idx, col in enumerate(df_productos.columns):
+        # Establecer el ancho de la columna basado en la longitud máxima en la columna
+        max_len = max(df_productos[col].astype(str).map(len).max(), len(col))
+        worksheet_productos.column_dimensions[openpyxl.utils.get_column_letter(idx+1)].width = max_len + 2
+    
+    for worksheet in [worksheet_facturas, worksheet_productos]:
+    # Aplicar estilo a la fila de encabezados
+        for cell in worksheet[1]:
+            cell.font = Font(bold=True)
+            cell.fill = PatternFill(start_color='87CEEB', end_color='87CEEB', fill_type='solid')
+
+    # Aplicar bordes a todas las celdas
+        thin_border = Border(left=Side(style='thin'),
+                        right=Side(style='thin'),
+                        top=Side(style='thin'),
+                        bottom=Side(style='thin'))
+
+    for row in worksheet.iter_rows(min_row=1, max_row=worksheet.max_row, min_col=1, max_col=worksheet.max_column):
+        for cell in row:
+            cell.border = thin_border
+
+    # Aplicar filtro
+    worksheet.auto_filter.ref = worksheet.dimensions
+
+    # Congelar la primera fila
+    worksheet.freeze_panes = 'A2'
+
+    # Guardar el archivo
     writer.close()
+
+
+   
+
+    # Función para generar el PDF con diseño de factura
+
+    def generar_pdf_facturas(facturas_info, productos_info=None):
+        if productos_info is None:
+            productos_info = []
+
+        archivo_pdf = f'reporte_facturas_{datetime.now().strftime("%Y%m%d_%H%M%S")}.pdf'
+        pdf = FPDF()
+        pdf.set_auto_page_break(auto=True, margin=20)
+
+        for factura in facturas_info:
+            pdf.add_page()
+
+            # Añadir el cuadro principal de información
+            pdf.set_xy(10, 10)
+            pdf.set_font('Arial', 'B', 12)
+            pdf.cell(190, 10, "NO TIENE LOGO", border=1, ln=1, align='C')
+
+            # Cuadro izquierdo: Información del vendedor
+            pdf.set_xy(10, 20)
+            pdf.set_font('Arial', '', 10)
+            pdf.multi_cell(85, 8, f"""
+    DEMO SYSTEMSEC
+    VESO DERMATOLOGÍA INTEGRAL CIA LTDA
+    """, border=1)
+
+            # Cuadro derecho: Información del emisor
+            pdf.set_xy(100, 20)
+            pdf.multi_cell(100, 8, f"""
+    RUC: {factura['RUC del Vendedor']}
+    FACTURA: {factura['Codigo Factura']}
+    NÚMERO DE AUTORIZACIÓN: {factura['Número de autorización']}
+    FECHA Y HORA DE AUTORIZACIÓN: {factura['Fecha de Emisión']}
+    AMBIENTE: PRODUCCIÓN
+    EMISIÓN: NORMAL
+    CLAVE DE ACCESO: {factura['Clave de Acceso']}
+    """, border=1, align='L')
+
+            # Cuadro inferior: Información del comprador
+            pdf.set_xy(10, 70)
+            pdf.multi_cell(85, 8, f"""
+    Razón Social/Nombres: {factura['Razón Social comprador']}
+    Identificación: {factura['RUC del Comprador']}
+    Fecha: {factura['Fecha de Emisión']}
+    """, border=1)
+
+            # Tabla de productos
+            pdf.set_xy(10, 130)
+            pdf.set_font('Arial', 'B', 10)
+            pdf.cell(40, 8, "Código", 1)
+            pdf.cell(70, 8, "Descripción", 1)
+            pdf.cell(20, 8, "Cantidad", 1)
+            pdf.cell(30, 8, "P. Unitario", 1)
+            pdf.cell(30, 8, "Total", 1, 1)
+
+            pdf.set_font('Arial', '', 10)
+            productos_factura = [
+                producto for producto in productos_info
+                if producto['Codigo Factura'] == factura['Codigo Factura']
+            ]
+            for producto in productos_factura:
+                # Posición inicial de la fila
+                x = pdf.get_x()
+                y = pdf.get_y()
+
+                # Descripción (MultiCell)
+                pdf.cell(40, 8, str(producto['Código']), 1, 0)  # Código
+                pdf.multi_cell(70, 8, str(producto['Descripción']), 1)  # Descripción
+                # Ajusta la posición para las demás columnas
+                max_y = pdf.get_y()
+                pdf.set_xy(x + 110, y)
+                pdf.cell(20, max_y - y, str(producto['Cantidad']), 1, 0, 'C')  # Cantidad
+                pdf.cell(30, max_y - y, f"${producto['Precio Unitario']:.2f}", 1, 0, 'C')  # Precio Unitario
+                pdf.cell(30, max_y - y, f"${producto['Total']:.2f}", 1, 1, 'C')  # Total
+
+            # Totales
+            pdf.ln(5)
+            pdf.cell(160, 8, "Subtotal:", 0, 0, 'R')
+            pdf.cell(30, 8, f"${float(factura['Total sin impuestos']):.2f}", 1, 1, 'R')
+
+            for iva_tipo in ['IVA 0%', 'IVA 5%', 'IVA 12%', 'IVA 15%']:
+                if iva_tipo in factura and float(factura[iva_tipo]) > 0:
+                    pdf.cell(160, 8, f"{iva_tipo}:", 0, 0, 'R')
+                    pdf.cell(30, 8, f"${float(factura[iva_tipo]):.2f}", 1, 1, 'R')
+
+            pdf.cell(160, 8, "Total con impuestos:", 0, 0, 'R')
+            pdf.cell(30, 8, f"${float(factura['Total con impuestos']):.2f}", 1, 1, 'R')
+
+            # Cuadro en la esquina inferior para forma de pago y total
+            pdf.ln(4)
+            pdf.set_font('Arial', 'B', 10)
+            pdf.cell(80, 10, "Detalles de Pago", border=1, ln=1, align='C')
+            pdf.set_font('Arial', '', 10)
+            codigo_forma_pago = factura.get('Forma Pago', '17').zfill(2)
+            formas_pago = {
+                '01': 'Efectivo', '02': 'Cheque', '03': 'Tarjeta de crédito',
+                '04': 'Tarjeta de débito', '05': 'Transferencia bancaria',
+                '06': 'Dinero electrónico', '07': 'Crédito', '08': 'Pago anticipado',
+                '09': 'Compensación', '10': 'Pago en especie', '11': 'Cesión de derechos',
+                '12': 'Pago en especie o compensación', '13': 'Tarjeta prepago',
+                '14': 'Pago con bonos', '15': 'Pago por servicios intermedios',
+                '16': 'Pago con criptomonedas', '17': 'Otros', '18': 'Devolución',
+            }
+            descripcion_forma_pago = formas_pago.get(codigo_forma_pago, 'Desconocido')
+            pdf.cell(80, 8, f"Forma de Pago: {descripcion_forma_pago}", border=1, ln=1, align='L')
+            pdf.cell(80, 8, f"Total con impuestos: ${float(factura['Total con impuestos']):.2f}", border=1, ln=1, align='L')
+
+        pdf.output(archivo_pdf, 'F')
+        return archivo_pdf
+
+    # Llamar a la función para generar el PDF
+    archivo_pdf = generar_pdf_facturas(facturas_info, productos_info)
+
+    # Asegúrate de tener el DataFrame df_facturas ya definido antes de esta parte
+    # Convertir DataFrame a HTML para previsualización
+    tabla_html = df_facturas.to_html(classes='preview-table', index=False)
+
+
+    # Convertir DataFrame a JSON para pasar a JavaScript
+    datos_json = df_facturas.to_json(orient='records')
 
     # Retornar los archivos generados para su descarga
     return render_template(
@@ -396,80 +607,6 @@ def upload_files():
 
 
 
-# Función para generar el PDF con diseño de factura
-def generar_pdf_facturas(facturas_info, productos_info=None):
-    if productos_info is None:
-        productos_info = []
-
-    archivo_pdf = f'reporte_facturas_{datetime.now().strftime("%Y%m%d_%H%M%S")}.pdf'
-    pdf = FPDF()
-    pdf.set_auto_page_break(auto=True, margin=20)
-
-    for factura in facturas_info:
-        pdf.add_page()
-
-        # Añadir el cuadro principal de información
-        pdf.set_xy(10, 10)
-        pdf.set_font('Arial', 'B', 12)
-        pdf.cell(190, 10, "NO TIENE LOGO", border=1, ln=1, align='C')
-
-        # Cuadro izquierdo: Información del vendedor
-        pdf.set_xy(10, 20)
-        pdf.set_font('Arial', '', 10)
-        pdf.multi_cell(85, 8, f"""
-        DEMO SYSTEMSEC
-        VESO DERMATOLOGÍA INTEGRAL CIA LTDA
-        """, border=1)
-
-        # Cuadro derecho: Información del emisor
-        pdf.set_xy(100, 20)
-        pdf.multi_cell(100, 8, f"""
-        RUC: {factura['RUC del Comprador']}  # Aquí se usa correctamente el RUC del Comprador
-        FACTURA: {factura['Codigo Factura']}
-        NÚMERO DE AUTORIZACIÓN: {factura['Fecha de Emisión']}
-        """, border=1, align='L')
-
-        # Cuadro inferior: Información del comprador
-        pdf.set_xy(10, 70)
-        pdf.multi_cell(85, 8, f"""
-        Razón Social/Nombres: {factura['Razón Social comprador']}
-        Identificación: {factura['RUC del Comprador']}
-        Fecha: {factura['Fecha de Emisión']}
-        """, border=1)
-
-        # Tabla de productos
-        pdf.set_xy(10, 130)
-        pdf.set_font('Arial', 'B', 10)
-        pdf.cell(40, 8, "Código", 1)
-        pdf.cell(70, 8, "Descripción", 1)
-        pdf.cell(20, 8, "Cantidad", 1)
-        pdf.cell(30, 8, "P. Unitario", 1)
-        pdf.cell(30, 8, "Total", 1, 1)
-
-        pdf.set_font('Arial', '', 10)
-        for producto in productos_info:
-            pdf.cell(40, 8, str(producto['Código']), 1)
-            pdf.cell(70, 8, str(producto['Descripción']), 1)
-            pdf.cell(20, 8, str(producto['Cantidad']), 1)
-            pdf.cell(30, 8, f"${producto['Precio Unitario']:.2f}", 1)
-            pdf.cell(30, 8, f"${producto['Total']:.2f}", 1, 1)
-
-        # Totales
-        pdf.ln(5)
-        pdf.cell(160, 8, "Subtotal:", 0, 0, 'R')
-        pdf.cell(30, 8, f"${factura['Total sin impuestos']:.2f}", 1, 1, 'R')  # Aquí se usa correctamente el total
-
-        for iva_tipo in ['IVA 0%', 'IVA 5%', 'IVA 12%', 'IVA 15%']:
-            if iva_tipo in factura and float(factura[iva_tipo]) > 0:
-                pdf.cell(160, 8, f"{iva_tipo}:", 0, 0, 'R')
-                pdf.cell(30, 8, f"${factura[iva_tipo]:.2f}", 1, 1, 'R')
-
-        pdf.cell(160, 8, "Total con impuestos:", 0, 0, 'R')
-        pdf.cell(30, 8, f"${factura['Total con impuestos']:.2f}", 1, 1, 'R')
-
-    pdf.output(archivo_pdf, 'F')
-    return archivo_pdf
-
 # Ruta para descargar el archivo Excel
 @app.route('/download_excel')
 def download_excel():
@@ -478,7 +615,6 @@ def download_excel():
     if not custom_name.endswith('.xlsx'):
         custom_name += '.xlsx'
     return send_file(filename, as_attachment=True, download_name=custom_name)
-    
 
 # Ruta para descargar el archivo Pdf
 @app.route('/download_pdf')
@@ -493,7 +629,7 @@ def download_pdf():
 def dashboard():
     if 'user_id' not in session:
         flash("Debes iniciar sesión para acceder a esta página.")
-        return redirect('/index')
+        return redirect('/login')
     
     # Obtener parámetros de filtro de la URL
     fecha_inicio = request.args.get('fecha_inicio')
@@ -508,26 +644,14 @@ def dashboard():
     # Aplicar filtro de fechas
     if fecha_inicio and fecha_fin:
         try:
-            # Convertir las fechas de inicio y fin en objetos datetime
             fecha_inicio_dt = datetime.strptime(fecha_inicio, '%Y-%m-%d')
             fecha_fin_dt = datetime.strptime(fecha_fin, '%Y-%m-%d')
-
-            # Filtrar las facturas basadas en el rango de fechas
             facturas_filtradas = [
                 f for f in facturas_filtradas 
-                if fecha_inicio_dt <= datetime.strptime(f['Fecha de Emisión'], '%Y-%m-%dT%H:%M:%S%z').date() <= fecha_fin_dt
+                if fecha_inicio_dt <= datetime.strptime(f['Fecha de Emisión'], '%d/%m/%Y') <= fecha_fin_dt
             ]
         except ValueError:
             flash("Formato de fecha inválido")
-
-    # Análisis temporal
-    ventas_por_mes = {}
-    for factura in facturas_filtradas:
-        fecha = datetime.strptime(factura['Fecha de Emisión'], '%Y-%m-%dT%H:%M:%S%z').date()
-        mes_año = fecha.strftime('%Y-%m')
-        ventas_por_mes[mes_año] = ventas_por_mes.get(mes_año, 0) + float(factura['Total con impuestos'])
-
-
     
     # Aplicar filtro de clientes por RUC
     if clientes_filtro:
@@ -594,7 +718,7 @@ def dashboard():
     # Análisis temporal
     ventas_por_mes = {}
     for factura in facturas_filtradas:
-        fecha = datetime.strptime(factura['Fecha de Emisión'], '%Y-%m-%dT%H:%M:%S%z').date()
+        fecha = datetime.strptime(factura['Fecha de Emisión'], '%d/%m/%Y')
         mes_año = fecha.strftime('%Y-%m')
         ventas_por_mes[mes_año] = ventas_por_mes.get(mes_año, 0) + float(factura['Total con impuestos'])
 
@@ -618,7 +742,6 @@ def dashboard():
                          vendedores_filtro=vendedores_filtro,
                          rango_monto=rango_monto)
 
-
 @app.route('/reporte/<int:id>')
 def ver_reporte(id):
     if 'user_id' not in session:
@@ -631,26 +754,8 @@ def ver_reporte(id):
     if reporte is None:
         flash("Reporte no encontrado.")
         return redirect(url_for('reportes_anteriores'))
-
-    # Convertir el reporte en un diccionario mutable
-    reporte_dict = dict(reporte)
-
-    # Convertir 'total' a float si es necesario
-    try:
-        if isinstance(reporte_dict['total'], bytes):
-            reporte_dict['total'] = struct.unpack('f', reporte_dict['total'])[0]
-    except Exception as e:
-        print(f"Error al convertir 'total': {e}")
-        reporte_dict['total'] = 0.0  # Asignar valor predeterminado en caso de error
-
-    # Pasar el diccionario modificado a la plantilla
-    return render_template(
-        'ver_reporte.html', 
-        reporte=reporte_dict,  # Usar el diccionario modificado
-        tabla_html=reporte_dict['tabla_html'], 
-        datos_json=reporte_dict['datos_json']
-    )
-
+    
+    return render_template('ver_reporte.html', reporte=reporte)
 
 @app.route('/borrar-reportes', methods=['POST'])
 def borrar_reportes():
@@ -677,44 +782,6 @@ def borrar_reporte(id):
     conn.close()
 
     return '', 204
-
-@app.route('/guardar_reporte_con_tabla', methods=['POST'])
-def guardar_reporte_con_tabla():
-    if 'user_id' not in session:
-        flash("Debes iniciar sesión para guardar reportes.")
-        return redirect(url_for('index'))
-
-    user_id = session['user_id']
-    excel_filename = request.form.get('excel_filename')
-    pdf_filename = request.form.get('pdf_filename')
-    reporte_nombre = request.form.get('reporte_nombre')
-    tabla_html = request.form.get('tabla_html')
-    datos_json = request.form.get('datos_json')
-
-    if not excel_filename or not pdf_filename or not reporte_nombre:
-        flash("Información incompleta para guardar el reporte.")
-        return redirect(url_for('upload'))
-
-    # Calcular el total del reporte
-    total = calcular_total_reporte(excel_filename)
-
-    conn = get_db_connection()
-    try:
-        fecha = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-        conn.execute('''
-            INSERT INTO reportes (user_id, nombre, fecha, total, tabla_html, datos_json) 
-            VALUES (?, ?, ?, ?, ?, ?)
-        ''', (user_id, reporte_nombre, fecha, total, tabla_html, datos_json))
-        conn.commit()
-        flash("Reporte guardado exitosamente.")
-    except Exception as e:
-        print(f"Error al guardar el reporte: {e}")
-        flash("Hubo un error al guardar el reporte.")
-    finally:
-        conn.close()
-
-    return redirect(url_for('reportes_anteriores'))
-
 
 
 if __name__ == '__main__':

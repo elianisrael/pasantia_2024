@@ -3,55 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reporte Guardado</title>
+    <title>Dashboard de Facturación</title>
     <link rel="stylesheet" href="/static/styles.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-</head>
-<body>
-    <div class="main-container">
-        <h1>{{ reporte['nombre'] }}</h1>
-        <p>Fecha: {{ reporte['fecha'] }}</p>
-        <p>Total: ${{ "%.2f"|format(reporte['total']) }}</p>
-
-        <h3>Previsualización</h3>
-        <div class="table-container">
-            <!-- Mostrar la tabla HTML almacenada -->
-            {{ reporte['tabla_html']|safe }}
-        </div>
-
-        <div class="chart-container">
-            <canvas id="myChart"></canvas>
-        </div>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+   <nav class="navbar">
+    <ul class="menu">
+        <!-- <li><a href="{{ url_for('upload_files') }}">Ver Último Reporte</a></li> -->
+        <li><a href="/index">Subir Archivos</a></li>
+        <li><a href="/dashboard">Dashboard</a></li>
+        <li><a href="/reportes.anteriores">Reportes</a></li>
+    </ul>
+    <!-- Menú de usuario en la esquina derecha -->
+    <div class="user-info">
+        <i class="fas fa-user"></i> <!-- Ícono de usuario -->
+        <span>{{ session['user_email'] }}</span> <!-- Correo del usuario -->
+        <a href="/logout" class="logout-icon">
+            <i class="fas fa-sign-out-alt"></i> <!-- Ícono de cerrar sesión -->
+        </a>
     </div>
+</nav>
+</head>
 
-    <script>
-        var datos = {{ reporte['datos_json']|safe }};
-        var ctx = document.getElementById('myChart').getContext('2d');
-        var labels = datos.map(item => item['Razón Social comprador']);
-        var valores = datos.map(item => parseFloat(item['Total con impuestos']));
-
-        new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: labels,
-                datasets: [{
-                    label: 'Total con impuestos',
-                    data: valores,
-                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                    borderColor: 'rgba(54, 162, 235, 1)',
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
-    </script>
+<div class="container">
+    <h1>Detalle del Reporte</h1>
+    <p><strong>Nombre:</strong> {{ reporte['nombre'] }}</p>
+    <p><strong>Fecha:</strong> {{ reporte['fecha'] }}</p>
+    <p><strong>Total:</strong> ${{ "%.2f"|format(reporte['total']) }}</p>
+    <!-- Botón para volver a reportes -->
+    <button onclick="window.location.href='/reportes.anteriores'" class="back-button">Volver a Reportes</button>
+</div>
 </body>
 </html>

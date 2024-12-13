@@ -73,10 +73,7 @@
                         <td>{{ reporte['fecha'] }}</td>
                         <td>${{ "%.2f"|format(reporte['total']) }}</td>
                         <td>
-                            <!-- Botón para ver reporte -->
-                            <form action="{{ url_for('ver_reporte', id=reporte['id']) }}" method="get">
-                                <button type="submit">Ver</button>
-                            </form>
+                            <button onclick="viewReport('{{ reporte['id'] }}')">Ver</button>
                             <button onclick="deleteReport('{{ reporte['id'] }}')">Borrar</button>
                         </td>
                     </tr>
@@ -91,31 +88,36 @@
 </div>
 </div>
         <script>
+            // Función para ver un reporte
+            function viewReport(id) {
+                window.location.href = `/reporte/${id}`;
+            }
+            
             // Función para borrar un solo reporte
             function deleteReport(id) {
-                if (confirm('¿Estás seguro de que deseas borrar este reporte?')) {
-                    fetch(`/borrar-reporte/${id}`, { method: 'DELETE' })
-                        .then(response => {
-                            if (response.ok) {
-                                location.reload(); // Recargar la página para reflejar los cambios
-                            } else {
-                                alert('Error al borrar el reporte.');
-                            }
-                        })
-                        .catch(error => console.error('Error:', error));
+    if (confirm('¿Estás seguro de que deseas borrar este reporte?')) {
+        fetch(`/borrar-reporte/${id}`, { method: 'DELETE' })
+            .then(response => {
+                if (response.ok) {
+                    location.reload(); // Recargar la página para reflejar los cambios
+                } else {
+                    alert('Error al borrar el reporte.');
                 }
-            }
-
+            })
+            .catch(error => console.error('Error:', error));
+    }
+}
+    
             // Selección y borrado múltiple
             document.getElementById('select-all').addEventListener('change', function() {
                 const checkboxes = document.querySelectorAll('.select-report');
                 checkboxes.forEach(checkbox => checkbox.checked = this.checked);
             });
-
+    
             document.getElementById('delete-selected').addEventListener('click', function() {
                 const selectedReports = Array.from(document.querySelectorAll('.select-report:checked'))
                     .map(checkbox => checkbox.dataset.id);
-
+    
                 if (selectedReports.length && confirm('¿Deseas borrar los reportes seleccionados?')) {
                     fetch('/borrar-reportes', {
                         method: 'POST',
@@ -130,7 +132,7 @@
                     alert('No se seleccionaron reportes para borrar.');
                 }
             });
-
+    
             // Función para resetear filtros
             function resetFilters() {
                 document.getElementById('report-filter-form').reset();
@@ -138,5 +140,7 @@
             }
         </script>
     </div>
+    
 </body>
 </html>
+    
