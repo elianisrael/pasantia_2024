@@ -319,6 +319,7 @@ def upload_files():
             razon_social = info_tributaria.find('razonSocial').text if info_tributaria.find('razonSocial') is not None else "No especificado"
             nombre_comercial = info_tributaria.find('nombreComercial').text if info_tributaria.find('nombreComercial') is not None else "No especificado"
             ruc_vendedor = info_tributaria.find('ruc').text if info_tributaria is not None else None
+            dir_Matriz = info_tributaria.find('dirMatriz').text if info_tributaria.find('dirMatriz') is not None else "No especificado"
             clave_acceso = info_tributaria.find('claveAcceso').text if info_tributaria is not None else None
             codigo_factura = info_tributaria.find('secuencial').text if info_tributaria is not None else None
 
@@ -394,7 +395,8 @@ def upload_files():
                 'Razón Social comprador': razon_social_comprador,
                 'RUC del Comprador': ruc_comprador,
                 'Razón Social del Vendedor': razon_social,
-                'Nombre Comercial del Vendedor': nombre_comercial,
+                'Nombre Comercial': nombre_comercial,
+                'dir Establecimiento': dir_Matriz,
                 'RUC del Vendedor': ruc_vendedor,
                 'Fecha de Emisión': fecha_emision,
                 'IVA 0%': ivas["0%"],
@@ -497,8 +499,8 @@ def upload_files():
             pdf.set_xy(10, 20)
             pdf.set_font('Arial', '', 10)
             pdf.multi_cell(85, 8, f"""
-    DEMO SYSTEMSEC
-    VESO DERMATOLOGÍA INTEGRAL CIA LTDA
+    {factura['Nombre Comercial']}
+    {factura['dir Establecimiento']}
     """, border=1)
 
             # Cuadro derecho: Información del emisor
@@ -516,7 +518,8 @@ def upload_files():
             # Cuadro inferior: Información del comprador
             pdf.set_xy(10, 70)
             pdf.multi_cell(85, 8, f"""
-    Razón Social/Nombres: {factura['Razón Social comprador']}
+    Razón Social/Nombres: 
+    {factura['Razón Social comprador']}
     Identificación: {factura['RUC del Comprador']}
     Fecha: {factura['Fecha de Emisión']}
     """, border=1)
