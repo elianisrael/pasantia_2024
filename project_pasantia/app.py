@@ -499,30 +499,30 @@ def upload_files():
             pdf.set_xy(10, 20)
             pdf.set_font('Arial', '', 10)
             pdf.multi_cell(85, 8, f"""
-    {factura['Nombre Comercial']}
-    {factura['dir Establecimiento']}
-    """, border=1)
+            {factura['Nombre Comercial']}
+            {factura['dir Establecimiento']}
+            """, border=1)
 
             # Cuadro derecho: Información del emisor
             pdf.set_xy(100, 20)
             pdf.multi_cell(100, 8, f"""
-    RUC: {factura['RUC del Vendedor']}
-    FACTURA: {factura['Codigo Factura']}
-    NÚMERO DE AUTORIZACIÓN: {factura['Número de autorización']}
-    FECHA Y HORA DE AUTORIZACIÓN: {factura['Fecha de Emisión']}
-    AMBIENTE: PRODUCCIÓN
-    EMISIÓN: NORMAL
-    CLAVE DE ACCESO: {factura['Clave de Acceso']}
-    """, border=1, align='L')
+            RUC: {factura['RUC del Vendedor']}
+            FACTURA: {factura['Codigo Factura']}
+            NÚMERO DE AUTORIZACIÓN: {factura['Número de autorización']}
+            FECHA Y HORA DE AUTORIZACIÓN: {factura['Fecha de Emisión']}
+            AMBIENTE: PRODUCCIÓN
+            EMISIÓN: NORMAL
+            CLAVE DE ACCESO: {factura['Clave de Acceso']}
+            """, border=1, align='L')
 
             # Cuadro inferior: Información del comprador
             pdf.set_xy(10, 70)
             pdf.multi_cell(85, 8, f"""
-    Razón Social/Nombres: 
-    {factura['Razón Social comprador']}
-    Identificación: {factura['RUC del Comprador']}
-    Fecha: {factura['Fecha de Emisión']}
-    """, border=1)
+            Razón Social/Nombres: 
+            {factura['Razón Social comprador']}
+            Identificación: {factura['RUC del Comprador']}
+            Fecha: {factura['Fecha de Emisión']}
+            """, border=1)
 
             # Tabla de productos
             pdf.set_xy(10, 130)

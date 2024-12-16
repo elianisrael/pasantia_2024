@@ -151,6 +151,7 @@
                     
                 </select>
                 <canvas id="clientesChart"></canvas>
+                <button id="downloadClientesChart" class="btn-download">Descargar Gráfico</button>
             </div>
 
             <!-- Gráfico de Ventas por Vendedor -->
@@ -165,6 +166,7 @@
                     
                 </select>
                 <canvas id="vendedoresChart"></canvas>
+                <button id="downloadVendedoresChart" class="btn-download">Descargar Gráfico</button>
             </div>
         
             <!-- Gráfico de Ventas por Mes -->
@@ -179,6 +181,7 @@
                     
                 </select>
                 <canvas id="mesesChart"></canvas>
+                <button id="downloadMesesChart" class="btn-download">Descargar Gráfico</button>
             </div>
         
             <!-- Gráfico de IVA Totales -->
@@ -193,6 +196,7 @@
                     
                 </select>
                 <canvas id="ivaChart"></canvas>
+                <button id="downloadIVAChart" class="btn-download">Descargar Gráfico</button>
             </div>
         </div>
 
@@ -439,6 +443,27 @@
                 ivaChart.destroy();
                 ivaChart = createChart(ctxIVA, newType, Object.keys({{ iva_totales | tojson }}), Object.values({{ iva_totales | tojson }}), 'IVA Totales');
             });
+            
+            // descarga de graficos
+            document.addEventListener('DOMContentLoaded', function() {
+                function setupDownloadButton(chart, buttonId) {
+                    const downloadButton = document.getElementById(buttonId);
+                    downloadButton.addEventListener('click', function() {
+                        const link = document.createElement('a');
+                        link.href = chart.toBase64Image(); // Convierte el gráfico en una imagen
+                        link.download = `${buttonId}.png`; // Asigna un nombre al archivo
+                        link.click(); // Simula un clic para iniciar la descarga
+                    });
+                }
+
+                // Configura botones de descarga para cada gráfico
+                setupDownloadButton(clientesChart, 'downloadClientesChart');
+                setupDownloadButton(vendedoresChart, 'downloadVendedoresChart');
+                setupDownloadButton(mesesChart, 'downloadMesesChart');
+                setupDownloadButton(ivaChart, 'downloadIVAChart');
+            });
+
+            
         </script>
         
 </body>
