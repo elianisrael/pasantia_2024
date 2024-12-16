@@ -330,6 +330,7 @@ def upload_files():
             fecha_emision = info_factura.find('fechaEmision').text if info_factura is not None else None
             total_sin_impuestos = info_factura.find('totalSinImpuestos').text if info_factura is not None else None
             importe_total = info_factura.find('importeTotal').text if info_factura is not None else None
+            forma_pago = info_factura.find('.//pagos/pago/formaPago').text if info_factura is not None else None  # Extraer forma de pago
 
             # Información del comprador
             razon_social_comprador = comprobante_root.find('.//razonSocialComprador').text if comprobante_root.find('.//razonSocialComprador') is not None else "No especificado"
@@ -406,7 +407,8 @@ def upload_files():
                 'Total sin impuestos': total_sin_impuestos,
                 'Total con impuestos': importe_total,
                 'Número de autorización': numero_autorizacion,
-                'Clave de Acceso': clave_acceso
+                'Clave de Acceso': clave_acceso,
+                'Forma Pago': forma_pago
             }
             facturas_info.append(factura_info)
             print(f"Factura procesada: {codigo_factura} - {razon_social_comprador}")
@@ -571,17 +573,33 @@ def upload_files():
             pdf.set_font('Arial', 'B', 10)
             pdf.cell(80, 10, "Detalles de Pago", border=1, ln=1, align='C')
             pdf.set_font('Arial', '', 10)
-            codigo_forma_pago = factura.get('Forma Pago', '17').zfill(2)
+            # Diccionario de formas de pago
             formas_pago = {
+                '1': 'Efectivo', '2': 'Cheque', '3': 'Tarjeta de crédito',
+                '4': 'Tarjeta de débito', '5': 'Transferencia bancaria',
+                '6': 'Dinero electrónico', '7': 'Crédito', '8': 'Pago anticipado',
+                '9': 'Compensación',
                 '01': 'Efectivo', '02': 'Cheque', '03': 'Tarjeta de crédito',
                 '04': 'Tarjeta de débito', '05': 'Transferencia bancaria',
                 '06': 'Dinero electrónico', '07': 'Crédito', '08': 'Pago anticipado',
                 '09': 'Compensación', '10': 'Pago en especie', '11': 'Cesión de derechos',
                 '12': 'Pago en especie o compensación', '13': 'Tarjeta prepago',
                 '14': 'Pago con bonos', '15': 'Pago por servicios intermedios',
-                '16': 'Pago con criptomonedas', '17': 'Otros', '18': 'Devolución',
+                '16': 'Pago con criptomonedas', '17': 'Otros', '18': 'Devolución',      
+                '19': 'Tarjeta de débito','20': 'Dinero electrónico'
             }
+
+            # Procesar el código de la forma de pago
+            if forma_pago is not None:
+                # Asegurar que el código sea de dos dígitos, con ceros a la izquierda si es necesario
+                codigo_forma_pago = forma_pago.zfill(2)
+            else:
+                # Si no hay forma de pago, usar el valor predeterminado '17' (Otros)
+                codigo_forma_pago = '17'
+
+            # Obtener la descripción de la forma de pago desde el diccionario
             descripcion_forma_pago = formas_pago.get(codigo_forma_pago, 'Desconocido')
+
             pdf.cell(80, 8, f"Forma de Pago: {descripcion_forma_pago}", border=1, ln=1, align='L')
             pdf.cell(80, 8, f"Total con impuestos: ${float(factura['Total con impuestos']):.2f}", border=1, ln=1, align='L')
 
